@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
 export const GlobalStyle = createGlobalStyle`
@@ -11,19 +11,32 @@ export const GlobalStyle = createGlobalStyle`
         &::-webkit-scrollbar-thumb {
           background-color: hsla(0, 0%, 42%, 0.29);
           border-radius: 100px;
-        }
-    }
+        }   
+    }   
 
-    html,
+    html,   
     body {
+      background-color: ${(props) => props.theme.background_color};
       font-family: 'Spoqa Han Sans Neo', -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
       height: 100%;
-      /* height: 100%;
+      font-size: 62.5%;
       box-sizing: border-box;
-      touch-action: manipulation;
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overscroll-behavior-x: none; */
     }
+
+    button {
+    cursor: pointer;
+    background-color: Transparent;
+    border: none;
+    user-select: none;
+  }
+`;
+
+export const Col = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
