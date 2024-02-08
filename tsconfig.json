@@ -34,7 +34,7 @@
       "@utils/*": ["src/utils/*"]
     }
   },
-  "include": ["src", "libTypes", "**/*.ts", "**/*.tsx"],
+  "include": ["src", "**/*.ts", "**/*.tsx", "**/*.js"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

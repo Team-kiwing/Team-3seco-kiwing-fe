@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "question": "CRUD란 무엇인가?"
+  },
+  {
+    "id": 2,
+    "question": "API란 무엇인가?"
+  },
+  {
+    "id": 3,
+    "question": "PWA란 무엇인가?"
+  }
+]
