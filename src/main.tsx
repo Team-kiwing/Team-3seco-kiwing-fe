@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './App.tsx';
 import { serviceWorker } from './mock/browser.ts';
@@ -15,10 +16,12 @@ const root = ReactDOM.createRoot(document.getElementById('root')!);
 mock().then(() => {
   root.render(
     <React.StrictMode>
-      <ManagedUIContext>
-        <GlobalStyle />
-        <App />
-      </ManagedUIContext>
+      <BrowserRouter>
+        <ManagedUIContext>
+          <GlobalStyle />
+          <App />
+        </ManagedUIContext>
+      </BrowserRouter>
     </React.StrictMode>
   );
 });
