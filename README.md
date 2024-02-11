@@ -3,15 +3,15 @@ $${\LARGE\textsf{\textcolor{#48DA79}{당신의}  \textcolor{#48DA79}{면접에} 
 
 <br />
 <p align="center">
-<img alt="kiwing logo green" src="https://github.com/SoJuSo/dummy/assets/90549862/ee71f3b5-ebb2-470b-ab66-32161c2bd024" data-canonical-src="https://github.com/SoJuSo/dummy/assets/90549862/ee71f3b5-ebb2-470b-ab66-32161c2bd024" width="30%" height="30%" /> &nbsp; <img alt="kiwing logo white" src="https://github.com/SoJuSo/dummy/assets/90549862/1e0ddee7-31c6-45e4-b558-0860ebd57afc" data-canonical-src="https://github.com/SoJuSo/dummy/assets/90549862/1e0ddee7-31c6-45e4-b558-0860ebd57afc" width="30%" height="30%" />
+<img alt="kiwing logo green" src="https://github.com/Team-kiwing/Team-3seco-kiwing-fe/assets/90549862/b3afcb62-eb76-4e17-9ccb-5fb7e72c32cb" data-canonical-src="https://github.com/Team-kiwing/Team-3seco-kiwing-fe/assets/90549862/b3afcb62-eb76-4e17-9ccb-5fb7e72c32cb" width="30%" height="30%" /> &nbsp; <img alt="kiwing logo white" src="https://github.com/Team-kiwing/Team-3seco-kiwing-fe/assets/90549862/65fa1986-24c3-4246-ac1d-8f7b6b80bfff" data-canonical-src="https://github.com/Team-kiwing/Team-3seco-kiwing-fe/assets/90549862/65fa1986-24c3-4246-ac1d-8f7b6b80bfff" width="30%" height="30%" />
 </p>
 
 > [!NOTE]
-> #### 안녕하세요. 키윙 서비스를 기획, 개발하고 있는 팀 **삼시세코**입니다.<br />
-> #### 키윙 서비스는 우리 취업 준비생, 이직생들이 마주한 면접과정을 준비하는 데에 도움이 되고자 기획된 장기 프로젝트입니다. <br />
-> #### 키윙 서비스는 사용자들에게 면접을 효율적이고 빠르게 준비할 수 있는 기능들을 제공합니다.
+> **안녕하세요. 키윙 서비스를 기획, 개발하고 있는 팀 삼시세코입니다.**<br /><br />
+> **키윙 서비스는 우리 취업 준비생, 이직생들이 마주한 면접과정을 준비하는 데에 도움이 되고자 기획된 장기 프로젝트입니다.** <br /><br />
+> **키윙 서비스는 사용자들에게 면접을 효율적이고 빠르게 준비할 수 있는 기능들을 제공합니다.**
 
-> ### 더 자세한 정보는 [📄키윙 기획서](https://prgrms.notion.site/2794be1a25474d5a8ce0bed8b3191539?pvs=4)혹은 [📚Wiki](https://github.com/Team-kiwing/Team-3seco-kiwing-fe/wiki) 페이지를 확인해주세요!
+> **더 자세한 정보는 [📄키윙 기획서](https://prgrms.notion.site/2794be1a25474d5a8ce0bed8b3191539?pvs=4)혹은 [📚Wiki](https://github.com/Team-kiwing/Team-3seco-kiwing-fe/wiki) 페이지를 확인해주세요!**
 
 ### 🌐서비스 주소 [kiwing.kr](https://www.kiwing.kr/)
 
