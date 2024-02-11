@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const IconWrapper = styled.div<{
   /**
@@ -22,18 +22,66 @@ const IconWrapper = styled.div<{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1px;
 
-  width: 20px;
-  height: 20px;
+  ${({ $size }) => {
+    if (typeof $size === 'number') {
+      return css`
+        width: ${$size}px;
+        height: ${$size}px;
+      `;
+    } else {
+      switch ($size) {
+        case 'xss':
+          return css`
+            width: 10px;
+            height: 10px;
+          `;
+        case 'xs':
+          return css`
+            width: 20px;
+            height: 20px;
+          `;
+        case 's':
+          return css`
+            width: 30px;
+            height: 30px;
+          `;
+        case 'm':
+          return css`
+            width: 40px;
+            height: 40px;
+          `;
+        case 'l':
+          return css`
+            width: 50px;
+            height: 50px;
+          `;
+        case 'xl':
+          return css`
+            width: 60px;
+            height: 60px;
+          `;
+        case 'xxl':
+          return css`
+            width: 70px;
+            height: 70px;
+          `;
+        default:
+          return css`
+            width: 40px;
+            height: 40px;
+          `;
+      }
+    }
+  }}
   svg {
     cursor: pointer;
     width: 100%;
     height: 100%;
-    fill: red;
+    fill: ${(props) => props.$fillColor};
   }
   :hover {
-    fill: blue;
+    fill: ${(props) => props.$hoverIconColor};
   }
 `;
 
