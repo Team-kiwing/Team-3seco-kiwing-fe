@@ -17,6 +17,10 @@ const stateStyles = {
     background-color: #48da79;
     color: #ffffff;
   `,
+  hot: css`
+    background-color: #f7cece;
+    color: #f23030;
+  `,
 };
 
 export const StyledBadge = styled.span<PropsBadge>`
@@ -29,8 +33,16 @@ export const StyledBadge = styled.span<PropsBadge>`
   font-size: ${({ $size }) =>
     typeof $size === 'number' ? `${$size}rem` : sizeMapping[$size] || '0.7rem'};
 
-  ${({ $state, $isActive }) =>
-    $state === 'basic' && !$isActive ? stateStyles.basic : stateStyles.focus}
+  ${({ $state, $isActive }) => {
+    if ($state === 'basic' && !$isActive) {
+      return stateStyles.basic;
+    } else if ($state === 'focus') {
+      return stateStyles.focus;
+    } else if ($state === 'hot') {
+      return stateStyles.hot;
+    }
+    return '';
+  }}
 
   &:hover {
     ${({ $hover }) => $hover && stateStyles.focus}
