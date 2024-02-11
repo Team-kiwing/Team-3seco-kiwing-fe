@@ -20,11 +20,11 @@ const IconWrapper = styled.div<{
   /**
    * @summary 기본으로 표기할 아이콘의 색상을 입력합니다.
    */
-  $fillColor: string; // 아이콘 색상
+  $fillColor: string;
   /**
    * @summary hover시 표기할 아이콘의 색상을 입력합니다.
    */
-  $hoverIconColor: string; // hover시 아이콘 색상
+  $hoverIconColor: string;
 }>`
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@ const IconWrapper = styled.div<{
         height: ${$size}px;
       `;
     } else {
-      const sizeValue = sizeMapping[$size] || '40px'; // Default size
+      const sizeValue = sizeMapping[$size] || '40px';
       return css`
         width: ${sizeValue};
         height: ${sizeValue};
