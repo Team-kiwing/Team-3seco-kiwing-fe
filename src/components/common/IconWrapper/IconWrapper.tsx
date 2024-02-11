@@ -15,9 +15,6 @@ const IconWrapper = styled.div<{
    * @summary hover시 표기할 아이콘의 색상을 입력합니다.
    */
   $hoverIconColor: string; // hover시 아이콘 색상
-  // $shape?: 'square' | 'circle'; // 아이콘 형태, 없을 시 square default
-  // $backgroundColor?: string; // 배경 색상
-  // $hoverBackgroundColor?: string; // hover시 배경 아이콘 색상, 없을 시 동작X
 }>`
   display: flex;
   align-items: center;
