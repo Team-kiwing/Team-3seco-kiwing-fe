@@ -7,3 +7,10 @@ export interface ShadowBoxProps extends HTMLAttributes<HTMLDivElement> {
   isHoverActive?: boolean;
   children?: ReactNode;
 }
+
+export interface ContainerProps {
+  $width: number;
+  $height: number;
+  $color: string;
+  $scale: number;
+}

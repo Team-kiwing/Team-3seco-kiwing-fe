@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{
-  $width: number;
-  $height: number;
-  $color: string;
-  $scale: number;
-}>`
+import { ContainerProps } from './ShadowBox.type';
+
+export const Container = styled.div<ContainerProps>`
   display: flex;
   width: ${(props) => props.$width}px;
   height: ${(props) => props.$height}px;
