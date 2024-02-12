@@ -19,6 +19,7 @@ const ImageUpload = ({
   children,
   onImageFile,
   onImageFileUrl,
+  ...props
 }: PropsWithChildren<PropsImageUpload>) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -39,7 +40,10 @@ const ImageUpload = ({
   };
 
   return (
-    <div onClick={handleChooseFile}>
+    <div
+      onClick={handleChooseFile}
+      {...props}
+    >
       <Input
         onChange={handleChangeFile}
         ref={inputRef}
