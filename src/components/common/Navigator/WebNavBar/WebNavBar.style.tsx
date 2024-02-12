@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { Row } from '@/styles/globalStyles';
 
 export const WebNavBarWrapper = styled(Row)`
-  max-width: 1200px;
+  max-width: 1140px;
   margin: 0 auto;
+  padding: 0.5rem 3rem;
   align-items: center;
   justify-content: space-between;
 
