@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-export interface ShadowBoxProps {
+export interface ShadowBoxProps extends HTMLAttributes<HTMLDivElement> {
   width?: number;
   height?: number;
   isActive?: boolean;

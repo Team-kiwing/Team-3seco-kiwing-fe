@@ -12,6 +12,7 @@ const ShadowBox = ({
   isActive = false,
   isHoverActive = false,
   children,
+  ...props
 }: ShadowBoxProps) => {
   return (
     <>
@@ -20,6 +21,7 @@ const ShadowBox = ({
         $height={height}
         $color={isActive ? '#48DA79' : 'white'}
         $scale={isHoverActive ? 1.05 : 1.0}
+        {...props}
       >
         {children}
       </Container>
