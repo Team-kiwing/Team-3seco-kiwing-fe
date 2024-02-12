@@ -1,7 +1,13 @@
 import { useMenu } from './WebNavBar.hook';
 import {
+  WebNavBarDivideLine,
+  WebNavBarHub,
+  WebNavBarLogin,
+  WebNavBarLogo,
+  WebNavBarMyList,
   WebNavBarMyPage,
   WebNavBarRouter,
+  WebNavBarShared,
   WebNavBarWrapper,
 } from './WebNavBar.style';
 
@@ -20,15 +26,20 @@ const WebNavBar = () => {
   return (
     <WebNavBarWrapper>
       <WebNavBarRouter>
-        <div onClick={handleLogo}>handleLogo</div>
-        <div onClick={handleHub}>handleHub</div>
-        <div onClick={handleList}>handleList</div>
+        <WebNavBarLogo onClick={handleLogo}>키윙</WebNavBarLogo>
+        <WebNavBarHub onClick={handleHub}>질문 허브</WebNavBarHub>
+        <WebNavBarShared onClick={handleList}>
+          공유된 질문 꾸러미
+        </WebNavBarShared>
       </WebNavBarRouter>
+      <WebNavBarDivideLine />
       <WebNavBarMyPage>
         {isLogin ? (
-          <div onClick={() => handleMyList(':id')}>handleMyList</div>
+          <WebNavBarMyList onClick={() => handleMyList(':id')}>
+            내 질문 꾸러미
+          </WebNavBarMyList>
         ) : (
-          <div onClick={handleLogin}>Todo/LoginButton</div>
+          <WebNavBarLogin onClick={handleLogin}>로그인</WebNavBarLogin>
         )}
       </WebNavBarMyPage>
     </WebNavBarWrapper>
