@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 
 const sizeMapping = {
-  xss: '10px',
-  xs: '20px',
-  s: '30px',
-  m: '40px',
-  l: '50px',
-  xl: '60px',
-  xxl: '70px',
+  xss: '1rem',
+  xs: '2rem',
+  s: '3rem',
+  m: '4rem',
+  l: '5rem',
+  xl: '6rem',
+  xxl: '7rem',
 };
 
 const IconWrapper = styled.div<{
