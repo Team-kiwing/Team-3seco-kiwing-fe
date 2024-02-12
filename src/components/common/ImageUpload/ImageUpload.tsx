@@ -4,6 +4,17 @@ import { PropsWithChildren } from 'react';
 import { Input } from './ImageUpload.style';
 import { PropsImageUpload } from './ImageUpload.type';
 
+/**
+ * @summary 사용법 <ImageUpload
+      onImageFileUrl={()=> {}}
+      onImageFile={()=> {}}
+    />
+ * @description 공통 ImageUpload 컴포넌트
+ * @param onImageFileUrl 부모로 업로드한 이미지의 파일의 url을 전달합니다. 
+ * @param onImageFile 부모로 업로드한 이미지의 파일 자체를 전달합니다. (api 로직과 연결할때 사용합니다.)
+ * @returns
+ */
+
 const ImageUpload = ({
   children,
   onImageFile,
