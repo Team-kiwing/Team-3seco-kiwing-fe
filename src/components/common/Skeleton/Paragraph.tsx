@@ -6,7 +6,7 @@ export const Paragraph = ({
   $width,
   $height,
   $borderRadius,
-  $marginBottom = '1rem',
+  $marginBottom = 10,
 }: PropsParagraphSkeleton) => {
   return (
     <div>
@@ -18,9 +18,8 @@ export const Paragraph = ({
             $height={$height}
             $borderRadius={$borderRadius}
             style={{
-              marginBottom: $marginBottom,
-              width:
-                index === $line - 1 ? `${parseInt($width) * 0.65}rem` : $width,
+              marginBottom: `${$marginBottom}px`,
+              width: index === $line - 1 ? `${$width * 0.65}px` : $width,
             }}
           />
         );
