@@ -5,6 +5,7 @@ import { AvatarProps } from './Avatar.type';
 const AvaterSize: { [key: string]: string } = {
   mobile: '5rem',
   pc: '10rem',
+  nav: '4rem',
 };
 
 export const AvatarWrapper = styled.div<AvatarProps>`
