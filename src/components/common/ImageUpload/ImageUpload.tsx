@@ -25,13 +25,15 @@ const ImageUpload = ({
 
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
+    const fileType = selectedFile?.type;
+    const isImage = fileType?.includes('image') && !fileType.includes('gif');
 
-    if (selectedFile) {
+    if (selectedFile && isImage) {
       const fileURL = URL.createObjectURL(selectedFile);
       onImageFile(selectedFile);
       onImageFileUrl(fileURL);
     } else {
-      console.log('No file selected');
+      alert('이미지 파일만 업로드해주세요.');
     }
   };
 
