@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { PropsWithChildren } from 'react';
 
-import { Input } from './ImageUpload.style';
+import { ImageWrapper, Input } from './ImageUpload.style';
 import { PropsImageUpload } from './ImageUpload.type';
 
 /**
@@ -42,7 +42,7 @@ const ImageUpload = ({
   };
 
   return (
-    <div
+    <ImageWrapper
       onClick={handleChooseFile}
       {...props}
     >
@@ -53,7 +53,7 @@ const ImageUpload = ({
         accept="image/*"
       />
       {children}
-    </div>
+    </ImageWrapper>
   );
 };
 
