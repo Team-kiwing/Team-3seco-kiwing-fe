@@ -8,7 +8,6 @@ export const WebNavBarWrapper = styled(Row)`
   padding: 0.5rem 3rem;
   align-items: center;
   justify-content: space-between;
-
   font-size: 2rem;
   font-weight: 500;
 `;

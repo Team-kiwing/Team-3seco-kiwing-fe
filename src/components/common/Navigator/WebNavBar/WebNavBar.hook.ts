@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 export const useMenu = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
-  const Location = useLocation();
+  const location = useLocation();
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export const useMenu = () => {
   }, []);
 
   const handleNavigate = (path: string): void => {
-    if (Location.pathname === path) {
+    if (location.pathname === path) {
       return;
     } else {
       navigator(path);
