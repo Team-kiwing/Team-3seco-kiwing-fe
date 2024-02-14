@@ -36,9 +36,7 @@ const WebNavBar = () => {
     <WebNavBarWrapper>
       <WebNavBarRouter>
         <WebNavBarLogo
-          style={
-            location.pathname.length === 1 ? { transform: 'scale(1.01)' } : {}
-          }
+          style={location.pathname.length === 1 ? { color: '#48da79' } : {}}
           onClick={handleLogo}
         >
           키윙
