@@ -1,26 +1,10 @@
-import { themeStore } from '@/stores';
+import Router from '@/routes';
 
 const App = () => {
-  const { updateTheme } = themeStore();
-  const handle = () => {
-    updateTheme();
-  };
-
-  const handler = async () => {
-    try {
-      const res = await fetch('/question', { method: 'GET' });
-      const response = await res.json();
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  // 아마 App을 거쳐서 페이지를 뿌리는 구조라 여기서 auth 여부 판별하는 로직이 있지 않을까 합니다.
   return (
     <>
-      <div style={{ display: 'flex' }}>This is Main</div>
-      <button onClick={handle}>XXX</button>
-      <button onClick={handler}>OOO</button>
+      <Router />
     </>
   );
 };
