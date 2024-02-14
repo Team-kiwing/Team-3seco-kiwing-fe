@@ -26,7 +26,7 @@ export const WebNavBarLogo = styled.div`
   font-size: 3.5rem;
   font-weight: bold;
   white-space: nowrap;
-  color: #24bb63; // todo. theme props 형태로 변경
+  color: #009c4d; // todo. theme props 형태로 변경
 `;
 
 export const WebNavItem = styled.div<{ $isLocated: boolean }>`
