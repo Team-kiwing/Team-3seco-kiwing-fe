@@ -18,7 +18,7 @@ export const WebNavBarRouter = styled(Row)`
 `;
 
 export const WebNavBarMyPage = styled(Row)`
-  gap: 1rem;
+  gap: 2rem;
 `;
 
 export const WebNavBarLogo = styled.div`
@@ -26,27 +26,13 @@ export const WebNavBarLogo = styled.div`
   font-size: 3.5rem;
   font-weight: bold;
   white-space: nowrap;
-  color: #48da79; // todo. theme props 형태로 변경
+  color: #24bb63; // todo. theme props 형태로 변경
 `;
 
-export const WebNavBarHub = styled.div`
+export const WebNavItem = styled.div<{ $isLocated: boolean }>`
   cursor: pointer;
   white-space: nowrap;
-`;
-
-export const WebNavBarShared = styled.div`
-  cursor: pointer;
-  white-space: nowrap;
-`;
-
-export const WebNavBarMyList = styled.div`
-  cursor: pointer;
-  white-space: nowrap;
-`;
-
-export const WebNavBarLogin = styled.div`
-  cursor: pointer;
-  white-space: nowrap;
+  color: ${(props) => (props.$isLocated ? '#48da79' : undefined)};
 `;
 
 export const WebNavBarDivideLine = styled.div`
