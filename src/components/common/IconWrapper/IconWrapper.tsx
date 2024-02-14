@@ -13,7 +13,7 @@ const sizeMapping = {
 const IconWrapper = styled.div<{
   /**
    * @summary 사용될 아이콘의 사이즈를 결정합니다.
-   * @description 기본 default 사이즈가 존재하고 number형태의 임의 사이즈도 추가할 수 있습니다.
+   * @description 기본 default 사이즈가 존재하고 number 타입의 숫자를 입력 받아 임의의 rem 사이즈도 추가할 수 있습니다.
    * @param 'xss' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | number
    */
   $size: 'xss' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | number;
@@ -25,16 +25,23 @@ const IconWrapper = styled.div<{
    * @summary hover시 표기할 아이콘의 색상을 입력합니다.
    */
   $hoverIconColor: string;
+  /**
+   * @summary hover시 backgroundColor여부를 선택적으로 입력받습니다.
+   */
+  $isBackground?: boolean;
 }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
 
   ${({ $size }) => {
     if (typeof $size === 'number') {
       return css`
-        width: ${$size}px;
-        height: ${$size}px;
+        width: ${$size}rem;
+        height: ${$size}rem;
       `;
     } else {
       const sizeValue = sizeMapping[$size] || '40px';
@@ -46,14 +53,26 @@ const IconWrapper = styled.div<{
   }}
 
   svg {
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
+    box-sizing: border-box;
+    width: 65%;
+    height: 65%;
     fill: ${(props) => props.$fillColor};
   }
 
-  :hover {
-    fill: ${(props) => props.$hoverIconColor};
+  @media (hover: hover) and (pointer: fine) {
+    /* when supported */
+    &:hover {
+      svg {
+        fill: ${(props) => props.$hoverIconColor};
+      }
+      ${({ $isBackground }) => {
+        if ($isBackground) {
+          return css`
+            background-color: rgba(128, 128, 128, 0.15);
+          `;
+        }
+      }}
+    }
   }
 `;
 
