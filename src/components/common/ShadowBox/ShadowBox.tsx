@@ -1,3 +1,6 @@
+import { PropsWithChildren } from 'react';
+import { useTheme } from 'styled-components';
+
 import { Container } from './ShadowBox.style';
 import { ShadowBoxProps } from './ShadowBox.type';
 /**
@@ -7,20 +10,22 @@ import { ShadowBoxProps } from './ShadowBox.type';
  * @param isHoverActive hover효과(scale)를 주고 싶을 때 사용합니다.
  */
 const ShadowBox = ({
-  width = 200,
-  height = 200,
+  width,
+  height,
   isActive = false,
   isHoverActive = false,
   children,
   ...props
-}: ShadowBoxProps) => {
+}: PropsWithChildren<ShadowBoxProps>) => {
+  const theme = useTheme();
+
   return (
     <>
       <Container
         $width={width}
         $height={height}
-        $color={isActive ? '#48DA79' : 'white'}
-        $scale={isHoverActive ? 1.05 : 1.0}
+        $color={isActive ? theme.symbol_color : 'white'}
+        $isHoverActive={isHoverActive}
         {...props}
       >
         {children}
