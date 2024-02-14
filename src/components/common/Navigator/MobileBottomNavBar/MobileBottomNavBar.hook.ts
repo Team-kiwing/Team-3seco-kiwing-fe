@@ -16,7 +16,6 @@ export const useNavigatorMenu = () => {
   }, []);
 
   const handleNavigate = (path: string): void => {
-    console.log(`clicked`);
     if (location.pathname === path) {
       return;
     } else {
