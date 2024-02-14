@@ -1,5 +1,3 @@
-import { PropsWithChildren } from 'react';
-
 import { StyledBadge } from './Badge.style';
 import { PropsBadge } from './Badge.type';
 
@@ -18,23 +16,16 @@ import { PropsBadge } from './Badge.type';
  * @returns
  */
 
-const Badge = ({
-  $state,
-  children,
-  $hover,
-  $isActive,
-  $size,
-  ...props
-}: PropsWithChildren<PropsBadge>) => {
+const Badge = ({ $state, $isHover, $size, $text, ...props }: PropsBadge) => {
   return (
     <StyledBadge
       $size={$size}
       $state={$state}
-      $hover={$hover}
-      $isActive={$isActive}
+      $isHover={$isHover}
+      $text={$text}
       {...props}
     >
-      {children}
+      {$text}
     </StyledBadge>
   );
 };

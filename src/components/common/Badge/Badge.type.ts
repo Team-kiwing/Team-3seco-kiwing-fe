@@ -1,6 +1,6 @@
 export interface PropsBadge extends React.HTMLAttributes<HTMLSpanElement> {
-  $state: 'basic' | 'focus' | 'hot';
+  $state: 'basic' | 'focus' | 'hashTag';
   $size: 's' | 'm' | 'l' | number;
-  $isActive?: boolean;
-  $hover?: boolean;
+  $text: string;
+  $isHover?: boolean;
 }
