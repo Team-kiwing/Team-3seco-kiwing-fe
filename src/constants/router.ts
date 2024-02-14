@@ -1,0 +1,10 @@
+export const ROUTE_MAIN_PAGE = '/';
+export const ROUTE_AUTH_PAGE = '/auth';
+export const ROUTE_REGISTER_PAGE = '/register';
+export const ROUTE_HUB_PAGE = '/hub';
+export const ROUTE_SHARED_PAGE = '/shared';
+export const ROUTE_SHARED_ITEM_PAGE = '/shared/'; // 얘내 둘처럼
+export const ROUTE_MY_PAGE = '/@'; //  커스텀하게 아이디가 들어가는 경우는 어떻게 할까요
+export const ROUTE_REPORT_PAGE = '/report';
+export const ROUTE_TEST_PAGE = '/test';
+export const ROUTE_404_PAGE = '/*';
