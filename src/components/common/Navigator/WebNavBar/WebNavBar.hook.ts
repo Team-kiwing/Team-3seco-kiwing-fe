@@ -30,6 +30,7 @@ export const useMenu = () => {
 
   return {
     isLogin,
+    location,
     handleLogo,
     handleHub,
     handleList,
