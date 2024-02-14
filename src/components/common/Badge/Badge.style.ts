@@ -32,6 +32,7 @@ export const StyledBadge = styled.span<PropsStyledBadge>`
   transition: background-color 0.5s ease;
   font-size: ${({ $size }) =>
     typeof $size === 'number' ? `${$size}rem` : sizeMapping[$size] || '1.8rem'};
+  -webkit-tap-highlight-color: transparent;
   ${({ $state }) => {
     return stateStyles[$state];
   }}
