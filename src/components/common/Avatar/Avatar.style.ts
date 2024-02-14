@@ -15,7 +15,7 @@ export const AvatarWrapper = styled.div<AvatarProps>`
   overflow: hidden;
   width: ${({ $size }) => AvaterSize[$size]};
   height: ${({ $size }) => AvaterSize[$size]};
-  border: 0.1rem solid #d9d9d9; /* TODO: #d9d9d9 => gray.100 으로 바꾸기 */
+  border: 0.1rem solid ${({ theme }) => theme.gray_100};
   border-radius: 50%;
   background-image: ${({ $src }) =>
     $src ? `url(${$src})` : `url(${DEFAULT_PROFILE_IMAGE})`};
