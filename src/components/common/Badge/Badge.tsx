@@ -22,10 +22,9 @@ const Badge = ({ $state, $isHover, $size, $text, ...props }: PropsBadge) => {
       $size={$size}
       $state={$state}
       $isHover={$isHover}
-      $text={$text}
       {...props}
     >
-      {$text}
+      {$state === 'hashTag' ? `#${$text}` : $text}
     </StyledBadge>
   );
 };

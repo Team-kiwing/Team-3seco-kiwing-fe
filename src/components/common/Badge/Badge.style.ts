@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { PropsBadge } from './Badge.type';
+import { PropsStyledBadge } from './Badge.type';
 
 const sizeMapping = {
   s: '1.4rem',
@@ -23,7 +23,7 @@ const stateStyles = {
   `,
 };
 
-export const StyledBadge = styled.span<PropsBadge>`
+export const StyledBadge = styled.span<PropsStyledBadge>`
   display: inline-block;
   border-radius: 3rem;
   padding: 0.75rem 1.25rem;
@@ -32,7 +32,6 @@ export const StyledBadge = styled.span<PropsBadge>`
   transition: background-color 0.5s ease;
   font-size: ${({ $size }) =>
     typeof $size === 'number' ? `${$size}rem` : sizeMapping[$size] || '1.8rem'};
-
   ${({ $state }) => {
     return stateStyles[$state];
   }}

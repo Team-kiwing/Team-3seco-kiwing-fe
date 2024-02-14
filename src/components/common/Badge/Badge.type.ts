@@ -4,3 +4,5 @@ export interface PropsBadge extends React.HTMLAttributes<HTMLSpanElement> {
   $text: string;
   $isHover?: boolean;
 }
+
+export type PropsStyledBadge = Omit<PropsBadge, '$text'>;
