@@ -4,7 +4,7 @@ import { InputStyledProps } from './Input.type';
 
 export const InputWrapper = styled.div<InputStyledProps>`
   width: ${(props) => props.$width};
-  font-size: ${(props) => props.$fontSize}rem;
+  font-size: ${(props) => (props.$fontSize ? props.$fontSize : 2)}rem;
   display: flex;
   flex-direction: column;
 `;
