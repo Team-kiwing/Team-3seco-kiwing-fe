@@ -54,8 +54,19 @@ const IconWrapper = styled.div<{
 
   svg {
     box-sizing: border-box;
-    width: 65%;
-    height: 65%;
+    ${({ $isBackground }) => {
+      if ($isBackground) {
+        return css`
+          width: 65%;
+          height: 65%;
+        `;
+      } else {
+        return css`
+          width: 100%;
+          height: 100%;
+        `;
+      }
+    }}
     fill: ${(props) => props.$fillColor};
   }
 
