@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
+import { BORDER_MOBILE, BORDER_WEB, MOBILE } from '@/constants';
+
 export const Base = styled.div`
-  border-radius: 4px;
+  border-radius: ${BORDER_WEB}px;
   background: linear-gradient(90deg, #dfe3e8 0px, #efefef 30px, #dfe3e8 80px) 0%
     center / 200% 100%;
   animation:
@@ -42,5 +44,9 @@ export const Base = styled.div`
     100% {
       transform: translateY(0);
     }
+  }
+
+  @media screen and (max-width: ${MOBILE}px) {
+    border-radius: ${BORDER_MOBILE}px;
   }
 `;

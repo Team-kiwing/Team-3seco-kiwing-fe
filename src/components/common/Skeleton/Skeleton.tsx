@@ -8,30 +8,27 @@ const Skeleton = {
   Paragraph,
 };
 /**
- * @summary 사용법 <Skeleton.Box
-        $width={718}
-        $height={63}
-        $borderRadius={15}
-      />
-      <Skeleton.Circle size={100} />
-      <Skeleton.Paragraph
-        $width={625}
-        $height={42}
-        $marginBottom={10}
-        $line={6}
-      />
+ * @summary 사용법  <Skeleton.Circle $size={'100px'} />
+         <Skeleton.Box
+          $width={'718px'}
+          $height={'63px'}
+        />
+       <Skeleton.Paragraph
+          $marginBottom={10}
+          $width={'625px'}
+          $height={'42px'}
+          $line={5}
+        />
  * @description 공통 Skeleton 컴포넌트
  * Box
- * @param $width width
- * @param $height height
- * @param $borderRadius optional) borderRadius 테두리 둥글기, 기본 값: 4px
+ * @param $width width (px, rem, %)
+ * @param $height height (px, rem, %)
  * Circle
- * @param $size size
+ * @param $size size (px, rem, %)
  * Paragraph
- * @param $width width
- * @param $height height
+ * @param $width width (px, rem, %)
+ * @param $height height (px, rem, %)
  * @param $line optional) line 문단의 개수, 기본 개수: 3
- * @param $borderRadius optional) borderRadius 테두리 둥글기, 기본 값: 4px
  * @param $marginBottom optional) marginBottom 문단 사이의 간격, 기본 값: 10px
  * @returns
  */

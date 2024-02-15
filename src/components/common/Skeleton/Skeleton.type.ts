@@ -1,17 +1,15 @@
 export interface PropsBoxSkeleton {
-  $width: number | string;
-  $height: number;
-  $borderRadius?: number;
+  $width: string;
+  $height: string;
 }
 
 export interface PropsCircleSkeleton {
-  $size: number;
+  $size: string;
 }
 
 export interface PropsParagraphSkeleton extends React.ComponentProps<'div'> {
-  $width: number;
-  $height: number;
+  $width: string;
+  $height: string;
   $line?: number;
-  $borderRadius?: number;
   $marginBottom?: number;
 }

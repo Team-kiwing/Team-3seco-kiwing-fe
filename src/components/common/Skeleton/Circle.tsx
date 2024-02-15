@@ -4,7 +4,7 @@ import { Base } from './Base';
 import { PropsCircleSkeleton } from './Skeleton.type';
 
 export const Circle = styled(Base)<PropsCircleSkeleton>`
-  width: ${({ $size }) => `${$size}px`};
-  height: ${({ $size }) => `${$size}px`};
+  width: ${({ $size }) => `${$size}`};
+  height: ${({ $size }) => `${$size}`};
   border-radius: 50%;
 `;
