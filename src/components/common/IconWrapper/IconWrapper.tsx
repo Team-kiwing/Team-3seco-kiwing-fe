@@ -20,11 +20,11 @@ const IconWrapper = styled.div<{
   /**
    * @summary 기본으로 표기할 아이콘의 색상을 입력합니다.
    */
-  $fillColor: string;
+  $fillColor?: string;
   /**
    * @summary hover시 표기할 아이콘의 색상을 입력합니다.
    */
-  $hoverIconColor: string;
+  $hoverIconColor?: string;
   /**
    * @summary hover시 backgroundColor여부를 선택적으로 입력받습니다.
    */
