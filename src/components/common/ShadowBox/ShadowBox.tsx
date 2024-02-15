@@ -4,8 +4,8 @@ import { useTheme } from 'styled-components';
 import { Container } from './ShadowBox.style';
 import { ShadowBoxProps } from './ShadowBox.type';
 /**
- * @param width px단위
- * @param height px단위
+ * @param width px,rem,% 등 단위 커스텀 가능
+ * @param height px,rem,% 등 단위 커스텀 가능
  * @param isActive 해당 파라미터 값을 true로 설정했을 때 배경 색을'#48DA79'으로 변경합니다. 주로 해당 컴포넌트가 선택된 상태일 때 사용합니다.
  * @param isHoverActive hover효과(scale)를 주고 싶을 때 사용합니다.
  */

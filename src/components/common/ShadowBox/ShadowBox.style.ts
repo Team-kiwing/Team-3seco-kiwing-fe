@@ -6,8 +6,8 @@ import { ContainerProps } from './ShadowBox.type';
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
-  width: ${(props) => props.$width}px;
-  height: ${(props) => props.$height}px;
+  width: ${(props) => props.$width};
+  height: ${(props) => props.$height};
   background-color: ${(props) => props.$color};
   box-shadow: 0.2rem 0.2rem 2rem 0.5rem rgba(0, 0, 0, 0.05);
   border-radius: 1rem;
