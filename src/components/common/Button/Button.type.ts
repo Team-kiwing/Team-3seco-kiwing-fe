@@ -9,6 +9,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   hoverBackgroundColor?: string;
   hoverTextColor?: string;
   borderColor?: string;
+  isActive?: boolean;
 }
 
 export interface StyledButtonProps
@@ -21,4 +22,5 @@ export interface StyledButtonProps
   $hoverBackgroundColor: string;
   $hoverTextColor: string;
   $borderColor?: string;
+  $isActive?: boolean;
 }

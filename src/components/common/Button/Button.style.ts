@@ -1,4 +1,6 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
+
+import { MOBILE } from '@/constants';
 
 import type { StyledButtonProps } from './Button.type';
 
@@ -18,9 +20,11 @@ const StyledButton = styled.button<StyledButtonProps>`
 
   transition: all 0.2s ease;
 
-  &:hover {
-    background-color: ${(props) => props.$hoverBackgroundColor};
-    color: ${(props) => props.$hoverTextColor};
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: ${(props) => props.$hoverBackgroundColor};
+      color: ${(props) => props.$hoverTextColor};
+    }
   }
 
   &:disabled {
@@ -29,6 +33,23 @@ const StyledButton = styled.button<StyledButtonProps>`
     border: 1px solid ${(props) => props.$backgroundColor};
     color: ${(props) => props.$backgroundColor};
   }
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: calc(${(props) => props.$textSize} - 0.3rem);
+  }
+
+  &:active {
+    ${(props) => {
+      if (props.$isActive) {
+        return css`
+          background-color: ${props.$hoverBackgroundColor};
+          color: ${props.$hoverTextColor};
+        `;
+      }
+    }}
+  }
+
+  -webkit-tap-highlight-color: transparent;
 `;
 
 export default StyledButton;
