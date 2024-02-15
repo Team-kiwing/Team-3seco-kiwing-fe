@@ -16,7 +16,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   border-radius: 0.6rem;
   border: 1px solid ${(props) => props.$borderColor};
 
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 
   &:hover {
     background-color: ${(props) => props.$hoverBackgroundColor};
