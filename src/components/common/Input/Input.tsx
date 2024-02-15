@@ -42,7 +42,9 @@ const Input = ({
         placeholder={placeholder}
         {...props}
       />
-      <ErrorMessage $margin={margin}>{errorMessage}</ErrorMessage>
+      {errorMessage && (
+        <ErrorMessage $margin={margin}>{errorMessage}</ErrorMessage>
+      )}
     </InputWrapper>
   );
 };
