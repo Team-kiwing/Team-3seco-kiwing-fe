@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { MOBILE, NAVIGATER } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
-export const BottomNavBarWrapper = styled.nav`
+export const BottomNavBarWrapper = styled.nav<{ $isDark: boolean }>`
   display: flex;
   position: fixed;
   bottom: 0;
@@ -23,7 +23,8 @@ export const BottomNavBarWrapper = styled.nav`
 
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  border: 0.2rem solid ${(props) => props.theme.gray_100};
+  border: 0.15rem solid
+    ${(props) => (props.$isDark ? props.theme.gray_500 : props.theme.gray_100)};
   border-bottom: none;
 
   z-index: ${NAVIGATER};
@@ -39,10 +40,12 @@ export const BottomNavBarItem = styled(Col)<{ $color?: boolean }>`
 
   cursor: pointer;
   white-space: nowrap;
-  color: ${(props) => (props.$color ? '#48da79' : undefined)};
+  color: ${(props) =>
+    props.$color ? props.theme.symbol_color : props.theme.primary_color};
   -webkit-tap-highlight-color: transparent;
 
   span {
+    font-size: 1rem;
     font-weight: 500;
   }
 `;
