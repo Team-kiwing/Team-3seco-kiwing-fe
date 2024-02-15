@@ -12,6 +12,7 @@ import { useMenu } from './WebNavBar.hook';
 import {
   WebNavBarDivideLine,
   WebNavBarLogo,
+  WebNavBarLogoImage,
   WebNavBarMyPage,
   WebNavBarRouter,
   WebNavBarWrapper,
@@ -35,23 +36,21 @@ const WebNavBar = () => {
   return (
     <WebNavBarWrapper>
       <WebNavBarRouter>
-        <WebNavBarLogo
-          style={location.pathname.length === 1 ? { color: '#48da79' } : {}}
-          onClick={handleLogo}
-        >
-          키윙
+        <WebNavBarLogo onClick={handleLogo}>
+          <span>키윙</span>
+          <WebNavBarLogoImage />
         </WebNavBarLogo>
         <WebNavItem
           $isLocated={location.pathname.includes(ROUTE_HUB_PAGE)}
           onClick={handleHub}
         >
-          질문 허브
+          <span>질문 허브</span>
         </WebNavItem>
         <WebNavItem
           $isLocated={location.pathname.includes(ROUTE_SHARED_PAGE)}
           onClick={handleList}
         >
-          공유된 질문 꾸러미
+          <span>공유된 질문 꾸러미</span>
         </WebNavItem>
       </WebNavBarRouter>
       <WebNavBarDivideLine />
@@ -69,14 +68,14 @@ const WebNavBar = () => {
             $isLocated={location.pathname.includes(ROUTE_MY_PAGE)}
             onClick={() => handleMyList(':id')}
           >
-            내 질문 꾸러미
+            <span>내 질문 꾸러미</span>
           </WebNavItem>
         ) : (
           <WebNavItem
             $isLocated={location.pathname.includes(ROUTE_AUTH_PAGE)}
             onClick={handleLogin}
           >
-            로그인
+            <span>로그인</span>
           </WebNavItem>
         )}
       </WebNavBarMyPage>
