@@ -5,7 +5,10 @@ import {
   PiScroll,
 } from 'react-icons/pi';
 
+import { themeStore } from '@/stores';
+
 import Avatar from '../../Avatar';
+import IconWrapper from '../../IconWrapper';
 import { useNavigatorMenu } from './MobileBottomNavBar.hook';
 import {
   BottomNavBarItem,
@@ -13,6 +16,7 @@ import {
 } from './MobileBottomNavBar.style';
 
 const MobileBottomNavBar = () => {
+  const { isDarkMode } = themeStore();
   const {
     isLogin,
     location,
@@ -25,14 +29,14 @@ const MobileBottomNavBar = () => {
 
   return (
     <>
-      <BottomNavBarWrapper>
+      <BottomNavBarWrapper $isDark={isDarkMode}>
         <BottomNavBarItem onClick={handleLogo}>
           <Avatar
             $size="nav"
             $src={
               location.pathname.length === 1
                 ? '/kiwing_circle_green.png'
-                : '/kiwing_circle_009c4d.png'
+                : '/kiwing_circle_white.png'
             }
           />
         </BottomNavBarItem>
@@ -40,14 +44,18 @@ const MobileBottomNavBar = () => {
           $color={location.pathname.includes('/hub')}
           onClick={handleHub}
         >
-          <PiCloudArrowDown size={30} />
+          <IconWrapper $size={'s'}>
+            <PiCloudArrowDown />
+          </IconWrapper>
           <span>허브</span>
         </BottomNavBarItem>
         <BottomNavBarItem
           $color={location.pathname.includes('/shared')}
           onClick={handleSharedList}
         >
-          <PiScroll size={30} />
+          <IconWrapper $size={'s'}>
+            <PiScroll />
+          </IconWrapper>
           <span>공유된 꾸러미</span>
         </BottomNavBarItem>
         {isLogin ? (
@@ -55,7 +63,9 @@ const MobileBottomNavBar = () => {
             $color={location.pathname.includes('/@:id')}
             onClick={() => handleMyList(':id')}
           >
-            <PiBooks size={30} />
+            <IconWrapper $size={'s'}>
+              <PiBooks />
+            </IconWrapper>
             <span>내 꾸러미</span>
           </BottomNavBarItem>
         ) : (
@@ -63,7 +73,9 @@ const MobileBottomNavBar = () => {
             $color={location.pathname.includes('/auth')}
             onClick={handleLogin}
           >
-            <PiArrowCircleRightLight size={30} />
+            <IconWrapper $size={'m'}>
+              <PiArrowCircleRightLight />
+            </IconWrapper>
             <span>로그인</span>
           </BottomNavBarItem>
         )}
