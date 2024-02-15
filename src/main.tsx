@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -11,17 +12,21 @@ const mock = async () => {
   await serviceWorker.start();
 };
 
+const queryClient = new QueryClient();
+
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 mock().then(() => {
   root.render(
     <React.StrictMode>
-      <BrowserRouter>
-        <ManagedUIContext>
-          <GlobalStyle />
-          <App />
-        </ManagedUIContext>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ManagedUIContext>
+            <GlobalStyle />
+            <App />
+          </ManagedUIContext>
+        </BrowserRouter>
+      </QueryClientProvider>
     </React.StrictMode>
   );
 });
