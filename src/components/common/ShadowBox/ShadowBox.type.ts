@@ -1,15 +1,15 @@
 import { HTMLAttributes } from 'react';
 
 export interface ShadowBoxProps extends HTMLAttributes<HTMLDivElement> {
-  width: number;
-  height: number;
+  width: string;
+  height: string;
   isActive?: boolean;
   isHoverActive?: boolean;
 }
 
 export interface ContainerProps {
-  $width: number;
-  $height: number;
+  $width: string;
+  $height: string;
   $color: string;
   $isHoverActive: boolean;
 }
