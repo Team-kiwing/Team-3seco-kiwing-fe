@@ -1,6 +1,6 @@
 export interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
   width: string;
-  fontSize: number;
+  fontSize?: number;
   margin?: number;
   label?: string;
   placeholder?: string;
