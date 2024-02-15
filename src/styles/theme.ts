@@ -16,6 +16,7 @@ export const lightTheme: object = {
   gray_100: '#D9D9D9',
 
   // 확장, 추가 시 PR에 명시
+  error_red: '#F82B2B',
 };
 
 export const darkTheme: object = {
@@ -37,6 +38,7 @@ export const darkTheme: object = {
   gray_100: '#D9D9D9',
 
   // 확장, 추가 시 PR에 명시
+  error_red: '#F84A4A',
 };
 
 const Theme = {
