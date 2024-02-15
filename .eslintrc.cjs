@@ -25,6 +25,8 @@ module.exports = {
     'unused-imports/no-unused-imports': 'warn',
     'simple-import-sort/imports': 'warn',
     'simple-import-sort/exports': 'warn',
+    'react/jsx-key': 'error',
+    'react/self-closing-comp': 'warn',
   },
   parserOptions: {
     ecmaVersion: 'latest',
