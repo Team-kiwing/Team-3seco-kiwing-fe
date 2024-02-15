@@ -27,7 +27,7 @@ export const WebNavBarLogo = styled(Row)`
   font-size: 3.5rem;
   font-weight: bold;
   white-space: nowrap;
-  color: #48da79; // todo. theme props 형태로 변경
+  color: ${(props) => props.theme.symbol_color};
 `;
 
 export const WebNavBarLogoImage = styled.div`
@@ -43,7 +43,8 @@ export const WebNavBarLogoImage = styled.div`
 export const WebNavItem = styled.div<{ $isLocated: boolean }>`
   cursor: pointer;
   white-space: nowrap;
-  color: ${(props) => (props.$isLocated ? '#48da79' : undefined)};
+  color: ${(props) =>
+    props.$isLocated ? props.theme.symbol_color : undefined};
 `;
 
 export const WebNavBarDivideLine = styled.div`
