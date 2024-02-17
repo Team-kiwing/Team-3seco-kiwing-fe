@@ -22,7 +22,7 @@ export const StyledInput = styled.input`
   border: none;
   border-bottom: 0.15rem solid ${({ theme }) => theme.primary_color};
   outline: none;
-  transition: border 0.3s;
+  transition: border 0.2s;
 
   &:focus {
     border-bottom: 0.15rem solid ${({ theme }) => theme.symbol_secondary_color};
