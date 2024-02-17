@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
+import { Col } from '@/styles/globalStyles';
+
 import { InputStyledProps } from './Input.type';
 
-export const InputWrapper = styled.div<InputStyledProps>`
+export const InputWrapper = styled(Col)<InputStyledProps>`
   width: ${(props) => props.$width};
   font-size: ${(props) => (props.$fontSize ? props.$fontSize : 2)}rem;
-  display: flex;
-  flex-direction: column;
 `;
 
 export const Label = styled.label<InputStyledProps>`
