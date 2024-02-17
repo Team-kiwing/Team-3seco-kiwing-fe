@@ -11,4 +11,5 @@ export interface InputStyledProps {
   $width?: string;
   $fontSize?: number;
   $margin?: number;
+  $isError?: boolean;
 }

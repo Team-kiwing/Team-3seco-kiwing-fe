@@ -42,9 +42,12 @@ const Input = ({
         placeholder={placeholder}
         {...props}
       />
-      {errorMessage && (
-        <ErrorMessage $margin={margin}>{errorMessage}</ErrorMessage>
-      )}
+      <ErrorMessage
+        $isError={errorMessage?.length === 0}
+        $margin={margin}
+      >
+        {errorMessage?.length === 0 ? 'no Error' : errorMessage}
+      </ErrorMessage>
     </InputWrapper>
   );
 };

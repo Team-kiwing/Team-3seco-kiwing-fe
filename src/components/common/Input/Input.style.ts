@@ -36,4 +36,5 @@ export const StyledInput = styled.input`
 export const ErrorMessage = styled.div<InputStyledProps>`
   color: ${({ theme }) => theme.error_red};
   margin-top: ${(props) => (props.$margin ? props.$margin + 0.15 : 1.65)}rem;
+  visibility: ${({ $isError }) => ($isError ? 'hidden' : undefined)};
 `;
