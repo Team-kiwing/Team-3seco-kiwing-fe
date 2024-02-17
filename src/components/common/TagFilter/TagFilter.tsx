@@ -11,6 +11,13 @@ import {
 } from './TagFilter.style';
 import { TagFilterProps, TagProps } from './TagFilter.type';
 
+/**
+ * @summary 사용법  <TagFilter selectedTags={(item) => handlePick(item)} />
+ * @description 공통 TagFilter 컴포넌트
+ * @param selectedTags TagFilter에서 선택한 태그들입니다.
+ * @returns
+ */
+
 const TagFilter = ({ selectedTags, ...props }: TagFilterProps) => {
   const [activeName, setActiveName] = useState<string[]>([]);
   const tagList: TagProps[] = [
