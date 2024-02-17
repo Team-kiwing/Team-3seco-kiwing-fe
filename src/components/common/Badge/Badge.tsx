@@ -16,12 +16,20 @@ import { PropsBadge } from './Badge.type';
  * @returns
  */
 
-const Badge = ({ $state, $isHover, $size, $text, ...props }: PropsBadge) => {
+const Badge = ({
+  $state,
+  $isHover,
+  $size,
+  $text,
+  $margin,
+  ...props
+}: PropsBadge) => {
   return (
     <StyledBadge
       $size={$size}
       $state={$state}
       $isHover={$isHover}
+      $margin={$margin}
       {...props}
     >
       {$state === 'hashTag' ? `#${$text}` : $text}
