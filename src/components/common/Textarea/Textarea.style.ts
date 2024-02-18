@@ -5,8 +5,13 @@ import { Col } from '@/styles/globalStyles';
 import { TextareaStyledProps } from './Textarea.type';
 
 export const TextareaWrapper = styled(Col)<TextareaStyledProps>`
+  /* TODO: 768 => constans > MOBILE로 수정하기 */
+  @media screen and (max-width: 768px) {
+    font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.3 : 1.3)}rem;
+  }
+
   width: ${(props) => props.$width};
-  font-size: ${(props) => (props.$fontSize ? props.$fontSize : 2)}rem;
+  font-size: ${(props) => (props.$fontSize ? props.$fontSize : 1.6)}rem;
 `;
 
 export const Label = styled.label<TextareaStyledProps>`
@@ -37,7 +42,9 @@ export const StyledTextarea = styled.textarea<TextareaStyledProps>`
 `;
 
 export const ErrorMessage = styled.div<TextareaStyledProps>`
+  font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.6 : 1)}rem;
   color: ${({ theme }) => theme.error_red};
   margin-top: ${(props) => (props.$margin ? props.$margin + 0.15 : 1.65)}rem;
-  visibility: ${(props) => (props.$isError ? 'hidden' : undefined)};
+  visibility: ${({ $isError }) => ($isError ? 'hidden' : undefined)};
+  cursor: default;
 `;
