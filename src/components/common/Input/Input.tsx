@@ -43,6 +43,7 @@ const Input = ({
         {...props}
       />
       <ErrorMessage
+        $fontSize={fontSize}
         $isError={errorMessage?.length === 0}
         $margin={margin}
       >
