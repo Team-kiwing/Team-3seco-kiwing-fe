@@ -10,6 +10,7 @@ export const SearchBarWrapper = styled.div`
   position: relative;
   width: 80%;
   max-width: 432px;
+  min-width: 224px;
 
   & > :nth-child(2) {
     position: absolute;
