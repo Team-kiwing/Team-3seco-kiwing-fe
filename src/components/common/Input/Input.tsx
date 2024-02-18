@@ -38,7 +38,7 @@ const Input = ({
       $width={width}
       $fontSize={fontSize}
     >
-      <Label $margin={margin}>{label}</Label>
+      {label && <Label $margin={margin}>{label}</Label>}
       <StyledInput
         placeholder={placeholder}
         {...props}
