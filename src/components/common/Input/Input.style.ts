@@ -6,7 +6,7 @@ import { InputStyledProps } from './Input.type';
 
 export const InputWrapper = styled(Col)<InputStyledProps>`
   width: ${(props) => props.$width};
-  font-size: ${(props) => (props.$fontSize ? props.$fontSize : 2)}rem;
+  font-size: ${(props) => (props.$fontSize ? props.$fontSize : 1.6)}rem;
 `;
 
 export const Label = styled.label<InputStyledProps>`
