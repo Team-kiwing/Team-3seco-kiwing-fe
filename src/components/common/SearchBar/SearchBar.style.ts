@@ -17,4 +17,6 @@ export const SearchBarWrapper = styled.div`
     top: 0;
     right: 0;
   }
+
+  -webkit-tap-highlight-color: transparent;
 `;
