@@ -27,8 +27,8 @@ const stateStyles = {
   `,
   hot: css`
     font-weight: ${FONT_SEMI_BOLD};
-    background-color: #f7cece;
-    color: #f84c4c;
+    background-color: ${({ theme }) => theme.hotBadge_background_color};
+    color: ${({ theme }) => theme.hotBadge_color};
   `,
 };
 
