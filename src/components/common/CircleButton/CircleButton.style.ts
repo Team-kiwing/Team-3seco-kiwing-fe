@@ -3,7 +3,7 @@ import { css } from 'styled-components';
 
 import type { StyledCircleButtonProps } from './CircleButton.type';
 
-export const ContainerCircle = styled.button<StyledCircleButtonProps>`
+const buttonStyles = css<StyledCircleButtonProps>`
   flex-shrink: 0;
   display: flex;
   justify-content: center;
@@ -48,7 +48,13 @@ export const ContainerCircle = styled.button<StyledCircleButtonProps>`
   -webkit-tap-highlight-color: transparent;
 `;
 
-export const Circle = styled(ContainerCircle)`
+export const ContainerCircle = styled.button`
+  ${buttonStyles}
+`;
+
+export const Circle = styled.div<StyledCircleButtonProps>`
+  ${buttonStyles}
+
   background-color: ${({ theme }) => theme.symbol_color};
   width: calc(${(props) => props.$size} * 0.85);
   height: calc(${(props) => props.$size} * 0.85);
