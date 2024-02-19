@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import { MOBILE } from '@/constants';
 
 export const Wrapper = styled.div`
-  width: 100rem;
+  max-width: 100rem;
   height: 15rem;
   margin: 0 auto;
 
-  @media screen and (max-width: ${MOBILE}) {
+  @media screen and (max-width: ${MOBILE}px) {
     height: 20rem;
     max-width: 40rem;
   }
   @media screen and (max-width: 280px) {
     height: 21rem;
-    max-width: 280px;
+    max-width: 28rem;
   }
 `;
 
@@ -23,7 +23,8 @@ export const TagFilterWrapper = styled.div`
   width: 95%;
   height: 95%;
   margin: 0 auto;
-  @media screen and (max-width: ${MOBILE}) {
+
+  @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
   }
   @media screen and (max-width: 280px) {
@@ -37,14 +38,15 @@ export const TextWrapper = styled.div`
   font-size: 2rem;
   padding-top: 5px;
   padding-left: 10px;
-  @media screen and (max-width: ${MOBILE}) {
+  white-space: nowrap;
+  @media screen and (max-width: ${MOBILE}px) {
     width: 15%;
   }
 `;
 
 export const Label = styled.span`
   font-size: 2.5rem;
-  @media screen and (max-width: ${MOBILE}) {
+  @media screen and (max-width: ${MOBILE}px) {
     font-size: 2rem;
   }
   @media screen and (max-width: 280px) {
