@@ -16,6 +16,7 @@ export const SearchBarWrapper = styled.div`
     position: absolute;
     top: 0;
     right: 0;
+    color: ${({ theme }) => theme.primary_color};
   }
 
   -webkit-tap-highlight-color: transparent;
