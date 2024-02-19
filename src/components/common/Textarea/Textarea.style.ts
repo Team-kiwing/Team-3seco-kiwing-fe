@@ -7,7 +7,7 @@ import { TextareaStyledProps } from './Textarea.type';
 export const TextareaWrapper = styled(Col)<TextareaStyledProps>`
   /* TODO: 768 => constans > MOBILE로 수정하기 */
   @media screen and (max-width: 768px) {
-    font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.3 : 1.3)}rem;
+    font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.2 : 1.4)}rem;
   }
 
   width: ${(props) => props.$width};
@@ -42,7 +42,7 @@ export const StyledTextarea = styled.textarea<TextareaStyledProps>`
 `;
 
 export const ErrorMessage = styled.div<TextareaStyledProps>`
-  font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.6 : 1)}rem;
+  font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.3 : 1.3)}rem;
   color: ${({ theme }) => theme.error_red};
   margin-top: ${(props) => (props.$margin ? props.$margin + 0.15 : 1.65)}rem;
   visibility: ${({ $isError }) => ($isError ? 'hidden' : undefined)};
