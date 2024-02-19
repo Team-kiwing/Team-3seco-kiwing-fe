@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
+import Modal from '@/components/common/Modal';
 import {
   AuthPage,
   HubPage,
@@ -61,6 +62,7 @@ const Router = () => {
           />
         </Route>
       </Routes>
+      <Modal />
     </>
   );
 };
