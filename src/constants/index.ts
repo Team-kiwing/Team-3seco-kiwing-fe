@@ -4,6 +4,7 @@ export const SYMBOL_TEXT: string = 'kiwing';
 
 // SCREEN ------------------------------------------ //
 export const MOBILE = 768; // 768px
+export const MOBILE_MIN = 280; // 280px
 // ------------------------------------------ SCREEN //
 
 // Zindex //
@@ -23,3 +24,7 @@ export const FONT_REGULAR = 400;
 export const FONT_SEMI_BOLD = 550;
 export const FONT_BOLD = 700;
 export const FONT_EXTRA_BOLD = 850;
+
+// DEFAULT FONT //
+export const WEB_FONT_SIZE = 1.6;
+export const MOBILE_FONT_SIZE = 1.4;
