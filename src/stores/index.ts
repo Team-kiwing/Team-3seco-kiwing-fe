@@ -19,3 +19,30 @@ export const themeStore = create<ThemeState>()(
     }
   )
 );
+
+interface ModalType {
+  title: string;
+  content: React.ReactNode;
+  callBack?: () => void;
+}
+interface ModalState extends ModalType {
+  isOpen: boolean;
+  openModal: (modalData: ModalType) => void;
+  closeModal: () => void;
+}
+
+export const modalStore = create<ModalState>((set) => ({
+  isOpen: false,
+  title: '',
+  content: '',
+  callBack: undefined,
+  openModal: (modalData: ModalType) =>
+    set({
+      isOpen: true,
+      title: modalData.title,
+      content: modalData.content,
+      callBack: modalData.callBack,
+    }),
+  closeModal: () =>
+    set({ isOpen: false, title: '', content: '', callBack: undefined }),
+}));
