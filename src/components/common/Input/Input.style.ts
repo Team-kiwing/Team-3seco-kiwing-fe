@@ -7,7 +7,7 @@ import { InputStyledProps } from './Input.type';
 
 export const InputWrapper = styled(Col)<InputStyledProps>`
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.3 : 1.3)}rem;
+    font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.2 : 1.4)}rem;
   }
 
   width: ${(props) => props.$width};
