@@ -19,7 +19,6 @@ export const SelectStick = styled.div<{ $size: number }>`
 
 const Content = styled.div<{ isSelected: boolean; $size: number }>`
   white-space: nowrap;
-  transition: font-size 0.3s ease;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
 `;
