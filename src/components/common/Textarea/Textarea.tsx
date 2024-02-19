@@ -45,7 +45,7 @@ const Textarea = ({
       $width={width}
       $fontSize={fontSize}
     >
-      <Label $margin={margin}>{label}</Label>
+      {label && <Label $margin={margin}>{label}</Label>}
       <StyledTextarea
         $height={height}
         placeholder={placeholder}
