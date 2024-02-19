@@ -39,7 +39,7 @@ export const StyledInput = styled.input`
 `;
 
 export const ErrorMessage = styled.div<InputStyledProps>`
-  font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.6 : 1)}rem;
+  font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.3 : 1.3)}rem;
   color: ${({ theme }) => theme.error_red};
   margin-top: ${(props) => (props.$margin ? props.$margin + 0.15 : 1.65)}rem;
   visibility: ${({ $isError }) => ($isError ? 'hidden' : undefined)};
