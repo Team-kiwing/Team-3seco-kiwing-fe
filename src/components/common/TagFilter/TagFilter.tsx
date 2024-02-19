@@ -3,11 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 import Badge from '../Badge';
 import ShadowBox from '../ShadowBox';
 import {
+  BadgeWrapper,
   Label,
   TagFilterWrapper,
-  TagWrapper,
+  TagItemWrapper,
   TextWrapper,
-  Wrapper,
 } from './TagFilter.style';
 import { TagFilterProps, TagProps } from './TagFilter.type';
 
@@ -58,16 +58,16 @@ const TagFilter = ({ selectedTags, ...props }: TagFilterProps) => {
   }, []);
 
   return (
-    <Wrapper {...props}>
+    <TagFilterWrapper {...props}>
       <ShadowBox
         width={'100%'}
         height={'100%'}
       >
-        <TagFilterWrapper>
+        <TagItemWrapper>
           <TextWrapper>
             <Label>개발</Label>
           </TextWrapper>
-          <TagWrapper>
+          <BadgeWrapper>
             {tagList.map((item) => {
               return (
                 <Badge
@@ -81,10 +81,10 @@ const TagFilter = ({ selectedTags, ...props }: TagFilterProps) => {
                 />
               );
             })}
-          </TagWrapper>
-        </TagFilterWrapper>
+          </BadgeWrapper>
+        </TagItemWrapper>
       </ShadowBox>
-    </Wrapper>
+    </TagFilterWrapper>
   );
 };
 

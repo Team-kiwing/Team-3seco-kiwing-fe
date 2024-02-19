@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { MOBILE } from '@/constants';
 
-export const Wrapper = styled.div`
+export const TagFilterWrapper = styled.div`
   max-width: 100rem;
   height: 15rem;
   margin: 0 auto;
@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const TagFilterWrapper = styled.div`
+export const TagItemWrapper = styled.div`
   display: flex;
   padding-top: 10px;
   width: 95%;
@@ -54,6 +54,6 @@ export const Label = styled.span`
   }
 `;
 
-export const TagWrapper = styled.div`
+export const BadgeWrapper = styled.div`
   width: 100%;
 `;
