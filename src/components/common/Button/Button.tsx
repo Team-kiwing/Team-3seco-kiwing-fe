@@ -1,4 +1,3 @@
-import { PropsWithChildren } from 'react';
 import { useTheme } from 'styled-components';
 
 import StyledButton from './Button.style';
@@ -22,18 +21,18 @@ import { ButtonProps } from './Button.type';
  * @param textSize 모바일 환경에서는 설정한 값에서 0.3rem을 뺀 크기로 자동 보정됩니다.
  */
 const Button = ({
-  width = '10rem',
-  height = '3rem',
+  width = '12rem',
+  height = '3.5rem',
   backgroundColor,
+  text,
   textColor,
-  textSize = '1.3rem',
+  textSize = '1.6rem',
   hoverBackgroundColor,
   hoverTextColor,
   borderColor,
   isActive = true,
-  children,
   ...props
-}: PropsWithChildren<ButtonProps>) => {
+}: ButtonProps) => {
   const theme = useTheme();
 
   return (
@@ -51,7 +50,7 @@ const Button = ({
       $isActive={isActive}
       {...props}
     >
-      {children}
+      {text}
     </StyledButton>
   );
 };

@@ -29,13 +29,13 @@ const StyledButton = styled.button<StyledButtonProps>`
 
   &:disabled {
     cursor: not-allowed;
-    background-color: ${(props) => props.$textColor};
-    border: 1px solid ${(props) => props.$backgroundColor};
-    color: ${(props) => props.$backgroundColor};
+    background-color: ${({ theme }) => theme.gray_300};
+    border: none;
+    color: white;
   }
 
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: calc(${(props) => props.$textSize} - 0.3rem);
+    font-size: calc(${(props) => props.$textSize} - 0.2rem);
   }
 
   &:active {

@@ -3,6 +3,7 @@ import { ButtonHTMLAttributes } from 'react';
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   width?: string;
   height?: string;
+  text: string;
   backgroundColor?: string;
   textColor?: string;
   textSize?: string;
