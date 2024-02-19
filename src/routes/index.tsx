@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
+import { PATH } from '@/constants/router';
 import {
   AuthPage,
   HubPage,
@@ -20,43 +21,43 @@ const Router = () => {
         {/* 프레이머 모션 용 */}
         <Route>
           <Route
-            path="/" // 메인페이지
+            path={PATH.MAIN} // 메인페이지
             element={<MainPage />}
           />
           <Route
-            path="/auth" // 로그인, 회원가입 페이지
+            path={PATH.AUTH} // 로그인, 회원가입 페이지
             element={<AuthPage />}
           />
           <Route
-            path="/register" // 회원가입 후 등록 페이지
+            path={PATH.REGISTER} // 회원가입 후 등록 페이지
             element={<RegisterPage />}
           />
           <Route
-            path="/hub" // 질문 허브 페이지(검색)
+            path={PATH.HUB} // 질문 허브 페이지(검색)
             element={<HubPage />}
           />
           <Route
-            path="/shared" // 공유된 질문 페이지(검색)
+            path={PATH.SHARED} // 공유된 질문 페이지(검색)
             element={<SharedPage />}
           />
           <Route
-            path="/shared/:id" // 공유된 질문 페이지(별개의 페이지)
+            path={PATH.SHARED_ITEM} // 공유된 질문 페이지(별개의 페이지)
             element={<SharedItemPage />}
           />
           <Route
-            path="/@:id" // 내 질문 리스트, 이메일 주소로 개인 페이지
+            path={PATH.MY} // 내 질문 리스트, 이메일 주소로 개인 페이지
             element={<MyListPage />}
           />
           <Route
-            path="/report" // 신고, 건의 페이지
+            path={PATH.REPORT} // 신고, 건의 페이지
             element={<ReportPage />}
           />
           <Route
-            path="/test" // test 페이지
+            path={PATH.TEST} // test 페이지
             element={<TestPage />}
           />
           <Route
-            path="*" // 404 페이지
+            path={PATH.NOTFOUND} // 404 페이지
             element={<NotFoundPage />}
           />
         </Route>
