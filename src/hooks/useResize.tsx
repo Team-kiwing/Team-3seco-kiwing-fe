@@ -14,7 +14,7 @@ const useResize = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         setIsMobileSize(window.innerWidth < MOBILE);
-      }, 500); // 500ms 디바운싱 시간 설정
+      }, 200); // 200ms 디바운싱 시간 설정
     };
 
     window.addEventListener('resize', handleResize);
