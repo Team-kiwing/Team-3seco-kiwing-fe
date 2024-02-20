@@ -20,12 +20,12 @@ export const themeStore = create<ThemeState>()(
   )
 );
 
-interface ModalType {
+export interface ModalType {
   title: string;
   content: React.ReactNode;
   callBack?: () => void;
 }
-interface ModalState extends ModalType {
+export interface ModalState extends ModalType {
   isOpen: boolean;
   openModal: (modalData: ModalType) => void;
   closeModal: () => void;
