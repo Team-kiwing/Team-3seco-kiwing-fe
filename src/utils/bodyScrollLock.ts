@@ -15,7 +15,6 @@ export const enableScrollLock = () => {
     body.style.right = '0px';
     body.style.bottom = '0px';
     body.style.top = `-${pageY}px`;
-    console.log(pageY);
     if (!isMobile) {
       body.style.paddingRight = '0.4rem';
     }
