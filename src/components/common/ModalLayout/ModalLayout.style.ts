@@ -45,7 +45,7 @@ export const ModalTitle = styled.div`
   width: 100%;
   box-sizing: border-box;
   justify-content: center;
-  padding: 1rem;
+  padding: 1rem 5rem;
   font-weight: bold;
   font-size: 2rem;
   border-bottom: 1px solid #cbcbcb;
@@ -65,7 +65,7 @@ export const MobileModalCloseArea = styled.div`
   font-size: ${MOBILE_FONT_SIZE}rem;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid #cbcbcb;
+  border-top: 1px solid ${(props) => props.theme.gray_200};
   cursor: pointer;
   font-weight: ${FONT_SEMI_BOLD};
 `;
