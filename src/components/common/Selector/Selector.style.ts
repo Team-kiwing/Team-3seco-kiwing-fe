@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-import { FONT_REGULAR, MOBILE } from '@/constants';
+import { FONT_REGULAR } from '@/constants';
+
+import { SelectorStickProps, SelectorStyleProps } from './Selector.type';
 
 export const SelectWrapper = styled.div`
   text-align: center;
@@ -10,43 +12,33 @@ export const SelectWrapper = styled.div`
   width: 100%;
 `;
 
-export const SelectStick = styled.div<{ $size: number }>`
+export const SelectStick = styled.div<SelectorStickProps>`
   width: 0.1rem;
   height: ${({ $size }) => `${$size - 0.2}rem`};
   background-color: ${({ theme }) => theme.gray_200};
   white-space: nowrap;
 `;
 
-const Content = styled.div<{ isSelected: boolean; $size: number }>`
+const Content = styled.div<SelectorStyleProps>`
+  font-size: ${({ $size }) => `${$size}rem`};
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+  @media screen and (max-width: 768px) {
+    font-size: ${({ $size }) => `${$size - 0.1}rem`};
+  }
 `;
 
 export const FirstContent = styled(Content)`
-  font-size: ${({ isSelected, $size }) =>
-    isSelected ? `${$size + 0.1}rem` : `${$size}rem`};
-  color: ${({ isSelected, theme }) =>
-    isSelected ? theme.primary_color : theme.gray_400};
-  font-weight: ${({ isSelected }) =>
-    isSelected ? FONT_REGULAR + 50 : FONT_REGULAR};
-
-  @media screen and (max-width: 768px) {
-    font-size: ${({ isSelected, $size }) =>
-      isSelected ? `${$size}rem` : `${$size - 0.1}rem`};
-  }
+  color: ${({ $isSelected, theme }) =>
+    $isSelected ? theme.primary_color : theme.gray_400};
+  font-weight: ${({ $isSelected }) =>
+    $isSelected ? FONT_REGULAR + 50 : FONT_REGULAR};
 `;
 
 export const SecondContent = styled(Content)`
-  font-size: ${({ isSelected, $size }) =>
-    isSelected ? `${$size}rem` : `${$size + 0.1}rem`};
-  color: ${({ isSelected, theme }) =>
-    isSelected ? theme.gray_400 : theme.primary_color};
-  font-weight: ${({ isSelected }) =>
-    isSelected ? FONT_REGULAR : FONT_REGULAR + 50};
-
-  @media screen and (max-width: ${MOBILE}px) {
-    font-size: ${({ isSelected, $size }) =>
-      isSelected ? `${$size - 0.1}rem` : `${$size}rem`};
-  }
+  color: ${({ $isSelected, theme }) =>
+    $isSelected ? theme.gray_400 : theme.primary_color};
+  font-weight: ${({ $isSelected }) =>
+    $isSelected ? FONT_REGULAR : FONT_REGULAR + 50};
 `;
