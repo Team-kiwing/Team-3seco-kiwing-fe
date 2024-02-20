@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
         &::-webkit-scrollbar-thumb {
           background-color: hsla(0, 0%, 42%, 0.29);
           border-radius: 100px;
-        }   
+        }
     }   
 
     html,   
@@ -21,6 +21,17 @@ export const GlobalStyle = createGlobalStyle`
       height: 100%;
       font-size: 62.5%;
       box-sizing: border-box;
+      
+      input:not([type=color]), button, textarea, select {
+        border-radius: 0;
+      }
+
+      button, input[type=button], input[type=submit], input[type=reset] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      -webkit-tap-highlight-color: transparent;
     }
 
     button {
