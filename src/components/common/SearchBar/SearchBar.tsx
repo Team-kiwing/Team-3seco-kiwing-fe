@@ -40,13 +40,13 @@ export default TestPage;
 
 const SearchBar = ({
   handleSearchIcon,
-  handleSubmit,
+  handleFormSubmit,
   width,
   ...props
 }: SearchBarProps) => {
   return (
     <SearchBarWrapper $width={width}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleFormSubmit}>
         <Input
           width={'100%'}
           margin={0}

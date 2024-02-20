@@ -1,6 +1,6 @@
 export interface SearchBarProps {
   handleSearchIcon?: () => void;
-  handleSubmit?: () => void;
+  handleFormSubmit?: () => void;
   width?: string;
 }
 
