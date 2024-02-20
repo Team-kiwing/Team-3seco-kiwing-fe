@@ -32,6 +32,8 @@ export const StyledTextarea = styled.textarea<TextareaStyledProps>`
   transition: border 0.2s;
   resize: none;
 
+  line-height: ${(props) => (props.$fontSize ? props.$fontSize + 0.6 : 2.2)}rem;
+
   &:focus {
     border: 0.15rem solid ${({ theme }) => theme.symbol_secondary_color};
   }
