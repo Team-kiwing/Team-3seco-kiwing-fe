@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
+import { MOBILE } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
 import { InputStyledProps } from './Input.type';
 
 export const InputWrapper = styled(Col)<InputStyledProps>`
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.2 : 1.4)}rem;
+  }
+
   width: ${(props) => props.$width};
   font-size: ${(props) => (props.$fontSize ? props.$fontSize : 1.6)}rem;
 `;
@@ -34,8 +39,9 @@ export const StyledInput = styled.input`
 `;
 
 export const ErrorMessage = styled.div<InputStyledProps>`
-  font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.6 : 1)}rem;
+  font-size: ${(props) => (props.$fontSize ? props.$fontSize - 0.3 : 1.3)}rem;
   color: ${({ theme }) => theme.error_red};
   margin-top: ${(props) => (props.$margin ? props.$margin + 0.15 : 1.65)}rem;
   visibility: ${({ $isError }) => ($isError ? 'hidden' : undefined)};
+  cursor: default;
 `;
