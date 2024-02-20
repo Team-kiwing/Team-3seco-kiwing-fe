@@ -58,14 +58,14 @@ const NotFound = () => {
         <NotFoundText>요청하신 페이지를 찾지 못했어요</NotFoundText>
         <NotFoundButtonWrap>
           <Button
-            onClick={handleClickHome}
-            text="홈으로"
-          />
-          <Button
             onClick={handleClickError}
             text="오류 신고하기"
             backgroundColor={theme.error_red}
             hoverBackgroundColor={theme.hotBadge_color}
+          />
+          <Button
+            onClick={handleClickHome}
+            text="홈으로"
           />
         </NotFoundButtonWrap>
       </NotFoundLayout>
