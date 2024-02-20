@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import { useEffect, useRef } from 'react';
 
 // 모바일 환경을 고려하여 touchstart를 추가한다.
