@@ -4,5 +4,7 @@ export interface TagProps {
 }
 
 export interface TagFilterProps extends React.HTMLAttributes<HTMLDivElement> {
-  selectedTags: (item: string[]) => void;
+  tagList: TagProps[];
+  selectedTags: (tags: string[]) => void;
+  defaultTags: string[];
 }
