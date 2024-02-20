@@ -18,6 +18,4 @@ export const SearchBarWrapper = styled.div`
     right: 0;
     color: ${({ theme }) => theme.primary_color};
   }
-
-  -webkit-tap-highlight-color: transparent;
 `;
