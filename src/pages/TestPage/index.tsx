@@ -97,6 +97,10 @@ const TestPage = () => {
     setIsDropDownShow(true);
   };
 
+  const handleButtonClick = (checkedItems: number[]) => {
+    console.log(checkedItems);
+  };
+
   //각 option마다의 handler를 어떻게 부여하지???
 
   return (
@@ -120,6 +124,9 @@ const TestPage = () => {
           width="200px"
           options={OPTIONS2}
           isShow={isDropDownShow}
+          mode="checkbox"
+          buttonText="추가"
+          handler={handleButtonClick}
           onClose={() => setIsDropDownShow(false)}
         />
       </Col>
