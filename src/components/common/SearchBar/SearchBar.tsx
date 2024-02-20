@@ -50,12 +50,12 @@ const SearchBar = ({
           width={'100%'}
           margin={0}
           placeholder={'검색어를 입력해주세요.'}
-          style={{ paddingRight: '3rem' }}
+          style={{ paddingRight: '3.8rem', paddingLeft: '.5rem' }}
           {...props}
         />
       </form>
       <IconWrapper
-        $size={'xs'}
+        $size={'s'}
         onClick={handleSearchIcon}
       >
         <MdSearch />
