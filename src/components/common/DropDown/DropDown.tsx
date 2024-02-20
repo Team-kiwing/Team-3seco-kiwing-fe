@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode, useRef, useState } from 'react';
+import { MouseEvent, useRef, useState } from 'react';
 
 import { DROP_DOWN } from '@/constants';
 import { Col } from '@/styles/globalStyles';
@@ -16,14 +16,7 @@ import {
   Title,
   Wrapper,
 } from './DropDown.style';
-
-interface OptionType {
-  id: number;
-  title: ReactNode;
-  body?: ReactNode;
-  rightItem?: ReactNode;
-  handler: () => void;
-}
+import { DropDownProps } from './DropDown.type';
 
 const DropDown = ({
   width = '100px',
@@ -34,16 +27,7 @@ const DropDown = ({
   handler,
   isShow,
   onClose,
-}: {
-  width?: string;
-  height?: string;
-  options: OptionType[];
-  mode?: 'normal' | 'checkbox';
-  buttonText?: string;
-  handler?: (checkedItems: number[]) => void;
-  isShow: boolean;
-  onClose: () => void;
-}) => {
+}: DropDownProps) => {
   const backgroundRef = useRef(null);
 
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
@@ -59,12 +43,11 @@ const DropDown = ({
     }
   };
 
-  const handleItemClick = (handler: () => void) => {
-    //각 아이템마다 실행시켜야할 핸들러 넣기
-    // 그럼 options를 넘겨줄때, options ReactNode랑 핸들러 짝으로..
-    //객체 배열로 넘겨주기?
-    handler();
-    onClose();
+  const handleItemClick = (handler: (() => void) | undefined) => {
+    if (handler) {
+      handler();
+    }
+    // onClose();
   };
 
   const handleButtonClick = () => {
@@ -110,6 +93,7 @@ const DropDown = ({
                     ? () => checkedItemHandler(option.id)
                     : () => handleItemClick(option.handler)
                 }
+                $mode={mode}
               >
                 <Col>
                   <Title>{option.title}</Title>
