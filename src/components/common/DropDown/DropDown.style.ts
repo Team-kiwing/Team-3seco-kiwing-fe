@@ -28,8 +28,7 @@ export const Options = styled.div`
   height: 80%;
   overflow: auto;
 `;
-export const Item = styled.div`
-  // height: auto;
+export const Item = styled.div<{ $mode: string }>`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -38,12 +37,29 @@ export const Item = styled.div`
   box-sizing: border-box;
   cursor: pointer;
 
+  ${(props) => {
+    if (props.$mode === 'checkbox') {
+      return css`
+        min-height: 50px;
+        border-bottom: 1px solid ${({ theme }) => theme.gray_100};
+
+        &:last-child {
+          border-bottom: none;
+        }
+      `;
+    }
+  }}
+
   transition: all 0.2s ease;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background-color: ${({ theme }) => theme.gray_100};
     }
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.gray_100};
   }
 `;
 
@@ -57,7 +73,7 @@ export const Title = styled.span`
 
 export const Body = styled.span`
   font-size: 1rem;
-  color: grey;
+  color: ${({ theme }) => theme.gray_300};
 `;
 
 export const Footer = styled.div`
