@@ -1,12 +1,12 @@
-import { MouseEvent, useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { DROP_DOWN } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
 import Button from '../Button';
 import ShadowBox from '../ShadowBox';
+import useClickAway from './DropDown.hook';
 import {
-  Background,
   Body,
   CheckBoxInput,
   Container,
@@ -26,9 +26,12 @@ const DropDown = ({
   buttonText = '추가',
   handler,
   isShow,
+  setIsShow,
   onClose,
 }: DropDownProps) => {
-  const backgroundRef = useRef(null);
+  const ref = useClickAway(() => {
+    setIsShow(false);
+  });
 
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
 
@@ -43,13 +46,6 @@ const DropDown = ({
     }
   };
 
-  const handleItemClick = (handler: (() => void) | undefined) => {
-    if (handler) {
-      handler();
-    }
-    // onClose();
-  };
-
   const handleButtonClick = () => {
     if (handler) {
       handler(checkedItems);
@@ -58,23 +54,20 @@ const DropDown = ({
     onClose();
   };
 
-  const handleBackgroundClick = (e: MouseEvent) => {
-    e.stopPropagation();
-    if (e.currentTarget === backgroundRef.current) {
-      onClose();
+  const handleItemClick = (handler: (() => void) | undefined) => {
+    if (handler) {
+      handler();
     }
   };
 
   return (
     <Wrapper $isShow={isShow}>
-      <Background
-        ref={backgroundRef}
-        onClick={handleBackgroundClick}
-      />
       <ShadowBox
+        ref={ref}
         width={width}
         height={height}
         style={{
+          position: 'absolute',
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',

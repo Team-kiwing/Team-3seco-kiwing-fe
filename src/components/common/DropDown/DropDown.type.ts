@@ -16,5 +16,6 @@ export interface DropDownProps {
   buttonText?: string;
   handler?: (checkedItems: number[]) => void;
   isShow: boolean;
+  setIsShow: (state: boolean) => void;
   onClose: () => void;
 }
