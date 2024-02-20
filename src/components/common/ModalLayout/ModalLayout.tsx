@@ -16,7 +16,7 @@ const ModalLayout = () => {
   const { isOpen, modalState, setModalClose } = useModal();
   const { isMobileSize } = useResize();
 
-  const onDimmerClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleDimmerClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.currentTarget !== event.target) return;
     setModalClose();
   };
@@ -24,7 +24,7 @@ const ModalLayout = () => {
   return (
     <>
       {isOpen && (
-        <ModalDimmer onClick={onDimmerClick}>
+        <ModalDimmer onClick={handleDimmerClick}>
           <ModalBody>
             <ModalTitle>{modalState.title}</ModalTitle>
             <ModalContents>{modalState.content}</ModalContents>
