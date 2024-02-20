@@ -6,13 +6,13 @@ import { SearchBarStyleProps } from './SearchBar.type';
 
 export const SearchBarWrapper = styled.div<SearchBarStyleProps>`
   @media screen and (max-width: ${MOBILE}px) {
-    width: 80%;
     margin: 0 auto;
-    min-width: 224px;
   }
 
   position: relative;
-  width: ${(props) => (props.$width ? props.$width : '432px')};
+  width: 80%;
+  max-width: ${(props) => (props.$maxWidth ? props.$maxWidth : '432px')};
+  min-width: 224px;
 
   & > :nth-child(2) {
     position: absolute;

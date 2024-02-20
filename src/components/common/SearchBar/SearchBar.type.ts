@@ -1,9 +1,9 @@
 export interface SearchBarProps {
   handleSearchIcon?: () => void;
   handleFormSubmit?: () => void;
-  width?: string;
+  maxWidth?: string;
 }
 
 export interface SearchBarStyleProps {
-  $width?: string;
+  $maxWidth?: string;
 }
