@@ -9,32 +9,16 @@ import { SearchBarProps } from './SearchBar.type';
  *
  * @description SearchBar 컴포넌트
  * @summary 사용법 :
- * import { useForm } from 'react-hook-form';
-
-import SearchBar from '@/components/common/SearchBar';
-
-const TestPage = () => {
-  const { handleSubmit } = useForm();
-
-  const onSubmit = () => {
-    alert('sumbit!');
-  };
-
-  return (
-    <>
       <SearchBar
         handleSearchIcon={() => alert('검색됨!')}
-        handleSubmit={handleSubmit(onSubmit)}
+        handleFormSubmit={handleSubmit(onSubmit)}
+        width={'500px'}
       />
-    </>
-  );
-};
-
-export default TestPage;
 
  * @param handleSearchIcon : 선택 | 함수. 검색 아이콘에 들어갈 클릭 이벤트를 받음.
- * @param handleSubmit : 선택 | 함수. input에 검색어를 입력 후 엔터 할 때 submit 이벤트를 받음
- * @param ...props : 커스텀을 위함 (+ react-hook-form)
+ * @param handleFormSubmit : 선택 | 함수. input에 검색어를 입력 후 엔터 할 때 submit 이벤트를 받음 (react-hook-form의 handleSubmit 함수와 연관됨.)
+ * @param width : 선택 | 문자열 타입. 검색바 컴포넌트의 너비를 의미함. (px, rem, %를 다 받습니다.)
+ * @param …props : 커스텀을 위함 (+ react-hook-form)
  * @returns
  */
 
