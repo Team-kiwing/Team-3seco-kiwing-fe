@@ -10,6 +10,8 @@ export const lightTheme: object = {
 
   hotBadge_background_color: ' #f7cece',
   hotBadge_color: '#f84c4c',
+  subscribed_background_color: '#FFE500',
+  subscribed_color: '#E3A400',
 
   gray_600: '#565656',
   gray_500: '#5E5E5E',
