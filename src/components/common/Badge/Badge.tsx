@@ -24,8 +24,21 @@ const Badge = ({
   $size,
   $text,
   $margin,
+  $subscribedCount,
   ...props
 }: PropsBadge) => {
+  let displayText = $text;
+
+  if ($subscribedCount !== undefined && $state === 'subscribed') {
+    if ($subscribedCount < 100) {
+      displayText = `${$subscribedCount}`;
+    } else {
+      displayText = `${($subscribedCount / 1000).toFixed(1)}K+`;
+    }
+  } else if ($state === 'hashTag') {
+    displayText = `#${$text}`;
+  }
+
   return (
     <StyledBadge
       $size={$size}
@@ -34,7 +47,7 @@ const Badge = ({
       $margin={$margin}
       {...props}
     >
-      {$state === 'hashTag' ? `#${$text}` : $text}
+      {displayText}
     </StyledBadge>
   );
 };

@@ -30,6 +30,11 @@ const stateStyles = {
     background-color: ${({ theme }) => theme.hotBadge_background_color};
     color: ${({ theme }) => theme.hotBadge_color};
   `,
+  subscribed: css`
+    font-weight: ${FONT_SEMI_BOLD};
+    background-color: ${({ theme }) => theme.subscribed_background_color};
+    color: ${({ theme }) => theme.subscribed_color};
+  `,
 };
 
 export const StyledBadge = styled.span<PropsStyledBadge>`
