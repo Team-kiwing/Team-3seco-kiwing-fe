@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 
 import { modalStore, ModalType } from '@/stores';
+import { disableScrollLock, enableScrollLock } from '@/utils/bodyScrollLock';
 
 export const useModal = () => {
   const { isOpen, title, content, callBack, openModal, closeModal } =
@@ -8,6 +9,7 @@ export const useModal = () => {
 
   const setModalOpen = useCallback(
     ({ title, content, callBack }: ModalType) => {
+      enableScrollLock();
       openModal({
         title: title,
         content: content,
@@ -18,6 +20,7 @@ export const useModal = () => {
   );
 
   const setModalClose = useCallback(() => {
+    disableScrollLock();
     closeModal();
   }, [closeModal]);
 
