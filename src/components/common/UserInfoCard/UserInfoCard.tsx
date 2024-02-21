@@ -19,6 +19,16 @@ import {
   UserInfoWrapper,
 } from './UserInfoCard.style';
 
+/**
+ *
+ * @description UserInfo 컴포넌트
+ * @summary 사용법 :
+ * <UserInfoCard />
+ * 데이터 형식이 어떻게 될 지 몰라서, API 명세서가 나온 후 props 작업 진행 할 예정입니다 !
+ * @returns
+ */
+
+// TODO: API 명세서 나오면 데이터 형식에 맞게 props 설정하기
 const UserInfoCard = () => {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   let timer = null;
