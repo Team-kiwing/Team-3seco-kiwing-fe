@@ -4,8 +4,7 @@ import Badge from '../Badge';
 import ShadowBox from '../ShadowBox';
 import {
   BundleCardBadgeWrapper,
-  BundleCardHashTagWrapper,
-  BundleCardItemContent,
+  BundleCardContentItem,
   BundleCardItemName,
   BundleCardItemWrapper,
   BundleCardWrapper,
@@ -41,38 +40,34 @@ const BundleCard = ({ id, listName, tags, subscribedCount }: BundleProps) => {
         isHoverActive={true}
       >
         <BundleCardItemWrapper>
-          <BundleCardItemName>{listName}</BundleCardItemName>
-          <BundleCardItemContent>
-            <BundleCardHashTagWrapper>
-              {tags.map((item) => (
-                <Badge
-                  key={item.id}
-                  style={{ padding: '0 0.5rem 0 0' }}
-                  $size={'s'}
-                  $state="hashTag"
-                  $text={item.tagName}
-                />
-              ))}
-            </BundleCardHashTagWrapper>
-            <BundleCardBadgeWrapper>
-              {subscribedCount > 100 && ( // 일단 100넘으면 HOT키워드 받도록 해놨습니다.
-                <Badge
-                  style={{ padding: '0.5rem 1.3rem', fontSize: '1.1rem' }}
-                  $size={'xs'}
-                  $state="hot"
-                  $margin="0.8rem 0.4rem 0rem 0rem"
-                  $text="HOT"
-                />
-              )}
+          <BundleCardContentItem>
+            <BundleCardItemName>{listName}</BundleCardItemName>
+            {tags.map((item) => (
+              <Badge
+                key={item.id}
+                style={{ padding: '0 0.5rem 0 0' }}
+                $size={'s'}
+                $state="hashTag"
+                $text={item.tagName}
+              />
+            ))}
+          </BundleCardContentItem>
+          <BundleCardBadgeWrapper>
+            {subscribedCount > 100 && ( // 일단 100넘으면 HOT키워드 받도록 해놨습니다.
               <Badge
                 style={{ padding: '0.5rem 1.3rem', fontSize: '1.1rem' }}
                 $size={'xs'}
-                $state="basic"
-                $margin="0.8rem 0.4rem 0rem 0rem"
-                $text={subscribedCount.toString()} // 여기에 나중에 스크랩 뱃지로 변경하면 스크랩받는 props 추가할예정인데 지금은 일단 text로 해놨습니다.!
+                $state="hot"
+                $text="HOT"
               />
-            </BundleCardBadgeWrapper>
-          </BundleCardItemContent>
+            )}
+            <Badge
+              style={{ padding: '0.5rem 1.3rem', fontSize: '1.1rem' }}
+              $size={'xs'}
+              $state="basic"
+              $text={subscribedCount.toString()} // 여기에 나중에 스크랩 뱃지로 변경하면 스크랩받는 props 추가할예정인데 지금은 일단 text로 해놨습니다.!
+            />
+          </BundleCardBadgeWrapper>
         </BundleCardItemWrapper>
       </ShadowBox>
     </BundleCardWrapper>
