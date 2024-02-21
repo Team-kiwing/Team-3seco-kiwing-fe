@@ -9,6 +9,7 @@ import Badge from '../Badge';
 import IconWrapper from '../IconWrapper';
 import ShadowBox from '../ShadowBox';
 import {
+  NotDataText,
   UserInfoBadgeWrapper,
   UserInfoContentsWrapper,
   UserInfoIconWrapper,
@@ -18,6 +19,7 @@ import {
   UserInfoNicknameBadgeWrapper,
   UserInfoWrapper,
 } from './UserInfoCard.style';
+import { UserInfoCardProps } from './UserInfoCard.type';
 
 /**
  *
@@ -29,7 +31,12 @@ import {
  */
 
 // TODO: API 명세서 나오면 데이터 형식에 맞게 props 설정하기
-const UserInfoCard = () => {
+const UserInfoCard = ({
+  userImage,
+  userName,
+  tags,
+  links,
+}: UserInfoCardProps) => {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   let timer = null;
 
@@ -55,56 +62,42 @@ const UserInfoCard = () => {
       style={{ minWidth: '280px', margin: '0 auto' }}
     >
       <UserInfoWrapper>
-        <Avatar $size={viewportWidth <= MOBILE ? 'mobile' : 'pc'} />
+        <Avatar
+          $size={viewportWidth <= MOBILE ? 'mobile' : 'pc'}
+          $src={userImage}
+        />
         <UserInfoContentsWrapper>
           <UserInfoNicknameBadgeWrapper>
-            <UserInfoNickname>닉네임</UserInfoNickname>
+            <UserInfoNickname>{userName}</UserInfoNickname>
             <UserInfoBadgeWrapper>
-              <Badge
-                $state={'basic'}
-                $size={viewportWidth <= MOBILE ? 'xxs' : 'xs'}
-                $text={'프론트엔드'}
-                style={{ backgroundColor: '#009c4d' }}
-              />
-              <Badge
-                $state={'basic'}
-                $size={viewportWidth <= MOBILE ? 'xxs' : 'xs'}
-                $text={'프론트엔드'}
-                style={{ backgroundColor: '#009c4d' }}
-              />
-              <Badge
-                $state={'basic'}
-                $size={viewportWidth <= MOBILE ? 'xxs' : 'xs'}
-                $text={'프론트엔드'}
-                style={{ backgroundColor: '#009c4d' }}
-              />
+              {tags ? (
+                tags.map((tag, index) => (
+                  <Badge
+                    $state={'basic'}
+                    $size={viewportWidth <= MOBILE ? 'xxs' : 'xs'}
+                    $text={tag}
+                    style={{ backgroundColor: '#009c4d' }}
+                    key={index}
+                  />
+                ))
+              ) : (
+                <NotDataText>관심 분야가 없습니다.</NotDataText>
+              )}
             </UserInfoBadgeWrapper>
           </UserInfoNicknameBadgeWrapper>
           <UserInfoLinkWrapper>
-            <UserInfoLink>
-              <IconWrapper $size={viewportWidth <= MOBILE ? 'xss' : 'xs'}>
-                <IoIosLink />
-              </IconWrapper>
-              <a href="https://github.com/Team-kiwing">
-                https://github.com/Team-kiwing
-              </a>
-            </UserInfoLink>
-            <UserInfoLink>
-              <IconWrapper $size={viewportWidth <= MOBILE ? 'xss' : 'xs'}>
-                <IoIosLink />
-              </IconWrapper>
-              <a href="https://velog.io/@jaehyun_ground/posts">
-                https://velog.io/@jaehyun_ground/posts
-              </a>
-            </UserInfoLink>
-            <UserInfoLink>
-              <IconWrapper $size={viewportWidth <= MOBILE ? 'xss' : 'xs'}>
-                <IoIosLink />
-              </IconWrapper>
-              <a href="https://github.com/Team-kiwing">
-                https://github.com/Team-kiwing
-              </a>
-            </UserInfoLink>
+            {links ? (
+              links.map((link, index) => (
+                <UserInfoLink key={index}>
+                  <IconWrapper $size={viewportWidth <= MOBILE ? 'xss' : 'xs'}>
+                    <IoIosLink />
+                  </IconWrapper>
+                  <a href={link}>{link}</a>
+                </UserInfoLink>
+              ))
+            ) : (
+              <NotDataText>등록된 링크가 없습니다.</NotDataText>
+            )}
           </UserInfoLinkWrapper>
         </UserInfoContentsWrapper>
         <UserInfoIconWrapper>
