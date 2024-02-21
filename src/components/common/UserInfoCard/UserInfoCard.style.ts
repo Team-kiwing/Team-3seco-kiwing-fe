@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { FONT_BOLD, MOBILE } from '@/constants';
+import { FONT_BOLD, FONT_REGULAR, MOBILE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 export const UserInfoWrapper = styled(Row)`
@@ -86,4 +86,14 @@ export const UserInfoIconWrapper = styled(Col)`
   height: 100%;
   justify-content: space-between;
   color: ${({ theme }) => theme.primary_color};
+`;
+
+export const NotDataText = styled.div`
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: 0.8rem;
+  }
+
+  color: ${({ theme }) => theme.gray_500}80;
+  font-size: 1.2rem;
+  font-weight: ${FONT_REGULAR};
 `;
