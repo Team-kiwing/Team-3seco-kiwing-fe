@@ -1,13 +1,13 @@
+import Avatar from '@components/common/Avatar/Avatar';
+import Badge from '@components/common/Badge/Badge';
+import IconWrapper from '@components/common/IconWrapper/IconWrapper';
+import ShadowBox from '@components/common/ShadowBox/ShadowBox';
 import { useEffect, useState } from 'react';
 import { IoIosLink } from 'react-icons/io';
 import { PiNotePencil, PiSignOut } from 'react-icons/pi';
 
 import { MOBILE } from '@/constants';
 
-import Avatar from '../Avatar';
-import Badge from '../Badge';
-import IconWrapper from '../IconWrapper';
-import ShadowBox from '../ShadowBox';
 import {
   NotDataText,
   UserInfoBadgeWrapper,
