@@ -5,23 +5,7 @@ import { MOBILE_MIN } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
 export const BundleCardWrapper = styled.div`
-  width: 40%;
-  margin-bottom: 2rem;
-
-  @media screen and (max-width: 1000px) {
-    width: 70rem;
-    margin-bottom: 2rem;
-  }
-  @media screen and (max-width: 560px) {
-    width: 36rem;
-    margin-bottom: 2rem;
-  }
-
-  @media screen and (max-width: ${MOBILE_MIN}px) {
-    width: 26rem;
-    height: 9rem;
-    margin-bottom: 1rem;
-  }
+  width: 100%;
 `;
 
 export const BundleCardItemWrapper = styled(Col)`
@@ -29,11 +13,6 @@ export const BundleCardItemWrapper = styled(Col)`
   margin-top: 1.5rem;
   margin-left: 2rem;
   margin-bottom: 1rem;
-
-  @media screen and (max-width: ${MOBILE_MIN}px) {
-    width: 26rem;
-    margin-bottom: 1rem;
-  }
 `;
 
 export const BundleCardItemName = styled.div`
