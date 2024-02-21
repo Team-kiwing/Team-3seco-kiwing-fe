@@ -12,6 +12,21 @@ import {
 } from './Bundle.style';
 import { BundleProps } from './BundleCard.type';
 
+/**
+ * @summary 사용법 <BundleCard
+          id={list[0].id}
+          listName={list[0].listName}
+          tags={list[0].tags}
+          subscribedCount={list[0].subscribed}
+        />
+ * @description 공통 BundleCard 컴포넌트
+ * @param id 필수) 질문꾸러미의 id 값 number타입
+ * @param listName 필수) 질문꾸러미의 이름 string타입
+ * @param tags 필수) 질문꾸러미의 태그들을 받습니다.(배열 타입)
+ * @param subscribedCount 필수) 질문꾸러미의 스크랩 수를 받습니다. number타입
+ * @returns
+ */
+
 const BundleCard = ({ id, listName, tags, subscribedCount }: BundleProps) => {
   const navigate = useNavigate();
   return (
@@ -54,7 +69,7 @@ const BundleCard = ({ id, listName, tags, subscribedCount }: BundleProps) => {
                 $size={'xs'}
                 $state="basic"
                 $margin="0.8rem 0.4rem 0rem 0rem"
-                $text={subscribedCount.toString()}
+                $text={subscribedCount.toString()} // 여기에 나중에 스크랩 뱃지로 변경하면 스크랩받는 props 추가할예정인데 지금은 일단 text로 해놨습니다.!
               />
             </BundleCardBadgeWrapper>
           </BundleCardItemContent>
