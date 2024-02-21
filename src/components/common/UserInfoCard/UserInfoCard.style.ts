@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { FONT_REGULAR, MOBILE } from '@/constants';
+import { FONT_BOLD, MOBILE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 export const UserInfoWrapper = styled(Row)`
@@ -49,7 +49,7 @@ export const UserInfoNickname = styled.div`
 
   color: ${({ theme }) => theme.primary_color};
   font-size: 2rem;
-  font-weight: ${FONT_REGULAR};
+  font-weight: ${FONT_BOLD};
 `;
 
 export const UserInfoBadgeWrapper = styled.div`
