@@ -1,3 +1,5 @@
+import Avatar from '@components/common/Avatar';
+import IconWrapper from '@components/common/IconWrapper';
 import {
   PiArrowCircleRightLight,
   PiBooks,
@@ -7,8 +9,6 @@ import {
 
 import { themeStore } from '@/stores';
 
-import Avatar from '../../Avatar';
-import IconWrapper from '../../IconWrapper';
 import { useNavigatorMenu } from './MobileBottomNavBar.hook';
 import {
   BottomNavBarItem,
