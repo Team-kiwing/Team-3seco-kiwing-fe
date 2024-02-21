@@ -21,7 +21,7 @@ import {
 
 /**
  *
- * @description UserInfo 컴포넌트
+ * @description UserInfoCard 컴포넌트
  * @summary 사용법 :
  * <UserInfoCard />
  * 데이터 형식이 어떻게 될 지 몰라서, API 명세서가 나온 후 props 작업 진행 할 예정입니다 !
