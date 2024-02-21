@@ -3,20 +3,7 @@ import styled from 'styled-components';
 import { MOBILE, MOBILE_MIN } from '@/constants';
 
 export const TagFilterWrapper = styled.div`
-  max-width: 110rem;
-
-  @media screen and (max-width: 1000px) {
-    width: 80rem;
-    margin-bottom: 2rem;
-  }
-  @media screen and (max-width: 560px) {
-    width: 36rem;
-    margin-bottom: 2rem;
-  }
-  @media screen and (max-width: 280px) {
-    width: 26rem;
-    margin-bottom: 2rem;
-  }
+  width: 100%;
 `;
 
 export const TagItemWrapper = styled.div`
@@ -37,7 +24,7 @@ export const TagItemWrapper = styled.div`
 `;
 
 export const TextWrapper = styled.div`
-  width: 8%;
+  width: 9rem;
   min-width: 46px;
   gap: 1px;
   font-size: 2rem;
@@ -45,7 +32,7 @@ export const TextWrapper = styled.div`
   padding-left: 10px;
   white-space: nowrap;
   @media screen and (max-width: ${MOBILE}px) {
-    width: 8%;
+    width: 2rem;
   }
 `;
 
