@@ -3,5 +3,6 @@ export interface ToggleProps
   name?: string;
   on?: boolean;
   disabled?: boolean;
+  isColorReverse?: boolean;
   onChange: () => void;
 }

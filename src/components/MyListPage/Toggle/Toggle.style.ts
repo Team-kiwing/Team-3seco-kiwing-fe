@@ -8,12 +8,12 @@ export const ToggleContainer = styled.label`
   user-select: none;
 `;
 
-export const ToggleSwitch = styled.div`
+export const ToggleSwitch = styled.div<{ $isColorReverse: boolean }>`
   width: 3rem;
   height: 1.5rem;
   padding: 0.2rem;
   border-radius: 1rem;
-  background-color: ${({ theme }) => theme.gray_200}; //#ccc;
+  background-color: ${(props) => props.theme.container_color};
   transition: all 0.2s ease;
   box-sizing: border-box;
 
@@ -26,16 +26,18 @@ export const ToggleSwitch = styled.div`
     width: 1.1rem;
     height: 1.1rem;
     border-radius: 50%;
-    background-color: white;
+    background-color: ${(props) =>
+      props.$isColorReverse ? props.theme.symbol_color : 'white'};
     transition: all 0.2s ease;
   }
 `;
 
-export const ToggleInput = styled.input`
+export const ToggleInput = styled.input<{ $isColorReverse: boolean }>`
   display: none;
 
   &:checked + div {
-    background: ${({ theme }) => theme.symbol_color};
+    background: ${(props) =>
+      props.$isColorReverse ? 'white' : props.theme.symbol_color};
   }
 
   &:checked + div:after {

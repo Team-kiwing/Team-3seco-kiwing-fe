@@ -7,6 +7,7 @@ const Toggle = ({
   on = false,
   disabled,
   onChange,
+  isColorReverse = false,
   ...props
 }: ToggleProps) => {
   const { isChecked, toggle } = useToggle(on);
@@ -24,8 +25,9 @@ const Toggle = ({
         checked={isChecked}
         disabled={disabled}
         onChange={handleChange}
+        $isColorReverse={isColorReverse}
       />
-      <ToggleSwitch />
+      <ToggleSwitch $isColorReverse={isColorReverse} />
     </ToggleContainer>
   );
 };
