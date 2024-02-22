@@ -20,8 +20,13 @@ export const useModal = () => {
   );
 
   const setModalClose = useCallback(() => {
-    disableScrollLock();
-    closeModal();
+    if (window.confirm('작성을 종료하시겠습니까?')) {
+      disableScrollLock();
+      closeModal();
+      return;
+    } else {
+      return;
+    }
   }, [closeModal]);
 
   return {
