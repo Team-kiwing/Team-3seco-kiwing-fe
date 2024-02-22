@@ -35,7 +35,11 @@ const SearchBar = ({
           width={'100%'}
           margin={0}
           placeholder={'검색어를 입력해주세요.'}
-          style={{ paddingRight: '3.8rem', paddingLeft: '.5rem' }}
+          style={{
+            paddingRight: '3.8rem',
+            paddingLeft: '.5rem',
+            height: '3rem',
+          }}
           {...props}
         />
       </form>

@@ -17,7 +17,7 @@ export const SearchBarWrapper = styled.div<SearchBarStyleProps>`
 
   & > :nth-child(2) {
     position: absolute;
-    top: -0.8rem;
+    top: 0;
     right: 0;
     color: ${({ theme }) => theme.primary_color};
   }
