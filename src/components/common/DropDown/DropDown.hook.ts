@@ -21,10 +21,6 @@ const useClickAway = (handler: (e: Event) => void) => {
         return;
       }
 
-      if (e.target instanceof HTMLElement) {
-        return;
-      }
-
       savedHandler.current(e);
     };
 
