@@ -1,3 +1,4 @@
+import { FormEvent } from 'react';
 import { MdSearch } from 'react-icons/md';
 
 import IconWrapper from '../IconWrapper';
@@ -28,9 +29,16 @@ const SearchBar = ({
   maxWidth,
   ...props
 }: SearchBarProps) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (handleFormSubmit) {
+      handleFormSubmit();
+    }
+  };
+
   return (
     <SearchBarWrapper $maxWidth={maxWidth}>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleSubmit}>
         <Input
           width={'100%'}
           margin={0}
