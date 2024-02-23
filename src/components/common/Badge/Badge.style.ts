@@ -60,9 +60,4 @@ export const StyledBadge = styled.span<PropsStyledBadge>`
       ${({ $isHover }) => $isHover && stateStyles.focus}
     }
   }
-  @media screen and (max-width: 280px) {
-    padding: 0.75rem 1.25rem;
-    width: fit-content;
-    font-size: 1rem;
-  }
 `;
