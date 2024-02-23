@@ -89,7 +89,7 @@ const checkboxStyles = css`
 
   width: 1.5rem;
   height: 1.5rem;
-  color: dodgerblue;
+  color: ${({ theme }) => theme.symbol_secondary_color};
   vertical-align: middle;
   -webkit-appearance: none;
   background: none;
