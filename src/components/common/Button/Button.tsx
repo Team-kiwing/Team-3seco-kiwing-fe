@@ -46,7 +46,7 @@ const Button = ({
         hoverBackgroundColor || theme.symbol_secondary_color
       }
       $hoverTextColor={hoverTextColor || theme.secondary_color}
-      $borderColor={borderColor || undefined}
+      $borderColor={borderColor || 'transparent'}
       $isActive={isActive}
       {...props}
     >
