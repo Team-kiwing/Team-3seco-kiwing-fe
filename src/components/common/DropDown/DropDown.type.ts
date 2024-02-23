@@ -16,4 +16,5 @@ export interface DropDownProps {
   onAdd?: (checkedItems: number[]) => void;
   isShow: boolean;
   setIsShow: (state: boolean) => void;
+  triggerId: string;
 }

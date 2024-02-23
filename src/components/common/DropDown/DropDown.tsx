@@ -31,6 +31,9 @@ import { DropDownProps } from './DropDown.type';
  * @param onAdd [checkbox] 모드 전용. button handler로 사용됩니다.
  * @param isShow 외부에서 DropDown의 가시화 유무를 결정하는 상태값. setIsShow와 함께 넘겨줍니다.
  * @param setIsShow isShow상태값을 set하는 함수
+ * @param triggerId 드롭다운 컴포넌트가 isShow=true가 되도록 해주는 HTMLElement의 id
+ * 사용 예시) <Button id='drowdown-btn' ... /> // 클릭 시 setIsShow(true) 해주는 버튼에 id 부여
+ * <DropDown triggerId='dropdown-btn' ... /> // 위에서 부여한 id 값 전달
  */
 const DropDown = ({
   width = '100px',
@@ -40,8 +43,13 @@ const DropDown = ({
   onAdd,
   isShow,
   setIsShow,
+  triggerId,
 }: DropDownProps) => {
-  const ref = useClickAway(() => {
+  const ref = useClickAway((e: Event) => {
+    // 드롭다운을 isShow=true로 만들어주는 컴포넌트를 다시 클릭 한 경우 끄지 않는다.
+    if ((e.target as Element).id === triggerId) {
+      return;
+    }
     setIsShow(false);
   });
 
