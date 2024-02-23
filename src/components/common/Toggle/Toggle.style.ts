@@ -1,52 +1,79 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const ToggleContainer = styled.label`
+import { ToggleContainerProps, ToggleSwitchProps } from './Toggle.type';
+
+export const ToggleContainer = styled.label<ToggleContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   user-select: none;
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
 `;
 
-export const ToggleSwitch = styled.div`
-  width: 3rem;
-  height: 1.5rem;
-  padding: 2px;
-  border-radius: 15px;
-  background-color: #ccc;
-  transition: background-color 0.2 ease-out;
+export const ToggleSwitch = styled.div<ToggleSwitchProps>`
+  width: 100%;
+  height: 100%;
+
+  border-radius: ${({ $height }) => $height};
+  background-color: ${(props) => props.theme.container_color};
+  transition: all 0.2s ease;
   box-sizing: border-box;
+  position: relative;
 
   &:after {
     content: '';
     position: relative;
     left: 0;
+    top: 0;
+    margin: calc(${({ $height }) => $height} * 0.1);
     display: block;
-    width: 1rem;
-    height: 1rem;
+    width: calc(${({ $height }) => $height} * 0.8);
+    height: calc(${({ $height }) => $height} * 0.8);
     border-radius: 50%;
-    background-color: white;
-    transition: left 0.2s ease-out;
-  }
-`;
-
-export const ToggleInput = styled.input`
-  display: none;
-
-  &:checked + div {
-    background: lightgreen;
+    background-color: ${(props) =>
+      props.$isColorReverse ? props.theme.symbol_color : 'white'};
+    transition: all 0.2s ease;
   }
 
-  &:checked + div:after {
-    left: calc(100% - 1rem);
+  &:before {
+    ${({ $isContentShow }) => {
+      if ($isContentShow) {
+        return css`
+          content: '비공개';
+        `;
+      }
+    }};
+    font-size: calc(${({ $width }) => $width} * 0.4);
+    position: absolute;
+    right: calc(${({ $height }) => $height} * 0.2);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.2s ease;
   }
 
-  &:disabled + div {
-    opacity: 0.7;
-    cursor: not-allowed;
-
-    &:after {
-      opacity: 0.7;
+  ${({ $on, $isColorReverse, theme, $width, $height, $isContentShow }) => {
+    if ($on) {
+      return css`
+        background: ${$isColorReverse ? 'white' : theme.symbol_color};
+        &:after {
+          background-color: ${$isColorReverse ? theme.symbol_color : 'white'};
+          left: calc(100% - ${$height});
+        }
+        &:before {
+          content: '${$isContentShow ? '공개' : ''}';
+          font-size: calc(${$width} * 0.4);
+          left: calc(${$height} * 0.2);
+          color: white;
+          top: 50%;
+          transition: all 0.2s ease;
+        }
+      `;
+    } else {
+      return css`
+        opacity: 0.7;
+      `;
     }
-  }
+  }}
 `;
