@@ -6,7 +6,7 @@ import { PropsStyledBadge } from './Badge.type';
 
 const sizeMapping = {
   xxs: '0.8rem',
-  xs: '1rem',
+  xs: '1.1rem',
   s: '1.4rem',
   m: '1.8rem',
   l: '2.2rem',
@@ -21,16 +21,19 @@ const stateStyles = {
     background-color: ${({ theme }) => theme.symbol_color};
     color: white;
   `,
-  hashTag: css`
-    background-color: white;
-    color: ${({ theme }) => theme.gray_300};
-  `,
   hot: css`
     font-weight: ${FONT_SEMI_BOLD};
     background-color: ${({ theme }) => theme.hotBadge_background_color};
     color: ${({ theme }) => theme.hotBadge_color};
   `,
-  subscribed: css`
+  hashTag: css`
+    background-color: white;
+    color: ${({ theme }) => theme.gray_300};
+  `,
+  subscribedTag: css`
+    display: flex;
+    gap: 0.1rem;
+    align-items: center;
     font-weight: ${FONT_SEMI_BOLD};
     background-color: ${({ theme }) => theme.subscribed_background_color};
     color: ${({ theme }) => theme.subscribed_color};
