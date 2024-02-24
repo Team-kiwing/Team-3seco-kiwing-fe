@@ -27,7 +27,7 @@ const stateStyles = {
     color: ${({ theme }) => theme.hotBadge_color};
   `,
   hashTag: css`
-    background-color: white;
+    background-color: transparent;
     color: ${({ theme }) => theme.gray_300};
   `,
   subscribedTag: css`

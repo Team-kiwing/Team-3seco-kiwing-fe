@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { BsBookmarkStarFill } from 'react-icons/bs';
 
 import IconWrapper from '../IconWrapper/IconWrapper';
@@ -34,24 +35,25 @@ const Badge = ({
   $subscribedCount,
   ...props
 }: PropsBadge) => {
-  let displayText = $text;
-
-  if ($subscribedCount !== undefined && $state === 'subscribedTag') {
-    displayText = (
-      <>
-        <IconWrapper $size={1.2}>
-          <BsBookmarkStarFill />
-        </IconWrapper>
-        <span>
-          {$subscribedCount < 1000
-            ? $subscribedCount
-            : `${Math.floor($subscribedCount / 100) / 10}K+`}
-        </span>
-      </>
-    );
-  } else if ($state === 'hashTag') {
-    displayText = `#${$text}`;
-  }
+  const displayText = useMemo(() => {
+    if ($subscribedCount !== undefined && $state === 'subscribedTag') {
+      return (
+        <>
+          <IconWrapper $size={1.2}>
+            <BsBookmarkStarFill />
+          </IconWrapper>
+          <span>
+            {$subscribedCount < 1000
+              ? $subscribedCount
+              : `${Math.floor($subscribedCount / 100) / 10}K+`}
+          </span>
+        </>
+      );
+    } else if ($state === 'hashTag') {
+      return `#${$text}`;
+    }
+    return $text;
+  }, [$text, $state, $subscribedCount]);
 
   return (
     <>
