@@ -8,7 +8,7 @@ import {
   BundleCardItemName,
   BundleCardItemWrapper,
   BundleCardWrapper,
-} from './Bundle.style';
+} from './BundleCard.style';
 import { BundleProps } from './BundleCard.type';
 
 /**
