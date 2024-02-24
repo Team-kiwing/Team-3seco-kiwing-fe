@@ -47,7 +47,6 @@ const SharedBundleCard = ({ bundleName, ...props }: SharedBundleCardProps) => {
           style={{
             position: 'relative',
             display: 'flex',
-            flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
           }}
