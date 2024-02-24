@@ -5,17 +5,16 @@ import { MOBILE, MOBILE_MIN } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
 export const BundleCardWrapper = styled.div`
-  width: 100%;
+  width: 90%;
   max-width: 40rem;
   min-width: 26rem;
 `;
 
 export const BundleCardItemWrapper = styled(Col)`
-  width: 100%;
-  margin-top: 1.5rem;
-  margin-left: 2rem;
-  margin-bottom: 1rem;
+  width: 90%;
+  margin: 1.5rem 2rem;
   @media screen and (max-width: ${MOBILE}px) {
+    gap: 1rem;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -25,7 +24,7 @@ export const BundleCardContentItem = styled.div``;
 
 export const BundleCardItemName = styled.div`
   font-size: 2rem;
-  font-weight: ${FONT_SEMI_BOLD - 150};
+  font-weight: ${FONT_SEMI_BOLD - 50};
   margin-top: 0.2rem;
   margin-bottom: 1rem;
 
@@ -48,6 +47,5 @@ export const BundleCardBadgeWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 0rem;
-    margin-right: 2rem;
   }
 `;

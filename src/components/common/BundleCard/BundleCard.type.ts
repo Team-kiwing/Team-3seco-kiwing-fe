@@ -5,7 +5,7 @@ export interface tagProps {
 
 export interface BundleProps {
   id: number;
-  listName: string;
+  bundleName: string;
   tags: tagProps[];
   subscribedCount: number;
 }
