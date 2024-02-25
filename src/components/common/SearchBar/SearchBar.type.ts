@@ -1,4 +1,4 @@
-export interface SearchBarProps {
+export interface SearchBarProps extends React.HTMLAttributes<HTMLInputElement> {
   handleSearchIcon?: () => void;
   handleFormSubmit?: () => void;
   maxWidth?: string;
