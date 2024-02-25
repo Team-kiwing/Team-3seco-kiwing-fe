@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
 import { RiFileCopyLine, RiShareLine } from 'react-icons/ri';
 import { useTheme } from 'styled-components';
 
 import CircleButton from '@/components/common/CircleButton';
 import IconWrapper from '@/components/common/IconWrapper';
 import ShadowBox from '@/components/common/ShadowBox';
-import { MOBILE } from '@/constants';
+import useResize from '@/hooks/useResize';
 
 import {
   BundleTitle,
@@ -23,23 +22,8 @@ import { SharedBundleCardProps } from './SharedBundleCard.type';
 
 const SharedBundleCard = ({ bundleName, ...props }: SharedBundleCardProps) => {
   const theme = useTheme();
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  let timer = null;
+  const { isMobileSize } = useResize();
 
-  useEffect(() => {
-    const resizeViewportWidth = () => {
-      clearTimeout(timer!);
-      timer = setTimeout(() => {
-        setViewportWidth(window.innerWidth);
-      }, 200);
-    };
-
-    window.addEventListener('resize', resizeViewportWidth);
-
-    return () => {
-      window.removeEventListener('resize', resizeViewportWidth);
-    };
-  }, []);
   return (
     <>
       <SharedBundleCardWrapper {...props}>
@@ -55,7 +39,7 @@ const SharedBundleCard = ({ bundleName, ...props }: SharedBundleCardProps) => {
           height="100%"
         >
           <BundleTitle>{bundleName}</BundleTitle>
-          {viewportWidth > MOBILE ? (
+          {!isMobileSize ? (
             <ClickContent>
               <CircleButton
                 isBackgroundWhite={true}
