@@ -11,7 +11,7 @@ import { TopBarItem, TopNavBarWrapper } from './MobileTopNavBar.style';
 const MobileTopNavBar = () => {
   const { isDarkMode, updateTheme } = themeStore();
   const navigator = useNavigate();
-  const { handleMyList } = useNavigatorMenu();
+  const { isLogin, handleMyList } = useNavigatorMenu();
 
   return (
     <TopNavBarWrapper $isDark={isDarkMode}>
@@ -29,25 +29,27 @@ const MobileTopNavBar = () => {
         {isDarkMode ? (
           <IconWrapper
             onClick={updateTheme}
-            $size={'xs'}
+            $size={2.5}
           >
             <MdLightMode />
           </IconWrapper>
         ) : (
           <IconWrapper
             onClick={updateTheme}
-            $size={'xs'}
+            $size={2.5}
           >
             <MdDarkMode />
           </IconWrapper>
         )}
-        <Avatar
-          onClick={handleMyList}
-          style={{ transform: 'scale(0.9)' }}
-          $size="nav"
-          // todo 동적으로 로그인 한 경우에만 이미지 주소를 주도록
-          $src="https://avatars.githubusercontent.com/u/90549862?v=4"
-        />
+        {isLogin && (
+          <Avatar
+            onClick={handleMyList}
+            style={{ cursor: 'pointer', transform: 'scale(0.9)' }}
+            $size="nav"
+            // todo 동적으로 로그인 한 경우에만 이미지 주소를 주도록
+            $src="https://avatars.githubusercontent.com/u/90549862?v=4"
+          />
+        )}
       </TopBarItem>
     </TopNavBarWrapper>
   );
