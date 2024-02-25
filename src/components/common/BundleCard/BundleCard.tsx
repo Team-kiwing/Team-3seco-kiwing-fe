@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
+import useResize from '@/hooks/useResize';
+
 import Badge from '../Badge';
 import ShadowBox from '../ShadowBox';
 import {
@@ -32,6 +34,8 @@ const BundleCard = ({
   hashTags,
   subscribedCount,
 }: BundleProps) => {
+  const { isMobileSize } = useResize();
+
   const navigate = useNavigate();
   return (
     <BundleCardWrapper onClick={() => navigate(`/shared/${id}`)}>
@@ -52,7 +56,7 @@ const BundleCard = ({
               <Badge
                 key={item.id}
                 style={{ padding: '0 0.5rem 0 0' }}
-                $size={'s'}
+                $size={isMobileSize ? 'xs' : 's'}
                 $state="hashTag"
                 $text={item.tagName}
               />
@@ -61,15 +65,15 @@ const BundleCard = ({
           <BundleCardBadgeWrapper>
             {subscribedCount > 100 && ( // 일단 100넘으면 HOT키워드 받도록 해놨습니다.
               <Badge
-                style={{ padding: '0.5rem 1.3rem', fontSize: '1.1rem' }}
-                $size={'xs'}
+                style={{ padding: '0.5rem 1.3rem' }}
+                $size={isMobileSize ? 'xs' : 's'}
                 $state="hot"
                 $text="HOT"
               />
             )}
             <Badge
-              style={{ padding: '0.5rem 1.3rem', fontSize: '1.1rem' }}
-              $size={'xs'}
+              style={{ padding: '0.5rem 1.3rem' }}
+              $size={isMobileSize ? 'xs' : 's'}
               $state="basic"
               $text={subscribedCount.toString()} // 여기에 나중에 스크랩 뱃지로 변경하면 스크랩받는 props 추가할예정인데 지금은 일단 text로 해놨습니다.!
             />
