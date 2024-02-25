@@ -15,6 +15,7 @@ const EasterEgg = () => {
     { left: '77%', rotate: '4deg', delay: 307, duration: 1132 },
     { left: '84%', rotate: '42deg', delay: 464, duration: 776 },
     { left: '91%', rotate: '-72deg', delay: 429, duration: 818 },
+    { left: '98%', rotate: '67deg', delay: 334, duration: 987 },
   ];
 
   return (
