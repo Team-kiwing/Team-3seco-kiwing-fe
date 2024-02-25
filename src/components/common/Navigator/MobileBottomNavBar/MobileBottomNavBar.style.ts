@@ -3,7 +3,9 @@ import { styled } from 'styled-components';
 import { FONT_SEMI_BOLD, MOBILE, MOBILE_MIN, NAVIGATER } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
-export const BottomNavBarWrapper = styled.nav<{ $isDark: boolean }>`
+import { BottomNavBarItemProps } from './MobileBottomNavBar.type';
+
+export const BottomNavBarWrapper = styled.nav`
   display: flex;
   position: fixed;
   bottom: 0;
@@ -29,7 +31,7 @@ export const BottomNavBarWrapper = styled.nav<{ $isDark: boolean }>`
   z-index: ${NAVIGATER};
 `;
 
-export const BottomNavBarItem = styled(Col)<{ $color?: boolean }>`
+export const BottomNavBarItem = styled(Col)<BottomNavBarItemProps>`
   display: flex;
   width: 25%;
   height: 100%;
