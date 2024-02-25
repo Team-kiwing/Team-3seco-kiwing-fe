@@ -3,6 +3,7 @@ import { RiDeleteBin5Line, RiFileCopyLine } from 'react-icons/ri';
 
 import DropDown from '@/components/common/DropDown';
 import IconWrapper from '@/components/common/IconWrapper';
+import Toggle from '@/components/common/Toggle';
 
 const MyBundleDropDown = ({
   isDropDownShow,
@@ -21,14 +22,14 @@ const MyBundleDropDown = ({
     {
       id: 1,
       title: '공개 여부',
-      //   rightItem: (
-      //     <IconWrapper $size={'xs'}>
-      //       <Toggle
-      //         on={isLocked}
-      //         style={{ width: '2.8rem', height: '2rem' }}
-      //       />
-      //     </IconWrapper>
-      //   ),
+      rightItem: (
+        <IconWrapper $size={'xs'}>
+          <Toggle
+            on={isShared}
+            style={{ width: '2.8rem', height: '2rem' }}
+          />
+        </IconWrapper>
+      ),
 
       handler: () => {
         console.log('공개여부 클릭');
