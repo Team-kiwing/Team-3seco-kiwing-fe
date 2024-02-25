@@ -14,6 +14,7 @@ export const Container = styled.div<ContainerProps>`
       props.$isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};
   border-radius: 1rem;
   transition: all 0.2s ease;
+  color: ${(props) => props.theme.primary_color};
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
