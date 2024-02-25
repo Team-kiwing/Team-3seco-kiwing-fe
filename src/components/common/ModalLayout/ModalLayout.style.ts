@@ -11,27 +11,31 @@ import {
 } from '@/constants';
 
 export const ModalDimmer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(1.2px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: ${MODAL_BACKGROUND};
 `;
 
 export const ModalBody = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   max-width: 800px;
   max-height: 600px;
   min-width: 270px;
   min-height: 100px;
+
+  position: relative;
+
   background-color: #ffffff;
   border-radius: ${BORDER_WEB}px;
   z-index: ${MODAL_LAYOUT};
@@ -45,10 +49,11 @@ export const ModalBody = styled.div`
 
 export const ModalTitle = styled.div`
   display: flex;
-  width: 100%;
-  box-sizing: border-box;
   justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
   padding: 1rem 5rem;
+
   font-weight: bold;
   font-size: 2rem;
   border-bottom: 1px solid ${(props) => props.theme.border_color};
@@ -69,12 +74,13 @@ export const ModalContents = styled.div`
 
 export const MobileModalCloseArea = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.5rem 0;
   width: 100%;
   height: 2rem;
+
   font-size: ${MOBILE_FONT_SIZE}rem;
-  align-items: center;
-  justify-content: center;
   border-top: 1px solid ${(props) => props.theme.border_color};
   cursor: pointer;
   font-weight: ${FONT_SEMI_BOLD};
