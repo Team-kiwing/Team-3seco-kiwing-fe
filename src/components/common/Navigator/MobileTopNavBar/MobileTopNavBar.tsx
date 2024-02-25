@@ -1,6 +1,7 @@
 import { MdArrowBack, MdDarkMode, MdLightMode } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
+import { PATH } from '@/constants/router';
 import { themeStore } from '@/stores';
 
 import Avatar from '../../Avatar';
@@ -40,7 +41,7 @@ const MobileTopNavBar = () => {
           </IconWrapper>
         )}
         <Avatar
-          onClick={() => navigator('/@:id')}
+          onClick={() => navigator(PATH.MY)}
           style={{ transform: 'scale(0.9)' }}
           $size="nav"
           // todo 동적으로 로그인 한 경우에만 이미지 주소를 주도록

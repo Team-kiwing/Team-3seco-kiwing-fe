@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { PATH } from '@/constants/router';
+
 export const useNavigatorMenu = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const location = useLocation();
@@ -23,11 +25,12 @@ export const useNavigatorMenu = () => {
     }
   };
 
-  const handleLogo = () => handleNavigate('/');
-  const handleHub = () => handleNavigate('/hub');
-  const handleSharedList = () => handleNavigate('/shared');
-  const handleLogin = () => handleNavigate('/auth');
-  const handleMyList = (userId: string) => handleNavigate(`/@${userId}`);
+  const handleLogo = () => handleNavigate(PATH.MAIN);
+  const handleHub = () => handleNavigate(PATH.HUB);
+  const handleSharedList = () => handleNavigate(PATH.SHARED);
+  const handleLogin = () => handleNavigate(PATH.AUTH);
+  const handleMyList = (userId: string) =>
+    handleNavigate(`/${PATH.MY}${userId}`);
 
   return {
     isLogin,

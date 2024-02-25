@@ -1,11 +1,6 @@
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 
-import {
-  ROUTE_AUTH_PAGE,
-  ROUTE_HUB_PAGE,
-  ROUTE_MY_PAGE,
-  ROUTE_SHARED_PAGE,
-} from '@/constants/router';
+import { PATH } from '@/constants/router';
 import { themeStore } from '@/stores';
 
 import { useMenu } from './WebNavBar.hook';
@@ -34,20 +29,20 @@ const WebNavBar = () => {
   console.log(location.pathname);
 
   return (
-    <WebNavBarWrapper>
+    <WebNavBarWrapper style={{ marginTop: '6rem' }}>
       <WebNavBarRouter>
         <WebNavBarLogo onClick={handleLogo}>
           <span>키윙</span>
           <WebNavBarLogoImage />
         </WebNavBarLogo>
         <WebNavItem
-          $isLocated={location.pathname.includes(ROUTE_HUB_PAGE)}
+          $isLocated={location.pathname.includes(PATH.HUB)}
           onClick={handleHub}
         >
           <span>질문 허브</span>
         </WebNavItem>
         <WebNavItem
-          $isLocated={location.pathname.includes(ROUTE_SHARED_PAGE)}
+          $isLocated={location.pathname.includes(PATH.SHARED)}
           onClick={handleList}
         >
           <span>공유된 질문 꾸러미</span>
@@ -65,14 +60,14 @@ const WebNavBar = () => {
         {/* todo 버튼 변경 */}
         {isLogin ? (
           <WebNavItem
-            $isLocated={location.pathname.includes(ROUTE_MY_PAGE)}
+            $isLocated={location.pathname.includes(PATH.MY)}
             onClick={() => handleMyList(':id')}
           >
             <span>내 질문 꾸러미</span>
           </WebNavItem>
         ) : (
           <WebNavItem
-            $isLocated={location.pathname.includes(ROUTE_AUTH_PAGE)}
+            $isLocated={location.pathname.includes(PATH.AUTH)}
             onClick={handleLogin}
           >
             <span>로그인</span>
