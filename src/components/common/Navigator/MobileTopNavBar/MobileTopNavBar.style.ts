@@ -29,7 +29,7 @@ export const TopNavBarWrapper = styled.nav<TopNavBarWrapperProps>`
 
   z-index: ${NAVIGATER};
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${MOBILE}px) {
     display: flex;
   }
 `;

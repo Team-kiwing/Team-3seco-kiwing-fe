@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { MOBILE } from '@/constants';
 import { Row } from '@/styles/globalStyles';
 
 import { WebNavItemProps } from './WebNavBar.type';
@@ -17,7 +18,7 @@ export const WebNavBarWrapper = styled.nav`
   color: ${(props) => props.theme.primary_color};
   user-select: none;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${MOBILE}px) {
     display: none;
   }
 `;
