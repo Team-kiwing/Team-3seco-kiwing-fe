@@ -4,13 +4,19 @@ import { Row } from '@/styles/globalStyles';
 
 export const WebNavBarWrapper = styled.nav`
   display: flex;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0.5rem 3rem;
   align-items: center;
   justify-content: space-between;
+  margin: 0 auto;
+  padding: 0.5rem 3rem;
+
+  max-width: 1140px;
   font-size: 2rem;
   font-weight: 500;
+  color: ${(props) => props.theme.primary_color};
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const WebNavBarRouter = styled(Row)`
@@ -44,7 +50,7 @@ export const WebNavItem = styled.div<{ $isLocated: boolean }>`
   cursor: pointer;
   white-space: nowrap;
   color: ${(props) =>
-    props.$isLocated ? props.theme.symbol_color : undefined};
+    props.$isLocated ? props.theme.symbol_color : 'inherit'};
 `;
 
 export const WebNavBarDivideLine = styled.div`
@@ -52,5 +58,5 @@ export const WebNavBarDivideLine = styled.div`
   white-space: nowrap;
   flex-grow: 1;
   height: 0.2rem;
-  background-color: #d9d9d9;
+  background-color: ${(props) => props.theme.border_color};
 `;
