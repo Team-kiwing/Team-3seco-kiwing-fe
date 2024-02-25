@@ -8,16 +8,15 @@ import {
 } from 'react-icons/pi';
 
 import { PATH } from '@/constants/router';
-import { themeStore } from '@/stores';
 
 import { useNavigatorMenu } from '../Navigator.hook';
+import { MobileBottomNavBarText } from './MobileBottomNavBar.const';
 import {
   BottomNavBarItem,
   BottomNavBarWrapper,
 } from './MobileBottomNavBar.style';
 
 const MobileBottomNavBar = () => {
-  const { isDarkMode } = themeStore();
   const {
     isLogin,
     location,
@@ -30,7 +29,7 @@ const MobileBottomNavBar = () => {
 
   return (
     <>
-      <BottomNavBarWrapper $isDark={isDarkMode}>
+      <BottomNavBarWrapper>
         <BottomNavBarItem onClick={handleLogo}>
           <Avatar
             $size="nav"
@@ -48,7 +47,7 @@ const MobileBottomNavBar = () => {
           <IconWrapper $size={'s'}>
             <PiCloudArrowDown />
           </IconWrapper>
-          <span>허브</span>
+          <span>{MobileBottomNavBarText.HUB_ITEM}</span>
         </BottomNavBarItem>
         <BottomNavBarItem
           $color={location.pathname.includes(PATH.SHARED)}
@@ -57,7 +56,7 @@ const MobileBottomNavBar = () => {
           <IconWrapper $size={'s'}>
             <PiScroll />
           </IconWrapper>
-          <span>공유된 꾸러미</span>
+          <span>{MobileBottomNavBarText.SHARED_ITEM}</span>
         </BottomNavBarItem>
         {isLogin ? (
           <BottomNavBarItem
@@ -67,7 +66,7 @@ const MobileBottomNavBar = () => {
             <IconWrapper $size={'s'}>
               <PiBooks />
             </IconWrapper>
-            <span>내 꾸러미</span>
+            <span>{MobileBottomNavBarText.MY_ITEM}</span>
           </BottomNavBarItem>
         ) : (
           <BottomNavBarItem
@@ -77,7 +76,7 @@ const MobileBottomNavBar = () => {
             <IconWrapper $size={'s'}>
               <PiArrowCircleRightLight />
             </IconWrapper>
-            <span>로그인</span>
+            <span>{MobileBottomNavBarText.MY_ITEM}</span>
           </BottomNavBarItem>
         )}
       </BottomNavBarWrapper>
