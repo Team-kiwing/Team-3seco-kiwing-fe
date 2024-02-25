@@ -13,8 +13,10 @@ export const AvatarWrapper = styled.div<AvatarProps>`
   position: relative;
   display: inline-block;
   overflow: hidden;
-  width: ${({ $size }) => AvaterSize[$size]};
-  height: ${({ $size }) => AvaterSize[$size]};
+  width: ${({ $size }) =>
+    typeof $size === 'number' ? `${$size}rem` : AvaterSize[$size]};
+  height: ${({ $size }) =>
+    typeof $size === 'number' ? `${$size}rem` : AvaterSize[$size]};
   border: 0.1rem solid ${({ theme }) => theme.gray_100};
   border-radius: 50%;
   background-image: ${({ $src }) =>
