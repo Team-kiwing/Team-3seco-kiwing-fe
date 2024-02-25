@@ -20,6 +20,7 @@ export const lightTheme: object = {
 
   // 확장, 추가 시 PR에 명시
   error_red: '#F82B2B',
+  border_color: '#D9D9D9',
 };
 
 export const darkTheme: object = {
@@ -45,6 +46,7 @@ export const darkTheme: object = {
 
   // 확장, 추가 시 PR에 명시
   error_red: '#F84A4A',
+  border_color: '#5E5E5E',
 };
 
 const Theme = {
