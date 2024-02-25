@@ -123,16 +123,16 @@ const DropDown = ({
               </Item>
             ))}
           </Options>
-          <Footer>
-            {mode === 'checkbox' && (
+          {mode === 'checkbox' && (
+            <Footer>
               <Button
                 height="fit-content"
                 style={{ padding: '0.5rem' }}
                 text="추가"
                 onClick={handleAddClick}
               />
-            )}
-          </Footer>
+            </Footer>
+          )}
         </Container>
       </ShadowBox>
     </Wrapper>
