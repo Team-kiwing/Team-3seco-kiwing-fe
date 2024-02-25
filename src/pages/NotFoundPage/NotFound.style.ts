@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import { FONT_SEMI_BOLD } from '@/constants';
+import { FONT_SEMI_BOLD, MOBILE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 const slideIn = keyframes`
@@ -44,14 +44,14 @@ export const NotFoundLogoImage = styled.img`
 `;
 
 export const NotFoundButtonWrap = styled(Row)`
-  z-index: 1001;
+  z-index: 8;
   gap: 2rem;
 `;
 
 export const NotFoundText = styled.span`
   font-size: 2rem;
   font-weight: ${FONT_SEMI_BOLD};
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${MOBILE}px) {
     font-size: 1.8rem;
   }
 `;
@@ -70,7 +70,7 @@ export const EasterEggText = styled.span<{ $isShow: boolean }>`
   animation: ${({ $isShow }) => ($isShow ? slideIn : slideOut)} 0.5s ease
     forwards;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${MOBILE}px) {
     font-size: 1.8rem;
   }
 `;
@@ -79,4 +79,5 @@ export const PTagText = styled.p`
   display: flex;
   justify-content: center;
   white-space: pre-wrap;
+  font-weight: ${FONT_SEMI_BOLD};
 `;

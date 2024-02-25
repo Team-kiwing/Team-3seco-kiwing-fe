@@ -5,6 +5,7 @@ import { useTheme } from 'styled-components';
 import Button from '@/components/common/Button';
 import EasterEgg from '@/components/common/EasterEgg';
 import ShadowBox from '@/components/common/ShadowBox';
+import { PATH } from '@/constants/router';
 
 import {
   EasterEggText,
@@ -21,11 +22,11 @@ const NotFound = () => {
   const [showEasterEgg, setShowEasterEgg] = useState(false);
 
   const handleClickHome = () => {
-    navigator('/');
+    navigator(PATH.MAIN);
   };
 
   const handleClickError = () => {
-    navigator('/report');
+    navigator(PATH.REPORT);
   };
 
   const handleLogoClick = () => {
@@ -45,7 +46,7 @@ const NotFound = () => {
             height="auto"
           >
             <PTagText>키윙 이스터 에그를 찾으셨네요!</PTagText>
-            <PTagText>여러분의 멋진 삶을 응원합니다.</PTagText>
+            <PTagText>키윙팀은 여러분의 멋진 삶을 응원합니다.</PTagText>
           </ShadowBox>
         </EasterEggText>
 
@@ -61,7 +62,7 @@ const NotFound = () => {
             onClick={handleClickError}
             text="오류 신고하기"
             backgroundColor={theme.error_red}
-            hoverBackgroundColor={theme.hotBadge_color}
+            hoverBackgroundColor={`${theme.error_red}70`}
           />
           <Button
             onClick={handleClickHome}
