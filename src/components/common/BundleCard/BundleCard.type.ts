@@ -6,6 +6,6 @@ export interface tagProps {
 export interface BundleProps {
   id: number;
   bundleName: string;
-  tags: tagProps[];
+  hashTags: tagProps[];
   subscribedCount: number;
 }

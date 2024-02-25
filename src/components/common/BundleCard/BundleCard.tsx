@@ -21,12 +21,17 @@ import { BundleProps } from './BundleCard.type';
  * @description 공통 BundleCard 컴포넌트
  * @param id 필수) 질문꾸러미의 id 값 number타입
  * @param bundleName 필수) 질문꾸러미의 이름 string타입
- * @param tags 필수) 질문꾸러미의 태그들을 받습니다.(배열 타입)
+ * @param hashTags 필수) 질문꾸러미의 태그들을 받습니다.(배열 타입)
  * @param subscribedCount 필수) 질문꾸러미의 스크랩 수를 받습니다. number타입
  * @returns
  */
 
-const BundleCard = ({ id, bundleName, tags, subscribedCount }: BundleProps) => {
+const BundleCard = ({
+  id,
+  bundleName,
+  hashTags,
+  subscribedCount,
+}: BundleProps) => {
   const navigate = useNavigate();
   return (
     <BundleCardWrapper onClick={() => navigate(`/shared/${id}`)}>
@@ -43,7 +48,7 @@ const BundleCard = ({ id, bundleName, tags, subscribedCount }: BundleProps) => {
         <BundleCardItemWrapper>
           <BundleCardContentItem>
             <BundleCardItemName>{bundleName}</BundleCardItemName>
-            {tags.map((item) => (
+            {hashTags.map((item) => (
               <Badge
                 key={item.id}
                 style={{ padding: '0 0.5rem 0 0' }}

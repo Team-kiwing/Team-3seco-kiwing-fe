@@ -42,7 +42,7 @@ export const BundleCardItemName = styled.div`
 export const BundleCardBadgeWrapper = styled.div`
   display: flex;
   margin-top: 0.8rem;
-  gap: 10px;
+  gap: 1rem;
   @media screen and (max-width: ${MOBILE}px) {
     display: flex;
     flex-direction: column;
