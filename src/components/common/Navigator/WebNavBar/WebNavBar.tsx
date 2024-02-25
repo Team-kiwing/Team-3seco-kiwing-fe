@@ -3,6 +3,7 @@ import { MdDarkMode, MdLightMode } from 'react-icons/md';
 import { PATH } from '@/constants/router';
 import { themeStore } from '@/stores';
 
+import IconWrapper from '../../IconWrapper';
 import { useNavigatorMenu } from '../Navigator.hook';
 import {
   WebNavBarDivideLine,
@@ -50,9 +51,19 @@ const WebNavBar = () => {
       <WebNavBarMyPage>
         {/* todo Wrapper를 통한 색상, hover 변경 */}
         {isDarkMode ? (
-          <MdLightMode onClick={updateTheme} />
+          <IconWrapper
+            $size={2.5}
+            onClick={updateTheme}
+          >
+            <MdLightMode />
+          </IconWrapper>
         ) : (
-          <MdDarkMode onClick={updateTheme} />
+          <IconWrapper
+            $size={2.5}
+            onClick={updateTheme}
+          >
+            <MdDarkMode />
+          </IconWrapper>
         )}
         {/* todo 로그인 시 아바타 컴포넌트 추가 */}
         {/* todo 버튼 변경 */}
