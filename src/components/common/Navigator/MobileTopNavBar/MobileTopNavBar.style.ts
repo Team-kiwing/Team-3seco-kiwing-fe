@@ -21,6 +21,7 @@ export const TopNavBarWrapper = styled.nav<TopNavBarWrapperProps>`
   height: 5rem;
   width: 100%;
   white-space: nowrap;
+  user-select: none;
 
   background-color: ${(props) => props.theme.background_color};
 

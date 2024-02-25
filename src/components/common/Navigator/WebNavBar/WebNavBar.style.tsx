@@ -13,6 +13,7 @@ export const WebNavBarWrapper = styled.nav`
   font-size: 2rem;
   font-weight: 500;
   color: ${(props) => props.theme.primary_color};
+  user-select: none;
 
   @media screen and (max-width: 768px) {
     display: none;

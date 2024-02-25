@@ -22,6 +22,7 @@ export const BottomNavBarWrapper = styled.nav`
   height: 6rem;
   width: 100%;
   white-space: nowrap;
+  user-select: none;
 
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
