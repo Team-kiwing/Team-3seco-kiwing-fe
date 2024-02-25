@@ -1,4 +1,5 @@
 import { RiFileCopyLine, RiShareLine } from 'react-icons/ri';
+import { useLocation } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
 import CircleButton from '@/components/common/CircleButton';
@@ -23,7 +24,18 @@ import { SharedBundleCardProps } from './SharedBundleCard.type';
 const SharedBundleCard = ({ bundleName, ...props }: SharedBundleCardProps) => {
   const theme = useTheme();
   const { isMobileSize } = useResize();
+  const location = useLocation();
 
+  const currentURL = location.pathname;
+
+  const handleCopyClipBoard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('클립보드에 링크가 복사되었습니다.');
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <SharedBundleCardWrapper {...props}>
@@ -52,7 +64,7 @@ const SharedBundleCard = ({ bundleName, ...props }: SharedBundleCardProps) => {
                 $size={'m'}
                 $hoverIconColor={theme.symbol_secondary_color}
                 onClick={() => {
-                  console.log('링크 복사!');
+                  handleCopyClipBoard(currentURL);
                 }}
               >
                 <RiFileCopyLine />
