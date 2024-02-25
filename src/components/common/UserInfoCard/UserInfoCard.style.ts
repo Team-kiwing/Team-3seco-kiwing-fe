@@ -76,11 +76,17 @@ export const UserInfoLink = styled(Row)`
   gap: 0.5rem;
   align-items: center;
   & > a {
-    width: 80%;
+    @media screen and (max-width: ${MOBILE}px) {
+      width: 13rem;
+    }
+
+    width: 35rem;
     color: ${({ theme }) => theme.gray_400};
     text-decoration: none;
-    word-break: break-word;
     line-height: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 `;
 
