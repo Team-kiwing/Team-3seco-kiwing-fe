@@ -10,7 +10,8 @@ import { useTheme } from 'styled-components';
 import { MOBILE } from '@/constants';
 
 import {
-  NotDataText,
+  NoLinks,
+  NoTags,
   UserInfoBadgeWrapper,
   UserInfoContentsWrapper,
   UserInfoIconWrapper,
@@ -99,7 +100,7 @@ const UserInfoCard = ({
                   />
                 ))
               ) : (
-                <NotDataText>관심 분야가 없습니다.</NotDataText>
+                <NoTags>관심 분야가 없습니다.</NoTags>
               )}
             </UserInfoBadgeWrapper>
           </UserInfoNicknameBadgeWrapper>
@@ -119,7 +120,7 @@ const UserInfoCard = ({
                 </UserInfoLink>
               ))
             ) : (
-              <NotDataText>등록된 링크가 없습니다.</NotDataText>
+              <NoLinks>등록된 링크가 없습니다.</NoLinks>
             )}
           </UserInfoLinkWrapper>
         </UserInfoContentsWrapper>

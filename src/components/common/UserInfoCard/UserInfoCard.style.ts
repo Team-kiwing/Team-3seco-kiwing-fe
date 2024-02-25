@@ -90,7 +90,17 @@ export const UserInfoIconWrapper = styled(Col)`
   color: ${({ theme }) => theme.primary_color};
 `;
 
-export const NotDataText = styled.div`
+export const NoTags = styled.div`
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: 1rem;
+  }
+
+  color: ${({ theme }) => theme.gray_500}80;
+  font-size: 1.2rem;
+  font-weight: ${FONT_REGULAR};
+`;
+
+export const NoLinks = styled.div`
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1rem;
   }
