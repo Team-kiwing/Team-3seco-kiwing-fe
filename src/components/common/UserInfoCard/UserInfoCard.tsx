@@ -72,7 +72,7 @@ const UserInfoCard = ({
     <ShadowBox
       width={viewportWidth <= MOBILE ? '90%' : '80%'}
       height={'100%'}
-      style={{ minWidth: '280px', margin: '0 auto' }}
+      style={{ minWidth: '260px', margin: '0 auto' }}
     >
       <UserInfoWrapper>
         <Avatar
