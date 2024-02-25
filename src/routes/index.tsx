@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
+import ModalLayout from '@/components/common/ModalLayout';
 import { PATH } from '@/constants/router';
 import {
   AuthPage,
@@ -67,6 +68,7 @@ const Router = () => {
           />
         </Route>
       </Routes>
+      <ModalLayout />
     </>
   );
 };
