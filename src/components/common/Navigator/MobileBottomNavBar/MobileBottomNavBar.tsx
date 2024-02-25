@@ -74,7 +74,7 @@ const MobileBottomNavBar = () => {
             $color={location.pathname.includes(PATH.AUTH)}
             onClick={handleLogin}
           >
-            <IconWrapper $size={'m'}>
+            <IconWrapper $size={'s'}>
               <PiArrowCircleRightLight />
             </IconWrapper>
             <span>로그인</span>
