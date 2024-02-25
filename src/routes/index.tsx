@@ -8,6 +8,7 @@ import {
   MainPage,
   MyListPage,
   NotFoundPage,
+  PolicyPage,
   RegisterPage,
   ReportPage,
   SharedItemPage,
@@ -52,6 +53,10 @@ const Router = () => {
           <Route
             path={PATH.REPORT} // 신고, 건의 페이지
             element={<ReportPage />}
+          />
+          <Route
+            path={PATH.POLICY} // Policy 페이지
+            element={<PolicyPage />}
           />
           <Route
             path={PATH.TEST} // test 페이지
