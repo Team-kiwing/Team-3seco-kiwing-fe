@@ -9,8 +9,8 @@ import {
 
 import { PATH } from '@/constants/router';
 
+import { NavigatorText } from '../Navigator.const';
 import { useNavigatorMenu } from '../Navigator.hook';
-import { MobileBottomNavBarText } from './MobileBottomNavBar.const';
 import {
   BottomNavBarItem,
   BottomNavBarWrapper,
@@ -47,7 +47,7 @@ const MobileBottomNavBar = () => {
           <IconWrapper $size={'s'}>
             <PiCloudArrowDown />
           </IconWrapper>
-          <span>{MobileBottomNavBarText.HUB_ITEM}</span>
+          <span>{NavigatorText.HUB_TEXT}</span>
         </BottomNavBarItem>
         <BottomNavBarItem
           $color={location.pathname.includes(PATH.SHARED)}
@@ -56,7 +56,7 @@ const MobileBottomNavBar = () => {
           <IconWrapper $size={'s'}>
             <PiScroll />
           </IconWrapper>
-          <span>{MobileBottomNavBarText.SHARED_ITEM}</span>
+          <span>{NavigatorText.SHARED_TEXT}</span>
         </BottomNavBarItem>
         {isLogin ? (
           <BottomNavBarItem
@@ -66,7 +66,7 @@ const MobileBottomNavBar = () => {
             <IconWrapper $size={'s'}>
               <PiBooks />
             </IconWrapper>
-            <span>{MobileBottomNavBarText.MY_ITEM}</span>
+            <span>{NavigatorText.MY_TEXT}</span>
           </BottomNavBarItem>
         ) : (
           <BottomNavBarItem
@@ -76,7 +76,7 @@ const MobileBottomNavBar = () => {
             <IconWrapper $size={'s'}>
               <PiArrowCircleRightLight />
             </IconWrapper>
-            <span>{MobileBottomNavBarText.MY_ITEM}</span>
+            <span>{NavigatorText.AUTH_TEXT}</span>
           </BottomNavBarItem>
         )}
       </BottomNavBarWrapper>

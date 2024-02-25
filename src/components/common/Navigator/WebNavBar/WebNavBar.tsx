@@ -4,6 +4,7 @@ import { PATH } from '@/constants/router';
 import { themeStore } from '@/stores';
 
 import IconWrapper from '../../IconWrapper';
+import { NavigatorText } from '../Navigator.const';
 import { useNavigatorMenu } from '../Navigator.hook';
 import {
   WebNavBarDivideLine,
@@ -31,20 +32,20 @@ const WebNavBar = () => {
     <WebNavBarWrapper style={{ paddingTop: '6rem' }}>
       <WebNavBarRouter>
         <WebNavBarLogo onClick={handleLogo}>
-          <span>키윙</span>
+          <span>{NavigatorText.LOGO_TEXT}</span>
           <WebNavBarLogoImage />
         </WebNavBarLogo>
         <WebNavItem
           $isLocated={location.pathname.includes(PATH.HUB)}
           onClick={handleHub}
         >
-          <span>질문 허브</span>
+          <span>{NavigatorText.HUB_TEXT}</span>
         </WebNavItem>
         <WebNavItem
           $isLocated={location.pathname.includes(PATH.SHARED)}
           onClick={handleShared}
         >
-          <span>공유된 질문 꾸러미</span>
+          <span>{NavigatorText.SHARED_TEXT}</span>
         </WebNavItem>
       </WebNavBarRouter>
       <WebNavBarDivideLine />
@@ -72,14 +73,14 @@ const WebNavBar = () => {
             $isLocated={location.pathname.includes(PATH.MY)}
             onClick={handleMyList}
           >
-            <span>내 질문 꾸러미</span>
+            <span>{NavigatorText.MY_TEXT}</span>
           </WebNavItem>
         ) : (
           <WebNavItem
             $isLocated={location.pathname.includes(PATH.AUTH)}
             onClick={handleLogin}
           >
-            <span>로그인</span>
+            <span>{NavigatorText.AUTH_TEXT}</span>
           </WebNavItem>
         )}
       </WebNavBarMyPage>
