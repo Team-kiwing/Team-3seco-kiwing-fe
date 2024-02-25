@@ -47,8 +47,8 @@ import { UserInfoCardProps } from './UserInfoCard.type';
 const UserInfoCard = ({
   userImage,
   userName,
-  tags,
-  links,
+  tags = [],
+  links = [],
 }: UserInfoCardProps) => {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   let timer = null;
@@ -83,7 +83,7 @@ const UserInfoCard = ({
           <UserInfoNicknameBadgeWrapper>
             <UserInfoNickname>{userName}</UserInfoNickname>
             <UserInfoBadgeWrapper>
-              {tags ? (
+              {tags.length !== 0 ? (
                 tags.map((tag, index) => (
                   <Badge
                     $state={'basic'}
@@ -99,7 +99,7 @@ const UserInfoCard = ({
             </UserInfoBadgeWrapper>
           </UserInfoNicknameBadgeWrapper>
           <UserInfoLinkWrapper>
-            {links ? (
+            {links.length !== 0 ? (
               links.map((link, index) => (
                 <UserInfoLink key={index}>
                   <IconWrapper $size={viewportWidth <= MOBILE ? 'xss' : 'xs'}>
