@@ -2,7 +2,9 @@ import { styled } from 'styled-components';
 
 import { FONT_SEMI_BOLD, MOBILE, MOBILE_MIN, NAVIGATER } from '@/constants';
 
-export const TopNavBarWrapper = styled.nav<{ $isDark: boolean }>`
+import { TopBarItemProps, TopNavBarWrapperProps } from './MobileTopNavBar.type';
+
+export const TopNavBarWrapper = styled.nav<TopNavBarWrapperProps>`
   display: flex;
   position: fixed;
   top: 0;
@@ -27,7 +29,7 @@ export const TopNavBarWrapper = styled.nav<{ $isDark: boolean }>`
   z-index: ${NAVIGATER};
 `;
 
-export const TopBarItem = styled.div<{ $color?: boolean }>`
+export const TopBarItem = styled.div<TopBarItemProps>`
   display: flex;
   margin: 0 1rem;
   align-items: center;
