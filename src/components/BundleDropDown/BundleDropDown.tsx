@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import DropDown from '@/components/common/DropDown';
 import IconWrapper from '@/components/common/IconWrapper';
+import { handleCopyClipBoard } from '@/utils/copyClip';
 
 import { BundleDropDownWrapper } from './BundleDropDown.style';
 import { BundleDropDownProps } from './BundleDropDown.type';
@@ -15,6 +16,8 @@ import { BundleDropDownProps } from './BundleDropDown.type';
           triggerId="dropdown1-btn"
           width="14rem"
         />
+        BundleDropDown는 position: absolute 속성이 있습니다.
+        BundleDropDown 사용하는 부모컴포넌트에 무조건 position: 'relative'를 주어야 합니다. 
  * @description BundleDropDown 컴포넌트
  * @param isDropDownShow 필수) BundleDropDown가 보여지는 유무를 나타내는 상태값입니다.
  * @param setIsDropDownShow 필수) isDropDownShow 상태값을 set하는 함수입니다.
@@ -30,28 +33,20 @@ const BundleDropDown = ({
   width = '12rem',
 }: BundleDropDownProps) => {
   const location = useLocation();
+  const SERVICE_URL = window.location.host;
+  const CURRENT_URL = location.pathname;
 
-  const currentURL = location.pathname;
-
-  const handleCopyClipBoard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      alert('클립보드에 링크가 복사되었습니다.');
-    } catch (err) {
-      console.log(err);
-    }
-  };
   const OPTIONS = [
     {
       id: 1,
-      title: '리스트 추가',
+      title: '꾸러미 추가',
       rightItem: (
         <IconWrapper $size={'xs'}>
           <MdAddCircleOutline />
         </IconWrapper>
       ),
       handler: () => {
-        console.log('리스트 추가되었습니다'); // 추후 실제 api 연동 과정이 필요
+        console.log('꾸러미가 추가되었습니다'); // 추후 실제 api 연동 과정이 필요
         setIsDropDownShow(!isDropDownShow);
       },
     },
@@ -64,7 +59,7 @@ const BundleDropDown = ({
         </IconWrapper>
       ),
       handler: () => {
-        handleCopyClipBoard(currentURL);
+        handleCopyClipBoard(SERVICE_URL, CURRENT_URL);
         setIsDropDownShow(!isDropDownShow);
       },
     },
