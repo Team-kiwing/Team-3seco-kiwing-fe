@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { Row } from '@/styles/globalStyles';
 
+import { WebNavItemProps } from './WebNavBar.type';
+
 export const WebNavBarWrapper = styled.nav`
   display: flex;
   align-items: center;
@@ -47,7 +49,7 @@ export const WebNavBarLogoImage = styled.div`
   background-size: cover;
 `;
 
-export const WebNavItem = styled.div<{ $isLocated: boolean }>`
+export const WebNavItem = styled.div<WebNavItemProps>`
   cursor: pointer;
   white-space: nowrap;
   color: ${(props) =>
