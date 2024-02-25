@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 
+import useResize from '@/hooks/useResize';
+
 import Badge from '../Badge';
 import ShadowBox from '../ShadowBox';
 import {
@@ -36,6 +38,7 @@ const TagFilter = ({
     },
     [selectedTags]
   );
+  const { isMobileSize } = useResize();
 
   const toggleActiveName = useCallback(
     (tag: TagProps) => {
@@ -67,7 +70,7 @@ const TagFilter = ({
                   key={tag.id}
                   $state={isSelectedTag(tag) ? 'focus' : 'basic'}
                   onClick={() => toggleActiveName(tag)}
-                  $size={'s'}
+                  $size={isMobileSize ? 'xs' : 's'}
                   style={{ margin: '3px' }}
                   $isHover={true}
                   $text={tag.name}
