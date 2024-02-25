@@ -5,6 +5,7 @@ import ShadowBox from '@components/common/ShadowBox/ShadowBox';
 import { useEffect, useState } from 'react';
 import { IoIosLink } from 'react-icons/io';
 import { PiNotePencil, PiSignOut } from 'react-icons/pi';
+import { useTheme } from 'styled-components';
 
 import { MOBILE } from '@/constants';
 
@@ -50,6 +51,8 @@ const UserInfoCard = ({
   tags = [],
   links = [],
 }: UserInfoCardProps) => {
+  const theme = useTheme();
+
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   let timer = null;
 
@@ -89,7 +92,9 @@ const UserInfoCard = ({
                     $state={'basic'}
                     $size={viewportWidth <= MOBILE ? 'xxs' : 'xs'}
                     $text={tag}
-                    style={{ backgroundColor: '#009c4d' }}
+                    style={{
+                      backgroundColor: `${theme.symbol_secondary_color}`,
+                    }}
                     key={index}
                   />
                 ))
