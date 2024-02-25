@@ -29,6 +29,7 @@ export const UserInfoContentsWrapper = styled(Col)`
     padding: 0 1rem;
   }
 
+  width: 100%;
   padding: 0 2rem;
 `;
 
@@ -59,26 +60,27 @@ export const UserInfoBadgeWrapper = styled.div`
 `;
 
 export const UserInfoLinkWrapper = styled(Col)`
+  width: 100%;
   margin-top: 1rem;
-  gap: 0.5rem;
+  gap: 1rem;
 `;
 
 export const UserInfoLink = styled(Row)`
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
+  width: 100%;
   color: ${({ theme }) => theme.primary_color};
   font-size: 1.2rem;
-  gap: 0.3rem;
+  gap: 0.5rem;
   align-items: center;
   & > a {
     width: 80%;
-    color: ${({ theme }) => theme.gray_500};
+    color: ${({ theme }) => theme.gray_400};
     text-decoration: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-break: break-word;
+    line-height: normal;
   }
 `;
 
@@ -90,7 +92,7 @@ export const UserInfoIconWrapper = styled(Col)`
 
 export const NotDataText = styled.div`
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   color: ${({ theme }) => theme.gray_500}80;
