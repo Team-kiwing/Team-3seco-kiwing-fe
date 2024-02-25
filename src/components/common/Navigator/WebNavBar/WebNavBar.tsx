@@ -27,7 +27,7 @@ const WebNavBar = () => {
   } = useNavigatorMenu();
 
   return (
-    <WebNavBarWrapper style={{ marginTop: '6rem' }}>
+    <WebNavBarWrapper style={{ paddingTop: '6rem' }}>
       <WebNavBarRouter>
         <WebNavBarLogo onClick={handleLogo}>
           <span>키윙</span>
