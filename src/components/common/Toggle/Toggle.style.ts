@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { MOBILE } from '@/constants';
+
 import { ToggleContainerProps, ToggleSwitchProps } from './Toggle.type';
 
 export const ToggleContainer = styled.label<ToggleContainerProps>`
@@ -45,15 +47,19 @@ export const ToggleSwitch = styled.div<ToggleSwitchProps>`
         `;
       }
     }};
-    font-size: calc(${({ $width }) => $width} * 0.4);
     position: absolute;
-    right: calc(${({ $height }) => $height} * 0.2);
+    font-size: 1.6rem;
+    left: 40%;
+    @media screen and (max-width: ${MOBILE}px) {
+      font-size: 1.4rem;
+      left: 45%;
+    }
     top: 50%;
     transform: translateY(-50%);
     transition: all 0.2s ease;
   }
 
-  ${({ $on, $isColorReverse, theme, $width, $height, $isContentShow }) => {
+  ${({ $on, $isColorReverse, theme, $height, $isContentShow }) => {
     if ($on) {
       return css`
         background: ${$isColorReverse ? 'white' : theme.symbol_color};
@@ -63,8 +69,13 @@ export const ToggleSwitch = styled.div<ToggleSwitchProps>`
         }
         &:before {
           content: '${$isContentShow ? '공개' : ''}';
-          font-size: calc(${$width} * 0.4);
-          left: calc(${$height} * 0.2);
+          position: absolute;
+          font-size: 1.6rem;
+          left: 20%;
+          @media screen and (max-width: ${MOBILE}px) {
+            font-size: 1.4rem;
+            left: 25%;
+          }
           color: white;
           top: 50%;
           transition: all 0.2s ease;
