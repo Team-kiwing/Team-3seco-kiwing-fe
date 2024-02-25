@@ -68,4 +68,9 @@ export const MobileModalCloseArea = styled.div`
   border-top: 1px solid ${(props) => props.theme.gray_200};
   cursor: pointer;
   font-weight: ${FONT_SEMI_BOLD};
+
+  &:active {
+    background-color: ${(props) => props.theme.gray_200};
+    border-radius: 10px;
+  }
 `;
