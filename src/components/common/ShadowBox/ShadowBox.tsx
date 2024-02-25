@@ -29,7 +29,7 @@ const ShadowBox = forwardRef(
           ref={ref}
           $width={width}
           $height={height}
-          $color={isActive ? theme.symbol_color : 'white'}
+          $color={isActive ? theme.symbol_color : theme.background_color}
           $isHoverActive={isHoverActive}
           {...props}
         >
