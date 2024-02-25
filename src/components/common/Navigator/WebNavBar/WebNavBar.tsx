@@ -3,7 +3,7 @@ import { MdDarkMode, MdLightMode } from 'react-icons/md';
 import { PATH } from '@/constants/router';
 import { themeStore } from '@/stores';
 
-import { useMenu } from './WebNavBar.hook';
+import { useNavigatorMenu } from '../Navigator.hook';
 import {
   WebNavBarDivideLine,
   WebNavBarLogo,
@@ -21,10 +21,10 @@ const WebNavBar = () => {
     location,
     handleLogo,
     handleHub,
-    handleList,
+    handleShared,
     handleMyList,
     handleLogin,
-  } = useMenu();
+  } = useNavigatorMenu();
 
   console.log(location.pathname);
 
@@ -43,7 +43,7 @@ const WebNavBar = () => {
         </WebNavItem>
         <WebNavItem
           $isLocated={location.pathname.includes(PATH.SHARED)}
-          onClick={handleList}
+          onClick={handleShared}
         >
           <span>공유된 질문 꾸러미</span>
         </WebNavItem>
@@ -61,7 +61,7 @@ const WebNavBar = () => {
         {isLogin ? (
           <WebNavItem
             $isLocated={location.pathname.includes(PATH.MY)}
-            onClick={() => handleMyList(':id')}
+            onClick={handleMyList}
           >
             <span>내 질문 꾸러미</span>
           </WebNavItem>

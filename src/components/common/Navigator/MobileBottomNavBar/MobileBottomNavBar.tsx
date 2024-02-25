@@ -7,9 +7,10 @@ import {
   PiScroll,
 } from 'react-icons/pi';
 
+import { PATH } from '@/constants/router';
 import { themeStore } from '@/stores';
 
-import { useNavigatorMenu } from './MobileBottomNavBar.hook';
+import { useNavigatorMenu } from '../Navigator.hook';
 import {
   BottomNavBarItem,
   BottomNavBarWrapper,
@@ -22,7 +23,7 @@ const MobileBottomNavBar = () => {
     location,
     handleLogo,
     handleHub,
-    handleSharedList,
+    handleShared,
     handleMyList,
     handleLogin,
   } = useNavigatorMenu();
@@ -41,7 +42,7 @@ const MobileBottomNavBar = () => {
           />
         </BottomNavBarItem>
         <BottomNavBarItem
-          $color={location.pathname.includes('/hub')}
+          $color={location.pathname.includes(PATH.HUB)}
           onClick={handleHub}
         >
           <IconWrapper $size={'s'}>
@@ -50,8 +51,8 @@ const MobileBottomNavBar = () => {
           <span>허브</span>
         </BottomNavBarItem>
         <BottomNavBarItem
-          $color={location.pathname.includes('/shared')}
-          onClick={handleSharedList}
+          $color={location.pathname.includes(PATH.SHARED)}
+          onClick={handleShared}
         >
           <IconWrapper $size={'s'}>
             <PiScroll />
@@ -60,8 +61,8 @@ const MobileBottomNavBar = () => {
         </BottomNavBarItem>
         {isLogin ? (
           <BottomNavBarItem
-            $color={location.pathname.includes('/@:id')}
-            onClick={() => handleMyList(':id')}
+            $color={location.pathname.includes(PATH.MY)}
+            onClick={handleMyList}
           >
             <IconWrapper $size={'s'}>
               <PiBooks />
@@ -70,7 +71,7 @@ const MobileBottomNavBar = () => {
           </BottomNavBarItem>
         ) : (
           <BottomNavBarItem
-            $color={location.pathname.includes('/auth')}
+            $color={location.pathname.includes(PATH.AUTH)}
             onClick={handleLogin}
           >
             <IconWrapper $size={'m'}>
