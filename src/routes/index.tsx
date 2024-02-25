@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
+import ModalLayout from '@/components/common/ModalLayout';
 import { PATH } from '@/constants/router';
 import {
   AuthPage,
@@ -7,6 +8,7 @@ import {
   MainPage,
   MyListPage,
   NotFoundPage,
+  PolicyPage,
   RegisterPage,
   ReportPage,
   SharedItemPage,
@@ -53,6 +55,10 @@ const Router = () => {
             element={<ReportPage />}
           />
           <Route
+            path={PATH.POLICY} // Policy 페이지
+            element={<PolicyPage />}
+          />
+          <Route
             path={PATH.TEST} // test 페이지
             element={<TestPage />}
           />
@@ -62,6 +68,7 @@ const Router = () => {
           />
         </Route>
       </Routes>
+      <ModalLayout />
     </>
   );
 };
