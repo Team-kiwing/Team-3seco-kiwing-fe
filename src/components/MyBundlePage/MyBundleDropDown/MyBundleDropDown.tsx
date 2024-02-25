@@ -69,7 +69,7 @@ const MyBundleDropDown = ({
     },
     {
       id: 3,
-      title: '리스트 삭제',
+      title: '꾸러미 삭제',
       rightItem: (
         <IconWrapper $size={'xs'}>
           <RiDeleteBin5Line />
@@ -82,7 +82,7 @@ const MyBundleDropDown = ({
     },
     {
       id: 4,
-      title: '리스트 편집',
+      title: '꾸러미 편집',
       rightItem: (
         <IconWrapper $size={'xs'}>
           <FiEdit3 />
