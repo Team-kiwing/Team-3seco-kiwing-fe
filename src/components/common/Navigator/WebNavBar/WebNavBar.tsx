@@ -26,8 +26,6 @@ const WebNavBar = () => {
     handleLogin,
   } = useNavigatorMenu();
 
-  console.log(location.pathname);
-
   return (
     <WebNavBarWrapper style={{ marginTop: '6rem' }}>
       <WebNavBarRouter>
