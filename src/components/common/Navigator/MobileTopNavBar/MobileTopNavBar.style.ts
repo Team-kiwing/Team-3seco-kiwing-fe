@@ -5,7 +5,7 @@ import { FONT_SEMI_BOLD, MOBILE, MOBILE_MIN, NAVIGATER } from '@/constants';
 import { TopBarItemProps, TopNavBarWrapperProps } from './MobileTopNavBar.type';
 
 export const TopNavBarWrapper = styled.nav<TopNavBarWrapperProps>`
-  display: flex;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -27,6 +27,10 @@ export const TopNavBarWrapper = styled.nav<TopNavBarWrapperProps>`
   border-bottom: 0.15rem solid ${(props) => props.theme.border_color};
 
   z-index: ${NAVIGATER};
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+  }
 `;
 
 export const TopBarItem = styled.div<TopBarItemProps>`

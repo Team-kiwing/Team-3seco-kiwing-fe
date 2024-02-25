@@ -6,7 +6,7 @@ import { Col } from '@/styles/globalStyles';
 import { BottomNavBarItemProps } from './MobileBottomNavBar.type';
 
 export const BottomNavBarWrapper = styled.nav`
-  display: flex;
+  display: none;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -29,6 +29,10 @@ export const BottomNavBarWrapper = styled.nav`
   border-bottom: none;
 
   z-index: ${NAVIGATER};
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+  }
 `;
 
 export const BottomNavBarItem = styled(Col)<BottomNavBarItemProps>`
