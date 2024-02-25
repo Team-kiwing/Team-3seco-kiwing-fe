@@ -1,6 +1,8 @@
 import { ForwardedRef, forwardRef, PropsWithChildren } from 'react';
 import { useTheme } from 'styled-components';
 
+import { themeStore } from '@/stores';
+
 import { Container } from './ShadowBox.style';
 import { ShadowBoxProps } from './ShadowBox.type';
 /**
@@ -22,6 +24,7 @@ const ShadowBox = forwardRef(
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const theme = useTheme();
+    const { isDarkMode } = themeStore();
 
     return (
       <>
@@ -31,6 +34,7 @@ const ShadowBox = forwardRef(
           $height={height}
           $color={isActive ? theme.symbol_color : theme.background_color}
           $isHoverActive={isHoverActive}
+          $isDarkMode={isDarkMode}
           {...props}
         >
           {children}

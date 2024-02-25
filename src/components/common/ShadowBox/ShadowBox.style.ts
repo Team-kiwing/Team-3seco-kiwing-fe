@@ -9,7 +9,9 @@ export const Container = styled.div<ContainerProps>`
   width: ${(props) => props.$width};
   height: ${(props) => props.$height};
   background-color: ${(props) => props.$color};
-  box-shadow: 0.2rem 0.2rem 2rem 0.5rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0.2rem 0.2rem 2rem 0.5rem
+    ${(props) =>
+      props.$isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'};
   border-radius: 1rem;
   transition: all 0.2s ease;
 

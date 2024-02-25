@@ -12,4 +12,5 @@ export interface ContainerProps {
   $height: string;
   $color: string;
   $isHoverActive: boolean;
+  $isDarkMode: boolean;
 }
