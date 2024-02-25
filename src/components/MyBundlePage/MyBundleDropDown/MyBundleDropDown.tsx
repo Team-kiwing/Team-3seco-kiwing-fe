@@ -22,14 +22,7 @@ const MyBundleDropDown = ({
     {
       id: 1,
       title: '공개 여부',
-      rightItem: (
-        <IconWrapper $size={'xs'}>
-          <Toggle
-            on={isShared}
-            style={{ width: '2.8rem', height: '2rem' }}
-          />
-        </IconWrapper>
-      ),
+      rightItem: <Toggle on={isShared} />,
 
       handler: () => {
         console.log('공개여부 클릭');
