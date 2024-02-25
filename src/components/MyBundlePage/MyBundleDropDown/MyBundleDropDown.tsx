@@ -7,14 +7,14 @@ import IconWrapper from '@/components/common/IconWrapper';
 const MyBundleDropDown = ({
   isDropDownShow,
   setIsDropDownShow,
-  isLocked,
-  setIsLocked,
+  isShared,
+  setIsShared,
   triggerId,
 }: {
   isDropDownShow: boolean;
   setIsDropDownShow: (state: boolean) => void;
-  isLocked: boolean;
-  setIsLocked: (state: boolean) => void;
+  isShared: boolean;
+  setIsShared: (state: boolean) => void;
   triggerId: string;
 }) => {
   const options = [
@@ -32,7 +32,7 @@ const MyBundleDropDown = ({
 
       handler: () => {
         console.log('공개여부 클릭');
-        setIsLocked(!isLocked);
+        setIsShared(!isShared);
       },
     },
 
