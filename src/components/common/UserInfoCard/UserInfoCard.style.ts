@@ -13,6 +13,8 @@ export const UserInfoWrapper = styled(Row)`
   padding: 2rem;
   box-sizing: border-box;
   align-items: center;
+  /* TODO: constans의 card_border로 수정 */
+  border-radius: 1.5rem;
 
   & > :nth-child(1),
   & > :nth-child(3) {
@@ -21,6 +23,7 @@ export const UserInfoWrapper = styled(Row)`
 
   & > :nth-child(2) {
     flex-grow: 1;
+    overflow: hidden;
   }
 `;
 
@@ -76,11 +79,7 @@ export const UserInfoLink = styled(Row)`
   gap: 0.5rem;
   align-items: center;
   & > a {
-    @media screen and (max-width: ${MOBILE}px) {
-      width: 13rem;
-    }
-
-    width: 35rem;
+    width: 100%;
     color: ${({ theme }) => theme.gray_400};
     text-decoration: none;
     line-height: normal;
