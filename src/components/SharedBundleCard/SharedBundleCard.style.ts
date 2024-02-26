@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { FONT_SEMI_BOLD, MOBILE, MOBILE_MIN } from '@/constants';
+import { FONT_MEDIUM, MOBILE, MOBILE_MIN } from '@/constants';
 
 export const SharedBundleCardWrapper = styled.div`
   width: 90%;
@@ -11,10 +11,10 @@ export const SharedBundleCardWrapper = styled.div`
 export const BundleTitle = styled.div`
   font-size: 2rem;
   padding: 2rem;
-  font-weight: ${FONT_SEMI_BOLD - 50};
+  font-weight: ${FONT_MEDIUM};
   width: 70%;
   text-align: center;
-  color: ${({ theme }) => theme.secondary_color};
+  color: ${({ theme }) => theme.primary_white_text_color};
 
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1.6rem;
