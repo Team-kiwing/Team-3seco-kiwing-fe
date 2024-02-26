@@ -1,9 +1,7 @@
-import { ReactNode } from 'react';
-
 import ShadowBox from '@/components/common/ShadowBox';
 
 import { RightItem, Title } from './MyBundleItem.style';
-import { Bundle } from './MyBundleItem.type';
+import { MyBundleItem } from './MyBundleItem.type';
 
 const MyBundleItem = ({
   setSelectedBundle,
@@ -11,13 +9,7 @@ const MyBundleItem = ({
   isActive,
   rightItem,
   isMobileSize,
-}: {
-  setSelectedBundle: (state: Bundle) => void;
-  bundle: Bundle;
-  isActive: boolean;
-  rightItem: ReactNode;
-  isMobileSize: boolean;
-}) => {
+}: MyBundleItem) => {
   return (
     <ShadowBox
       width="100%"
