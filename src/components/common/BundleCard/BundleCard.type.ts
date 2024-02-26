@@ -8,4 +8,5 @@ export interface BundleProps {
   bundleName: string;
   hashTags: tagProps[];
   subscribedCount: number;
+  isHot: boolean;
 }

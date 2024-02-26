@@ -20,7 +20,10 @@ export const BundleCardItemWrapper = styled(Col)`
   }
 `;
 
-export const BundleCardContentItem = styled.div``;
+export const BundleCardContentItem = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const BundleCardItemName = styled.div`
   font-size: 2rem;
@@ -39,12 +42,20 @@ export const BundleCardItemName = styled.div`
   }
 `;
 
+export const BundleCardHashTagWrapper = styled.div`
+  white-space: nowrap;
+  @media screen and (max-width: ${MOBILE}px) {
+    margin-top: 0.5rem;
+  }
+`;
+
 export const BundleCardBadgeWrapper = styled.div`
   display: flex;
   margin-top: 0.8rem;
   gap: 1rem;
   @media screen and (max-width: ${MOBILE}px) {
     display: flex;
+    align-items: flex-end;
     flex-direction: column;
     margin-top: 0rem;
   }
