@@ -11,6 +11,16 @@ import { PropsBadge } from './Badge.type';
       $isHover={true}
       $text={'백엔드'}
     />
+    <Badge
+      $size={'xs'}
+      $state="hashTag"
+      $text={'백엔드'}
+    />
+     <Badge
+      $size={'s'}
+      $state=""
+      $text={'백엔드'}
+    />
         <Badge
           $size={'m'}
           $state="subscribedTag"
@@ -18,10 +28,11 @@ import { PropsBadge } from './Badge.type';
         />
  * @description 공통 Badge 컴포넌트
  * @param $size 필수) font-size의 크기입니다 'xxs, xs, s, m, l' 타입과 number타입이 있습니다.
- * @param $state 필수) basic, focus, hashTag, hot이 있으면 background-color와 color의 색깔을 지정합니다.
+ * @param $state 필수) basic, focus, hashTag, hot, subscribedTag이 있으면 background-color와 color의 색깔을 지정합니다.
  * @param $margin 선택) margin 값을 받습니다.
  * @param $hover 선택) true false에 따라 hover가 적용됩니다.
  * @param $text 선택) 뱃지안에 들어가는 값입니다. (ReactNode타입 입니다.)
+ * @param $subscribedCount 선택) 스크랩한 개수를 받습니다. (Number 타입니다.)
  * @returns
  */
 
