@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 import { MOBILE } from '@/constants';
 
-export const Container = styled.div<{ $isActive: boolean }>`
+export const Container = styled.div`
   width: 100%;
   position: relative;
   flex-direction: column;
@@ -50,7 +50,7 @@ export const RightItem = styled.div`
   }
 `;
 
-export const BodyWrapper = styled.div<{ $isActive: boolean }>`
+export const BodyWrapper = styled.div`
   height: 0;
   padding: 0 8px;
   background-color: transparent;
@@ -64,9 +64,11 @@ export const BodyWrapper = styled.div<{ $isActive: boolean }>`
   }
 `;
 
-export const Body = styled.div<{ $isActive: boolean }>`
+export const Body = styled.div<{ $isEmpty: boolean }>`
   padding: 2rem;
   font-size: 1.4rem;
+  color: ${(props) =>
+    props.$isEmpty ? props.theme.gray_300 : props.theme.primary_color};
 
   @media screen and (max-width: ${MOBILE}px) {
     padding: 1rem;

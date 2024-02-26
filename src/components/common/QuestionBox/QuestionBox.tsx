@@ -1,4 +1,4 @@
-import { ReactNode, useRef } from 'react';
+import { useRef, useState } from 'react';
 import React from 'react';
 
 import {
@@ -9,22 +9,12 @@ import {
   RightItem,
   TitleWrapper,
 } from './QuestionBox.style';
+import { QuestionBoxProps } from './QuestionBox.type';
 
-interface QuestionBoxProps extends React.HTMLAttributes<HTMLDivElement> {
-  title: string;
-  rightItem: ReactNode;
-  body?: string;
-}
-
-const QuestionBox = ({
-  title,
-  rightItem,
-  body = '',
-  //   ...props
-}: QuestionBoxProps) => {
+const QuestionBox = ({ title, rightItem, body = '' }: QuestionBoxProps) => {
   const parentRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
-  const [isActive, setIsActive] = React.useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const handleButtonClick = React.useCallback(
     (event: React.MouseEvent) => {
@@ -44,21 +34,18 @@ const QuestionBox = ({
 
   return (
     <>
-      <Container $isActive={isActive}>
+      <Container>
         <TitleWrapper $isActive={isActive}>
           <Header onClick={(e) => handleButtonClick(e)}>{title}</Header>
           <RightItem>{rightItem}</RightItem>
         </TitleWrapper>
 
-        <BodyWrapper
-          $isActive={isActive}
-          ref={parentRef}
-        >
+        <BodyWrapper ref={parentRef}>
           <Body
-            $isActive={isActive}
+            $isEmpty={body.length === 0}
             ref={childRef}
           >
-            {body}
+            {body.length === 0 ? '작성된 답변이 없습니다.' : body}
           </Body>
         </BodyWrapper>
       </Container>
