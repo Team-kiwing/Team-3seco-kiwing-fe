@@ -2,6 +2,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { toast, ToastContainer } from 'react-toastify';
 
+import { themeStore } from '@/stores';
+
+import useResize from './useResize';
+
 const autoClose = 2000;
 
 interface ToastProps {
@@ -27,6 +31,8 @@ export const notify = ({ type, text }: ToastProps) => {
 };
 
 const Toast = () => {
+  const { isDarkMode } = themeStore();
+  const { isMobileSize } = useResize();
   return (
     <ToastContainer
       position="top-right"
@@ -38,7 +44,8 @@ const Toast = () => {
       pauseOnFocusLoss
       draggable
       pauseOnHover={false}
-      theme={'light'}
+      theme={isDarkMode ? 'dark' : 'light'}
+      style={{ fontSize: isMobileSize ? '1.3rem' : '1.6rem' }}
     />
   );
 };
