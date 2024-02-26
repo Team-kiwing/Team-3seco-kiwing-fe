@@ -39,7 +39,6 @@ export const Header = styled.div`
 `;
 
 export const RightItem = styled.div`
-  width: 15%;
   display: flex;
   justify-content: center;
   align-items: center;
