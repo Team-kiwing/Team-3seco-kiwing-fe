@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { BsBookmarksFill } from 'react-icons/bs';
 
 import IconWrapper from '../IconWrapper/IconWrapper';
@@ -35,13 +34,13 @@ const Badge = ({
   $subscribedCount,
   ...props
 }: PropsBadge) => {
-  const displayText = useMemo(() => {
+  const displayText = () => {
     if ($subscribedCount !== undefined && $state === 'subscribedTag') {
       return (
         <>
           <IconWrapper
             style={{ cursor: 'default' }}
-            $size={1.5}
+            $size={$size === 'xs' ? 1.5 : 1.8}
           >
             <BsBookmarksFill />
           </IconWrapper>
@@ -56,7 +55,7 @@ const Badge = ({
       return `#${$text}`;
     }
     return $text;
-  }, [$text, $state, $subscribedCount]);
+  };
 
   return (
     <>
@@ -67,7 +66,7 @@ const Badge = ({
         $margin={$margin}
         {...props}
       >
-        {displayText}
+        {displayText()}
       </StyledBadge>
     </>
   );
