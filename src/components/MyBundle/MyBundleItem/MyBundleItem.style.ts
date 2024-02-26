@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import { FONT_MEDIUM, MOBILE } from '@/constants';
+import { FONT_MEDIUM, MOBILE, WEB_FONT_SIZE } from '@/constants';
 
 export const Title = styled.span`
   width: 100%;
-  font-size: 1.6rem;
+  font-size: ${WEB_FONT_SIZE}rem;
   font-weight: ${FONT_MEDIUM};
   display: flex;
   justify-content: center;
