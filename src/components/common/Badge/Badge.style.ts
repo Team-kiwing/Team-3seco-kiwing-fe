@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { FONT_SEMI_BOLD } from '@/constants';
+import { FONT_SEMI_BOLD, MOBILE_MIN } from '@/constants';
 
 import { PropsStyledBadge } from './Badge.type';
 
@@ -56,6 +56,10 @@ export const StyledBadge = styled.span<PropsStyledBadge>`
   ${({ $state }) => {
     return stateStyles[$state];
   }}
+
+  @media screen and (max-width: ${MOBILE_MIN}px) {
+    font-size: ${sizeMapping['xs']};
+  }
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
