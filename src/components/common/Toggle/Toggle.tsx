@@ -15,6 +15,7 @@ const Toggle = ({
   onChange,
   isColorReverse = false,
   isContentShow = false,
+  isBorderShow = false,
   ...props
 }: ToggleProps) => {
   const handleChange = () => {
@@ -34,6 +35,7 @@ const Toggle = ({
         $on={on}
         $isColorReverse={isColorReverse}
         $isContentShow={isContentShow}
+        $isBorderShow={isBorderShow}
       />
     </ToggleContainer>
   );
