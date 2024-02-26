@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 // @TODO 추후에 전역 types 폴더로 이동 예정
 export interface Bundle {
   id: number;
@@ -8,9 +6,8 @@ export interface Bundle {
 }
 
 export interface MyBundleItem {
+  selectedBundle: Bundle | null;
   setSelectedBundle: (state: Bundle) => void;
   bundle: Bundle;
-  isActive: boolean;
-  rightItem: ReactNode;
   isMobileSize: boolean;
 }

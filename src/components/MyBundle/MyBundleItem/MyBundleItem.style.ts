@@ -10,5 +10,5 @@ export const Title = styled.span<{ $isMobileSize: boolean }>`
 `;
 
 export const RightItem = styled.div`
-  width: 10%;
+  margin-right: 1rem;
 `;
