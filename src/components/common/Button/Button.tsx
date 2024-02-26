@@ -40,12 +40,12 @@ const Button = ({
       $width={width}
       $height={height}
       $backgroundColor={backgroundColor || theme.symbol_color}
-      $textColor={textColor || theme.background_color}
+      $textColor={textColor || theme.primary_white_text_color}
       $textSize={textSize}
       $hoverBackgroundColor={
         hoverBackgroundColor || theme.symbol_secondary_color
       }
-      $hoverTextColor={hoverTextColor || theme.secondary_color}
+      $hoverTextColor={hoverTextColor || theme.primary_white_text_color}
       $borderColor={borderColor || 'transparent'}
       $isActive={isActive}
       {...props}
