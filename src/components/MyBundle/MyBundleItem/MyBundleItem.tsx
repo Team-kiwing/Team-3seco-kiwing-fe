@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
 import IconWrapper from '@/components/common/IconWrapper';
 import ShadowBox from '@/components/common/ShadowBox';
+import { themeStore } from '@/stores';
 
-import { RightItem, Title } from './MyBundleItem.style';
+import { BodyWrapper, RightItem, Title } from './MyBundleItem.style';
 import { MyBundleItem } from './MyBundleItem.type';
 
 const MyBundleItem = ({
@@ -15,12 +16,39 @@ const MyBundleItem = ({
 }: MyBundleItem) => {
   const [isActive, setIsActive] = useState(false);
 
-  const handleItemClick = () => {
+  const parentRef = useRef<HTMLDivElement>(null);
+  const childRef = useRef<HTMLDivElement>(null);
+
+  const { isDarkMode } = themeStore();
+
+  useEffect(() => {
+    if (!isMobileSize) {
+      setIsActive(false);
+    }
+  }, [isMobileSize]);
+
+  const handleWebClick = () => {
     if (isMobileSize) {
       setIsActive(!isActive);
     }
     setSelectedBundle(bundle);
   };
+
+  const handleMobileClick = useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      if (parentRef.current === null || childRef.current === null) {
+        return;
+      }
+      if (parentRef.current.clientHeight > 0 && isActive) {
+        parentRef.current.style.height = '0';
+      } else {
+        parentRef.current.style.height = `${childRef.current.clientHeight}px`;
+      }
+      setIsActive(!isActive);
+    },
+    [isActive]
+  );
 
   const isActiveItem = () => {
     if (isMobileSize) {
@@ -42,7 +70,7 @@ const MyBundleItem = ({
         height="fit-content"
         isActive={isActiveItem()}
         isHoverActive={!isMobileSize}
-        onClick={handleItemClick}
+        onClick={isMobileSize ? handleMobileClick : handleWebClick}
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -51,7 +79,7 @@ const MyBundleItem = ({
           boxSizing: 'border-box',
         }}
       >
-        <Title $isMobileSize={isMobileSize}>{bundle.name}</Title>
+        <Title>{bundle.name}</Title>
         {isMobileSize && (
           <RightItem>
             <IconWrapper
@@ -63,14 +91,21 @@ const MyBundleItem = ({
           </RightItem>
         )}
       </ShadowBox>
-      {isMobileSize && isActive && (
-        <ShadowBox
-          width="100%"
-          height="400px"
-          style={{ flexShrink: 0 }}
+      {isMobileSize && (
+        <BodyWrapper
+          $isDarkMode={isDarkMode}
+          $isActive={isActive}
+          ref={parentRef}
         >
-          <div>{bundle.name}의 상세 질문 목록입니다.</div>
-        </ShadowBox>
+          <ShadowBox
+            ref={childRef}
+            width="100%"
+            height="45rem"
+            style={{ flexShrink: 0 }}
+          >
+            <div>{bundle.name}의 상세 질문 목록입니다.</div>
+          </ShadowBox>
+        </BodyWrapper>
       )}
     </>
   );
