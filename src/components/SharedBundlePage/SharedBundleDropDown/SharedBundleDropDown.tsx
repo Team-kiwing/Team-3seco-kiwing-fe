@@ -6,32 +6,32 @@ import DropDown from '@/components/common/DropDown';
 import IconWrapper from '@/components/common/IconWrapper';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
-import { BundleDropDownWrapper } from './SharedBundleDropDown.style';
-import { BundleDropDownProps } from './SharedBundleDropDown.type';
+import { SharedBundleDropDownWrapper } from './SharedBundleDropDown.style';
+import { SharedBundleDropDownProps } from './SharedBundleDropDown.type';
 
 /**
- * @summary 사용법    <BundleDropDown
+ * @summary 사용법    <SharedBundleDropDown
           isDropDownShow={isDropDownShow}
           setIsDropDownShow={setIsDropDownShow}
           triggerId="dropdown1-btn"
           width="14rem"
         />
-        BundleDropDown는 position: absolute 속성이 있습니다.
-        BundleDropDown 사용하는 부모컴포넌트에 무조건 position: 'relative'를 주어야 합니다. 
- * @description BundleDropDown 컴포넌트
- * @param isDropDownShow 필수) BundleDropDown가 보여지는 유무를 나타내는 상태값입니다.
+        SharedBundleDropDown는 position: absolute 속성이 있습니다.
+        SharedBundleDropDown 사용하는 부모컴포넌트에 무조건 position: 'relative'를 주어야 합니다. 
+ * @description SharedBundleDropDown 컴포넌트
+ * @param isDropDownShow 필수) SharedBundleDropDown가 보여지는 유무를 나타내는 상태값입니다.
  * @param setIsDropDownShow 필수) isDropDownShow 상태값을 set하는 함수입니다.
  * @param triggerId 필수) 드롭다운 컴포넌트가 isShow=true가 되도록 해주는 HTMLElement의 id입니다.
  * @param width 선택) width값으로 DropDown의 크기를 설정합니다. string 타입이며 기본값으로 12rem이 들어갑니다.
  * @returns
  */
 
-const BundleDropDown = ({
+const SharedBundleDropDown = ({
   isDropDownShow,
   setIsDropDownShow,
   triggerId,
   width = '12rem',
-}: BundleDropDownProps) => {
+}: SharedBundleDropDownProps) => {
   const location = useLocation();
   const SERVICE_URL = window.location.host;
   const CURRENT_URL = location.pathname;
@@ -66,7 +66,7 @@ const BundleDropDown = ({
   ];
 
   return (
-    <BundleDropDownWrapper $width={width}>
+    <SharedBundleDropDownWrapper $width={width}>
       <DropDown
         mode="normal"
         width={width}
@@ -76,8 +76,8 @@ const BundleDropDown = ({
         setIsShow={setIsDropDownShow}
         triggerId={triggerId}
       />
-    </BundleDropDownWrapper>
+    </SharedBundleDropDownWrapper>
   );
 };
 
-export default BundleDropDown;
+export default SharedBundleDropDown;

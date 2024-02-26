@@ -1,4 +1,4 @@
-export interface BundleDropDownProps {
+export interface SharedBundleDropDownProps {
   isDropDownShow: boolean;
   setIsDropDownShow: (state: boolean) => void;
   triggerId: string;
