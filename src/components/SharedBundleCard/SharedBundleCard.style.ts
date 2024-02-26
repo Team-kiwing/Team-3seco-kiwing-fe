@@ -6,8 +6,6 @@ export const SharedBundleCardWrapper = styled.div`
   width: 90%;
   max-width: 80rem;
   min-width: 28rem;
-  @media screen and (max-width: ${MOBILE}px) {
-  }
 `;
 
 export const BundleTitle = styled.div`
