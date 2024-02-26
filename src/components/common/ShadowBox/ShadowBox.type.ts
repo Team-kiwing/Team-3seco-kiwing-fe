@@ -5,12 +5,15 @@ export interface ShadowBoxProps extends HTMLAttributes<HTMLDivElement> {
   height: string;
   isActive?: boolean;
   isHoverActive?: boolean;
+  isCard?: boolean;
 }
 
 export interface ContainerProps {
   $width: string;
   $height: string;
   $color: string;
+  $isActive: boolean;
   $isHoverActive: boolean;
   $isDarkMode: boolean;
+  $isCard: boolean;
 }
