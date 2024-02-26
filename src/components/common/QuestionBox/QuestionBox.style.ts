@@ -53,6 +53,7 @@ export const RightItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
   font-size: calc(${WEB_FONT_SIZE}rem - 0.2rem);
 
   @media screen and (max-width: ${MOBILE}px) {
