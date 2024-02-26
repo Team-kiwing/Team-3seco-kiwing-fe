@@ -46,9 +46,9 @@ const BundleCard = ({
       <ShadowBox
         style={{
           boxSizing: 'border-box',
-          borderRadius: '15px',
           cursor: 'pointer',
         }}
+        isCard={true}
         width="100%"
         height="100%"
         isHoverActive={true}
