@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export interface QuestionBoxProps {
-  title: string;
+  question: string;
+  answer?: string;
   rightItem: ReactNode;
-  body?: string;
 }

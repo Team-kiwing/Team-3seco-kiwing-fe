@@ -11,7 +11,11 @@ import {
 } from './QuestionBox.style';
 import { QuestionBoxProps } from './QuestionBox.type';
 
-const QuestionBox = ({ title, rightItem, body = '' }: QuestionBoxProps) => {
+const QuestionBox = ({
+  question,
+  answer = '',
+  rightItem,
+}: QuestionBoxProps) => {
   const parentRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(false);
@@ -36,16 +40,16 @@ const QuestionBox = ({ title, rightItem, body = '' }: QuestionBoxProps) => {
     <>
       <Container>
         <TitleWrapper $isActive={isActive}>
-          <Header onClick={(e) => handleButtonClick(e)}>{title}</Header>
+          <Header onClick={(e) => handleButtonClick(e)}>{question}</Header>
           <RightItem>{rightItem}</RightItem>
         </TitleWrapper>
 
         <BodyWrapper ref={parentRef}>
           <Body
-            $isEmpty={body.length === 0}
+            $isEmpty={answer.length === 0}
             ref={childRef}
           >
-            {body.length === 0 ? '작성된 답변이 없습니다.' : body}
+            {answer.length === 0 ? '작성된 답변이 없습니다.' : answer}
           </Body>
         </BodyWrapper>
       </Container>
