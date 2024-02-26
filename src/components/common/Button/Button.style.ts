@@ -1,6 +1,6 @@
 import { css, styled } from 'styled-components';
 
-import { MOBILE } from '@/constants';
+import { BORDER_MOBILE, MOBILE } from '@/constants';
 
 import type { StyledButtonProps } from './Button.type';
 
@@ -16,7 +16,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   width: ${(props) => props.$width};
   height: ${(props) => props.$height};
   border-radius: ${(props) => props.$borderRadius};
-  border: 1px solid ${(props) => props.$borderColor};
+  border: 0.1rem solid ${(props) => props.$borderColor};
 
   transition: all 0.2s ease;
 
@@ -31,14 +31,14 @@ const StyledButton = styled.button<StyledButtonProps>`
     cursor: not-allowed;
     background-color: ${({ theme }) => theme.gray_300};
     border: none;
-    color: white;
+    color: ${(props) => props.theme.primary_white_text_color};
   }
 
   @media screen and (max-width: ${MOBILE}px) {
     font-size: calc(${(props) => props.$textSize} - 0.2rem);
     border-radius: max(
       calc(${(props) => props.$borderRadius} - 0.4rem),
-      0.6rem
+      ${BORDER_MOBILE}rem
     );
   }
 

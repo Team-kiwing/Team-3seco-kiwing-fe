@@ -1,5 +1,7 @@
 import { useTheme } from 'styled-components';
 
+import { BORDER_MOBILE, WEB_FONT_SIZE } from '@/constants';
+
 import StyledButton from './Button.style';
 import { ButtonProps } from './Button.type';
 
@@ -26,11 +28,11 @@ const Button = ({
   backgroundColor,
   text,
   textColor,
-  textSize = '1.6rem',
+  textSize = `${WEB_FONT_SIZE}rem`,
   hoverBackgroundColor,
   hoverTextColor,
   borderColor,
-  borderRadius = '0.6rem',
+  borderRadius = `${BORDER_MOBILE}rem`,
   isActive = true,
   ...props
 }: ButtonProps) => {
