@@ -1,18 +1,16 @@
 import styled from 'styled-components';
 
 import { MOBILE, MOBILE_MIN } from '@/constants';
-
+import { Row } from '@/styles/globalStyles';
 export const TagFilterWrapper = styled.div`
-  width: 100%;
+  width: 90%;
 `;
 
-export const TagItemWrapper = styled.div`
-  display: flex;
+export const TagItemWrapper = styled(Row)`
   padding: 1.5rem 1.5rem 5.5rem 1.5rem;
   width: 95%;
-  height: 95%;
-  margin: 0 auto;
-
+  height: 100%;
+  gap: 0.5rem;
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
     padding: 1rem;
@@ -24,25 +22,23 @@ export const TagItemWrapper = styled.div`
 `;
 
 export const TextWrapper = styled.div`
-  width: 9rem;
-  min-width: 46px;
-  gap: 1px;
+  width: 10%;
+  max-width: 4.5rem;
   font-size: 2rem;
-  padding-top: 5px;
-  padding-left: 10px;
+  padding: 0.5rem 1rem;
   white-space: nowrap;
   @media screen and (max-width: ${MOBILE}px) {
-    width: 2rem;
+    padding: 0.2rem 0.5rem;
   }
 `;
 
 export const Label = styled.span`
-  font-size: 2.5rem;
+  font-size: 2rem;
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   @media screen and (max-width: ${MOBILE_MIN}px) {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 `;
 
