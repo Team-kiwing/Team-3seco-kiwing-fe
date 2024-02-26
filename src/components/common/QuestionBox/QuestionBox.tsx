@@ -1,31 +1,67 @@
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
+import React from 'react';
 
-import { Body, Container, RightItem, Title } from './QuestionBox.style';
+import {
+  Body,
+  BodyWrapper,
+  Container,
+  Header,
+  RightItem,
+  TitleWrapper,
+} from './QuestionBox.style';
 
 interface QuestionBoxProps extends React.HTMLAttributes<HTMLDivElement> {
-  isActive: boolean;
   title: string;
   rightItem: ReactNode;
   body?: string;
 }
 
 const QuestionBox = ({
-  isActive,
   title,
   rightItem,
   body = '',
-  ...props
+  //   ...props
 }: QuestionBoxProps) => {
+  const parentRef = useRef<HTMLDivElement>(null);
+  const childRef = useRef<HTMLDivElement>(null);
+  const [isActive, setIsActive] = React.useState(false);
+
+  const handleButtonClick = React.useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      if (parentRef.current === null || childRef.current === null) {
+        return;
+      }
+      if (parentRef.current.clientHeight > 0 && isActive) {
+        parentRef.current.style.height = '0';
+      } else {
+        parentRef.current.style.height = `${childRef.current.clientHeight}px`;
+      }
+      setIsActive(!isActive);
+    },
+    [isActive]
+  );
+
   return (
     <>
-      <Container
-        {...props}
-        $isActive={isActive}
-      >
-        <Title>{title}</Title>
-        <RightItem>{rightItem}</RightItem>
+      <Container $isActive={isActive}>
+        <TitleWrapper $isActive={isActive}>
+          <Header onClick={(e) => handleButtonClick(e)}>{title}</Header>
+          <RightItem>{rightItem}</RightItem>
+        </TitleWrapper>
+
+        <BodyWrapper
+          $isActive={isActive}
+          ref={parentRef}
+        >
+          <Body
+            $isActive={isActive}
+            ref={childRef}
+          >
+            {body}
+          </Body>
+        </BodyWrapper>
       </Container>
-      <Body $isActive={isActive}>{body}</Body>
     </>
   );
 };
