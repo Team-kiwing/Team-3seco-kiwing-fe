@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { BsBookmarkStarFill } from 'react-icons/bs';
+import { BsBookmarksFill } from 'react-icons/bs';
 
 import IconWrapper from '../IconWrapper/IconWrapper';
 import { StyledBadge } from './Badge.style';
@@ -39,8 +39,11 @@ const Badge = ({
     if ($subscribedCount !== undefined && $state === 'subscribedTag') {
       return (
         <>
-          <IconWrapper $size={1.2}>
-            <BsBookmarkStarFill />
+          <IconWrapper
+            style={{ cursor: 'default' }}
+            $size={1.5}
+          >
+            <BsBookmarksFill />
           </IconWrapper>
           <span>
             {$subscribedCount < 1000

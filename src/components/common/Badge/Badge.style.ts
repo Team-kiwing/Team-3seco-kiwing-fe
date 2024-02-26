@@ -29,6 +29,7 @@ const stateStyles = {
   hashTag: css`
     background-color: transparent;
     color: ${({ theme }) => theme.gray_300};
+    cursor: default;
   `,
   subscribedTag: css`
     display: flex;
@@ -37,6 +38,7 @@ const stateStyles = {
     font-weight: ${FONT_SEMI_BOLD};
     background-color: ${({ theme }) => theme.subscribed_background_color};
     color: ${({ theme }) => theme.subscribed_color};
+    cursor: default;
   `,
 };
 
