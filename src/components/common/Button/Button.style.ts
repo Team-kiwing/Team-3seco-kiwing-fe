@@ -15,7 +15,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 
   width: ${(props) => props.$width};
   height: ${(props) => props.$height};
-  border-radius: 0.6rem;
+  border-radius: ${(props) => props.$borderRadius};
   border: 1px solid ${(props) => props.$borderColor};
 
   transition: all 0.2s ease;
@@ -36,6 +36,10 @@ const StyledButton = styled.button<StyledButtonProps>`
 
   @media screen and (max-width: ${MOBILE}px) {
     font-size: calc(${(props) => props.$textSize} - 0.2rem);
+    border-radius: max(
+      calc(${(props) => props.$borderRadius} - 0.4rem),
+      0.6rem
+    );
   }
 
   &:active {

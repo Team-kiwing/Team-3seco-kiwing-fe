@@ -30,6 +30,7 @@ const Button = ({
   hoverBackgroundColor,
   hoverTextColor,
   borderColor,
+  borderRadius = '0.6rem',
   isActive = true,
   ...props
 }: ButtonProps) => {
@@ -47,6 +48,7 @@ const Button = ({
       }
       $hoverTextColor={hoverTextColor || theme.primary_white_text_color}
       $borderColor={borderColor || 'transparent'}
+      $borderRadius={borderRadius}
       $isActive={isActive}
       {...props}
     >
