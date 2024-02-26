@@ -14,26 +14,25 @@ const MyBundleItem = ({
   bundle,
   isMobileSize,
 }: MyBundleItem) => {
+  const { isDarkMode } = themeStore();
+
   const [isActive, setIsActive] = useState(false);
 
   const parentRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
 
-  const { isDarkMode } = themeStore();
-
   useEffect(() => {
+    // 웹 환경일 경우 모바일에서의 모든 active를 초기화 한다.
     if (!isMobileSize) {
       setIsActive(false);
     }
   }, [isMobileSize]);
 
   const handleWebClick = () => {
-    if (isMobileSize) {
-      setIsActive(!isActive);
-    }
     setSelectedBundle(bundle);
   };
 
+  // 아코디언 로직
   const handleMobileClick = useCallback(
     (event: React.MouseEvent) => {
       event.stopPropagation();
