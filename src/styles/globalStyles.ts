@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
           width: 0.4rem;
         }
         &::-webkit-scrollbar-thumb {
-          background-color: hsla(0, 0%, 42%, 0.29);
+          background-color: ${(props) => props.theme.border_color};
           border-radius: 100px;
         }
     }   
