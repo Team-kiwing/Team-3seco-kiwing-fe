@@ -32,6 +32,10 @@ export const QuestionCardText = styled.div`
   padding: 1rem 1rem 1rem 2rem;
   font-weight: ${FONT_MEDIUM};
   line-height: normal;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    word-break: break-all;
+  }
 `;
 
 export const QuestionCardHashTags = styled.div`
