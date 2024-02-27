@@ -27,7 +27,7 @@ $${\LARGE\textsf{\textcolor{#48DA79}{당신의}  \textcolor{#48DA79}{면접에} 
 | **🚀FE 팀장** | **🚀팀원** | **🚀팀원** | **🚀팀원** |
 | :-: | :-: | :-: | :-: |
 | [김석주](https://github.com/SoJuSo) | [김현주](https://github.com/kim-hyunjoo) | [박경빈](https://github.com/pkb9239) | [안재현](https://github.com/JaeHyunGround) |
-| asdfg7123@gmail.com | khj9x.x@gmail.com | pkb8839@naver.com | gothddlek2603@gmail.com |
+| asdfg7123@gmail.com | khj9x.x@gmail.com | pkb9239@gmail.com | gothddlek2603@gmail.com |
 | <img src="https://avatars.githubusercontent.com/u/90549862?v=4" width="200" alt="김석주" /> | <img src="https://avatars.githubusercontent.com/u/78135416?v=4" width="200" alt="김현주" /> | <img src="https://avatars.githubusercontent.com/u/81172451?v=4" width="200" alt="박경빈" /> | <img src="https://avatars.githubusercontent.com/u/97944429?v=4" width="200" alt="안재현" /> |
 
 ### 🛠️ BE 팀원
