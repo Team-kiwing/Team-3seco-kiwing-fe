@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { MOBILE_FONT_SIZE, WEB_FONT_SIZE } from '@/constants';
 import { FONT_MEDIUM, MOBILE, MOBILE_MIN } from '@/constants';
 
 export const SharedBundleCardWrapper = styled.div`
@@ -17,12 +18,12 @@ export const BundleTitle = styled.div`
   color: ${({ theme }) => theme.primary_white_text_color};
 
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: 1.6rem;
+    font-size: ${WEB_FONT_SIZE};
     padding: 1.5rem;
   }
 
   @media screen and (max-width: ${MOBILE_MIN}px) {
-    font-size: 1.4rem;
+    font-size: ${MOBILE_FONT_SIZE};
     padding: 1rem;
   }
 `;
