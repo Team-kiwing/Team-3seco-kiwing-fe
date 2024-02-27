@@ -21,6 +21,7 @@ const QuestionCard = ({
   hashTags,
   subscribedCount,
   isHot,
+  isLogin,
 }: QuestionCardProps) => {
   const { isMobileSize } = useResize();
   return (
@@ -36,9 +37,11 @@ const QuestionCard = ({
         width="100%"
         height="fit-content"
       >
-        <QuestionCardAddButton>
-          <CircleButton />
-        </QuestionCardAddButton>
+        {isLogin && (
+          <QuestionCardAddButton>
+            <CircleButton />
+          </QuestionCardAddButton>
+        )}
 
         <QuestionCardContainer id={String(id)}>
           <QuestionCardBodyWrapper>
@@ -71,14 +74,16 @@ const QuestionCard = ({
                 $subscribedCount={subscribedCount}
               />
             </QuestionCardInfoBadges>
-            <QuestionCardReportBadge>
-              <Badge
-                $isHover
-                $size={'xs'}
-                $state="basic"
-                $text="신고"
-              />
-            </QuestionCardReportBadge>
+            {isLogin && (
+              <QuestionCardReportBadge>
+                <Badge
+                  $isHover
+                  $size={'xs'}
+                  $state="basic"
+                  $text="신고"
+                />
+              </QuestionCardReportBadge>
+            )}
           </QuestionCardBadgeWrapper>
         </QuestionCardContainer>
       </ShadowBox>
