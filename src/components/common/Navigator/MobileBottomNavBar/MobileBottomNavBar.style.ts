@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import { FONT_SEMI_BOLD, MOBILE, MOBILE_MIN, NAVIGATER } from '@/constants';
+import { FONT_MEDIUM, MOBILE, MOBILE_MIN, NAVIGATER } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
 import { BottomNavBarItemProps } from './MobileBottomNavBar.type';
@@ -27,6 +27,7 @@ export const BottomNavBarWrapper = styled.nav`
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   border: 0.15rem solid ${(props) => props.theme.border_color};
+  background-color: ${(props) => props.theme.background_color};
   border-bottom: none;
 
   z-index: ${NAVIGATER};
@@ -37,7 +38,6 @@ export const BottomNavBarWrapper = styled.nav`
 `;
 
 export const BottomNavBarItem = styled(Col)<BottomNavBarItemProps>`
-  display: flex;
   width: 25%;
   height: 100%;
   align-items: center;
@@ -51,6 +51,6 @@ export const BottomNavBarItem = styled(Col)<BottomNavBarItemProps>`
 
   span {
     font-size: 1rem;
-    font-weight: ${FONT_SEMI_BOLD - 50};
+    font-weight: ${FONT_MEDIUM};
   }
 `;
