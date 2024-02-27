@@ -27,10 +27,10 @@ export const useNavigatorMenu = () => {
 
   const handleLogo = () => handleNavigate(PATH.MAIN);
   const handleHub = () => handleNavigate(PATH.HUB);
-  const handleSharedList = () => handleNavigate(PATH.SHARED_ITEM);
+  const handleSharedBundle = () => handleNavigate(PATH.SHARED_ITEM);
   const handleShared = () => handleNavigate(PATH.SHARED);
   const handleLogin = () => handleNavigate(PATH.AUTH);
-  const handleMyList = () => handleNavigate(PATH.MY);
+  const handleMyBundle = () => handleNavigate(PATH.MY);
 
   return {
     isLogin,
@@ -38,8 +38,8 @@ export const useNavigatorMenu = () => {
     handleLogo,
     handleHub,
     handleShared,
-    handleSharedList,
-    handleMyList,
+    handleSharedBundle,
+    handleMyBundle,
     handleLogin,
   };
 };

@@ -23,7 +23,7 @@ const MobileBottomNavBar = () => {
     handleLogo,
     handleHub,
     handleShared,
-    handleMyList,
+    handleMyBundle,
     handleLogin,
   } = useNavigatorMenu();
 
@@ -61,7 +61,7 @@ const MobileBottomNavBar = () => {
         {isLogin ? (
           <BottomNavBarItem
             $color={location.pathname.includes(PATH.MY)}
-            onClick={handleMyList}
+            onClick={handleMyBundle}
           >
             <IconWrapper $size={'s'}>
               <PiBooks />

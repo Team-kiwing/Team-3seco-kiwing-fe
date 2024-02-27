@@ -11,7 +11,7 @@ import { TopBarItem, TopNavBarWrapper } from './MobileTopNavBar.style';
 const MobileTopNavBar = () => {
   const { isDarkMode, updateTheme } = themeStore();
   const navigator = useNavigate();
-  const { isLogin, handleMyList } = useNavigatorMenu();
+  const { isLogin, handleMyBundle } = useNavigatorMenu();
 
   return (
     <TopNavBarWrapper $isDark={isDarkMode}>
@@ -43,7 +43,7 @@ const MobileTopNavBar = () => {
         )}
         {isLogin && (
           <Avatar
-            onClick={handleMyList}
+            onClick={handleMyBundle}
             style={{ cursor: 'pointer', transform: 'scale(0.9)' }}
             $size="nav"
             // todo 동적으로 로그인 한 경우에만 이미지 주소를 주도록
