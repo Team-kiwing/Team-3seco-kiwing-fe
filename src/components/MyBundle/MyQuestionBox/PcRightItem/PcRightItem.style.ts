@@ -11,5 +11,4 @@ export const Container = styled.div`
 
 export const IconContainer = styled.div`
   display: flex;
-  gap: 0.5rem;
 `;
