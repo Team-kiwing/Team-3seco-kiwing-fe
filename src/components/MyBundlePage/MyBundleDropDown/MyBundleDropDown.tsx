@@ -5,6 +5,8 @@ import DropDown from '@/components/common/DropDown';
 import IconWrapper from '@/components/common/IconWrapper';
 import Toggle from '@/components/common/Toggle';
 import { PATH } from '@/constants/router';
+import useResize from '@/hooks/useResize';
+import { handleCopyClipBoard } from '@/utils/copyClip';
 
 import { MyBundleDropDownProps } from './MyBundleDropDown.type';
 
@@ -16,19 +18,9 @@ const MyBundleDropDown = ({
   triggerId,
   bundleId,
 }: MyBundleDropDownProps) => {
-  const handleCopyClipBoard = async (text: string) => {
-    try {
-      const SERVICE_URL = window.location.host;
-      await navigator.clipboard.writeText(`${SERVICE_URL}${text}`);
-      // @TODO 추후에 alert -> 토스트 알림으로 변경합니다.
-      alert('클립보드에 링크가 복사되었습니다.');
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  const { isMobileSize } = useResize();
   const handleDeleteBundle = (bundleId: number) => {
-    console.log(`id ${bundleId} 꾸러미 삭제`);
+    confirm(`id ${bundleId} 꾸러미를 삭제하시겠습니까?`);
     // @TODO 추후에 꾸러미 삭제 API 함수를 호출합니다.
   };
 
@@ -53,13 +45,15 @@ const MyBundleDropDown = ({
       id: 2,
       title: '링크 복사',
       rightItem: (
-        <IconWrapper $size={'xs'}>
+        <IconWrapper $size={isMobileSize ? 1.8 : 'xs'}>
           <RiFileCopyLine />
         </IconWrapper>
       ),
       handler: () => {
         if (isShared) {
-          handleCopyClipBoard(`${PATH.SHARED}/${bundleId}`);
+          const host = window.location.host;
+          const pathname = `${PATH.SHARED}/${bundleId}`;
+          handleCopyClipBoard(host, pathname);
         } else {
           // @TODO 추후에 alert -> 토스트 알림으로 변경합니다.
           alert('공개된 리스트만 링크를 복사할 수 있습니다.');
@@ -71,7 +65,7 @@ const MyBundleDropDown = ({
       id: 3,
       title: '꾸러미 삭제',
       rightItem: (
-        <IconWrapper $size={'xs'}>
+        <IconWrapper $size={isMobileSize ? 1.8 : 'xs'}>
           <RiDeleteBin5Line />
         </IconWrapper>
       ),
@@ -84,7 +78,7 @@ const MyBundleDropDown = ({
       id: 4,
       title: '꾸러미 편집',
       rightItem: (
-        <IconWrapper $size={'xs'}>
+        <IconWrapper $size={isMobileSize ? 1.8 : 'xs'}>
           <FiEdit3 />
         </IconWrapper>
       ),

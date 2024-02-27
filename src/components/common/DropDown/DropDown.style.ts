@@ -5,6 +5,7 @@ import { Col } from '@/styles/globalStyles';
 
 export const Wrapper = styled.div<{ $isShow: boolean }>`
   display: ${(props) => (props.$isShow ? 'flex' : 'none')};
+  user-select: none;
 `;
 
 export const Background = styled.div`
@@ -40,8 +41,8 @@ export const Item = styled.div<{ $mode: string }>`
   ${(props) => {
     if (props.$mode === 'checkbox') {
       return css`
-        min-height: 50px;
-        border-bottom: 1px solid ${({ theme }) => theme.gray_100};
+        min-height: 5rem;
+        border-bottom: 0.1rem solid ${({ theme }) => theme.border_color};
 
         &:last-child {
           border-bottom: none;
@@ -54,12 +55,12 @@ export const Item = styled.div<{ $mode: string }>`
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background-color: ${({ theme }) => theme.gray_100};
+      background-color: ${({ theme }) => theme.border_color};
     }
   }
 
   &:active {
-    background-color: ${({ theme }) => theme.gray_100};
+    background-color: ${({ theme }) => theme.border_color};
   }
 `;
 
@@ -112,7 +113,7 @@ const checkboxStyles = css`
     border: 0;
     background-color: transparent;
     background-size: contain;
-    box-shadow: inset 0 0 0 1px #ccd3d8;
+    box-shadow: inset 0 0 0 0.1rem #ccd3d8;
   }
 
   /* Checked */
