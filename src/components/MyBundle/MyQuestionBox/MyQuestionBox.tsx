@@ -4,9 +4,10 @@ import QuestionBox from '@/components/common/QuestionBox';
 import useResize from '@/hooks/useResize';
 
 import MobileRightItem from './MobileRightItem';
+import { MyQuestionBoxProps } from './MyQuestionBox.type';
 import PcRightItem from './PcRightItem';
 
-const MyQuestionBox = () => {
+const MyQuestionBox = ({ question, answer }: MyQuestionBoxProps) => {
   const [isShared, setIsShared] = useState(false);
   const { isMobileSize } = useResize();
 
@@ -21,7 +22,8 @@ const MyQuestionBox = () => {
 
   return (
     <QuestionBox
-      question="브라우저 렌더링 원리에 대해 설명해주세요."
+      question={question}
+      answer={answer}
       rightItem={rightItem}
     />
   );
