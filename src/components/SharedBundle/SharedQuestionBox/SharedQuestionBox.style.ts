@@ -10,7 +10,7 @@ const checkboxStyles = css`
   outline: 0;
   flex-grow: 0;
   border-radius: 50%;
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.primary_white_text_color};
   transition: all 0.2s ease;
   cursor: pointer;
 
@@ -24,7 +24,7 @@ const checkboxStyles = css`
     border: 0;
     background-color: transparent;
     background-size: contain;
-    box-shadow: inset 0 0 0 1px #ccd3d8;
+    box-shadow: inset 0 0 0 0.1rem ${({ theme }) => theme.border_color};
   }
 
   &:checked {
@@ -39,7 +39,7 @@ const checkboxStyles = css`
   }
 
   &:disabled {
-    background-color: #ccd3d8;
+    background-color: ${({ theme }) => theme.border_color};
     opacity: 0.84;
     cursor: not-allowed;
   }
