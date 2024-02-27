@@ -1,8 +1,11 @@
 import { styled } from 'styled-components';
 
-import { FONT_SEMI_BOLD, MOBILE, MOBILE_MIN, NAVIGATER } from '@/constants';
+import { FONT_MEDIUM, MOBILE, MOBILE_MIN, NAVIGATER } from '@/constants';
 
-import { TopBarItemProps, TopNavBarWrapperProps } from './MobileTopNavBar.type';
+import {
+  TopNavBarItemProps,
+  TopNavBarWrapperProps,
+} from './MobileTopNavBar.type';
 
 export const TopNavBarWrapper = styled.nav<TopNavBarWrapperProps>`
   display: none;
@@ -34,7 +37,7 @@ export const TopNavBarWrapper = styled.nav<TopNavBarWrapperProps>`
   }
 `;
 
-export const TopBarItem = styled.div<TopBarItemProps>`
+export const TopBarItem = styled.div<TopNavBarItemProps>`
   display: flex;
   margin: 0 1rem;
   align-items: center;
@@ -48,6 +51,6 @@ export const TopBarItem = styled.div<TopBarItemProps>`
 
   span {
     font-size: 1rem;
-    font-weight: ${FONT_SEMI_BOLD - 50};
+    font-weight: ${FONT_MEDIUM};
   }
 `;

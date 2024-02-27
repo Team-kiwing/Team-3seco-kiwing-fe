@@ -2,8 +2,8 @@ interface TopNavBarWrapperProps {
   $isDark: boolean;
 }
 
-interface TopBarItemProps {
+interface TopNavBarItemProps {
   $color?: boolean;
 }
 
-export type { TopBarItemProps, TopNavBarWrapperProps };
+export type { TopNavBarItemProps, TopNavBarWrapperProps };
