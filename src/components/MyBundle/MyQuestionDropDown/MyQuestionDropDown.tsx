@@ -6,6 +6,8 @@ import IconWrapper from '@/components/common/IconWrapper';
 import Toggle from '@/components/common/Toggle';
 import useResize from '@/hooks/useResize';
 
+import { MyQuestionDropDownProps } from './MyQuestionDropDown.type';
+
 const MyQuestionDropDown = ({
   isShow,
   setIsShow,
@@ -13,14 +15,7 @@ const MyQuestionDropDown = ({
   setIsShared,
   triggerId,
   questionId,
-}: {
-  isShow: boolean;
-  setIsShow: (state: boolean) => void;
-  isShared: boolean;
-  setIsShared: (state: boolean) => void;
-  triggerId: string;
-  questionId: number;
-}) => {
+}: MyQuestionDropDownProps) => {
   const { isMobileSize } = useResize();
 
   const handleDeleteQuestion = (questionId: number) => {
