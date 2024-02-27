@@ -1,5 +1,5 @@
-interface WebNavItemProps {
+interface WebNavBarItemProps {
   $isLocated: boolean;
 }
 
-export type { WebNavItemProps };
+export type { WebNavBarItemProps };

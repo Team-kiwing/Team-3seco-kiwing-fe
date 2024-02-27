@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
-import { MOBILE } from '@/constants';
+import { FONT_MEDIUM, MOBILE } from '@/constants';
 import { Row } from '@/styles/globalStyles';
 
-import { WebNavItemProps } from './WebNavBar.type';
+import { WebNavBarItemProps } from './WebNavBar.type';
 
 export const WebNavBarWrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 0.5rem 3rem;
+  padding: 3rem 2rem 0.5rem 2rem;
 
   max-width: 1140px;
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: ${FONT_MEDIUM};
   color: ${(props) => props.theme.primary_color};
   user-select: none;
 
@@ -50,7 +50,7 @@ export const WebNavBarLogoImage = styled.div`
   background-size: cover;
 `;
 
-export const WebNavItem = styled.div<WebNavItemProps>`
+export const WebNavItem = styled.div<WebNavBarItemProps>`
   cursor: pointer;
   white-space: nowrap;
   color: ${(props) =>

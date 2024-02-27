@@ -24,12 +24,12 @@ const WebNavBar = () => {
     handleLogo,
     handleHub,
     handleShared,
-    handleMyList,
+    handleMyBundle,
     handleLogin,
   } = useNavigatorMenu();
 
   return (
-    <WebNavBarWrapper style={{ paddingTop: '6rem' }}>
+    <WebNavBarWrapper>
       <WebNavBarRouter>
         <WebNavBarLogo onClick={handleLogo}>
           <span>{NavigatorText.LOGO_TEXT}</span>
@@ -71,7 +71,7 @@ const WebNavBar = () => {
         {isLogin ? (
           <WebNavItem
             $isLocated={location.pathname.includes(PATH.MY)}
-            onClick={handleMyList}
+            onClick={handleMyBundle}
           >
             <span>{NavigatorText.MY_TEXT}</span>
           </WebNavItem>
