@@ -8,4 +8,5 @@ export interface QuestionCardProps {
   subscribedCount: number;
   isHot: boolean;
   hashTags: tagProps[];
+  isLogin: boolean;
 }
