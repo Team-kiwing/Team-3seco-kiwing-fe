@@ -6,7 +6,7 @@ import Toggle from '@/components/common/Toggle';
 import { Container, IconContainer } from './PcRightItem.style';
 import { RightItemProps } from './PcRightItem.type';
 
-const RightItem = ({ isShared, setIsShared }: RightItemProps) => {
+const PcRightItem = ({ isShared, setIsShared }: RightItemProps) => {
   return (
     <Container>
       <Toggle
@@ -34,4 +34,4 @@ const RightItem = ({ isShared, setIsShared }: RightItemProps) => {
     </Container>
   );
 };
-export default RightItem;
+export default PcRightItem;
