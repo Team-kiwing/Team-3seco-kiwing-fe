@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react';
 import { useTheme } from 'styled-components';
 
 import { BORDER_MOBILE, WEB_FONT_SIZE } from '@/constants';
@@ -34,8 +35,9 @@ const Button = ({
   borderColor,
   borderRadius = `${BORDER_MOBILE}rem`,
   isActive = true,
+  children,
   ...props
-}: ButtonProps) => {
+}: PropsWithChildren<ButtonProps>) => {
   const theme = useTheme();
 
   return (
@@ -55,6 +57,7 @@ const Button = ({
       {...props}
     >
       {text}
+      {children}
     </StyledButton>
   );
 };
