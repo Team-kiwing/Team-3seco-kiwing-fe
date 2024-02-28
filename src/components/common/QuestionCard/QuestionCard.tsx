@@ -1,8 +1,10 @@
+import { useModal } from '@/hooks/useModal';
 import useResize from '@/hooks/useResize';
 
 import Badge from '../Badge';
 import CircleButton from '../CircleButton';
 import ShadowBox from '../ShadowBox';
+import { QuestionCardModal } from './QuestionCard.Modal';
 import {
   QuestionCardAddButton,
   QuestionCardBadgeWrapper,
@@ -24,6 +26,15 @@ const QuestionCard = ({
   isLogin,
 }: QuestionCardProps) => {
   const { isMobileSize } = useResize();
+  const { setModalOpen } = useModal();
+
+  const handleReportClick = () => {
+    setModalOpen({
+      title: '신고하기',
+      content: <QuestionCardModal />,
+    });
+  };
+
   return (
     <>
       <ShadowBox
@@ -81,6 +92,7 @@ const QuestionCard = ({
                   $size={'xs'}
                   $state="basic"
                   $text="신고"
+                  onClick={handleReportClick}
                 />
               </QuestionCardReportBadge>
             )}
