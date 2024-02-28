@@ -13,8 +13,7 @@ const SharedWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  gap: 5rem;
-  flex-shrink: 1;
+  gap: 3rem;
   @media screen and (max-width: 768px) {
     width: 90%;
   }
