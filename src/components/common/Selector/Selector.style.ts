@@ -9,7 +9,7 @@ export const SelectWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  width: 100%;
+  width: fit-content;
 `;
 
 export const SelectStick = styled.div<SelectorStickProps>`
