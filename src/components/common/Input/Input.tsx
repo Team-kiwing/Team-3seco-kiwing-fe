@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import { ErrorMessage, InputWrapper, Label, StyledInput } from './Input.style';
 import { InputProps } from './Input.type';
 
@@ -20,38 +22,44 @@ import { InputProps } from './Input.type';
  * @param label : 선택 | string 타입. input 위에 붙는 라벨 역할.
  * @param placeholder : 선택 | string 타입. input의 placeholder 역할.
  * @param errorMessage : 선택 | string 타입. input의 에러 메시지 역할.
- * @param ...props : 커스텀을 위함 (+ react-hook-form)
+ * @param ...props : input 태그 커스텀을 위함
  * @returns
  */
 
-const Input = ({
-  width,
-  fontSize,
-  margin,
-  label,
-  placeholder,
-  errorMessage,
-  ...props
-}: InputProps) => {
-  return (
-    <InputWrapper
-      $width={width}
-      $fontSize={fontSize}
-    >
-      {label && <Label $margin={margin}>{label}</Label>}
-      <StyledInput
-        placeholder={placeholder}
-        {...props}
-      />
-      <ErrorMessage
+const Input = forwardRef(
+  (
+    {
+      width,
+      fontSize,
+      margin,
+      label,
+      placeholder,
+      errorMessage,
+      ...props
+    }: InputProps,
+    ref?: React.ForwardedRef<HTMLInputElement>
+  ) => {
+    return (
+      <InputWrapper
+        $width={width}
         $fontSize={fontSize}
-        $isError={errorMessage?.length === 0}
-        $margin={margin}
       >
-        {errorMessage?.length === 0 ? 'no Error' : errorMessage}
-      </ErrorMessage>
-    </InputWrapper>
-  );
-};
+        {label && <Label $margin={margin}>{label}</Label>}
+        <StyledInput
+          ref={ref}
+          placeholder={placeholder}
+          {...props}
+        />
+        <ErrorMessage
+          $fontSize={fontSize}
+          $isError={errorMessage?.length === 0}
+          $margin={margin}
+        >
+          {errorMessage?.length === 0 ? 'no Error' : errorMessage}
+        </ErrorMessage>
+      </InputWrapper>
+    );
+  }
+);
 
 export default Input;
