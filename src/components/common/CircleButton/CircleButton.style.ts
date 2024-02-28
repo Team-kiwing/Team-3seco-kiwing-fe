@@ -46,7 +46,7 @@ const buttonStyles = css<StyledCircleButtonProps>`
   -webkit-tap-highlight-color: transparent;
 `;
 
-export const ContainerCircle = styled.button<StyledCircleButtonProps>`
+export const TransparentCircle = styled.button<StyledCircleButtonProps>`
   ${buttonStyles}
 `;
 
