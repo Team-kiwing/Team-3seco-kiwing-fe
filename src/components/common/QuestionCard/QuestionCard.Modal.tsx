@@ -16,7 +16,8 @@ export const QuestionCardModal = () => {
   });
 
   const onValid: SubmitHandler<{ reportField: string }> = ({ reportField }) => {
-    // todo API 연동
+    // todo 신고 제출 API 연동
+    // API fail 에러는 현재 로직에서 처리함
     console.log(reportField);
   };
 

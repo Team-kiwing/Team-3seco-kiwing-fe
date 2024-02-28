@@ -60,12 +60,12 @@ const QuestionCard = ({
     });
   };
 
-  const handleToggleClick = () => {
+  const handleAddToggleClick = () => {
     setIsLocked(true);
   };
 
   const handleAdd = (checkedItems: number[]) => {
-    //todo API 연동
+    //todo 내 리스트에 추가하기 API 연동
     console.log(checkedItems);
   };
 
@@ -86,7 +86,7 @@ const QuestionCard = ({
           <QuestionCardAddButton>
             <CircleButton
               id={String(id)}
-              onClick={handleToggleClick}
+              onClick={handleAddToggleClick}
             />
             <DropDown
               width="200px"
