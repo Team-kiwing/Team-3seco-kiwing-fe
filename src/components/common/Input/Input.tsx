@@ -37,7 +37,7 @@ const Input = forwardRef(
       errorMessage,
       ...props
     }: InputProps,
-    ref?: React.ForwardedRef<HTMLInputElement> | undefined
+    ref?: React.ForwardedRef<HTMLInputElement>
   ) => {
     return (
       <InputWrapper
