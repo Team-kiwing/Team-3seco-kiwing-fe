@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTheme } from 'styled-components';
 
 import Button from '@/components/common/Button';
@@ -14,10 +13,17 @@ export interface Bundle {
   shareType: 'PRIVATE' | 'PUBLIC';
 }
 
-const MyBundleList = ({ bundles }: { bundles: Bundle[] }) => {
+const MyBundleList = ({
+  bundles,
+  selectedBundle,
+  setSelectedBundle,
+}: {
+  bundles: Bundle[];
+  selectedBundle: Bundle | null;
+  setSelectedBundle: (state: Bundle) => void;
+}) => {
   const { isMobileSize } = useResize();
   const theme = useTheme();
-  const [selectedBundle, setSelectedBundle] = useState<Bundle | null>(null);
 
   return (
     <Container $isMobileSize={isMobileSize}>
