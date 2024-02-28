@@ -1,14 +1,153 @@
 [
   {
+    "id": 0,
+    "name": "데브코스 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 123,
+    "tags": [
+      { "id": 1, "tagName": "개발자" },
+      { "id": 2, "tagName": "백엔드" },
+      { "id": 6, "tagName": "프론트엔드" }
+    ],
+    "isHot": true,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
+  },
+  {
     "id": 1,
-    "question": "CRUD란 무엇인가?"
+    "name": "삼성 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 1002,
+    "tags": [
+      { "id": 1, "tagName": "개발자" },
+      { "id": 2, "tagName": "백엔드" },
+      { "id": 6, "tagName": "프론트엔드" }
+    ],
+    "isHot": true,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
   },
   {
     "id": 2,
-    "question": "API란 무엇인가?"
+    "name": "구글 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 12,
+    "tags": [
+      { "id": 1, "tagName": "개발자" },
+      { "id": 2, "tagName": "백엔드" },
+      { "id": 6, "tagName": "프론트엔드" }
+    ],
+    "isHot": false,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
   },
   {
     "id": 3,
-    "question": "PWA란 무엇인가?"
+    "name": "애플 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 654,
+    "tags": [{ "id": 18, "tagName": "IOS" }],
+    "isHot": true,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
+  },
+  {
+    "id": 4,
+    "name": "마이크로소프트 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 432,
+    "tags": [{ "id": 12, "tagName": "SW" }],
+    "isHot": false,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
+  },
+  {
+    "id": 5,
+    "name": "아마존 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 321,
+    "tags": [
+      { "id": 11, "tagName": "데이터" },
+      { "id": 15, "tagName": "네트워크" }
+    ],
+    "isHot": true,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
+  },
+  {
+    "id": 6,
+    "name": "넷플릭스 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 1,
+    "tags": [{ "id": 7, "tagName": "머신러닝" }],
+    "isHot": false,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
+  },
+  {
+    "id": 7,
+    "name": "페이스북 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 789,
+    "tags": [
+      { "id": 1, "tagName": "개발자" },
+      { "id": 6, "tagName": "프론트엔드" },
+      { "id": 11, "tagName": "데이터" }
+    ],
+    "isHot": true,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
+  },
+  {
+    "id": 8,
+    "name": "IBM 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 987,
+    "tags": [
+      { "id": 11, "tagName": "데이터" },
+      { "id": 4, "tagName": "시스템" }
+    ],
+    "isHot": true,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
+  },
+  {
+    "id": 9,
+    "name": "토요타 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 876,
+    "tags": [
+      { "id": 9, "tagName": "안드로이드" },
+      { "id": 19, "tagName": "자동차" }
+    ],
+    "isHot": true,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
+  },
+  {
+    "id": 10,
+    "name": "테슬라 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 765,
+    "tags": [
+      { "id": 19, "tagName": "자동차" },
+      { "id": 12, "tagName": "SW" }
+    ],
+    "isHot": true,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
+  },
+  {
+    "id": 11,
+    "name": "마이크로닉스 면접 리스트",
+    "shareType": "PUBLIC",
+    "scrapeCount": 654,
+    "tags": [
+      { "id": 19, "tagName": "자동차" },
+      { "id": 12, "tagName": "SW" }
+    ],
+    "isHot": true,
+    "createdAt": "2024-02-28T10:53:14.705Z",
+    "updatedAt": "2024-02-28T10:53:14.705Z"
   }
 ]

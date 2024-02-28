@@ -9,4 +9,6 @@ export interface BundleProps {
   hashTags: tagProps[];
   subscribedCount: number;
   isHot: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }
