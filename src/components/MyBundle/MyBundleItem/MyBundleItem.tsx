@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
 import IconWrapper from '@/components/common/IconWrapper';
 import ShadowBox from '@/components/common/ShadowBox';
+import useAccordion from '@/hooks/useAccordion';
 import { themeStore } from '@/stores';
 
 import { BodyWrapper, RightItem, Title } from './MyBundleItem.style';
@@ -16,38 +17,24 @@ const MyBundleItem = ({
 }: MyBundleItem) => {
   const { isDarkMode } = themeStore();
 
-  const [isActive, setIsActive] = useState(false);
-
-  const parentRef = useRef<HTMLDivElement>(null);
-  const childRef = useRef<HTMLDivElement>(null);
+  const {
+    parentRef,
+    childRef,
+    isActive,
+    setIsActive,
+    handleClick: handleMobileClick,
+  } = useAccordion();
 
   useEffect(() => {
     // 웹 환경일 경우 모바일에서의 모든 active를 초기화 한다.
     if (!isMobileSize) {
       setIsActive(false);
     }
-  }, [isMobileSize]);
+  }, [isMobileSize, setIsActive]);
 
   const handleWebClick = () => {
     setSelectedBundle(bundle);
   };
-
-  // 아코디언 로직
-  const handleMobileClick = useCallback(
-    (event: React.MouseEvent) => {
-      event.stopPropagation();
-      if (parentRef.current === null || childRef.current === null) {
-        return;
-      }
-      if (parentRef.current.clientHeight > 0 && isActive) {
-        parentRef.current.style.height = '0';
-      } else {
-        parentRef.current.style.height = `${childRef.current.clientHeight}px`;
-      }
-      setIsActive(!isActive);
-    },
-    [isActive]
-  );
 
   const isActiveItem = () => {
     if (isMobileSize) {
