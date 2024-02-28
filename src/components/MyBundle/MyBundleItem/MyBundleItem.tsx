@@ -26,10 +26,8 @@ const MyBundleItem = ({
   } = useAccordion();
 
   useEffect(() => {
-    // 웹 환경일 경우 모바일에서의 모든 active를 초기화 한다.
-    if (!isMobileSize) {
-      setIsActive(false);
-    }
+    // size가 바뀌면 모바일에서의 모든 active를 초기화 한다.
+    setIsActive(false);
   }, [isMobileSize, setIsActive]);
 
   const handleWebClick = () => {
