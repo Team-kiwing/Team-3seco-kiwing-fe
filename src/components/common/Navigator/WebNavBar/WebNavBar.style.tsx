@@ -1,16 +1,26 @@
 import styled from 'styled-components';
 
+import { FONT_MEDIUM, MOBILE } from '@/constants';
 import { Row } from '@/styles/globalStyles';
+
+import { WebNavBarItemProps } from './WebNavBar.type';
 
 export const WebNavBarWrapper = styled.nav`
   display: flex;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0.5rem 3rem;
   align-items: center;
   justify-content: space-between;
+  margin: 0 auto;
+  padding: 3rem 2rem 0.5rem 2rem;
+
+  max-width: 1140px;
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: ${FONT_MEDIUM};
+  color: ${(props) => props.theme.primary_color};
+  user-select: none;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    display: none;
+  }
 `;
 
 export const WebNavBarRouter = styled(Row)`
@@ -40,11 +50,11 @@ export const WebNavBarLogoImage = styled.div`
   background-size: cover;
 `;
 
-export const WebNavItem = styled.div<{ $isLocated: boolean }>`
+export const WebNavItem = styled.div<WebNavBarItemProps>`
   cursor: pointer;
   white-space: nowrap;
   color: ${(props) =>
-    props.$isLocated ? props.theme.symbol_color : undefined};
+    props.$isLocated ? props.theme.symbol_color : 'inherit'};
 `;
 
 export const WebNavBarDivideLine = styled.div`
@@ -52,5 +62,5 @@ export const WebNavBarDivideLine = styled.div`
   white-space: nowrap;
   flex-grow: 1;
   height: 0.2rem;
-  background-color: #d9d9d9;
+  background-color: ${(props) => props.theme.border_color};
 `;

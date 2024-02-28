@@ -1,4 +1,6 @@
-import { Circle, ContainerCircle } from './CircleButton.style';
+import { PropsWithChildren } from 'react';
+
+import { Circle, TransparentCircle } from './CircleButton.style';
 import { CircleButtonProps } from './CircleButton.type';
 
 /**
@@ -10,18 +12,21 @@ import { CircleButtonProps } from './CircleButton.type';
 const CircleButton = ({
   size = '5rem',
   isBackgroundWhite = false,
+  children,
   ...props
-}: CircleButtonProps) => {
+}: PropsWithChildren<CircleButtonProps>) => {
   return (
-    <ContainerCircle
-      $size={size}
-      $isBackgroundWhite={isBackgroundWhite}
-      {...props}
-    >
+    <>
       <Circle $size={size}>
-        <span>+</span>
+        <TransparentCircle
+          $size={size}
+          $isBackgroundWhite={isBackgroundWhite}
+          {...props}
+        >
+          +{children}
+        </TransparentCircle>
       </Circle>
-    </ContainerCircle>
+    </>
   );
 };
 
