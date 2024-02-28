@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import {
   ErrorMessage,
   Label,
@@ -30,37 +32,43 @@ import { TextareaProps } from './Textarea.type';
  * @returns
  */
 
-const Textarea = ({
-  width,
-  height,
-  fontSize,
-  margin,
-  label,
-  placeholder,
-  errorMessage,
-  ...props
-}: TextareaProps) => {
-  return (
-    <TextareaWrapper
-      $width={width}
-      $fontSize={fontSize}
-    >
-      {label && <Label $margin={margin}>{label}</Label>}
-      <StyledTextarea
-        $height={height}
+const Textarea = forwardRef(
+  (
+    {
+      width,
+      height,
+      fontSize,
+      margin,
+      label,
+      placeholder,
+      errorMessage,
+      ...props
+    }: TextareaProps,
+    ref?: React.ForwardedRef<HTMLTextAreaElement> | undefined
+  ) => {
+    return (
+      <TextareaWrapper
+        $width={width}
         $fontSize={fontSize}
-        placeholder={placeholder}
-        {...props}
-      />
-      <ErrorMessage
-        $fontSize={fontSize}
-        $isError={errorMessage?.length === 0}
-        $margin={margin}
       >
-        {errorMessage?.length === 0 ? 'no Error' : errorMessage}
-      </ErrorMessage>
-    </TextareaWrapper>
-  );
-};
+        {label && <Label $margin={margin}>{label}</Label>}
+        <StyledTextarea
+          ref={ref}
+          $height={height}
+          $fontSize={fontSize}
+          placeholder={placeholder}
+          {...props}
+        />
+        <ErrorMessage
+          $fontSize={fontSize}
+          $isError={errorMessage?.length === 0}
+          $margin={margin}
+        >
+          {errorMessage?.length === 0 ? 'no Error' : errorMessage}
+        </ErrorMessage>
+      </TextareaWrapper>
+    );
+  }
+);
 
 export default Textarea;
