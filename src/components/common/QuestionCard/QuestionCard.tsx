@@ -1,8 +1,11 @@
+import { useState } from 'react';
+
 import { useModal } from '@/hooks/useModal';
 import useResize from '@/hooks/useResize';
 
 import Badge from '../Badge';
 import CircleButton from '../CircleButton';
+import DropDown from '../DropDown';
 import ShadowBox from '../ShadowBox';
 import { QuestionCardModal } from './QuestionCard.Modal';
 import {
@@ -17,6 +20,27 @@ import {
 } from './QuestionCard.style';
 import { QuestionCardProps } from './QuestionCard.type';
 
+const DUMMY = [
+  {
+    id: 1,
+    title: '삼성 질문 리스트',
+    body: '이미 이 질문이 추가된 적이 있어요!',
+  },
+  {
+    id: 2,
+    title: '카카오 질문 리스트',
+  },
+  {
+    id: 3,
+    title: '데브코스 질문 리스트',
+  },
+  {
+    id: 4,
+    title: 'LG 질문 리스트',
+    body: '이미 이 질문이 추가된 적이 있어요!',
+  },
+];
+
 const QuestionCard = ({
   id,
   question,
@@ -27,12 +51,22 @@ const QuestionCard = ({
 }: QuestionCardProps) => {
   const { isMobileSize } = useResize();
   const { setModalOpen } = useModal();
+  const [isLocked, setIsLocked] = useState(false);
 
   const handleReportClick = () => {
     setModalOpen({
       title: '신고하기',
       content: <QuestionCardModal />,
     });
+  };
+
+  const handleToggleClick = () => {
+    setIsLocked(true);
+  };
+
+  const handleAdd = (checkedItems: number[]) => {
+    //todo API 연동
+    console.log(checkedItems);
   };
 
   return (
@@ -50,7 +84,19 @@ const QuestionCard = ({
       >
         {isLogin && (
           <QuestionCardAddButton>
-            <CircleButton />
+            <CircleButton
+              id={String(id)}
+              onClick={handleToggleClick}
+            />
+            <DropDown
+              width="200px"
+              options={DUMMY}
+              isShow={isLocked}
+              setIsShow={setIsLocked}
+              mode="checkbox"
+              onAdd={handleAdd}
+              triggerId={String(id)}
+            />
           </QuestionCardAddButton>
         )}
 
