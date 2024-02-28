@@ -7,6 +7,7 @@ export interface ToggleProps
   height?: string;
   isContentShow?: boolean;
   isBorderShow?: boolean;
+  fontSize?: string;
 }
 
 export interface ToggleContainerProps {
@@ -19,4 +20,5 @@ export interface ToggleSwitchProps extends ToggleContainerProps {
   $on?: boolean;
   $isContentShow: boolean;
   $isBorderShow: boolean;
+  $fontSize: string;
 }
