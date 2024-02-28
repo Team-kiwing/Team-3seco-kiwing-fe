@@ -1,11 +1,17 @@
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
 import { notify } from '@/hooks/toast';
+import { modalStore } from '@/stores';
 
 import Button from '../Button';
 import Textarea from '../Textarea';
+import {
+  QuestionCardConstants,
+  QuestionCardModalValidation,
+} from './QuestionCard.const';
 
 export const QuestionCardModal = () => {
+  const { closeModal } = modalStore();
   const {
     register,
     handleSubmit,
@@ -19,6 +25,13 @@ export const QuestionCardModal = () => {
     // todo 신고 제출 API 연동
     // API fail 에러는 현재 로직에서 처리함
     console.log(reportField);
+
+    // 성공시
+    notify({
+      type: 'default',
+      text: '신고를 완료하였습니다. 불편을 드려 죄송합니다.',
+    });
+    closeModal();
   };
 
   const onInValid: SubmitErrorHandler<{ reportField: string }> = () => {
@@ -32,24 +45,15 @@ export const QuestionCardModal = () => {
       <form onSubmit={handleSubmit(onValid, onInValid)}>
         <div style={{ maxHeight: '50rem', maxWidth: '30rem' }}>
           <Textarea
-            {...register('reportField', {
-              required: {
-                value: true,
-                message: '신고 사유를 작성해주세요.',
-              },
-              minLength: {
-                value: 10,
-                message: '신고 메세지는 10자 이상 작성해주세요.',
-              },
-            })}
+            {...register('reportField', QuestionCardModalValidation)}
             width="100%"
             height="20rem"
-            placeholder="신고 내용을 작성해주세요."
+            placeholder={QuestionCardConstants.MODAL_TEXTAREA_PLACEHOLDER}
             errorMessage={errors.reportField?.message}
           />
           <Button
             style={{ marginTop: '1rem' }}
-            text="신고하기"
+            text={QuestionCardConstants.MODAL_BUTTON_TEXT}
             width="100%"
             type="submit"
           />
