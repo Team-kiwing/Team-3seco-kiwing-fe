@@ -87,6 +87,7 @@ const MyBundleItem = ({
             ref={childRef}
             width="100%"
             height="45rem"
+            style={{ fontSize: 'inherit' }}
           >
             <div>{bundle.name}의 상세 질문 목록입니다.</div>
           </ShadowBox>
