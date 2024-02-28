@@ -7,29 +7,29 @@ import {
   PiScroll,
 } from 'react-icons/pi';
 
-import { themeStore } from '@/stores';
+import { PATH } from '@/constants/router';
 
-import { useNavigatorMenu } from './MobileBottomNavBar.hook';
+import { NavigatorText } from '../Navigator.const';
+import { useNavigatorMenu } from '../Navigator.hook';
 import {
   BottomNavBarItem,
   BottomNavBarWrapper,
 } from './MobileBottomNavBar.style';
 
 const MobileBottomNavBar = () => {
-  const { isDarkMode } = themeStore();
   const {
     isLogin,
     location,
     handleLogo,
     handleHub,
-    handleSharedList,
-    handleMyList,
+    handleShared,
+    handleMyBundle,
     handleLogin,
   } = useNavigatorMenu();
 
   return (
     <>
-      <BottomNavBarWrapper $isDark={isDarkMode}>
+      <BottomNavBarWrapper>
         <BottomNavBarItem onClick={handleLogo}>
           <Avatar
             $size="nav"
@@ -41,42 +41,42 @@ const MobileBottomNavBar = () => {
           />
         </BottomNavBarItem>
         <BottomNavBarItem
-          $color={location.pathname.includes('/hub')}
+          $color={location.pathname.includes(PATH.HUB)}
           onClick={handleHub}
         >
           <IconWrapper $size={'s'}>
             <PiCloudArrowDown />
           </IconWrapper>
-          <span>허브</span>
+          <span>{NavigatorText.HUB_TEXT}</span>
         </BottomNavBarItem>
         <BottomNavBarItem
-          $color={location.pathname.includes('/shared')}
-          onClick={handleSharedList}
+          $color={location.pathname.includes(PATH.SHARED)}
+          onClick={handleShared}
         >
           <IconWrapper $size={'s'}>
             <PiScroll />
           </IconWrapper>
-          <span>공유된 꾸러미</span>
+          <span>{NavigatorText.SHARED_TEXT}</span>
         </BottomNavBarItem>
         {isLogin ? (
           <BottomNavBarItem
-            $color={location.pathname.includes('/@:id')}
-            onClick={() => handleMyList(':id')}
+            $color={location.pathname.includes(PATH.MY)}
+            onClick={handleMyBundle}
           >
             <IconWrapper $size={'s'}>
               <PiBooks />
             </IconWrapper>
-            <span>내 꾸러미</span>
+            <span>{NavigatorText.MY_TEXT}</span>
           </BottomNavBarItem>
         ) : (
           <BottomNavBarItem
-            $color={location.pathname.includes('/auth')}
+            $color={location.pathname.includes(PATH.AUTH)}
             onClick={handleLogin}
           >
-            <IconWrapper $size={'m'}>
+            <IconWrapper $size={'s'}>
               <PiArrowCircleRightLight />
             </IconWrapper>
-            <span>로그인</span>
+            <span>{NavigatorText.AUTH_TEXT}</span>
           </BottomNavBarItem>
         )}
       </BottomNavBarWrapper>

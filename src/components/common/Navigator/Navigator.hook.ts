@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { PATH } from '@/constants/router';
+
 export const useNavigatorMenu = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const location = useLocation();
@@ -11,8 +13,8 @@ export const useNavigatorMenu = () => {
     // Todo 로그인 여부
     // const id = getId();
     // if (id) setIsLogin(true);
-    // setIsLogin(false);
-    setIsLogin(true);
+    setIsLogin(false);
+    // setIsLogin(true);
   }, []);
 
   const handleNavigate = (path: string): void => {
@@ -23,19 +25,21 @@ export const useNavigatorMenu = () => {
     }
   };
 
-  const handleLogo = () => handleNavigate('/');
-  const handleHub = () => handleNavigate('/hub');
-  const handleSharedList = () => handleNavigate('/shared');
-  const handleLogin = () => handleNavigate('/auth');
-  const handleMyList = (userId: string) => handleNavigate(`/@${userId}`);
+  const handleLogo = () => handleNavigate(PATH.MAIN);
+  const handleHub = () => handleNavigate(PATH.HUB);
+  const handleSharedBundle = () => handleNavigate(PATH.SHARED_ITEM);
+  const handleShared = () => handleNavigate(PATH.SHARED);
+  const handleLogin = () => handleNavigate(PATH.AUTH);
+  const handleMyBundle = () => handleNavigate(PATH.MY);
 
   return {
     isLogin,
     location,
     handleLogo,
     handleHub,
-    handleSharedList,
-    handleMyList,
+    handleShared,
+    handleSharedBundle,
+    handleMyBundle,
     handleLogin,
   };
 };

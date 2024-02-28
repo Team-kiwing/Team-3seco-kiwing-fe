@@ -20,7 +20,7 @@ const buttonStyles = css<StyledCircleButtonProps>`
       `;
     }
   }};
-  color: ${({ theme }) => theme.background_color};
+  color: ${({ theme }) => theme.primary_white_text_color};
   font-size: calc(${(props) => props.$size} / 2);
 
   width: ${(props) => props.$size};
@@ -32,7 +32,6 @@ const buttonStyles = css<StyledCircleButtonProps>`
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background-color: ${({ theme }) => theme.symbol_secondary_color}40;
-      color: ${({ theme }) => theme.secondary_color};
     }
   }
 
@@ -42,13 +41,12 @@ const buttonStyles = css<StyledCircleButtonProps>`
 
   &:active {
     background-color: ${({ theme }) => theme.symbol_secondary_color}40;
-    color: ${({ theme }) => theme.secondary_color};
   }
 
   -webkit-tap-highlight-color: transparent;
 `;
 
-export const ContainerCircle = styled.button`
+export const ContainerCircle = styled.button<StyledCircleButtonProps>`
   ${buttonStyles}
 `;
 

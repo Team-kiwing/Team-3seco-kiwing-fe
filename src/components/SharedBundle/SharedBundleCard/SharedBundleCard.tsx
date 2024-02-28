@@ -60,7 +60,7 @@ const SharedBundleCard = ({ bundleName, ...props }: SharedBundleCardProps) => {
                 }}
               />
               <IconWrapper
-                $fillColor={theme.secondary_color}
+                $fillColor={theme.primary_white_text_color}
                 $size={'m'}
                 $hoverIconColor={theme.symbol_secondary_color}
                 onClick={() => {
