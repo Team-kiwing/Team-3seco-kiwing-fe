@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import { ErrorMessage, InputWrapper, Label, StyledInput } from './Input.style';
 import { InputProps } from './Input.type';
 
@@ -24,34 +26,40 @@ import { InputProps } from './Input.type';
  * @returns
  */
 
-const Input = ({
-  width,
-  fontSize,
-  margin,
-  label,
-  placeholder,
-  errorMessage,
-  ...props
-}: InputProps) => {
-  return (
-    <InputWrapper
-      $width={width}
-      $fontSize={fontSize}
-    >
-      {label && <Label $margin={margin}>{label}</Label>}
-      <StyledInput
-        placeholder={placeholder}
-        {...props}
-      />
-      <ErrorMessage
+const Input = forwardRef(
+  (
+    {
+      width,
+      fontSize,
+      margin,
+      label,
+      placeholder,
+      errorMessage,
+      ...props
+    }: InputProps,
+    ref?: React.ForwardedRef<HTMLInputElement> | undefined
+  ) => {
+    return (
+      <InputWrapper
+        $width={width}
         $fontSize={fontSize}
-        $isError={errorMessage?.length === 0}
-        $margin={margin}
       >
-        {errorMessage?.length === 0 ? 'no Error' : errorMessage}
-      </ErrorMessage>
-    </InputWrapper>
-  );
-};
+        {label && <Label $margin={margin}>{label}</Label>}
+        <StyledInput
+          ref={ref}
+          placeholder={placeholder}
+          {...props}
+        />
+        <ErrorMessage
+          $fontSize={fontSize}
+          $isError={errorMessage?.length === 0}
+          $margin={margin}
+        >
+          {errorMessage?.length === 0 ? 'no Error' : errorMessage}
+        </ErrorMessage>
+      </InputWrapper>
+    );
+  }
+);
 
 export default Input;
