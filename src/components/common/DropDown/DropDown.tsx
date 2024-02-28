@@ -80,13 +80,15 @@ const DropDown = ({
       ref={ref}
       $isShow={isShow}
       $direction={direction}
+      $width={width}
+      $height={height}
     >
       <ShadowBox
         width={width}
         height={height}
         className="dropdown"
       >
-        <Options>
+        <Options $mode={mode}>
           {options.map((option) => (
             <Item
               key={option.id}

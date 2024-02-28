@@ -3,12 +3,17 @@ import styled, { css } from 'styled-components';
 import { MOBILE } from '@/constants';
 import { Direction } from '@/types/dropdown';
 
-const positionByDirection = (position: Direction) => {
+const positionByDirection = (
+  position: Direction,
+  width: string,
+  height: string
+) => {
   switch (position) {
     case 'left-top':
       return css`
         right: 100%;
-        bottom: 0;
+        bottom: max(100%, ${height});
+        transform: translateY(${height});
         margin-right: 0.5rem;
       `;
     case 'left':
@@ -19,13 +24,15 @@ const positionByDirection = (position: Direction) => {
     case 'left-bottom':
       return css`
         right: 100%;
-        top: 0;
+        top: max(100%, ${height});
+        transform: translateY(-${height});
         margin-right: 0.5rem;
       `;
     case 'right-top':
       return css`
         left: 100%;
-        bottom: 0;
+        bottom: max(100%, ${height});
+        transform: translateY(${height});
         margin-left: 0.5rem;
       `;
     case 'right':
@@ -36,13 +43,15 @@ const positionByDirection = (position: Direction) => {
     case 'right-bottom':
       return css`
         left: 100%;
-        top: 0;
+        top: max(100%, ${height});
+        transform: translateY(-${height});
         margin-left: 0.5rem;
       `;
     case 'top-left':
       return css`
         bottom: 100%;
-        right: 0;
+        right: max(100%, ${width});
+        transform: translateX(${width});
         margin-bottom: 0.5rem;
       `;
     case 'top':
@@ -53,13 +62,15 @@ const positionByDirection = (position: Direction) => {
     case 'top-right':
       return css`
         bottom: 100%;
-        left: 0;
+        left: max(100%, ${width});
+        transform: translateX(-${width});
         margin-bottom: 0.5rem;
       `;
     case 'bottom-left':
       return css`
         top: 100%;
-        right: 0;
+        right: max(100%, ${width});
+        transform: translateX(${width});
         margin-top: 0.5rem;
       `;
     case 'bottom':
@@ -70,7 +81,8 @@ const positionByDirection = (position: Direction) => {
     case 'bottom-right':
       return css`
         top: 100%;
-        left: 0;
+        left: max(100%, ${width});
+        transform: translateX(-${width});
         margin-top: 0.5rem;
       `;
     default:
@@ -78,16 +90,22 @@ const positionByDirection = (position: Direction) => {
   }
 };
 
-export const Wrapper = styled.div<{ $isShow: boolean; $direction: Direction }>`
+export const Wrapper = styled.div<{
+  $isShow: boolean;
+  $direction: Direction;
+  $width: string;
+  $height: string;
+}>`
   display: ${({ $isShow }) => ($isShow ? 'flex' : 'none')};
   position: absolute;
 
-  ${({ $direction }) => positionByDirection($direction)}
+  ${({ $direction, $width, $height }) =>
+    positionByDirection($direction, $width, $height)}
 `;
 
-export const Options = styled.div`
+export const Options = styled.div<{ $mode: 'normal' | 'checkbox' }>`
   width: 100%;
-  height: 80%;
+  height: ${({ $mode }) => ($mode === 'normal' ? '100%' : '80%')};
   overflow: auto;
 `;
 
