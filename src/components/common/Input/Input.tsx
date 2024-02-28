@@ -22,7 +22,7 @@ import { InputProps } from './Input.type';
  * @param label : 선택 | string 타입. input 위에 붙는 라벨 역할.
  * @param placeholder : 선택 | string 타입. input의 placeholder 역할.
  * @param errorMessage : 선택 | string 타입. input의 에러 메시지 역할.
- * @param ...props : 커스텀을 위함 (+ react-hook-form)
+ * @param ...props : input 태그 커스텀을 위함
  * @returns
  */
 
