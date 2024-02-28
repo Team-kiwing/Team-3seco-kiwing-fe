@@ -9,7 +9,6 @@ import {
 import Layout from '@/components/Layout';
 import { PATH } from '@/constants/router';
 import Toast from '@/hooks/toast';
-import useResize from '@/hooks/useResize';
 import {
   AuthPage,
   HubPage,
@@ -25,15 +24,11 @@ import {
 } from '@/pages';
 
 const Router = () => {
-  const { isMobileSize } = useResize();
   return (
     <>
       <WebNavBar />
       <MobileTopNavBar />
-      <Layout
-        id="Layout"
-        $isMobile={isMobileSize}
-      >
+      <Layout id="Layout">
         <Routes>
           {/* 프레이머 모션 용 */}
           <Route>
