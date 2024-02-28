@@ -100,7 +100,6 @@ const MyBundleItem = ({
             ref={childRef}
             width="100%"
             height="45rem"
-            style={{ flexShrink: 0 }}
           >
             <div>{bundle.name}의 상세 질문 목록입니다.</div>
           </ShadowBox>
