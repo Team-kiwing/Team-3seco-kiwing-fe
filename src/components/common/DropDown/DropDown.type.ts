@@ -18,6 +18,6 @@ export interface DropDownProps {
   onAdd?: (checkedItems: number[]) => void;
   isShow: boolean;
   setIsShow: (state: boolean) => void;
-  closeDropDown: (e?: Event) => void;
+  closeDropDown: (e: Event) => void;
   direction: Direction;
 }
