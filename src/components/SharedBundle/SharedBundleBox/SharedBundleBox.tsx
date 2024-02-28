@@ -15,6 +15,13 @@ import {
 } from './SharedBundleBox.style';
 import { SharedBundleBoxProps } from './SharedBundleBox.type';
 
+/**
+ * @summary 사용법   <SharedBundleBox questions={questions} />
+ * @description  SharedBundleBox 컴포넌트
+ * @param questions 필수) 해당 URL에 공유된 꾸러미가 가지고 있는 질문들입니다.
+ * @returns
+ */
+
 const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
   const [isDropDownShow, setIsDropDownShow] = useState(false);
   const [checkedAllItems, setCheckedAllItems] = useState(false);
