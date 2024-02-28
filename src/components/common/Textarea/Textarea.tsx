@@ -44,7 +44,7 @@ const Textarea = forwardRef(
       errorMessage,
       ...props
     }: TextareaProps,
-    ref?: React.ForwardedRef<HTMLTextAreaElement> | undefined
+    ref?: React.ForwardedRef<HTMLTextAreaElement>
   ) => {
     return (
       <TextareaWrapper
