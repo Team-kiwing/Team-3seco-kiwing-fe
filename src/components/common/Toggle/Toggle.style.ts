@@ -26,6 +26,7 @@ export const ToggleSwitch = styled.div<ToggleSwitchProps>`
   background-color: ${(props) => props.theme.container_color};
   transition: all 0.2s ease;
   position: relative;
+  color: ${(props) => props.theme.gray_600};
 
   &:after {
     content: '';
@@ -51,10 +52,10 @@ export const ToggleSwitch = styled.div<ToggleSwitchProps>`
       }
     }};
     position: absolute;
-    font-size: 1.6rem;
+    font-size: ${(props) => props.$fontSize};
     left: 40%;
     @media screen and (max-width: ${MOBILE}px) {
-      font-size: 1.4rem;
+      font-size: max(calc(${(props) => props.$fontSize} - 0.2rem), 1rem);
       left: 45%;
     }
     top: 50%;
@@ -62,7 +63,7 @@ export const ToggleSwitch = styled.div<ToggleSwitchProps>`
     transition: all 0.2s ease;
   }
 
-  ${({ $on, $isColorReverse, theme, $height, $isContentShow }) => {
+  ${({ $on, $isColorReverse, theme, $height, $isContentShow, $fontSize }) => {
     if ($on) {
       return css`
         background: ${$isColorReverse ? 'white' : theme.symbol_color};
@@ -73,10 +74,10 @@ export const ToggleSwitch = styled.div<ToggleSwitchProps>`
         &:before {
           content: '${$isContentShow ? '공개' : ''}';
           position: absolute;
-          font-size: 1.6rem;
+          font-size: ${$fontSize};
           left: 20%;
           @media screen and (max-width: ${MOBILE}px) {
-            font-size: 1.4rem;
+            font-size: max(calc(${$fontSize} - 0.2rem), 1rem);
             left: 25%;
           }
           color: white;
