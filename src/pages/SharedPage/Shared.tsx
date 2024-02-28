@@ -2,10 +2,60 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import BundleCard from '@/components/common/BundleCard';
+import { WebNavBar } from '@/components/common/Navigator';
 import SearchBar from '@/components/common/SearchBar';
 import Selector from '@/components/common/Selector';
 import TagFilter from '@/components/common/TagFilter';
 import { TagProps } from '@/components/common/TagFilter/TagFilter.type';
+
+const SharedWrapper = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 5rem;
+  flex-shrink: 1;
+  @media screen and (max-width: 768px) {
+    width: 90%;
+  }
+`;
+
+const TopWrapper = styled.div`
+  width: 100%;
+  margin: 5rem auto;
+  display: flex;
+  justify-content: center;
+`;
+
+const SearchWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  gap: 2rem;
+  justify-content: start;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const SelectorWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+`;
+
+const CardWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  margin: 0 auto;
+  grid-row-gap: 2rem;
+  grid-column-gap: 10rem;
+  grid-template-columns: repeat(2, 1fr);
+  box-sizing: border-box;
+  justify-items: center;
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
 
 interface Tag {
   id: number;
@@ -23,29 +73,6 @@ interface InterviewList {
   updatedAt: string;
 }
 
-const Wrapper = styled.div`
-  display: grid;
-  width: auto;
-  margin: 0 15rem;
-  grid-row-gap: 2rem;
-  grid-column-gap: 10rem;
-  grid-template-columns: repeat(2, 1fr);
-  box-sizing: border-box;
-  justify-items: center;
-  @media screen and (max-width: 1000px) {
-    width: 80%;
-    justify-items: center;
-    grid-template-columns: repeat(1, 1fr);
-  }
-  @media screen and (max-width: 500px) {
-    width: 36rem;
-    margin: 0 auto;
-  }
-  @media screen and (max-width: 280px) {
-    width: 26rem;
-    margin: 0 auto;
-  }
-`;
 const Shared = () => {
   const [selectedTags, setSelectedTags] = useState<TagProps[]>([]);
   const [isRecent, setIsRecent] = useState<boolean>(true);
@@ -85,31 +112,40 @@ const Shared = () => {
 
   return (
     <>
-      <TagFilter
-        selectedTags={selectedTags}
-        setSelectedTags={setSelectedTags}
-        tagList={tagList}
-      />
-
-      <SearchBar />
-      <Selector
-        isState={isRecent}
-        content={['최근순', '스크랩 순']}
-        onSelected={(item) => setIsRecent(item)}
-      />
-
-      <Wrapper>
-        {list.map((item) => (
-          <BundleCard
-            key={item.id}
-            id={item.id}
-            bundleName={item.name}
-            hashTags={item.tags}
-            isHot={item.isHot}
-            subscribedCount={item.scrapeCount}
+      <WebNavBar />
+      <SharedWrapper>
+        <TopWrapper>
+          <TagFilter
+            selectedTags={selectedTags}
+            setSelectedTags={setSelectedTags}
+            tagList={tagList}
           />
-        ))}
-      </Wrapper>
+        </TopWrapper>
+
+        <SearchWrapper>
+          <SearchBar />
+        </SearchWrapper>
+        <SelectorWrapper>
+          <Selector
+            isState={isRecent}
+            content={['최근순', '스크랩 순']}
+            onSelected={(item) => setIsRecent(item)}
+          />
+        </SelectorWrapper>
+
+        <CardWrapper>
+          {list.map((item) => (
+            <BundleCard
+              key={item.id}
+              id={item.id}
+              bundleName={item.name}
+              hashTags={item.tags}
+              isHot={item.isHot}
+              subscribedCount={item.scrapeCount}
+            />
+          ))}
+        </CardWrapper>
+      </SharedWrapper>
     </>
   );
 };
