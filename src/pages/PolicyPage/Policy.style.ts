@@ -13,7 +13,6 @@ export const PolicyPageWrapper = styled(Col)`
   width: 70%;
   margin: 0 auto;
   gap: 3rem;
-  padding: 7.5rem 0;
 
   @media screen and (max-width: ${MOBILE}px) {
     gap: 2rem;
