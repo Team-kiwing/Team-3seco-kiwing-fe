@@ -13,19 +13,21 @@ const PcRightItem = ({ isShared, setIsShared }: RightItemProps) => {
         on={isShared}
         onChange={() => setIsShared(!isShared)}
         isBorderShow={true}
-        width="4rem"
-        height="1.5rem"
+        isContentShow={true}
+        width="7rem"
+        height="2.5rem"
+        fontSize="1.2rem"
         style={{ marginTop: '0.5rem' }}
       />
       <IconContainer>
         <IconWrapper
-          $size={'s'}
+          $size={3.5}
           $isBackground={true}
         >
           <FiEdit3 />
         </IconWrapper>
         <IconWrapper
-          $size={'s'}
+          $size={3.5}
           $isBackground={true}
         >
           <FiTrash2 />

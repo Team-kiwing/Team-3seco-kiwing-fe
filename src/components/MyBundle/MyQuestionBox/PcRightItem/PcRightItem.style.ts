@@ -5,10 +5,12 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   flex-shrink: 0;
 `;
 
 export const IconContainer = styled.div`
   display: flex;
+  width: 100%;
+  justify-content: space-between;
 `;
