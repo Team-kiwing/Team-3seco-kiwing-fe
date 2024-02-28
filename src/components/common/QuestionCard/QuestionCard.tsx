@@ -20,6 +20,25 @@ import {
 } from './QuestionCard.style';
 import { QuestionCardProps } from './QuestionCard.type';
 
+/**
+ * @summary 사용법                 
+ *              <QuestionCard
+                  hashTags={questionItem.tags}
+                  id={questionItem.id}
+                  question={questionItem.question}
+                  subscribedCount={questionItem.subscribed}
+                  isHot={questionItem.isHot}
+                  isLogin={Number(questionItem.id) < 3}
+                />
+ * @description QuestionCard컴포넌트입니다. 모든 props가 필수요소입니다.
+ * @param id: number
+ * @param question: string;
+ * @param tags: tagProps[ id: number; tagName: string; ];
+ * @param subscribed: number;
+ * @param isHot: boolean;
+ * @param isLogin: boolean;
+ * @returns
+ */
 const QuestionCard = ({
   id,
   question,
