@@ -1,27 +1,88 @@
 import styled, { css } from 'styled-components';
 
 import { MOBILE } from '@/constants';
-import { Col } from '@/styles/globalStyles';
+import { Direction } from '@/types/dropdown';
 
-export const Wrapper = styled.div<{ $isShow: boolean }>`
-  display: ${(props) => (props.$isShow ? 'flex' : 'none')};
-  user-select: none;
-`;
+const positionByDirection = (position: Direction) => {
+  switch (position) {
+    case 'left-top':
+      return css`
+        right: 100%;
+        bottom: 0;
+        margin-right: 0.5rem;
+      `;
+    case 'left':
+      return css`
+        right: 100%;
+        margin-right: 0.5rem;
+      `;
+    case 'left-bottom':
+      return css`
+        right: 100%;
+        top: 0;
+        margin-right: 0.5rem;
+      `;
+    case 'right-top':
+      return css`
+        left: 100%;
+        bottom: 0;
+        margin-left: 0.5rem;
+      `;
+    case 'right':
+      return css`
+        left: 100%;
+        margin-left: 0.5rem;
+      `;
+    case 'right-bottom':
+      return css`
+        left: 100%;
+        top: 0;
+        margin-left: 0.5rem;
+      `;
+    case 'top-left':
+      return css`
+        bottom: 100%;
+        right: 0;
+        margin-bottom: 0.5rem;
+      `;
+    case 'top':
+      return css`
+        bottom: 100%;
+        margin-bottom: 0.5rem;
+      `;
+    case 'top-right':
+      return css`
+        bottom: 100%;
+        left: 0;
+        margin-bottom: 0.5rem;
+      `;
+    case 'bottom-left':
+      return css`
+        top: 100%;
+        right: 0;
+        margin-top: 0.5rem;
+      `;
+    case 'bottom':
+      return css`
+        top: 100%;
+        margin-top: 0.5rem;
+      `;
+    case 'bottom-right':
+      return css`
+        top: 100%;
+        left: 0;
+        margin-top: 0.5rem;
+      `;
+    default:
+      return css``;
+  }
+};
 
-export const Background = styled.div`
-  background-color: transparent;
+export const Wrapper = styled.div<{ $isShow: boolean; $direction: Direction }>`
+  display: ${({ $isShow }) => ($isShow ? 'flex' : 'none')};
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`;
 
-export const Container = styled(Col)`
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+  ${({ $direction }) => positionByDirection($direction)}
 `;
 
 export const Options = styled.div`
@@ -29,6 +90,7 @@ export const Options = styled.div`
   height: 80%;
   overflow: auto;
 `;
+
 export const Item = styled.div<{ $mode: string }>`
   width: 100%;
   display: flex;
@@ -61,6 +123,22 @@ export const Item = styled.div<{ $mode: string }>`
 
   &:active {
     background-color: ${({ theme }) => theme.border_color};
+  }
+
+  &:last-child {
+    border-radius: 0 0 1rem 1rem;
+  }
+  &:first-child {
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  @media screen and (max-width: ${MOBILE}px) {
+    &:last-child {
+      border-radius: 0 0 0.6rem 0.6rem;
+    }
+    &:first-child {
+      border-radius: 0.6rem 0.6rem 0 0;
+    }
   }
 `;
 
@@ -113,7 +191,7 @@ const checkboxStyles = css`
     border: 0;
     background-color: transparent;
     background-size: contain;
-    box-shadow: inset 0 0 0 0.1rem #ccd3d8;
+    box-shadow: inset 0 0 0 0.1rem ${({ theme }) => theme.border_color};
   }
 
   /* Checked */
