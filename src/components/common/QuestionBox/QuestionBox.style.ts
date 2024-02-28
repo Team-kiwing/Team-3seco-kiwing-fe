@@ -26,7 +26,6 @@ export const TitleWrapper = styled.div<{ $isActive: boolean }>`
   transition: background-color 0.35s ease;
   border-radius: ${BORDER_WEB}rem ${BORDER_WEB}rem 0 0;
 
-  justify-content: space-between;
   background-color: ${(props) =>
     props.$isActive ? props.theme.symbol_color : 'transparent'};
   font-size: ${WEB_FONT_SIZE}rem;
@@ -46,7 +45,7 @@ export const Header = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 90%;
+  width: 100%;
 `;
 
 export const RightItem = styled.div`
