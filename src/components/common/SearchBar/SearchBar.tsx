@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { MdSearch } from 'react-icons/md';
 
 import IconWrapper from '../IconWrapper';
@@ -24,21 +24,28 @@ import { SearchBarProps } from './SearchBar.type';
  */
 
 const SearchBar = ({
-  handleSearchIcon,
-  handleFormSubmit,
+  handleSearchSubmit,
   maxWidth,
-  ...props
+  REGISTER,
+  VALIDATE,
 }: SearchBarProps) => {
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (handleFormSubmit) {
-      handleFormSubmit();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useFormContext();
+
+  const SearchSubmit = () => {
+    if (handleSearchSubmit) {
+      if (!errors[REGISTER]?.message) {
+        handleSearchSubmit();
+      }
     }
   };
 
   return (
     <SearchBarWrapper $maxWidth={maxWidth}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(SearchSubmit)}>
         <Input
           width={'100%'}
           margin={0}
@@ -48,12 +55,15 @@ const SearchBar = ({
             paddingLeft: '.5rem',
             height: '3rem',
           }}
-          {...props}
+          {...register(REGISTER, VALIDATE)}
+          errorMessage={
+            errors[REGISTER] ? errors[REGISTER]?.message?.toString() : ''
+          }
         />
       </form>
       <IconWrapper
         $size={'s'}
-        onClick={handleSearchIcon}
+        onClick={SearchSubmit}
       >
         <MdSearch />
       </IconWrapper>
