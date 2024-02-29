@@ -25,6 +25,11 @@ const MyBundleList = ({
   const { isMobileSize } = useResize();
   const theme = useTheme();
 
+  const handleAddBundle = () => {
+    // @TODO 꾸러미 추가 모달 열기
+    console.log('꾸러미 추가');
+  };
+
   return (
     <Container $isMobileSize={isMobileSize}>
       <BundleWrapper>
@@ -48,6 +53,7 @@ const MyBundleList = ({
           style={{
             fontWeight: `${FONT_MEDIUM}`,
           }}
+          onClick={handleAddBundle}
         />
       </BundleWrapper>
     </Container>
