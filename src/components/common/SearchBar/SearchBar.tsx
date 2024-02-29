@@ -24,6 +24,7 @@ import { SearchBarProps } from './SearchBar.type';
  */
 
 const SearchBar = ({
+  fontSize,
   handleSearchSubmit,
   maxWidth,
   REGISTER,
@@ -49,6 +50,7 @@ const SearchBar = ({
         <Input
           width={'100%'}
           margin={0}
+          fontSize={fontSize}
           placeholder={'검색어를 입력해주세요.'}
           style={{
             paddingRight: '3.8rem',
