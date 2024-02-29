@@ -1,13 +1,13 @@
 export interface SelectorProps {
   content: string[];
   isState: boolean;
+  setIsState: (item: boolean) => void;
   size?: number;
-  onSelected: (item: boolean) => void;
 }
 
 export interface SelectorStyleProps {
-  $isSelected: boolean;
+  $setIsState: boolean;
   $size: number;
 }
 
-export type SelectorStickProps = Omit<SelectorStyleProps, '$isSelected'>;
+export type SelectorStickProps = Omit<SelectorStyleProps, '$setIsState'>;
