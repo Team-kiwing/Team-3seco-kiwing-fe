@@ -5,6 +5,7 @@ import { useTheme } from 'styled-components';
 import Button from '@/components/common/Button';
 import EasterEgg from '@/components/common/EasterEgg';
 import ShadowBox from '@/components/common/ShadowBox';
+import { FONT_SEMI_BOLD } from '@/constants';
 import { PATH } from '@/constants/router';
 
 import {
@@ -52,13 +53,15 @@ const NotFound = () => {
 
         {showEasterEgg && <EasterEgg />}
         <NotFoundLogoImage
-          src="/kiwing_square_green.png"
+          src="/kiwing_circle_green.png"
           alt="키윙 로고"
           onClick={handleLogoClick}
         />
-        <NotFoundText>요청하신 페이지를 찾지 못했어요</NotFoundText>
+        <NotFoundText>죄송합니다.</NotFoundText>
+        <NotFoundText>요청하신 페이지를 찾지 못했어요.</NotFoundText>
         <NotFoundButtonWrap>
           <Button
+            style={{ fontWeight: `${FONT_SEMI_BOLD}` }}
             onClick={handleClickError}
             text="오류 신고하기"
             backgroundColor={theme.error_red}
