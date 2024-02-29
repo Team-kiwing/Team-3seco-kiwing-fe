@@ -6,22 +6,13 @@ import useResize from '@/hooks/useResize';
 
 import MyBundleItem from '../MyBundleItem';
 import { BundleWrapper, Container } from './MyBundleList.style';
-
-export interface Bundle {
-  id: number;
-  name: string;
-  shareType: 'PRIVATE' | 'PUBLIC';
-}
+import { MyBundleListProps } from './MyBundleList.type';
 
 const MyBundleList = ({
   bundles,
   selectedBundle,
   setSelectedBundle,
-}: {
-  bundles: Bundle[];
-  selectedBundle: Bundle | null;
-  setSelectedBundle: (state: Bundle) => void;
-}) => {
+}: MyBundleListProps) => {
   const { isMobileSize } = useResize();
   const theme = useTheme();
 
