@@ -35,6 +35,8 @@ const Input = forwardRef(
       label,
       placeholder,
       errorMessage,
+      inputType = 'text',
+      isOnlyBorderBottom = true,
       ...props
     }: InputProps,
     ref?: React.ForwardedRef<HTMLInputElement>
@@ -46,8 +48,10 @@ const Input = forwardRef(
       >
         {label && <Label $margin={margin}>{label}</Label>}
         <StyledInput
+          type={inputType}
           ref={ref}
           placeholder={placeholder}
+          $isOnlyBorderBottom={isOnlyBorderBottom}
           {...props}
         />
         <ErrorMessage
