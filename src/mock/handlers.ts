@@ -1,11 +1,14 @@
 import { http, HttpResponse } from 'msw';
 
-import bundles from './dummy.json';
+import question from './dummy.json';
 
 const handlers = [
-  http.get('/bundles', async () => {
+  http.get('/question', async () => {
     await sleep(200);
-    return HttpResponse.json(bundles);
+    return HttpResponse.json(question);
+  }),
+  http.get('/question2', async () => {
+    return HttpResponse.json(123);
   }),
 ];
 
