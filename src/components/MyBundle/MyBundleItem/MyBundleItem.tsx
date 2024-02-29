@@ -34,6 +34,10 @@ const MyBundleItem = ({
     setSelectedBundle(bundle);
   };
 
+  const handleOpenDropdown = () => {
+    console.log('드롭다운 메뉴 출력');
+  };
+
   const isActiveItem = () => {
     if (isMobileSize) {
       return isActive;
@@ -54,7 +58,6 @@ const MyBundleItem = ({
         height="fit-content"
         isActive={isActiveItem()}
         isHoverActive={!isMobileSize}
-        onClick={isMobileSize ? handleMobileClick : handleWebClick}
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -63,9 +66,11 @@ const MyBundleItem = ({
           boxSizing: 'border-box',
         }}
       >
-        <Title>{bundle.name}</Title>
+        <Title onClick={isMobileSize ? handleMobileClick : handleWebClick}>
+          {bundle.name}
+        </Title>
         {isMobileSize && (
-          <RightItem>
+          <RightItem onClick={handleOpenDropdown}>
             <IconWrapper
               $size={'s'}
               $isBackground={true}
