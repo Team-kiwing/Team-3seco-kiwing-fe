@@ -14,6 +14,7 @@ import { InputProps } from './Input.type';
         label={'라벨이다'}
         placeholder={'닉네임 써라'}
         errorMessage={'에러다'}
+        isOnlyBorderBottom={true}
       />
  * @param width : 필수 | string 타입. input의 너비를 의미함. (px or rem or % 로 기입)
  * @param fontSize : 선택 | number 타입. 라벨, input, 에러 메시지의 폰트 사이즈를 의미. 생략 시 기본 값으로 1.6이 설정. 
@@ -22,6 +23,7 @@ import { InputProps } from './Input.type';
  * @param label : 선택 | string 타입. input 위에 붙는 라벨 역할.
  * @param placeholder : 선택 | string 타입. input의 placeholder 역할.
  * @param errorMessage : 선택 | string 타입. input의 에러 메시지 역할.
+ * @param isOnlyBorderBottom : 선택 | boolean 타입. input의 border를 아래만 줄것인지 사방면으로 줄 것인지 결정하는 역할
  * @param ...props : input 태그 커스텀을 위함
  * @returns
  */
