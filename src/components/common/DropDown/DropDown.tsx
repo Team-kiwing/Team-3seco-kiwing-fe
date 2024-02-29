@@ -91,7 +91,6 @@ const DropDown = ({
       <ShadowBox
         width={`${width}rem`}
         height={`${height}rem`}
-        className="dropdown"
         style={{
           display: 'flex',
           flexDirection: 'column',
