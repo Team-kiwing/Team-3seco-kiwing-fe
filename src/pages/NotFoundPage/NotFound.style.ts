@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import { FONT_MEDIUM, MOBILE } from '@/constants';
+import { FONT_MEDIUM, MOBILE, MOBILE_FONT_SIZE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 const slideIn = keyframes`
@@ -83,7 +83,8 @@ export const PTagText = styled.p`
   font-size: 2rem;
   white-space: pre-wrap;
   font-weight: ${FONT_MEDIUM};
+
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: 1.6rem;
+    font-size: ${MOBILE_FONT_SIZE}rem;
   }
 `;
