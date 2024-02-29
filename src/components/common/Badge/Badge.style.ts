@@ -14,12 +14,12 @@ const sizeMapping = {
 
 const stateStyles = {
   basic: css`
-    background-color: ${({ theme }) => theme.gray_100};
-    color: white;
+    background-color: ${({ theme }) => theme.basic_badge_background_color};
+    color: ${({ theme }) => theme.basic_badge_text_color};
   `,
   focus: css`
     background-color: ${({ theme }) => theme.symbol_color};
-    color: white;
+    color: ${({ theme }) => theme.basic_badge_text_color};
   `,
   hot: css`
     font-weight: ${FONT_SEMI_BOLD};
