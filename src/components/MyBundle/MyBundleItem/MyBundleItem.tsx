@@ -78,7 +78,6 @@ const MyBundleItem = ({
       {isMobileSize && (
         <BodyWrapper
           $isDarkMode={isDarkMode}
-          $isActive={isActive}
           ref={parentRef}
         >
           <ShadowBox

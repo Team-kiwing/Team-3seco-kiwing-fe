@@ -28,7 +28,6 @@ export const RightItem = styled.div`
 
 export const BodyWrapper = styled.div<{
   $isDarkMode: boolean;
-  $isActive: boolean;
 }>`
   width: 100%;
   height: 0;
@@ -43,7 +42,6 @@ export const BodyWrapper = styled.div<{
 
   font-size: calc(${WEB_FONT_SIZE}rem - 0.2rem);
   @media screen and (max-width: ${MOBILE}px) {
-    margin-bottom: ${(props) => (props.$isActive ? '1.5rem' : '0')};
     font-size: calc(${MOBILE_FONT_SIZE}rem - 0.2rem);
   }
 `;
