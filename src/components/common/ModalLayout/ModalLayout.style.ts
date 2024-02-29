@@ -32,7 +32,7 @@ export const ModalBody = styled.div`
   max-width: 800px;
   max-height: 600px;
   min-width: 270px;
-  min-height: 100px;
+  min-height: 150px;
 
   position: relative;
 
