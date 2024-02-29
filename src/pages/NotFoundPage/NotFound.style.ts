@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import { FONT_SEMI_BOLD, MOBILE } from '@/constants';
+import { FONT_MEDIUM, MOBILE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 const slideIn = keyframes`
@@ -40,7 +40,6 @@ export const NotFoundLayout = styled(Col)`
 
 export const NotFoundLogoImage = styled.img`
   width: 20rem;
-  border-radius: 50%;
 `;
 
 export const NotFoundButtonWrap = styled(Row)`
@@ -50,7 +49,9 @@ export const NotFoundButtonWrap = styled(Row)`
 
 export const NotFoundText = styled.span`
   font-size: 2rem;
-  font-weight: ${FONT_SEMI_BOLD};
+  font-weight: ${FONT_MEDIUM};
+  color: ${(props) => props.theme.primary_color};
+
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1.8rem;
   }
@@ -60,7 +61,7 @@ export const EasterEggText = styled.span<{ $isShow: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
 
   position: absolute;
   top: 10%;
@@ -78,6 +79,11 @@ export const EasterEggText = styled.span<{ $isShow: boolean }>`
 export const PTagText = styled.p`
   display: flex;
   justify-content: center;
+
+  font-size: 2rem;
   white-space: pre-wrap;
-  font-weight: ${FONT_SEMI_BOLD};
+  font-weight: ${FONT_MEDIUM};
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: 1.6rem;
+  }
 `;
