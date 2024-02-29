@@ -11,8 +11,9 @@ export interface OptionType {
 }
 
 export interface DropDownProps {
-  width?: string;
-  height?: string;
+  width?: number;
+  optionHeight?: number;
+  height?: number;
   options: OptionType[];
   mode?: 'normal' | 'checkbox';
   onAdd?: (checkedItems: number[]) => void;

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { MOBILE } from '@/constants';
+import { Col } from '@/styles/globalStyles';
 import { Direction } from '@/types/dropdown';
 
 const positionByDirection = (
@@ -103,25 +104,31 @@ export const Wrapper = styled.div<{
     positionByDirection($direction, $width, $height)}
 `;
 
-export const Options = styled.div<{ $mode: 'normal' | 'checkbox' }>`
-  width: 100%;
+export const Options = styled.div<{
+  $mode: 'normal' | 'checkbox';
+}>`
   height: ${({ $mode }) => ($mode === 'normal' ? '100%' : '80%')};
+
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  cursor: auto;
 `;
 
-export const Item = styled.div<{ $mode: string }>`
-  width: 100%;
+export const Item = styled.div<{ $mode: string; $height: number }>`
+  max-width: 100%;
+  min-height: ${({ $height }) => $height}rem;
+  height: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  box-sizing: border-box;
   cursor: pointer;
+  box-sizing: border-box;
 
   ${(props) => {
     if (props.$mode === 'checkbox') {
       return css`
-        min-height: 5rem;
         border-bottom: 0.1rem solid ${({ theme }) => theme.border_color};
 
         &:last-child {
@@ -144,7 +151,7 @@ export const Item = styled.div<{ $mode: string }>`
   }
 
   &:last-child {
-    border-radius: 0 0 1rem 1rem;
+    border-radius: ${({ $mode }) => ($mode === 'normal' ? '0 0 1rem 1rem' : 0)};
   }
   &:first-child {
     border-radius: 1rem 1rem 0 0;
@@ -152,7 +159,8 @@ export const Item = styled.div<{ $mode: string }>`
 
   @media screen and (max-width: ${MOBILE}px) {
     &:last-child {
-      border-radius: 0 0 0.6rem 0.6rem;
+      border-radius: ${({ $mode }) =>
+        $mode === 'normal' ? '0 0 0.6rem 0.6rem' : 0};
     }
     &:first-child {
       border-radius: 0.6rem 0.6rem 0 0;
@@ -160,9 +168,13 @@ export const Item = styled.div<{ $mode: string }>`
   }
 `;
 
+export const Content = styled(Col)`
+  text-align: left;
+`;
+
 export const Title = styled.span`
   font-size: 1.4rem;
-
+  width: 100%;
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1.2rem;
   }
@@ -170,6 +182,7 @@ export const Title = styled.span`
 
 export const Body = styled.span`
   font-size: 1rem;
+  width: 100%;
   color: ${({ theme }) => theme.gray_300};
 `;
 
@@ -179,6 +192,7 @@ export const Footer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  cursor: auto;
 `;
 
 const checkboxStyles = css`
