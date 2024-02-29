@@ -22,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
       font-size: 62.5%;
       box-sizing: border-box;
       
-      input:not([type=color]):not([type=checkbox]), button, textarea, select {
+      input:not([type=color]):not([type=checkbox]):not([type=text]), button, textarea, select {
         border-radius: 0;
       }
 
