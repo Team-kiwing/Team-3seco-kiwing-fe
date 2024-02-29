@@ -118,7 +118,7 @@
     "scrapeCount": 876,
     "tags": [
       { "id": 9, "tagName": "안드로이드" },
-      { "id": 19, "tagName": "자동차" }
+      { "id": 19, "tagName": "HW" }
     ],
     "isHot": true,
     "createdAt": "2024-02-28T10:53:14.705Z",
@@ -130,7 +130,7 @@
     "shareType": "PUBLIC",
     "scrapeCount": 765,
     "tags": [
-      { "id": 19, "tagName": "자동차" },
+      { "id": 19, "tagName": "HW" },
       { "id": 12, "tagName": "SW" }
     ],
     "isHot": true,
@@ -143,7 +143,7 @@
     "shareType": "PUBLIC",
     "scrapeCount": 654,
     "tags": [
-      { "id": 19, "tagName": "자동차" },
+      { "id": 19, "tagName": "HW" },
       { "id": 12, "tagName": "SW" }
     ],
     "isHot": true,
