@@ -12,6 +12,8 @@ export const lightTheme: object = {
   hotBadge_color: '#f84c4c',
   subscribed_background_color: '#FFE500',
   subscribed_color: '#E3A400',
+  basic_badge_background_color: '#D9D9D9',
+  basic_badge_text_color: '#fefefe',
 
   gray_600: '#565656',
   gray_500: '#5E5E5E',
@@ -42,6 +44,8 @@ export const darkTheme: object = {
   hotBadge_color: '#f84c4c',
   subscribed_background_color: '#FFE500',
   subscribed_color: '#E3A400',
+  basic_badge_background_color: '#565656',
+  basic_badge_text_color: '#e6e6e9',
 
   // 사용성 조사 필요, PR시에 명시해주기 혹은 사전에 논의해주기
   gray_600: '#565656',
