@@ -59,14 +59,14 @@ const SearchBar = ({
           fontSize={fontSize}
           placeholder={'검색어를 입력해주세요.'}
           style={{
-            paddingRight: '3.8rem',
-            paddingLeft: '.5rem',
+            padding: '1rem 4rem 1rem 1rem',
             height: '3rem',
           }}
           {...register(REGISTER, VALIDATE)}
           errorMessage={
             errors[REGISTER] ? errors[REGISTER]?.message?.toString() : ''
           }
+          // isOnlyBorderBottom={false}
         />
       </form>
       <IconWrapper
