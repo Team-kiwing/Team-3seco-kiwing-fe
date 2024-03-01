@@ -3,7 +3,7 @@ export const NETWORK = {
 };
 
 export const DOMAIN = {
-  //User
+  //Members
   PROFILE_IMAGE: '/members/me/profile-image',
   CHANGE_NICKNAME: '/members/me/nickname',
   AUTH_USER: '/members/me',
@@ -15,9 +15,9 @@ export const DOMAIN = {
 
   //Question
   CREATE_QUESTION: '/questions',
-  REPORT_QUESTION: (questionId: string) => `/questions/${questionId}/report`,
-  DELETE_QUESTION: (questionId: string) => `/questions/${questionId}`,
-  UPDATE_QUESTION: (questionId: string) => `/questions/${questionId}`,
+  REPORT_QUESTION: (questionId: number) => `/questions/${questionId}/report`,
+  DELETE_QUESTION: (questionId: number) => `/questions/${questionId}`,
+  UPDATE_QUESTION: (questionId: number) => `/questions/${questionId}`,
   SEARCH_QUESTION: '/questions/search',
 
   //Claims
@@ -25,15 +25,15 @@ export const DOMAIN = {
 
   //Bundle
   CREATE_BUNDLE: '/bundles',
-  SCRAPE_BUNDLE: (bundleId: string) => `/bundles/${bundleId}/scrape`,
-  ADD_QUESTIONS_TO_BUNDLE: (bundleId: string) =>
+  SCRAPE_BUNDLE: (bundleId: number) => `/bundles/${bundleId}/scrape`,
+  ADD_QUESTIONS_TO_BUNDLE: (bundleId: number) =>
     `/bundles/${bundleId}/questions`,
-  DELETE_QUESTIONS_FROM_BUNDLE: (bundleId: string) =>
+  DELETE_QUESTIONS_FROM_BUNDLE: (bundleId: number) =>
     `/bundles/${bundleId}/questions`,
-  GET_BUNDLE: (bundleId: string) => `/bundles/${bundleId}`,
-  DELETE_BUNDLE: (bundleId: string) => `/bundles/${bundleId}`,
-  UPDATE_BUNDLE: (bundleId: string) => `/bundles/${bundleId}`,
-  REORDER_BUNDLE: (bundleId: string) => `/bundles/${bundleId}/question-order`,
+  GET_BUNDLE: (bundleId: number) => `/bundles/${bundleId}`,
+  DELETE_BUNDLE: (bundleId: number) => `/bundles/${bundleId}`,
+  UPDATE_BUNDLE: (bundleId: number) => `/bundles/${bundleId}`,
+  REORDER_BUNDLE: (bundleId: number) => `/bundles/${bundleId}/question-order`,
   SEARCH_BUNDLE: '/bundles/search',
   MY_BUNDLE: '/bundles/my',
 
