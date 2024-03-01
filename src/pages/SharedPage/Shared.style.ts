@@ -18,6 +18,9 @@ export const TagFilterWrapper = styled.div`
   margin: 5rem auto;
   display: flex;
   justify-content: center;
+  @media screen and (max-width: ${MOBILE}px) {
+    margin: 2rem auto;
+  }
 `;
 
 export const SearchWrapper = styled.div`
