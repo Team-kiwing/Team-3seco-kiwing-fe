@@ -1,6 +1,6 @@
 export interface TagProps {
   id: number;
-  content: string;
+  name: string;
 }
 
 export interface BundleProps {

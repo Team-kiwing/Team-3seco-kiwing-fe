@@ -63,7 +63,7 @@ const BundleCard = ({
                   style={{ padding: '0 0.5rem 0 0' }}
                   $size={isMobileSize ? 's' : 1.5}
                   $state="hashTag"
-                  $text={item.content}
+                  $text={item.name}
                 />
               ))}
             </BundleCardHashTagWrapper>
