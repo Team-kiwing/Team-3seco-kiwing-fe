@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+import { Direction } from '@/types/dropdown';
+
 export interface OptionType {
   id: number;
   title: ReactNode;
@@ -9,12 +11,14 @@ export interface OptionType {
 }
 
 export interface DropDownProps {
-  width?: string;
-  height?: string;
+  width?: number;
+  optionHeight?: number;
+  height?: number;
   options: OptionType[];
   mode?: 'normal' | 'checkbox';
   onAdd?: (checkedItems: number[]) => void;
   isShow: boolean;
   setIsShow: (state: boolean) => void;
-  triggerId: string;
+  closeDropDown: (e: Event) => void;
+  direction: Direction;
 }
