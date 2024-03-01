@@ -4,6 +4,8 @@ export type Provider = 'GOOGLE';
 
 export type Roles = 'ROLE_USER' | 'ROLE_ADMIN';
 
+export type SortingType = 'LATEST' | 'POPULAR';
+
 export interface ImageRequest {
   file: File;
 }
@@ -152,7 +154,7 @@ export interface PageCondition {
 }
 
 export interface BundleSearchRequest extends PageCondition {
-  sortingType: string;
+  sortingType: SortingType;
   tagIds: number[];
   keyword: string;
 }
