@@ -46,8 +46,9 @@ export interface TokenRequest {
   refreshToken: string;
 }
 
-export interface TokenResponse extends TokenRequest {
+export interface TokenResponse {
   accessToken: string;
+  refreshToken: string;
 }
 
 export interface QuestionCreateRequest {
@@ -142,7 +143,15 @@ export interface BundlesBasic {
   createdAt: string;
   updatedAt: string;
 }
-export interface Bundle extends BundlesBasic {
+export interface Bundle {
+  id: number;
+  name: string;
+  shareType: string;
+  scrapeCount: number;
+  tags: Tag[];
+  isHot: boolean;
+  createdAt: string;
+  updatedAt: string;
   questions: Question[];
 }
 
@@ -153,10 +162,12 @@ export interface PageCondition {
   size: number;
 }
 
-export interface BundleSearchRequest extends PageCondition {
+export interface BundleSearchRequest {
   sortingType: SortingType;
   tagIds: number[];
   keyword: string;
+  page: number;
+  size: number;
 }
 
 export interface BundleSearchResponse {
@@ -164,4 +175,14 @@ export interface BundleSearchResponse {
   currentPage: number;
   pageSize: number;
   content: BundlesBasic[];
+}
+
+export interface BundleDetailRequest {
+  bundleId: number;
+  showOnlyMyQuestions?: boolean;
+}
+
+export interface BundleReorderRequest {
+  bundleId: number;
+  questionIds: number[];
 }
