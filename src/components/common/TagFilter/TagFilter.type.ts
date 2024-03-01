@@ -1,6 +1,6 @@
 export interface TagProps {
   id: number;
-  name: string;
+  content: string;
 }
 
 export interface TagFilterProps extends React.HTMLAttributes<HTMLDivElement> {

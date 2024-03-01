@@ -73,7 +73,7 @@ const TagFilter = ({
                   $size={isMobileSize ? 'xs' : 's'}
                   style={{ margin: '3px' }}
                   $isHover={true}
-                  $text={tag.name}
+                  $text={tag.content}
                 />
               );
             })}
