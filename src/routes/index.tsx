@@ -28,7 +28,7 @@ const Router = () => {
     <>
       <WebNavBar />
       <MobileTopNavBar />
-      <Layout id="Layout">
+      <Layout>
         <Routes>
           {/* 프레이머 모션 용 */}
           <Route>
