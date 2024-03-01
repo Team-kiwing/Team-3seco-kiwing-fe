@@ -41,7 +41,7 @@ export const CardWrapper = styled.div`
   display: grid;
   margin: 0 auto;
   grid-row-gap: 2rem;
-  grid-column-gap: 10rem;
+  grid-column-gap: 7rem;
   grid-template-columns: repeat(2, 1fr);
   box-sizing: border-box;
   justify-items: center;
