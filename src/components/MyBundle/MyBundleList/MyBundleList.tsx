@@ -44,26 +44,6 @@ const MyBundleList = ({
     });
   };
 
-  // const handleTags = async () => {
-  //   const res = await getTag();
-  //   console.log(res);
-  //   handleAddButtonClick();
-  // };
-
-  // const { setModalOpen } = useModal();
-
-  // if (isLoading || !tags) {
-  //   console.log(tags);
-  //   return <div>로딩중</div>;
-  // }
-
-  // const handleAddButtonClick = () => {
-  //   setModalOpen({
-  //     title: '질문 꾸러미',
-  //     content: <MyBundleModal tags={tags} />,
-  //   });
-  // };
-
   const handleAddBundle = () => {
     // @TODO 꾸러미 추가 모달 열기
     handleAddButtonClick();
@@ -71,7 +51,7 @@ const MyBundleList = ({
 
   return (
     <Container $isMobileSize={isMobileSize}>
-      <BundleWrapper>
+      <BundleWrapper $isMobileSize={isMobileSize}>
         {bundles.map((bundle) => (
           <MyBundleItem
             key={bundle.id}

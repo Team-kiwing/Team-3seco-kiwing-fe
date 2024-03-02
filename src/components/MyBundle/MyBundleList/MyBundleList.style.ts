@@ -10,13 +10,13 @@ export const Container = styled.div<{ $isMobileSize: boolean }>`
   gap: 1.5rem;
 `;
 
-export const BundleWrapper = styled.div`
+export const BundleWrapper = styled.div<{ $isMobileSize: boolean }>`
   width: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: ${({ $isMobileSize }) => ($isMobileSize ? '1rem' : '2rem')};
 `;
 
 //Modal
