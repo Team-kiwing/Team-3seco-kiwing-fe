@@ -5,9 +5,7 @@ import { MOBILE, MOBILE_MIN } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
 export const BundleCardWrapper = styled.div`
-  width: 90%;
-  max-width: 40rem;
-  min-width: 26rem;
+  width: 100%;
 `;
 
 export const BundleCardItemWrapper = styled(Col)`
