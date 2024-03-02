@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { FONT_REGULAR } from '@/constants';
+import { FONT_MEDIUM, FONT_REGULAR, MOBILE } from '@/constants';
 
 import { SelectorStickProps, SelectorStyleProps } from './Selector.type';
 
@@ -9,7 +9,7 @@ export const SelectWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  width: 100%;
+  width: fit-content;
 `;
 
 export const SelectStick = styled.div<SelectorStickProps>`
@@ -24,21 +24,21 @@ const Content = styled.div<SelectorStyleProps>`
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${MOBILE}px) {
     font-size: ${({ $size }) => `${$size - 0.1}rem`};
   }
 `;
 
 export const FirstContent = styled(Content)`
-  color: ${({ $isSelected, theme }) =>
-    $isSelected ? theme.primary_color : theme.gray_400};
-  font-weight: ${({ $isSelected }) =>
-    $isSelected ? FONT_REGULAR + 50 : FONT_REGULAR};
+  color: ${({ $setIsState, theme }) =>
+    $setIsState ? theme.primary_color : theme.gray_400};
+  font-weight: ${({ $setIsState }) =>
+    $setIsState ? FONT_MEDIUM : FONT_REGULAR};
 `;
 
 export const SecondContent = styled(Content)`
-  color: ${({ $isSelected, theme }) =>
-    $isSelected ? theme.gray_400 : theme.primary_color};
-  font-weight: ${({ $isSelected }) =>
-    $isSelected ? FONT_REGULAR : FONT_REGULAR + 50};
+  color: ${({ $setIsState, theme }) =>
+    $setIsState ? theme.gray_400 : theme.primary_color};
+  font-weight: ${({ $setIsState }) =>
+    $setIsState ? FONT_REGULAR : FONT_MEDIUM};
 `;

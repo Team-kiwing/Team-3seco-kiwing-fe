@@ -32,18 +32,19 @@ export const ModalBody = styled.div`
   max-width: 800px;
   max-height: 600px;
   min-width: 270px;
-  min-height: 100px;
+  min-height: 150px;
 
   position: relative;
 
-  background-color: #ffffff;
-  border-radius: ${BORDER_WEB}px;
+  color: ${(props) => props.theme.primary_color};
+  background-color: ${(props) => props.theme.background_color};
+  border-radius: ${BORDER_WEB}rem;
   z-index: ${MODAL_LAYOUT};
 
   @media screen and (max-width: ${MOBILE}px) {
     max-width: 90%;
     max-height: 60%;
-    border-radius: ${BORDER_MOBILE}px;
+    border-radius: ${BORDER_MOBILE}rem;
   }
 `;
 
@@ -87,10 +88,10 @@ export const MobileModalCloseArea = styled.div`
 
   &:active {
     background-color: ${(props) => props.theme.gray_200};
-    border-radius: ${BORDER_WEB}px;
+    border-radius: ${BORDER_WEB}rem;
   }
 
   @media screen and (max-width: ${MOBILE}px) {
-    border-radius: ${BORDER_MOBILE}px;
+    border-radius: ${BORDER_MOBILE}rem;
   }
 `;
