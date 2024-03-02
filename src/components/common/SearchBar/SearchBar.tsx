@@ -1,6 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 import { MdSearch } from 'react-icons/md';
 
+import useResize from '@/hooks/useResize';
+
 import IconWrapper from '../IconWrapper';
 import Input from '../Input';
 import { SearchBarWrapper } from './SearchBar.style';
@@ -50,6 +52,8 @@ const SearchBar = ({
     }
   };
 
+  const { isMobileSize } = useResize();
+
   return (
     <SearchBarWrapper $maxWidth={maxWidth}>
       <form onSubmit={handleSubmit(SearchSubmit)}>
@@ -59,8 +63,8 @@ const SearchBar = ({
           fontSize={fontSize}
           placeholder={'검색어를 입력해주세요.'}
           style={{
-            padding: '1rem 4rem 1rem 1rem',
-            height: '3rem',
+            padding: '1rem 5rem 1rem 1rem',
+            height: isMobileSize ? '3rem' : '4rem',
           }}
           {...register(REGISTER, VALIDATE)}
           errorMessage={
@@ -70,7 +74,7 @@ const SearchBar = ({
         />
       </form>
       <IconWrapper
-        $size={'s'}
+        $size={isMobileSize ? 's' : 'm'}
         onClick={SearchSubmit}
       >
         <MdSearch />
