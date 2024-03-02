@@ -6,6 +6,7 @@ import Input from '@/components/common/Input';
 import TagFilter from '@/components/common/TagFilter';
 import Toggle from '@/components/common/Toggle';
 import { notify } from '@/hooks/toast';
+import useResize from '@/hooks/useResize';
 import { modalStore } from '@/stores';
 import { Tag } from '@/types';
 
@@ -40,6 +41,7 @@ export const MyBundleModal = ({ tags }: { tags: Tag[] }) => {
 
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [isShared, setIsShared] = useState(false);
+  const { isMobileSize } = useResize();
 
   useEffect(() => {
     setValue('selectedTagsField', selectedTags); // 추가
@@ -90,7 +92,7 @@ export const MyBundleModal = ({ tags }: { tags: Tag[] }) => {
           <Toggle
             on={isShared}
             onChange={() => setIsShared(!isShared)}
-            height="3.1rem"
+            height={isMobileSize ? '3.1rem' : '4rem'}
             width="15rem"
             isContentShow={true}
             fontSize="1.6rem"
@@ -103,6 +105,7 @@ export const MyBundleModal = ({ tags }: { tags: Tag[] }) => {
             text={'추가'}
             width="100%"
             type="submit"
+            height={isMobileSize ? '3.5rem' : '4.4rem'}
           />
         </ButtonContainer>
       </form>
