@@ -64,10 +64,8 @@ const MyBundleList = ({
   //   });
   // };
 
-  console.log(tags);
   const handleAddBundle = () => {
     // @TODO 꾸러미 추가 모달 열기
-    console.log('꾸러미 추가');
     handleAddButtonClick();
   };
 
