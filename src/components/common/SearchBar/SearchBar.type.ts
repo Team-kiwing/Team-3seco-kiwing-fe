@@ -1,7 +1,11 @@
+import { RegisterOptions } from 'react-hook-form';
+
 export interface SearchBarProps extends React.HTMLAttributes<HTMLInputElement> {
-  handleSearchIcon?: () => void;
-  handleFormSubmit?: () => void;
+  fontSize?: number;
+  handleSearchSubmit: () => void;
   maxWidth?: string;
+  REGISTER: string;
+  VALIDATE?: RegisterOptions;
 }
 
 export interface SearchBarStyleProps {
