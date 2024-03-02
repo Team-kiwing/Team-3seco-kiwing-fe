@@ -70,7 +70,7 @@ const SearchBar = ({
           errorMessage={
             errors[REGISTER] ? errors[REGISTER]?.message?.toString() : ''
           }
-          // isOnlyBorderBottom={false}
+          isOnlyBorderBottom={false}
         />
       </form>
       <IconWrapper
