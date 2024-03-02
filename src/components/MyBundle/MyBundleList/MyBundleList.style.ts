@@ -16,5 +16,20 @@ export const BundleWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
+`;
+
+//Modal
+export const ModalContainer = styled.div`
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 `;

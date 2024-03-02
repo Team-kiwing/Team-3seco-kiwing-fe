@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
@@ -8,6 +8,8 @@ import Toggle from '@/components/common/Toggle';
 import { notify } from '@/hooks/toast';
 import { modalStore } from '@/stores';
 import { Tag } from '@/types';
+
+import { ButtonContainer, ModalContainer } from './MyBundleList.style';
 
 const MyBundleModalValidation = {
   maxLength: {
@@ -21,26 +23,45 @@ export const MyBundleModal = ({ tags }: { tags: Tag[] }) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
-  } = useForm<{ bundleNameField: string }>({
+  } = useForm<{
+    bundleNameField: string;
+    selectedTagsField: Tag[];
+    isSharedField: boolean;
+  }>({
     mode: 'onChange',
-    defaultValues: { bundleNameField: '' },
+    defaultValues: {
+      bundleNameField: '',
+      selectedTagsField: [],
+      isSharedField: false,
+    },
   });
 
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [isShared, setIsShared] = useState(false);
 
-  const onValid: SubmitHandler<{ bundleNameField: string }> = ({
-    bundleNameField,
-  }) => {
-    // 꾸러미 생성 API 호출
-    console.log(bundleNameField);
+  useEffect(() => {
+    setValue('selectedTagsField', selectedTags); // 추가
+  }, [selectedTags, setValue]);
 
-    // 성공시
+  useEffect(() => {
+    setValue('isSharedField', isShared); // 추가
+  }, [isShared, setValue]);
+
+  const onValid: SubmitHandler<{
+    bundleNameField: string;
+    selectedTagsField: Tag[];
+    isSharedField: boolean;
+  }> = ({ bundleNameField, selectedTagsField, isSharedField }) => {
+    // @TODO 꾸러미 생성 API 호출
+    console.log(bundleNameField, selectedTagsField, isSharedField);
+
     notify({
       type: 'default',
       text: '꾸러미를 생성했습니다!',
     });
+
     closeModal();
   };
 
@@ -51,50 +72,40 @@ export const MyBundleModal = ({ tags }: { tags: Tag[] }) => {
   };
 
   return (
-    <>
+    <ModalContainer>
       <TagFilter
         tagList={tags}
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
       />
       <form onSubmit={handleSubmit(onValid, onInValid)}>
-        <div>
-          <Input
-            {...register('bundleNameField', MyBundleModalValidation)}
-            width="100%"
-            label="질문 꾸러미 이름"
-            placeholder={'꾸러미 이름을 입력해주세요'}
-            errorMessage={errors.bundleNameField?.message}
-          />
-          <div
+        <Input
+          {...register('bundleNameField', MyBundleModalValidation)}
+          width="100%"
+          label="질문 꾸러미 이름"
+          placeholder={'꾸러미 이름을 입력해주세요'}
+          errorMessage={errors.bundleNameField?.message}
+        />
+        <ButtonContainer>
+          <Toggle
+            on={isShared}
+            onChange={() => setIsShared(!isShared)}
+            height="3.1rem"
+            width="15rem"
+            isContentShow={true}
+            fontSize="1.6rem"
             style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: '2rem',
+              paddingTop: '1rem',
             }}
-          >
-            <Toggle
-              on={isShared}
-              onChange={() => setIsShared(!isShared)}
-              height="4rem"
-              width="15rem"
-              style={{
-                paddingTop: '0.8rem',
-              }}
-              isContentShow={true}
-              fontSize="1.6rem"
-            />
-            <Button
-              style={{ marginTop: '1rem' }}
-              text={'추가'}
-              width="100%"
-              type="submit"
-              height="4.4rem"
-            />
-          </div>
-        </div>
+          />
+          <Button
+            style={{ marginTop: '1rem' }}
+            text={'추가'}
+            width="100%"
+            type="submit"
+          />
+        </ButtonContainer>
       </form>
-    </>
+    </ModalContainer>
   );
 };
