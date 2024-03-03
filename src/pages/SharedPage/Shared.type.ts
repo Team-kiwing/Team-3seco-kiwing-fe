@@ -1,15 +1,16 @@
-export interface BundleProps {
-  id: number;
-  name: string;
-  shareType: string;
-  scrapeCount: number;
-  tags: TagProps[];
-  isHot: boolean;
-  createdAt: string;
-  updatedAt: string;
+import { BundlesBasic } from '@/types';
+import { Tag } from '@/types';
+
+export interface BundleFilterProps {
+  selectedTags: Tag[];
+  bundles: BundlesBasic[];
 }
 
-export interface TagProps {
-  id: number;
-  name: string;
+export interface BundleDisplayProps {
+  bundles: BundlesBasic[];
+  filteredBundles: BundlesBasic[];
+}
+
+export interface BundleFilterResult {
+  filteredBundles: BundlesBasic[];
 }
