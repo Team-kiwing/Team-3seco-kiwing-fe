@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
+import BorderBox from '@/components/common/BorderBox';
 import IconWrapper from '@/components/common/IconWrapper';
-import ShadowBox from '@/components/common/ShadowBox';
 import useAccordion from '@/hooks/useAccordion';
 import { themeStore } from '@/stores';
 
@@ -53,7 +53,7 @@ const MyBundleItem = ({
 
   return (
     <>
-      <ShadowBox
+      <BorderBox
         width="100%"
         height="fit-content"
         isActive={isActiveItem()}
@@ -79,20 +79,20 @@ const MyBundleItem = ({
             </IconWrapper>
           </RightItem>
         )}
-      </ShadowBox>
+      </BorderBox>
       {isMobileSize && (
         <BodyWrapper
           $isDarkMode={isDarkMode}
           ref={parentRef}
         >
-          <ShadowBox
+          <BorderBox
             ref={childRef}
-            width="100%"
+            width="auto"
             height="45rem"
             style={{ fontSize: 'inherit' }}
           >
             <div>{bundle.name}의 상세 질문 목록입니다.</div>
-          </ShadowBox>
+          </BorderBox>
         </BodyWrapper>
       )}
     </>

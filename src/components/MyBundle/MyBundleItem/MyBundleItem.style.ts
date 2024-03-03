@@ -36,9 +36,8 @@ export const BodyWrapper = styled.div<{
   transition:
     height 0.5s ease,
     opacity 0.5s ease;
-  box-shadow: 0.2rem 0.2rem 2rem 0.5rem
-    ${(props) =>
-      props.$isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};
+
+  box-sizing: border-box;
 
   font-size: calc(${WEB_FONT_SIZE}rem - 0.2rem);
   @media screen and (max-width: ${MOBILE}px) {
