@@ -26,7 +26,6 @@ export const enableScrollLock = () => {
 
 export const disableScrollLock = () => {
   const { body } = document;
-  const isMobile = detectMobileDevice();
 
   if (body.getAttribute('scrollY')) {
     body.style.removeProperty('overflow');
@@ -35,9 +34,7 @@ export const disableScrollLock = () => {
     body.style.removeProperty('left');
     body.style.removeProperty('right');
     body.style.removeProperty('bottom');
-    if (!isMobile) {
-      body.style.removeProperty('padding-right');
-    }
+    body.style.removeProperty('padding-right');
 
     window.scrollTo(0, Number(body.getAttribute('scrollY')));
 
