@@ -28,7 +28,7 @@ const Auth = () => {
       {!isMobileSize && (
         <AuthLogo>
           <img
-            src="./kiwing_square_white.png"
+            src="./kiwing_circle_green.png"
             alt="kiwing logo"
           />
         </AuthLogo>
