@@ -3,6 +3,7 @@ import { detectMobileDevice } from './isMobile';
 export const enableScrollLock = () => {
   const { body } = document;
   const isMobile = detectMobileDevice();
+  const hasScroll = window.innerWidth > document.documentElement.clientWidth;
 
   if (!body.getAttribute('scrollY')) {
     const pageY = window.scrollY;
@@ -16,7 +17,9 @@ export const enableScrollLock = () => {
     body.style.bottom = '0px';
     body.style.top = `-${pageY}px`;
     if (!isMobile) {
-      body.style.paddingRight = '0.4rem';
+      if (hasScroll) {
+        body.style.paddingRight = '0.4rem';
+      }
     }
   }
 };
