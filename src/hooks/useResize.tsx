@@ -7,7 +7,6 @@ const useResize = () => {
     window.innerWidth <= MOBILE
   );
 
-  console.log(isMobileSize, window.innerWidth);
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
