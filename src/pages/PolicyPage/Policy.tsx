@@ -20,7 +20,7 @@ const Policy = () => {
         backgroundColor={`${theme.symbol_color}`}
         text={'이전 페이지로 돌아가기'}
         textSize={'1.6rem'}
-        style={{ margin: '0 auto', padding: '2.5rem' }}
+        style={{ margin: '0 auto', padding: '2.5rem', wordBreak: 'keep-all' }}
       />
     </PolicyPageWrapper>
   );
