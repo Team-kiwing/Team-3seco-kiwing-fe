@@ -34,6 +34,10 @@ export const GlobalStyle = createGlobalStyle`
       -webkit-tap-highlight-color: transparent;
     }
 
+    #root {
+      height: 100%;
+    }
+
     button {
     cursor: pointer;
     background-color: Transparent;
