@@ -11,7 +11,7 @@ import { Col } from '@/styles/globalStyles';
 
 export const PolicyPageWrapper = styled(Col)`
   width: 70%;
-  margin: 0 auto;
+  margin: 6rem auto 0 auto;
   gap: 3rem;
 
   @media screen and (max-width: ${MOBILE}px) {
