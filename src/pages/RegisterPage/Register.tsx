@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Input from '@/components/common/Input';
 import TagFilter from '@/components/common/TagFilter';
+import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
 import { Tag } from '@/types';
 
@@ -23,9 +24,12 @@ const Register = () => {
   const [isChecked, setIsChecked] = useState(false);
   const handleRegisterSubmit = () => {
     if (isChecked) {
-      alert('가입 완료!');
+      notify({ type: 'success', text: '가입에 성공했습니다 !' });
     } else {
-      alert('이용약관에 동의해야 가입할 수 있습니다.');
+      notify({
+        type: 'error',
+        text: '이용약관에 동의해야 서비스에 가입할 수 있습니다.',
+      });
     }
   };
 
