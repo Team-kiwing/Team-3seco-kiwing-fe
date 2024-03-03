@@ -42,7 +42,6 @@ export const Label = styled.label<InputStyledProps>`
 export const StyledInput = styled.input<InputStyledProps>`
   color: ${({ theme }) => theme.primary_color};
   background-color: transparent;
-  /* padding: 0.2rem 0.4rem 0.2rem 0.4rem; */
   padding: ${(props) =>
     props.$isOnlyBorderBottom ? '0.2rem 0.4rem' : '0.5rem 1rem'};
   box-sizing: border-box;
