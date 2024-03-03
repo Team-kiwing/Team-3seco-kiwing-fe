@@ -54,7 +54,7 @@ const Register = () => {
       )}
       <RegisterFormWrapper $isMobile={isMobileSize}>
         <RegisterHeader $isMobile={isMobileSize}>
-          안녕하세요. 저희는{' '}
+          안녕하세요. 저희는
           <span
             style={{
               color: isDarkMode
