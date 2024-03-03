@@ -28,6 +28,7 @@ const Register = () => {
   const theme = useTheme();
 
   const { data: tags, isLoading } = useFetchTags();
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
   const [isChecked, setIsChecked] = useState(false);
   const handleRegisterSubmit = () => {
@@ -40,8 +41,6 @@ const Register = () => {
       });
     }
   };
-
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
   return (
     <RegisterPageWrapper>
