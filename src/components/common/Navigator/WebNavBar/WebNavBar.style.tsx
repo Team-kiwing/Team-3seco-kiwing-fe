@@ -1,20 +1,27 @@
 import styled from 'styled-components';
 
-import { FONT_MEDIUM, MOBILE } from '@/constants';
+import { FONT_MEDIUM, MOBILE, NAVIGATER } from '@/constants';
 import { Row } from '@/styles/globalStyles';
 
 import { WebNavBarItemProps } from './WebNavBar.type';
 
 export const WebNavBarWrapper = styled.nav`
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
   padding: 3rem 2rem 0.5rem 2rem;
+  z-index: ${NAVIGATER};
 
   max-width: 1140px;
   font-size: 2rem;
   font-weight: ${FONT_MEDIUM};
+  background-color: ${({ theme }) => theme.background_color};
   color: ${(props) => props.theme.primary_color};
   user-select: none;
 
