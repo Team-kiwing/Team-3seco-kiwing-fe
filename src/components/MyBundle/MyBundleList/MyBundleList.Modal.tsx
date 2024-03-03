@@ -10,27 +10,23 @@ import useResize from '@/hooks/useResize';
 import { modalStore } from '@/stores';
 import { Tag } from '@/types';
 
+import { MODAL, MyBundleModalValidation } from './MyBundleList.const';
 import { ButtonContainer, ModalContainer } from './MyBundleList.style';
+import { AddBundleModalProps, FormField } from './MyBundleList.type';
 
-const MyBundleModalValidation = {
-  maxLength: {
-    value: 20,
-    message: '꾸러미 이름은 최대 20자까지 작성 가능합니다.',
-  },
-};
+const AddBundleModal = ({ tags }: AddBundleModalProps) => {
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [isShared, setIsShared] = useState(false);
 
-export const MyBundleModal = ({ tags }: { tags: Tag[] }) => {
+  const { isMobileSize } = useResize();
   const { closeModal } = modalStore();
+
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<{
-    bundleNameField: string;
-    selectedTagsField: Tag[];
-    isSharedField: boolean;
-  }>({
+  } = useForm<FormField>({
     mode: 'onChange',
     defaultValues: {
       bundleNameField: '',
@@ -39,29 +35,26 @@ export const MyBundleModal = ({ tags }: { tags: Tag[] }) => {
     },
   });
 
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
-  const [isShared, setIsShared] = useState(false);
-  const { isMobileSize } = useResize();
-
+  // register로 관리할 수 없는 필드는 useEffect로 관리
   useEffect(() => {
-    setValue('selectedTagsField', selectedTags); // 추가
+    setValue('selectedTagsField', selectedTags);
   }, [selectedTags, setValue]);
 
   useEffect(() => {
-    setValue('isSharedField', isShared); // 추가
+    setValue('isSharedField', isShared);
   }, [isShared, setValue]);
 
-  const onValid: SubmitHandler<{
-    bundleNameField: string;
-    selectedTagsField: Tag[];
-    isSharedField: boolean;
-  }> = ({ bundleNameField, selectedTagsField, isSharedField }) => {
+  const onValid: SubmitHandler<FormField> = ({
+    bundleNameField,
+    selectedTagsField,
+    isSharedField,
+  }) => {
     // @TODO 꾸러미 생성 API 호출
     console.log(bundleNameField, selectedTagsField, isSharedField);
 
     notify({
       type: 'default',
-      text: '꾸러미를 생성했습니다!',
+      text: MODAL.SUCCESS_NOTIFY,
     });
 
     closeModal();
@@ -84,8 +77,8 @@ export const MyBundleModal = ({ tags }: { tags: Tag[] }) => {
         <Input
           {...register('bundleNameField', MyBundleModalValidation)}
           width="100%"
-          label="질문 꾸러미 이름"
-          placeholder={'꾸러미 이름을 입력해주세요'}
+          label={MODAL.BUNDLE_NAME_LABEL}
+          placeholder={MODAL.BUNDLE_NAME_PLACEHOLDER}
           errorMessage={errors.bundleNameField?.message}
         />
         <ButtonContainer>
@@ -102,7 +95,7 @@ export const MyBundleModal = ({ tags }: { tags: Tag[] }) => {
           />
           <Button
             style={{ marginTop: '1rem' }}
-            text={'추가'}
+            text={MODAL.SUBMIT_BUTTON_TEXT}
             width="100%"
             type="submit"
             height={isMobileSize ? '3.5rem' : '4.4rem'}
@@ -112,3 +105,5 @@ export const MyBundleModal = ({ tags }: { tags: Tag[] }) => {
     </ModalContainer>
   );
 };
+
+export default AddBundleModal;

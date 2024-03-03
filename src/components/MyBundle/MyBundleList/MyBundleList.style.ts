@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+//MyBundleList
 export const Container = styled.div<{ $isMobileSize: boolean }>`
   width: ${({ $isMobileSize }) => ($isMobileSize ? '100%' : '20%')};
   height: 80%;
@@ -19,7 +20,7 @@ export const BundleWrapper = styled.div<{ $isMobileSize: boolean }>`
   gap: ${({ $isMobileSize }) => ($isMobileSize ? '1rem' : '2rem')};
 `;
 
-//Modal
+//AddBundleModal
 export const ModalContainer = styled.div`
   padding: 1rem;
   display: flex;
