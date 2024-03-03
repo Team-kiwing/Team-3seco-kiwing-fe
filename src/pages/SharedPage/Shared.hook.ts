@@ -2,27 +2,17 @@ import { useEffect, useState } from 'react';
 
 import { BundlesBasic } from '@/types';
 
-import { BundleProps, TagProps } from './Shared.type';
-
-interface BundleFilterProps {
-  selectedTags: TagProps[];
-  bundles: BundleProps[];
-}
-
-interface BundleDisplayProps {
-  bundles: BundlesBasic[];
-  filteredBundles: BundlesBasic[];
-}
-
-interface BundleFilterResult {
-  filteredBundles: BundleProps[];
-}
+import {
+  BundleDisplayProps,
+  BundleFilterProps,
+  BundleFilterResult,
+} from './Shared.type';
 
 export const useBundleFilter = ({
   selectedTags,
   bundles,
 }: BundleFilterProps): BundleFilterResult => {
-  const [filteredBundles, setFilteredBundles] = useState<BundleProps[]>([]);
+  const [filteredBundles, setFilteredBundles] = useState<BundlesBasic[]>([]);
 
   useEffect(() => {
     if (selectedTags.length !== 0) {

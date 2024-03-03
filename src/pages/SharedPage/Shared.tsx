@@ -4,6 +4,7 @@ import BundleCard from '@/components/common/BundleCard';
 import SearchBar from '@/components/common/SearchBar';
 import Selector from '@/components/common/Selector';
 import TagFilter from '@/components/common/TagFilter';
+import { BundlesBasic, Tag } from '@/types';
 
 import { SelectorConstants } from './Shared.const';
 import { useBundleDisplay } from './Shared.hook';
@@ -15,13 +16,12 @@ import {
   SharedWrapper,
   TagFilterWrapper,
 } from './Shared.style';
-import { BundleProps, TagProps } from './Shared.type';
 
 const Shared = () => {
-  const [selectedTags, setSelectedTags] = useState<TagProps[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [isRecent, setIsRecent] = useState<boolean>(true);
-  const [bundles, setBundles] = useState<BundleProps[]>([]);
-  const [tags, setTags] = useState<TagProps[]>([]);
+  const [bundles, setBundles] = useState<BundlesBasic[]>([]);
+  const [tags, setTags] = useState<Tag[]>([]);
   const { filteredBundles } = useBundleFilter({ selectedTags, bundles });
   const {
     recentBundles,
