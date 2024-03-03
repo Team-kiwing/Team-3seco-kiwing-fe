@@ -56,6 +56,10 @@ export const StyledInput = styled.input<InputStyledProps>`
   &::placeholder {
     color: ${({ theme }) => theme.gray_300};
   }
+
+  &:disabled {
+    color: ${({ theme }) => theme.gray_400};
+  }
 `;
 
 export const ErrorMessage = styled.div<InputStyledProps>`
