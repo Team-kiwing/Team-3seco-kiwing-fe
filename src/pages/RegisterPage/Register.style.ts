@@ -122,7 +122,9 @@ export const RegisterSubmitButton = styled.button<RegisterPageStyleProps>`
   color: ${({ theme }) => theme.primary_white_text_color};
   background-color: ${({ theme }) => theme.symbol_color};
 
-  &:hover {
-    background-color: ${({ theme }) => theme.symbol_secondary_color};
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: ${({ theme }) => theme.symbol_secondary_color};
+    }
   }
 `;
