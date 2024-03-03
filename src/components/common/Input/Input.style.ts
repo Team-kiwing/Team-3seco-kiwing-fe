@@ -58,6 +58,7 @@ export const StyledInput = styled.input<InputStyledProps>`
 
   &:disabled {
     color: ${({ theme }) => theme.gray_400};
+    cursor: not-allowed;
   }
 `;
 
