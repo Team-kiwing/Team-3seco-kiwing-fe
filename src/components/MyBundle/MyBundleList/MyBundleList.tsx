@@ -8,6 +8,7 @@ import MyBundleItem from '../MyBundleItem';
 import { useAddBundleModal, useFetchTags } from './MyBundleList.hook';
 import { BundleWrapper, Container } from './MyBundleList.style';
 import { MyBundleListProps } from './MyBundleList.type';
+import BundleListSkeleton from './Skeletion';
 
 const MyBundleList = ({
   bundles,
@@ -20,9 +21,12 @@ const MyBundleList = ({
   const { data: tags, isLoading } = useFetchTags();
   const { handleAddBundleClick } = useAddBundleModal(tags);
 
-  // @TODO 스켈레톤 UI 적용하기
   if (!tags || isLoading) {
-    return <div>로딩중</div>;
+    return (
+      <Container $isMobileSize={isMobileSize}>
+        <BundleListSkeleton />
+      </Container>
+    );
   }
 
   return (
