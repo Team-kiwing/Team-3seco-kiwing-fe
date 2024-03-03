@@ -16,11 +16,12 @@ export const RegisterLogo = styled.div`
 
   & > img {
     width: 100%;
+    max-width: 30rem;
   }
 `;
 
 export const RegisterHeader = styled.div<RegisterPageStyleProps>`
-  font-size: ${(props) => (props.$isMobile ? '3rem' : '5rem')};
+  font-size: ${({ $isMobile }) => ($isMobile ? '3rem' : '5rem')};
   font-weight: ${FONT_BOLD};
   margin-bottom: 5rem;
   word-break: keep-all;
@@ -29,13 +30,13 @@ export const RegisterHeader = styled.div<RegisterPageStyleProps>`
 
 export const RegisterFormWrapper = styled(Col)<RegisterPageStyleProps>`
   width: ${(props) => (props.$isMobile ? '100%' : '60%')};
-  padding: ${(props) => (props.$isMobile ? '' : '0 5rem')};
+  padding: ${({ $isMobile }) => ($isMobile ? '' : '0 5rem')};
   margin-bottom: 3rem;
 `;
 
 export const RegisterLabel = styled.label<RegisterPageStyleProps>`
   display: inline-block;
-  font-size: ${(props) => (props.$isMobile ? '1.6rem' : '1.8rem')};
+  font-size: ${({ $isMobile }) => ($isMobile ? '1.6rem' : '1.8rem')};
   margin-bottom: 1.5rem;
   color: ${({ theme }) => theme.primary_color};
 `;
@@ -54,7 +55,6 @@ export const RegisterCheckboxWrapper = styled(Row)<RegisterPageStyleProps>`
 
     & > a {
       color: ${({ theme }) => theme.symbol_secondary_color};
-      /* text-decoration: none; */
     }
   }
 
@@ -116,9 +116,9 @@ export const RegisterCheckbox = styled.input`
 
 export const RegisterSubmitButton = styled.button<RegisterPageStyleProps>`
   width: 10rem;
-  padding: ${(props) => (props.$isMobile ? '1.2rem' : '1.4rem')};
+  padding: ${({ $isMobile }) => ($isMobile ? '1.2rem' : '1.4rem')};
   border-radius: 10rem;
-  font-size: ${(props) => (props.$isMobile ? '1.5rem' : '1.7rem')};
+  font-size: ${({ $isMobile }) => ($isMobile ? '1.5rem' : '1.7rem')};
   color: ${({ theme }) => theme.primary_white_text_color};
   background-color: ${({ theme }) => theme.symbol_color};
 
