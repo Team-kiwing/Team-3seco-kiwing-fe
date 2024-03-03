@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
 
 import Badge from '../Badge';
@@ -23,7 +22,7 @@ import { QuestionCardProps } from './QuestionCard.type';
 /**
  * @summary 사용법                 
  *              <QuestionCard
-                  hashTags={questionItem.tags}
+                  tags={questionItem.tags}
                   id={questionItem.id}
                   question={questionItem.question}
                   subscribedCount={questionItem.subscribed}
@@ -42,18 +41,15 @@ import { QuestionCardProps } from './QuestionCard.type';
 const QuestionCard = ({
   id,
   question,
-  hashTags,
+  tags,
   subscribedCount,
   isHot,
   isLogin,
 }: QuestionCardProps) => {
   const { isMobileSize } = useResize();
   const { handleReportClick } = useReportModal();
-  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-
-  const handleAddToggleClick = () => {
-    setIsDropDownOpen(true);
-  };
+  const { isShow, setIsShow, openDropDown, triggerId, closeDropDown } =
+    useDropDown(String(id));
 
   const handleAdd = (checkedItems: number[]) => {
     //todo 내 리스트에 추가하기 API 연동
@@ -74,20 +70,23 @@ const QuestionCard = ({
         height="fit-content"
       >
         {isLogin && (
-          <QuestionCardAddButton>
+          <QuestionCardAddButton style={{ zIndex: '2' }}>
             <CircleButton
-              id={String(id)}
-              onClick={handleAddToggleClick}
+              style={{ position: 'relative' }}
+              size={isMobileSize ? '5rem' : '6rem'}
+              id={triggerId}
+              onClick={openDropDown}
             />
             <DropDown
-              width="200px"
+              width={20}
               // todo API 사전 호출으로 인한 캐싱동작 추가 예정
               options={DUMMY}
-              isShow={isDropDownOpen}
-              setIsShow={setIsDropDownOpen}
+              isShow={isShow}
+              setIsShow={setIsShow}
               mode="checkbox"
               onAdd={handleAdd}
-              triggerId={String(id)}
+              closeDropDown={closeDropDown}
+              direction="left"
             />
           </QuestionCardAddButton>
         )}
@@ -96,29 +95,31 @@ const QuestionCard = ({
           <QuestionCardBodyWrapper>
             <QuestionCardText>{question}</QuestionCardText>
             <QuestionCardHashTags>
-              {hashTags.map((item) => (
+              {tags.map((item) => (
                 <Badge
+                  style={{ padding: '0 0.5rem 0 0' }}
                   key={item.id}
                   $size={isMobileSize ? 'xs' : 's'}
                   $state="hashTag"
-                  $text={item.tagName}
+                  $text={item.name}
                 />
               ))}
             </QuestionCardHashTags>
           </QuestionCardBodyWrapper>
 
           <QuestionCardBadgeWrapper>
-            <QuestionCardInfoBadges>
+            <QuestionCardInfoBadges $isLogin={isLogin}>
               {isHot && (
                 <Badge
-                  style={{ cursor: 'default' }}
-                  $size={isMobileSize ? 'xs' : 's'}
+                  style={{ cursor: 'default', padding: '0.5rem 1.3rem' }}
+                  $size={isMobileSize ? 1.2 : 's'}
                   $state="hot"
                   $text="HOT"
                 />
               )}
               <Badge
-                $size={isMobileSize ? 'xs' : 's'}
+                style={{ cursor: 'default', padding: '0.5rem 1.3rem' }}
+                $size={isMobileSize ? 1.2 : 's'}
                 $state="subscribedTag"
                 $subscribedCount={subscribedCount}
               />
@@ -127,7 +128,7 @@ const QuestionCard = ({
               <QuestionCardReportBadge>
                 <Badge
                   $isHover
-                  $size={'xs'}
+                  $size={isMobileSize ? 'xxs' : 'xs'}
                   $state="basic"
                   $text={QuestionCardConstants.REPORT_BADGE}
                   onClick={handleReportClick}
