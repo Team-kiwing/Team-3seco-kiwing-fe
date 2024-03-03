@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useTheme } from 'styled-components';
 
 import Input from '@/components/common/Input';
 import TagFilter from '@/components/common/TagFilter';
 import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
+import { themeStore } from '@/stores';
 import { Tag } from '@/types';
 
 import {
@@ -20,6 +22,8 @@ import {
 
 const Register = () => {
   const { isMobileSize } = useResize();
+  const { isDarkMode } = themeStore();
+  const theme = useTheme();
 
   const [isChecked, setIsChecked] = useState(false);
   const handleRegisterSubmit = () => {
@@ -69,7 +73,17 @@ const Register = () => {
       )}
       <RegisterFormWrapper $isMobile={isMobileSize}>
         <RegisterHeader $isMobile={isMobileSize}>
-          안녕하세요. 저희는 kiwing이에요.
+          안녕하세요. 저희는{' '}
+          <span
+            style={{
+              color: isDarkMode
+                ? `${theme.symbol_secondary_color}`
+                : `${theme.symbol_color}`,
+            }}
+          >
+            kiwing
+          </span>
+          이에요.
         </RegisterHeader>
         <RegisterItemWrapper>
           <Input
