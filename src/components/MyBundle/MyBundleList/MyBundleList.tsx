@@ -37,20 +37,20 @@ const MyBundleList = ({
             isMobileSize={isMobileSize}
           />
         ))}
-        <Button
-          width="100%"
-          height="5rem"
-          borderColor={`${theme.symbol_color}`}
-          hoverBackgroundColor={`${theme.symbol_color}`}
-          backgroundColor="transparent"
-          textColor={`${theme.symbol_color}`}
-          text="+ 새 질문 꾸러미 추가하기"
-          style={{
-            fontWeight: `${FONT_MEDIUM}`,
-          }}
-          onClick={handleAddBundleClick}
-        />
       </BundleWrapper>
+      <Button
+        width="100%"
+        height="5rem"
+        borderColor={`${theme.symbol_color}`}
+        hoverBackgroundColor={`${theme.symbol_color}`}
+        backgroundColor="transparent"
+        textColor={`${theme.symbol_color}`}
+        text="+ 새 질문 꾸러미 추가하기"
+        style={{
+          fontWeight: `${FONT_MEDIUM}`,
+        }}
+        onClick={handleAddBundleClick}
+      />
     </Container>
   );
 };

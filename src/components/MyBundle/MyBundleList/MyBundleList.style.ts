@@ -3,21 +3,22 @@ import styled from 'styled-components';
 //MyBundleList
 export const Container = styled.div<{ $isMobileSize: boolean }>`
   width: ${({ $isMobileSize }) => ($isMobileSize ? '100%' : '20%')};
-  height: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: auto;
+
   gap: 1.5rem;
 `;
 
 export const BundleWrapper = styled.div<{ $isMobileSize: boolean }>`
-  width: 85%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  height: calc(100% - 5rem);
   gap: ${({ $isMobileSize }) => ($isMobileSize ? '1rem' : '2rem')};
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 //AddBundleModal
