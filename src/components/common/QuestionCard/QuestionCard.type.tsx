@@ -1,12 +1,10 @@
-interface tagProps {
-  id: number;
-  tagName: string;
-}
+import { Tag } from '@/types';
+
 export interface QuestionCardProps {
   id: number;
   question: string;
   subscribedCount: number;
   isHot: boolean;
-  hashTags: tagProps[];
+  tags: Tag[];
   isLogin: boolean;
 }
