@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useTheme } from 'styled-components';
 
 import Input from '@/components/common/Input';
+import Skeleton from '@/components/common/Skeleton';
 import TagFilter from '@/components/common/TagFilter';
 import { notify } from '@/hooks/toast';
+import { useFetchTags } from '@/hooks/useFetchTags';
 import useResize from '@/hooks/useResize';
 import { themeStore } from '@/stores';
 import { Tag } from '@/types';
@@ -25,6 +27,8 @@ const Register = () => {
   const { isDarkMode } = themeStore();
   const theme = useTheme();
 
+  const { data: tags, isLoading } = useFetchTags();
+
   const [isChecked, setIsChecked] = useState(false);
   const handleRegisterSubmit = () => {
     if (isChecked) {
@@ -38,28 +42,6 @@ const Register = () => {
   };
 
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
-  const tagList: Tag[] = [
-    // TODO : API 로직 추가
-    { id: 1, name: '개발자' },
-    { id: 2, name: '백엔드' },
-    { id: 3, name: '서버' },
-    { id: 4, name: '시스템' },
-    { id: 5, name: '보안' },
-    { id: 6, name: '프론트엔드' },
-    { id: 7, name: '머신러닝' },
-    { id: 8, name: 'QA' },
-    { id: 9, name: '안드로이드' },
-    { id: 10, name: '크로스플랫폼앱' },
-    { id: 11, name: '데이터' },
-    { id: 12, name: 'SW' },
-    { id: 13, name: 'DevOps' },
-    { id: 14, name: 'DBA' },
-    { id: 15, name: '네트워크' },
-    { id: 16, name: '웹퍼블리셔' },
-    { id: 17, name: '임베디드' },
-    { id: 18, name: 'IOS' },
-    { id: 19, name: 'HW' },
-  ];
 
   return (
     <RegisterPageWrapper>
@@ -112,11 +94,18 @@ const Register = () => {
         </RegisterItemWrapper>
         <RegisterItemWrapper>
           <RegisterLabel $isMobile={isMobileSize}>관심 분야</RegisterLabel>
-          <TagFilter
-            selectedTags={selectedTags}
-            setSelectedTags={setSelectedTags}
-            tagList={tagList}
-          />
+          {isLoading ? (
+            <Skeleton.Box
+              $width={'100%'}
+              $height={'20rem'}
+            />
+          ) : (
+            <TagFilter
+              selectedTags={selectedTags}
+              setSelectedTags={setSelectedTags}
+              tagList={tags ?? []}
+            />
+          )}
         </RegisterItemWrapper>
         <RegisterItemWrapper>
           <Input
