@@ -18,7 +18,9 @@ export const Container = styled.div<ContainerProps>`
   height: ${(props) => props.$height};
   background-color: ${(props) => props.$color};
 
-  border: 0.15rem solid ${({ theme }) => theme.border_color};
+  border: 0.15rem solid
+    ${(props) =>
+      props.$isActive ? props.theme.symbol_color : props.theme.border_color};
   border-radius: ${(props) =>
     props.$isCard ? `${BORDER_CARD_WEB}rem` : `${BORDER_WEB}rem`};
   transition: all 0.2s ease;
@@ -31,6 +33,10 @@ export const Container = styled.div<ContainerProps>`
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       scale: ${(props) => (props.$isHoverActive ? 1.05 : undefined)};
+      border-color: ${(props) =>
+        props.$isHoverActive
+          ? props.theme.symbol_color
+          : props.theme.border_color};
     }
   }
 
