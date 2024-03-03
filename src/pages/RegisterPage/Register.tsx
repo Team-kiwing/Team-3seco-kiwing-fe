@@ -47,7 +47,7 @@ const Register = () => {
       {!isMobileSize && (
         <RegisterLogo>
           <img
-            src="./kiwing_square_white.png"
+            src="./kiwing_circle_green.png"
             alt="kiwing logo"
           />
         </RegisterLogo>
