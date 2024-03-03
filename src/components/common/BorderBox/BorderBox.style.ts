@@ -18,7 +18,7 @@ export const Container = styled.div<ContainerProps>`
   height: ${(props) => props.$height};
   background-color: ${(props) => props.$color};
 
-  // border: 0.15rem solid
+  border: 0.15rem solid ${({ theme }) => theme.border_color};
   border-radius: ${(props) =>
     props.$isCard ? `${BORDER_CARD_WEB}rem` : `${BORDER_WEB}rem`};
   transition: all 0.2s ease;
