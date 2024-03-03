@@ -1,7 +1,7 @@
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
 import { notify } from '@/hooks/toast';
-import { modalStore } from '@/stores';
+import { useModal } from '@/hooks/useModal';
 
 import Button from '../Button';
 import Textarea from '../Textarea';
@@ -11,7 +11,7 @@ import {
 } from './QuestionCard.const';
 
 export const QuestionCardModal = () => {
-  const { closeModal } = modalStore();
+  const { setModalCompleteClose } = useModal();
   const {
     register,
     handleSubmit,
@@ -31,7 +31,7 @@ export const QuestionCardModal = () => {
       type: 'default',
       text: '신고를 완료하였습니다. 불편을 드려 죄송합니다.',
     });
-    closeModal();
+    setModalCompleteClose();
   };
 
   const onInValid: SubmitErrorHandler<{ reportField: string }> = () => {
