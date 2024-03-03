@@ -4,16 +4,17 @@ import { MOBILE } from '@/constants';
 
 const useResize = () => {
   const [isMobileSize, setIsMobileSize] = useState<boolean>(
-    window.innerWidth < MOBILE
+    window.innerWidth <= MOBILE
   );
 
+  console.log(isMobileSize, window.innerWidth);
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
     const handleResize = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        setIsMobileSize(window.innerWidth < MOBILE);
+        setIsMobileSize(window.innerWidth <= MOBILE);
       }, 200); // 200ms 디바운싱 시간 설정
     };
 
