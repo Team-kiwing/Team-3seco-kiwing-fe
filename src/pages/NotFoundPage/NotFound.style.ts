@@ -32,7 +32,7 @@ const slideOut = keyframes`
 export const NotFoundLayout = styled(Col)`
   margin: 0 auto;
   width: auto;
-  height: 100vh;
+  height: 100%;
   justify-content: center;
   align-items: center;
   gap: 2rem;
