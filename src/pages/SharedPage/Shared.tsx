@@ -6,6 +6,8 @@ import Selector from '@/components/common/Selector';
 import TagFilter from '@/components/common/TagFilter';
 
 import { SelectorConstants } from './Shared.const';
+import { useBundleDisplay } from './Shared.hook';
+import useBundleFilter from './Shared.hook';
 import {
   CardWrapper,
   SearchWrapper,
@@ -20,6 +22,77 @@ const Shared = () => {
   const [isRecent, setIsRecent] = useState<boolean>(true);
   const [bundles, setBundles] = useState<BundleProps[]>([]);
   const [tags, setTags] = useState<TagProps[]>([]);
+  const { filteredBundles } = useBundleFilter({ selectedTags, bundles });
+  const {
+    recentBundles,
+    popularBundles,
+    recentFilterBundles,
+    popularFilteredBundles,
+  } = useBundleDisplay({ bundles, filteredBundles });
+
+  const displayBundle = () => {
+    if (selectedTags.length == 0) {
+      if (isRecent) {
+        return recentBundles.map(
+          (bundle) =>
+            bundle.shareType === 'PUBLIC' && (
+              <BundleCard
+                key={bundle.id}
+                id={bundle.id}
+                bundleName={bundle.name}
+                hashTags={bundle.tags}
+                isHot={bundle.isHot}
+                subscribedCount={bundle.scrapeCount}
+              />
+            )
+        );
+      } else {
+        return popularBundles.map(
+          (bundle) =>
+            bundle.shareType === 'PUBLIC' && (
+              <BundleCard
+                key={bundle.id}
+                id={bundle.id}
+                bundleName={bundle.name}
+                hashTags={bundle.tags}
+                isHot={bundle.isHot}
+                subscribedCount={bundle.scrapeCount}
+              />
+            )
+        );
+      }
+    } else {
+      if (isRecent) {
+        return recentFilterBundles.map(
+          (bundle) =>
+            bundle.shareType === 'PUBLIC' && (
+              <BundleCard
+                key={bundle.id}
+                id={bundle.id}
+                bundleName={bundle.name}
+                hashTags={bundle.tags}
+                isHot={bundle.isHot}
+                subscribedCount={bundle.scrapeCount}
+              />
+            )
+        );
+      } else {
+        return popularFilteredBundles.map(
+          (bundle) =>
+            bundle.shareType === 'PUBLIC' && (
+              <BundleCard
+                key={bundle.id}
+                id={bundle.id}
+                bundleName={bundle.name}
+                hashTags={bundle.tags}
+                isHot={bundle.isHot}
+                subscribedCount={bundle.scrapeCount}
+              />
+            )
+        );
+      }
+    }
+  };
 
   useEffect(() => {
     fetch('/bundles')
@@ -58,18 +131,7 @@ const Shared = () => {
             ]}
           />
         </SelectorWrapper>
-        <CardWrapper>
-          {bundles.map((bundle) => (
-            <BundleCard
-              key={bundle.id}
-              id={bundle.id}
-              bundleName={bundle.name}
-              hashTags={bundle.tags}
-              isHot={bundle.isHot}
-              subscribedCount={bundle.scrapeCount}
-            />
-          ))}
-        </CardWrapper>
+        <CardWrapper>{displayBundle()}</CardWrapper>
       </SharedWrapper>
     </>
   );
