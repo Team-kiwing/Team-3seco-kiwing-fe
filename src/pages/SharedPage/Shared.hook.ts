@@ -56,7 +56,7 @@ export const useBundleDisplay = ({
   filteredBundles,
 }: BundleDisplayProps) => {
   const recentBundles = [...bundles].sort(
-    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 
   const popularBundles = [...bundles].sort(
@@ -64,7 +64,7 @@ export const useBundleDisplay = ({
   );
 
   const recentFilterBundles = [...filteredBundles].sort(
-    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 
   const popularFilteredBundles = [...filteredBundles].sort(
