@@ -7,6 +7,7 @@ const Layout = styled.div`
   height: 100%;
   padding-top: 7.525rem;
   box-sizing: border-box;
+  overflow-y: scroll;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
