@@ -1,15 +1,12 @@
 import { useState } from 'react';
 
-import { DROP_DOWN } from '@/constants';
-import { Col } from '@/styles/globalStyles';
-
 import Button from '../Button';
 import ShadowBox from '../ShadowBox';
 import useClickAway from './DropDown.hook';
 import {
   Body,
   CheckBoxInput,
-  Container,
+  Content,
   Footer,
   Item,
   Options,
@@ -20,8 +17,11 @@ import { DropDownProps } from './DropDown.type';
 
 /**
  * @summary DropDown 레이아웃 컴포넌트입니다.
- * @param width px, rem, % 커스텀 가능
- * @param height px, rem, % 커스텀 가능
+ * @param width rem 단위입니다.
+ * @param optionHeight rem 단위입니다. 각 option의 높이를 설정합니다.
+ * default 값을 이용하는 것을 권장합니다.
+ * @param height rem 단위입니다.
+ * checkbox모드일 때 커스텀, normal의 경우 default 값을 이용하는 것을 권장합니다.
  * @param options id,title,body,rightItem,handler을 갖고있는 option타입 배열입니다.
  * title(필수): 핵심 Text, body(선택): title 아래 보조 Text
  * rightItem(선택): 오른쪽에 들어갈 Item, handler(선택): 각 Item 클릭 시 호출할 handler 함수
@@ -36,21 +36,21 @@ import { DropDownProps } from './DropDown.type';
  * <DropDown triggerId='dropdown-btn' ... /> // 위에서 부여한 id 값 전달
  */
 const DropDown = ({
-  width = '100px',
-  height = 'auto',
   options,
   mode = 'normal',
+  width = 12,
+  optionHeight = mode === 'normal' ? 4 : 5,
+  height = mode === 'checkbox'
+    ? optionHeight * options.length * 1.2
+    : optionHeight * options.length,
   onAdd,
   isShow,
   setIsShow,
-  triggerId,
+  closeDropDown,
+  direction,
 }: DropDownProps) => {
   const ref = useClickAway((e: Event) => {
-    // 드롭다운을 isShow=true로 만들어주는 컴포넌트를 다시 클릭 한 경우 끄지 않는다.
-    if ((e.target as Element).id === triggerId) {
-      return;
-    }
-    setIsShow(false);
+    closeDropDown(e);
   });
 
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
@@ -81,59 +81,59 @@ const DropDown = ({
   };
 
   return (
-    <Wrapper $isShow={isShow}>
+    <Wrapper
+      ref={ref}
+      $isShow={isShow}
+      $direction={direction}
+      $width={`${width}rem`}
+      $height={`${height}rem`}
+    >
       <ShadowBox
-        ref={ref}
-        width={width}
-        height={height}
+        width={`${width}rem`}
+        height={`${height}rem`}
         style={{
-          position: 'absolute',
+          display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '0.3rem',
-          overflowX: 'hidden',
-          zIndex: `${DROP_DOWN}`,
         }}
       >
-        <Container>
-          <Options>
-            {options.map((option) => (
-              <Item
-                key={option.id}
-                onClick={
-                  mode === 'checkbox'
-                    ? () => checkedItemHandler(option.id)
-                    : () => handleItemClick(option.handler)
-                }
-                $mode={mode}
-              >
-                <Col>
-                  <Title>{option.title}</Title>
-                  <Body>{option.body}</Body>
-                </Col>
-                {mode === 'normal' && option.rightItem}
-                {mode === 'checkbox' && (
-                  <CheckBoxInput
-                    type="checkbox"
-                    onChange={() => checkedItemHandler(option.id)}
-                    checked={checkedItems.includes(option.id)}
-                  />
-                )}
-              </Item>
-            ))}
-          </Options>
-          {mode === 'checkbox' && (
-            <Footer>
-              <Button
-                height="fit-content"
-                style={{ padding: '0.5rem' }}
-                text="추가"
-                onClick={handleAddClick}
-              />
-            </Footer>
-          )}
-        </Container>
+        <Options $mode={mode}>
+          {options.map((option) => (
+            <Item
+              key={option.id}
+              onClick={
+                mode === 'checkbox'
+                  ? () => checkedItemHandler(option.id)
+                  : () => handleItemClick(option.handler)
+              }
+              $mode={mode}
+              $height={optionHeight}
+            >
+              <Content>
+                <Title>{option.title}</Title>
+                <Body>{option.body}</Body>
+              </Content>
+
+              {mode === 'normal' && option.rightItem}
+              {mode === 'checkbox' && (
+                <CheckBoxInput
+                  type="checkbox"
+                  onChange={() => checkedItemHandler(option.id)}
+                  checked={checkedItems.includes(option.id)}
+                />
+              )}
+            </Item>
+          ))}
+        </Options>
+        {mode === 'checkbox' && (
+          <Footer>
+            <Button
+              height="fit-content"
+              style={{ padding: '0.5rem' }}
+              text="추가"
+              onClick={handleAddClick}
+            />
+          </Footer>
+        )}
       </ShadowBox>
     </Wrapper>
   );
