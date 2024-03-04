@@ -3,6 +3,7 @@ import { useTheme } from 'styled-components';
 import useResize from '@/hooks/useResize';
 import { themeStore } from '@/stores';
 
+import { SignInUrl } from './Auth.const';
 import {
   AuthContentWrapper,
   AuthDescription,
@@ -19,8 +20,7 @@ const Auth = () => {
   const theme = useTheme();
 
   const goGoogleLogin = () => {
-    window.location.href =
-      'https://api-dev.kiwing.kr/oauth2/authorization/google';
+    window.location.href = SignInUrl;
   };
 
   return (
