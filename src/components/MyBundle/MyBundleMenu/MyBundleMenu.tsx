@@ -8,7 +8,7 @@ import Toggle from '@/components/common/Toggle';
 import { PATH } from '@/constants/router';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
-import { Item, Options } from './MyBundleMenu.style';
+import { Item, Options, Text } from './MyBundleMenu.style';
 import { MyBundleMenuProps } from './MyBundleMenu.type';
 
 const MyBundleMenu = ({ bundle }: MyBundleMenuProps) => {
@@ -108,8 +108,8 @@ const MyBundleMenu = ({ bundle }: MyBundleMenuProps) => {
             key={option.id}
             onClick={() => handleItemClick(option.handler)}
           >
-            {option.title}
-            {option.rightItem}
+            <Text>{option.title}</Text>
+            <Text>{option.rightItem}</Text>
           </Item>
         ))}
       </Options>

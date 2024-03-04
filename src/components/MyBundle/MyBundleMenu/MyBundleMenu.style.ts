@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const Options = styled.div`
-  height: 100%;
+import { Col } from '@/styles/globalStyles';
 
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
+export const Options = styled(Col)`
+  height: 100%;
+  overflow: hidden;
   cursor: auto;
+  flex-shrink: 0;
 `;
 
 export const Item = styled.div`
@@ -17,6 +17,7 @@ export const Item = styled.div`
   padding: 1rem 2rem 1rem 2rem;
   cursor: pointer;
   box-sizing: border-box;
+  flex-shrink: 0;
 
   transition: all 0.2s ease;
 
@@ -36,4 +37,8 @@ export const Item = styled.div`
   &:first-child {
     border-radius: 0.6rem 0.6rem 0 0;
   }
+`;
+
+export const Text = styled.div`
+  flex-shrink: 0;
 `;
