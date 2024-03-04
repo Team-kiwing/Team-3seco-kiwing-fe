@@ -6,7 +6,6 @@ import { BundleSearchResponse } from '@/types';
 export const useLatestBundles = (tagsId: number[], keyword: string) => {
   const LatestSelectedTagBundlesKey =
     tagsId.length === 0 ? [] : tagsId.join(', ');
-  console.log(LatestSelectedTagBundlesKey, keyword);
   const query = useQuery<BundleSearchResponse | null>({
     queryKey: [
       `latest-${keyword}-${typeof LatestSelectedTagBundlesKey === 'string' ? LatestSelectedTagBundlesKey : ''}`,
@@ -26,7 +25,6 @@ export const useLatestBundles = (tagsId: number[], keyword: string) => {
 export const usePopularBundles = (tagsId: number[], keyword: string) => {
   const LatestSelectedTagBundlesKey =
     tagsId.length === 0 ? [] : tagsId.join(', ');
-  console.log(LatestSelectedTagBundlesKey, keyword);
   const query = useQuery<BundleSearchResponse | null>({
     queryKey: [
       `popular-${keyword}-${typeof LatestSelectedTagBundlesKey === 'string' ? LatestSelectedTagBundlesKey : ''}`,

@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import BundleCard from '@/components/common/BundleCard';
 import SearchBar from '@/components/common/SearchBar';
 import Selector from '@/components/common/Selector';
 import TagFilter from '@/components/common/TagFilter';
+import { useFetchTags } from '@/hooks/useFetchTags';
 import { Tag } from '@/types';
 
 import { SelectorConstants } from './Shared.const';
@@ -18,9 +19,9 @@ import {
 } from './Shared.style';
 
 const Shared = () => {
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [isRecent, setIsRecent] = useState<boolean>(true);
-  const [tags, setTags] = useState<Tag[]>([]);
+  const { data: tags } = useFetchTags();
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [searchedBundles, setSearchedBundles] = useState<string>('');
 
   const tagsId = selectedTags.map((tag) => tag.id);
@@ -40,12 +41,6 @@ const Shared = () => {
 
   const { data: popularBundles } = usePopularBundles(tagsId, searchedBundles);
 
-  useEffect(() => {
-    fetch('/api/v1/tags')
-      .then((res) => res.json())
-      .then((res) => setTags(res));
-  }, []);
-
   return (
     <>
       <SharedWrapper>
@@ -53,7 +48,7 @@ const Shared = () => {
           <TagFilter
             selectedTags={selectedTags}
             setSelectedTags={setSelectedTags}
-            tagList={tags}
+            tagList={tags ?? []}
           />
         </TagFilterWrapper>
         <SearchWrapper>
