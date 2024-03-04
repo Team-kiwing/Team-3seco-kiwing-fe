@@ -33,8 +33,8 @@ const Auth = () => {
           />
         </AuthLogo>
       )}
-      <AuthContentWrapper $isMobile={isMobileSize}>
-        <AuthHeader $isMobile={isMobileSize}>
+      <AuthContentWrapper>
+        <AuthHeader>
           <span
             style={{
               color: isDarkMode
@@ -46,16 +46,13 @@ const Auth = () => {
           </span>
           에 오신 것을 환영합니다.
         </AuthHeader>
-        <AuthDescription $isMobile={isMobileSize}>
+        <AuthDescription>
           kiwing은 취업 준비생, 이직생들이 마주한 면접과정을 준비하는 데에
           도움이 되고자 기획된 장기 프로젝트입니다. <br /> kiwing은 사용자들에게
           면접을 효율적이고 빠르게 준비할 수 있는 기능들을 제공합니다.
         </AuthDescription>
-        <AuthSubHeader $isMobile={isMobileSize}>
-          이메일로 로그인 해보세요.
-        </AuthSubHeader>
+        <AuthSubHeader>이메일로 로그인 해보세요.</AuthSubHeader>
         <AuthGoogleWrapper
-          $isMobile={isMobileSize}
           $isDarkMode={isDarkMode}
           onClick={goGoogleLogin}
         >

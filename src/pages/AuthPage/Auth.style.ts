@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { FONT_BOLD, FONT_SEMI_BOLD } from '@/constants';
+import { FONT_BOLD, FONT_SEMI_BOLD, MOBILE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 import { AuthPageStyleProps } from './Auth.type';
@@ -20,41 +20,63 @@ export const AuthLogo = styled(Row)`
   }
 `;
 
-export const AuthContentWrapper = styled(Col)<AuthPageStyleProps>`
-  width: ${({ $isMobile }) => ($isMobile ? '100%' : '60%')};
-  padding: ${({ $isMobile }) => ($isMobile ? '' : '0 5rem')};
+export const AuthContentWrapper = styled(Col)`
+  width: 60%;
+  padding: 0 5rem;
   margin-bottom: 3rem;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    width: 100%;
+    padding: 0;
+  }
 `;
 
-export const AuthHeader = styled.h1<AuthPageStyleProps>`
-  font-size: ${({ $isMobile }) => ($isMobile ? '3rem' : '5rem')};
+export const AuthHeader = styled.h1`
+  font-size: 5rem;
   font-weight: ${FONT_BOLD};
   margin-bottom: 2rem;
   word-break: keep-all;
   color: ${({ theme }) => theme.primary_color};
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: 3rem;
+  }
 `;
 
-export const AuthDescription = styled.div<AuthPageStyleProps>`
-  font-size: ${({ $isMobile }) => ($isMobile ? `1.4rem` : '1.8rem')};
+export const AuthDescription = styled.div`
+  font-size: 1.8rem;
   font-weight: ${FONT_SEMI_BOLD};
-  line-height: ${({ $isMobile }) => ($isMobile ? `2rem` : '2.5rem')};
+  line-height: 2.5rem;
   margin-bottom: 5rem;
   word-break: keep-all;
   color: ${({ theme }) => theme.primary_color};
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
 `;
 
-export const AuthSubHeader = styled.div<AuthPageStyleProps>`
-  font-size: ${({ $isMobile }) => ($isMobile ? '1.8rem' : '2.5rem')};
+export const AuthSubHeader = styled.div`
+  font-size: 2.5rem;
   font-weight: ${FONT_BOLD};
   margin-bottom: 2rem;
   word-break: keep-all;
   color: ${({ theme }) => theme.primary_color};
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: 1.8rem;
+  }
 `;
 
 export const AuthGoogleWrapper = styled.div<AuthPageStyleProps>`
-  width: ${({ $isMobile }) => ($isMobile ? '17rem' : '25rem')};
+  width: 25rem;
   border-radius: 10rem;
   cursor: pointer;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    width: 17rem;
+  }
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
