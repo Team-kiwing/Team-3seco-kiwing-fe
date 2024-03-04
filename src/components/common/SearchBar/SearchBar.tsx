@@ -1,3 +1,5 @@
+import { debounce } from 'lodash';
+import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { MdSearch } from 'react-icons/md';
 
@@ -44,13 +46,14 @@ const SearchBar = ({
     formState: { errors },
   } = useFormContext();
 
-  const SearchSubmit = () => {
-    if (handleSearchSubmit) {
+  const SearchSubmit = useCallback(
+    debounce(() => {
       if (!errors[REGISTER]?.message) {
         handleSearchSubmit();
       }
-    }
-  };
+    }, 500),
+    []
+  );
 
   const { isMobileSize } = useResize();
 
