@@ -1,70 +1,96 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { BundlesBasic } from '@/types';
+import { searchBundles } from '@/services/bundles';
+import { BundleSearchResponse } from '@/types';
 
-import {
-  BundleDisplayProps,
-  BundleFilterProps,
-  BundleFilterResult,
-} from './Shared.type';
-
-export const useBundleFilter = ({
-  selectedTags,
-  bundles,
-}: BundleFilterProps): BundleFilterResult => {
-  const [filteredBundles, setFilteredBundles] = useState<BundlesBasic[]>([]);
-
-  useEffect(() => {
-    if (selectedTags.length !== 0) {
-      const selectedTagsName = selectedTags.map((tag) => tag.name); // 선택된 태그들의 이름 배열
-      const bundlesTagsName = bundles.map((item) =>
-        item.tags.map((tag) => tag.name)
-      ); // 모든 꾸러미의 태그들의 이름 배열
-
-      const filteredBundlesTag = bundlesTagsName.filter((tagArr) =>
-        selectedTagsName.every((tag) => tagArr.includes(tag))
-      ); // 필터된 꾸러미의 태그들
-
-      const filteredBundles = bundles.filter((item) =>
-        filteredBundlesTag.some((tagArr) =>
-          tagArr.every((tag) => item.tags.some((item) => item.name === tag))
-        )
-      );
-      setFilteredBundles(filteredBundles); //필터링된 꾸러미들이 저장됩니다
-    } else {
-      setFilteredBundles(bundles);
-    }
-  }, [selectedTags, bundles]);
-
-  return { filteredBundles };
+export const useLatestBundles = () => {
+  const query = useQuery<BundleSearchResponse | null>({
+    queryKey: ['latestBundles'],
+    queryFn: () =>
+      searchBundles({
+        sortingType: 'LATEST',
+        tagIds: [],
+        keyword: '',
+        page: 1,
+        size: 10,
+      }),
+  });
+  return query;
 };
 
-export default useBundleFilter;
+export const usePopularBundles = () => {
+  const query = useQuery<BundleSearchResponse | null>({
+    queryKey: ['popularBundles'],
+    queryFn: () =>
+      searchBundles({
+        sortingType: 'POPULAR',
+        tagIds: [],
+        keyword: '',
+        page: 1,
+        size: 10,
+      }),
+  });
+  return query;
+};
 
-export const useBundleDisplay = ({
-  bundles,
-  filteredBundles,
-}: BundleDisplayProps) => {
-  const recentBundles = [...bundles].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
+export const useLatestSelectedTagBundles = (tagsId: number[]) => {
+  const LatestSelectedTagBundlesKey = tagsId.join(', ');
+  const query = useQuery<BundleSearchResponse | null>({
+    queryKey: [`latestSelectedTag-${LatestSelectedTagBundlesKey}`],
+    queryFn: () =>
+      searchBundles({
+        sortingType: 'LATEST',
+        tagIds: LatestSelectedTagBundlesKey,
+        keyword: '',
+        page: 1,
+        size: 10,
+      }),
+  });
+  return query;
+};
 
-  const popularBundles = [...bundles].sort(
-    (a, b) => b.scrapeCount - a.scrapeCount
-  );
+export const usePopularSelectedTagBundles = (tagsId: number[]) => {
+  const popularSelectedTagBundlesKey = tagsId.join(', ');
+  const query = useQuery<BundleSearchResponse | null>({
+    queryKey: [`popularSelectedTag-${popularSelectedTagBundlesKey}`],
+    queryFn: async () =>
+      searchBundles({
+        sortingType: 'POPULAR',
+        tagIds: popularSelectedTagBundlesKey,
+        keyword: '',
+        page: 1,
+        size: 10,
+      }),
+  });
+  return query;
+};
 
-  const recentFilterBundles = [...filteredBundles].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
+export const useLatestSearchedBundles = (keyword: string) => {
+  const query = useQuery<BundleSearchResponse | null>({
+    queryKey: [`latest-${keyword}`],
+    queryFn: () =>
+      searchBundles({
+        sortingType: 'LATEST',
+        tagIds: [],
+        keyword: keyword,
+        page: 1,
+        size: 10,
+      }),
+  });
+  return query;
+};
 
-  const popularFilteredBundles = [...filteredBundles].sort(
-    (a, b) => b.scrapeCount - a.scrapeCount
-  );
-
-  return {
-    recentBundles,
-    popularBundles,
-    recentFilterBundles,
-    popularFilteredBundles,
-  };
+export const usePopularSearchedBundles = (keyword: string) => {
+  const query = useQuery<BundleSearchResponse | null>({
+    queryKey: [`popular-${keyword}`],
+    queryFn: () =>
+      searchBundles({
+        sortingType: 'POPULAR',
+        tagIds: [],
+        keyword: keyword,
+        page: 1,
+        size: 10,
+      }),
+  });
+  return query;
 };
