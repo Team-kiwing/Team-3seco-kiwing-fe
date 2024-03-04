@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from '@/components/common/Button';
 import DropDown from '@/components/common/DropDown';
 import ShadowBox from '@/components/common/ShadowBox';
+import { notify } from '@/hooks/toast';
 
 import SharedQuestionBox from '../SharedQuestionBox';
 import { CheckBoxInput } from '../SharedQuestionBox/SharedQuestionBox.style';
@@ -27,6 +28,30 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
   const [checkedAllItems, setCheckedAllItems] = useState(false);
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
 
+  const toastBundleSuccess = () => {
+    notify({
+      type: 'success',
+      text: '선택하신 꾸러미에 질문이 추가되었습니다!',
+    });
+  };
+  const toastBundleWarning = () => {
+    notify({
+      type: 'warning',
+      text: '추가할 꾸러미를 선택해주세요!',
+    });
+  };
+  const toastQuestionError = () => {
+    notify({
+      type: 'error',
+      text: '추가하고 싶은 질문을 선택해주세요!',
+    });
+  };
+  const toastBundleError = () => {
+    notify({
+      type: 'error',
+      text: '추가할 꾸러미를 선택해주세요!',
+    });
+  };
   const myBundles = [
     // 추후에 API 내꾸러미 불러오기 로직으로 변경
     {
@@ -101,12 +126,12 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
   const handleAddQuestion = (checkedBundleId: number[]) => {
     if (checkedBundleId) {
       if (checkedItems.length == 0) {
-        alert('추가하고 싶은 질문을 선택해주세요!');
+        toastQuestionError();
       } else {
         if (checkedBundleId.length == 0) {
-          alert('추가할 꾸러미를 선택해주세요!');
+          toastBundleWarning();
         } else {
-          alert('선택하신 꾸러미에 질문이 추가되었습니다!');
+          toastBundleSuccess();
           console.log(
             `선택한 BundleId가 ${checkedBundleId}인 질문꾸러미에 체크 된 QuestionId ${checkedItems}를 가진 질문을 추가합니다.`
           );
@@ -115,7 +140,7 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
         }
       }
     } else {
-      alert('추가할 꾸러미를 선택해주세요!');
+      toastBundleError();
     }
   };
 
