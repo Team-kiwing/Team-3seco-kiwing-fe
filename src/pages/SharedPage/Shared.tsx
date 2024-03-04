@@ -8,14 +8,7 @@ import TagFilter from '@/components/common/TagFilter';
 import { Tag } from '@/types';
 
 import { SelectorConstants } from './Shared.const';
-import {
-  useLatestBundles,
-  useLatestSearchedBundles,
-  useLatestSelectedTagBundles,
-  usePopularBundles,
-  usePopularSearchedBundles,
-  usePopularSelectedTagBundles,
-} from './Shared.hook';
+import { useLatestBundles, usePopularBundles } from './Shared.hook';
 import {
   CardWrapper,
   SearchWrapper,
@@ -29,129 +22,23 @@ const Shared = () => {
   const [isRecent, setIsRecent] = useState<boolean>(true);
   const [tags, setTags] = useState<Tag[]>([]);
   const [searchedBundles, setSearchedBundles] = useState<string>('');
-  const [isSearch, setIsSearch] = useState<boolean>(false);
 
   const tagsId = selectedTags.map((tag) => tag.id);
-
-  const { data: latestBundles } = useLatestBundles();
-  const { data: popularBundles } = usePopularBundles();
-  const { data: latestSelectedBundles } = useLatestSelectedTagBundles(tagsId);
-  const { data: popularSelectedBundles } = usePopularSelectedTagBundles(tagsId);
-  const { data: latestSearchedBundles } =
-    useLatestSearchedBundles(searchedBundles);
-  const { data: popularSearchedBundles } =
-    usePopularSearchedBundles(searchedBundles);
-
   const methods = useForm({ mode: 'onSubmit' });
   const REGISTER = 'searchBundle';
 
-  console.log(latestSearchedBundles, popularSearchedBundles);
-
   const onSubmit = async () => {
     const searchedBundles = methods.getValues(REGISTER).trim();
-    setSearchedBundles(searchedBundles);
-    setIsSearch(true);
-  };
-
-  const displayBundle = () => {
-    if (!isSearch) {
-      if (selectedTags.length == 0) {
-        if (isRecent) {
-          return latestBundles?.content?.map(
-            (bundle) =>
-              bundle.shareType === 'PUBLIC' && (
-                <BundleCard
-                  key={bundle.id}
-                  id={bundle.id}
-                  bundleName={bundle.name}
-                  hashTags={bundle.tags}
-                  isHot={bundle.isHot}
-                  subscribedCount={bundle.scrapeCount}
-                />
-              )
-          );
-        } else {
-          return popularBundles?.content.map(
-            (bundle) =>
-              bundle.shareType === 'PUBLIC' && (
-                <BundleCard
-                  key={bundle.id}
-                  id={bundle.id}
-                  bundleName={bundle.name}
-                  hashTags={bundle.tags}
-                  isHot={bundle.isHot}
-                  subscribedCount={bundle.scrapeCount}
-                />
-              )
-          );
-        }
-      } else {
-        if (isRecent) {
-          return latestSelectedBundles?.content?.map(
-            (bundle) =>
-              bundle.shareType === 'PUBLIC' && (
-                <BundleCard
-                  key={bundle.id}
-                  id={bundle.id}
-                  bundleName={bundle.name}
-                  hashTags={bundle.tags}
-                  isHot={bundle.isHot}
-                  subscribedCount={bundle.scrapeCount}
-                />
-              )
-          );
-        } else {
-          return popularSelectedBundles?.content.map(
-            (bundle) =>
-              bundle.shareType === 'PUBLIC' && (
-                <BundleCard
-                  key={bundle.id}
-                  id={bundle.id}
-                  bundleName={bundle.name}
-                  hashTags={bundle.tags}
-                  isHot={bundle.isHot}
-                  subscribedCount={bundle.scrapeCount}
-                />
-              )
-          );
-        }
-      }
+    if (searchedBundles !== '') {
+      setSearchedBundles(searchedBundles);
     } else {
-      if (isRecent) {
-        return latestSearchedBundles?.content?.map(
-          (bundle) =>
-            bundle.shareType === 'PUBLIC' && (
-              <BundleCard
-                key={bundle.id}
-                id={bundle.id}
-                bundleName={bundle.name}
-                hashTags={bundle.tags}
-                isHot={bundle.isHot}
-                subscribedCount={bundle.scrapeCount}
-              />
-            )
-        );
-      } else {
-        return popularSearchedBundles?.content.map(
-          (bundle) =>
-            bundle.shareType === 'PUBLIC' && (
-              <BundleCard
-                key={bundle.id}
-                id={bundle.id}
-                bundleName={bundle.name}
-                hashTags={bundle.tags}
-                isHot={bundle.isHot}
-                subscribedCount={bundle.scrapeCount}
-              />
-            )
-        );
-      }
+      setSearchedBundles('');
     }
   };
 
-  useEffect(() => {
-    console.log(searchedBundles);
-  }, [searchedBundles, isSearch]);
+  const { data: latestBundles } = useLatestBundles(tagsId, searchedBundles);
+
+  const { data: popularBundles } = usePopularBundles(tagsId, searchedBundles);
 
   useEffect(() => {
     fetch('/api/v1/tags')
@@ -187,7 +74,43 @@ const Shared = () => {
             ]}
           />
         </SelectorWrapper>
-        <CardWrapper>{displayBundle()}</CardWrapper>
+        <CardWrapper>
+          {isRecent ? (
+            latestBundles?.content.length !== 0 ? (
+              latestBundles?.content.map(
+                (bundle) =>
+                  bundle.shareType === 'PUBLIC' && (
+                    <BundleCard
+                      key={bundle.id}
+                      id={bundle.id}
+                      bundleName={bundle.name}
+                      hashTags={bundle.tags}
+                      isHot={bundle.isHot}
+                      subscribedCount={bundle.scrapeCount}
+                    />
+                  )
+              )
+            ) : (
+              <h1>검색된 결과가 없습니다.</h1>
+            )
+          ) : popularBundles?.content.length !== 0 ? (
+            popularBundles?.content.map(
+              (bundle) =>
+                bundle.shareType === 'PUBLIC' && (
+                  <BundleCard
+                    key={bundle.id}
+                    id={bundle.id}
+                    bundleName={bundle.name}
+                    hashTags={bundle.tags}
+                    isHot={bundle.isHot}
+                    subscribedCount={bundle.scrapeCount}
+                  />
+                )
+            )
+          ) : (
+            <h1>검색된 결과가 없습니다.</h1>
+          )}
+        </CardWrapper>
       </SharedWrapper>
     </>
   );
