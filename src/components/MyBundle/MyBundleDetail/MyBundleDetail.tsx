@@ -3,7 +3,6 @@ import { useState } from 'react';
 import BorderBox from '@/components/common/BorderBox';
 import Button from '@/components/common/Button';
 import Selector from '@/components/common/Selector';
-import { Question } from '@/types';
 
 import MyQuestionBox from '../MyQuestionBox';
 import {
@@ -13,8 +12,9 @@ import {
   Footer,
   Header,
 } from './MyBundleDetail.style';
+import { MyBundleDetailProps } from './MyBundleDetail.type';
 
-const MyBundleDetail = ({ questions }: { questions: Question[] }) => {
+const MyBundleDetail = ({ questions }: MyBundleDetailProps) => {
   const [isAll, setIsAll] = useState(true);
 
   return (
