@@ -39,6 +39,7 @@ const Input = forwardRef(
       errorMessage,
       inputType = 'text',
       isOnlyBorderBottom = true,
+      isDisabled,
       ...props
     }: InputProps,
     ref?: React.ForwardedRef<HTMLInputElement>
@@ -54,6 +55,7 @@ const Input = forwardRef(
           ref={ref}
           placeholder={placeholder}
           $isOnlyBorderBottom={isOnlyBorderBottom}
+          disabled={isDisabled}
           {...props}
         />
         <ErrorMessage
