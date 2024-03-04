@@ -196,13 +196,14 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
           <DropDown
             width={20}
             optionHeight={5}
+            height={20}
             options={OPTIONS}
             isShow={isShow}
             closeDropDown={closeDropDown}
             setIsShow={setIsShow}
             mode="checkbox"
             onAdd={handleAddQuestion}
-            direction="bottom"
+            direction="top"
           />
         </DropDownWrapper>
       </ShadowBox>
