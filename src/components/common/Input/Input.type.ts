@@ -7,6 +7,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
   inputType?: string;
   isOnlyBorderBottom?: boolean;
+  isDisabled?: boolean;
 }
 
 export interface InputStyledProps {
