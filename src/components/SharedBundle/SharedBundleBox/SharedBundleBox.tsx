@@ -4,6 +4,7 @@ import Button from '@/components/common/Button';
 import DropDown from '@/components/common/DropDown';
 import ShadowBox from '@/components/common/ShadowBox';
 import { notify } from '@/hooks/toast';
+import useDropDown from '@/hooks/useDropDown';
 
 import SharedQuestionBox from '../SharedQuestionBox';
 import { CheckBoxInput } from '../SharedQuestionBox/SharedQuestionBox.style';
@@ -24,7 +25,9 @@ import { SharedBundleBoxProps } from './SharedBundleBox.type';
  */
 
 const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
-  const [isDropDownShow, setIsDropDownShow] = useState(false);
+  const { triggerId, isShow, setIsShow, closeDropDown, toggleDropDown } =
+    useDropDown('sharedBundle-dropdown');
+
   const [checkedAllItems, setCheckedAllItems] = useState(false);
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
 
@@ -119,10 +122,6 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
     }
   };
 
-  const handleClick = () => {
-    setIsDropDownShow(!isDropDownShow);
-  };
-
   const handleAddQuestion = (checkedBundleId: number[]) => {
     if (checkedBundleId) {
       if (checkedItems.length == 0) {
@@ -187,22 +186,23 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
         <SharedBundleBoxFooter>
           <CountText>{questions.length}/100</CountText>
           <Button
-            onClick={handleClick}
-            id="dropdown2-btn"
+            onClick={toggleDropDown}
+            id={triggerId}
             width="fit-content"
             text="내 꾸러미에 가져가기"
           />
         </SharedBundleBoxFooter>
         <DropDownWrapper>
           <DropDown
-            width="200px"
-            height="200px"
+            width={20}
+            optionHeight={5}
             options={OPTIONS}
-            isShow={isDropDownShow}
-            setIsShow={setIsDropDownShow}
+            isShow={isShow}
+            closeDropDown={closeDropDown}
+            setIsShow={setIsShow}
             mode="checkbox"
             onAdd={handleAddQuestion}
-            triggerId="dropdown2-btn"
+            direction="bottom"
           />
         </DropDownWrapper>
       </ShadowBox>
