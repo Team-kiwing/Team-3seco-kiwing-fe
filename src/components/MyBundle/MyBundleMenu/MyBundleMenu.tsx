@@ -6,12 +6,12 @@ import BorderBox from '@/components/common/BorderBox';
 import IconWrapper from '@/components/common/IconWrapper';
 import Toggle from '@/components/common/Toggle';
 import { PATH } from '@/constants/router';
-import { Bundle } from '@/types';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
 import { Item, Options } from './MyBundleMenu.style';
+import { MyBundleMenuProps } from './MyBundleMenu.type';
 
-const MyBundleMenu = ({ bundle }: { bundle: Bundle | null }) => {
+const MyBundleMenu = ({ bundle }: MyBundleMenuProps) => {
   const [isShared, setIsShared] = useState(false);
 
   const handleItemClick = (handler: (() => void) | undefined) => {
@@ -21,13 +21,11 @@ const MyBundleMenu = ({ bundle }: { bundle: Bundle | null }) => {
   };
 
   const handleDeleteBundle = () => {
-    if (!bundle) return;
     confirm(`id ${bundle.id} 꾸러미를 삭제하시겠습니까?`);
     // @TODO 추후에 꾸러미 삭제 API 함수를 호출합니다.
   };
 
   const handleEditBundle = () => {
-    if (!bundle) return;
     console.log(`id ${bundle.id} 꾸러미 편집`);
     // @TODO 추후에 꾸러미 편집을 할 수 있는 모달을 띄웁니다.
   };
@@ -44,7 +42,6 @@ const MyBundleMenu = ({ bundle }: { bundle: Bundle | null }) => {
       ),
 
       handler: () => {
-        if (!bundle) return;
         setIsShared(!isShared);
         // @TODO 추후에 꾸러미 공개/비공개를 결정하는 api 로직을 연동합니다.
       },
@@ -59,7 +56,6 @@ const MyBundleMenu = ({ bundle }: { bundle: Bundle | null }) => {
         </IconWrapper>
       ),
       handler: () => {
-        if (!bundle) return;
         if (isShared) {
           const host = window.location.host;
           const pathname = `${PATH.SHARED}/${bundle?.id}`;
@@ -79,7 +75,6 @@ const MyBundleMenu = ({ bundle }: { bundle: Bundle | null }) => {
         </IconWrapper>
       ),
       handler: () => {
-        if (!bundle) return;
         handleDeleteBundle();
       },
     },
