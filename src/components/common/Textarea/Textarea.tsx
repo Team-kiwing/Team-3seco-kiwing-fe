@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import {
   ErrorMessage,
   Label,
@@ -26,41 +28,47 @@ import { TextareaProps } from './Textarea.type';
  * @param label : 선택 | string 타입. textarea 위에 붙는 라벨 역할.
  * @param placeholder : 선택 | string 타입. textarea의 placeholder 역할.
  * @param errorMessage : 선택 | string 타입. textarea의 에러 메시지 역할.
- * @param ...props : 커스텀을 위함 (+ react-hook-form)
+ * @param ...props : textarea 태그 커스텀을 위함
  * @returns
  */
 
-const Textarea = ({
-  width,
-  height,
-  fontSize,
-  margin,
-  label,
-  placeholder,
-  errorMessage,
-  ...props
-}: TextareaProps) => {
-  return (
-    <TextareaWrapper
-      $width={width}
-      $fontSize={fontSize}
-    >
-      {label && <Label $margin={margin}>{label}</Label>}
-      <StyledTextarea
-        $height={height}
+const Textarea = forwardRef(
+  (
+    {
+      width,
+      height,
+      fontSize,
+      margin,
+      label,
+      placeholder,
+      errorMessage,
+      ...props
+    }: TextareaProps,
+    ref?: React.ForwardedRef<HTMLTextAreaElement>
+  ) => {
+    return (
+      <TextareaWrapper
+        $width={width}
         $fontSize={fontSize}
-        placeholder={placeholder}
-        {...props}
-      />
-      <ErrorMessage
-        $fontSize={fontSize}
-        $isError={errorMessage?.length === 0}
-        $margin={margin}
       >
-        {errorMessage?.length === 0 ? 'no Error' : errorMessage}
-      </ErrorMessage>
-    </TextareaWrapper>
-  );
-};
+        {label && <Label $margin={margin}>{label}</Label>}
+        <StyledTextarea
+          ref={ref}
+          $height={height}
+          $fontSize={fontSize}
+          placeholder={placeholder}
+          {...props}
+        />
+        <ErrorMessage
+          $fontSize={fontSize}
+          $isError={errorMessage?.length === 0}
+          $margin={margin}
+        >
+          {errorMessage?.length === 0 ? 'no Error' : errorMessage}
+        </ErrorMessage>
+      </TextareaWrapper>
+    );
+  }
+);
 
 export default Textarea;

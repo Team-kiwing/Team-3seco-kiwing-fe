@@ -1,5 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
+import { EasterEggStyleProps } from './EasterEgg.type';
+
 export const RainyEffect = keyframes`
     from { opacity: 0; }
     50% { opacity: 1; }
@@ -10,7 +12,9 @@ export const EasterEggContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
+  top: 0;
+
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -51,16 +55,13 @@ export const EasterEggPiece = styled.div`
   }
 `;
 
-export const AnimatedEasterEggPiece = styled(EasterEggPiece)<{
-  left: string;
-  rotate: string;
-  delay: number;
-  duration: number;
-}>`
-  ${({ left, rotate, delay, duration }) => css`
-    left: ${left};
-    transform: rotate(${rotate});
-    animation: ${RainyEffect} ${duration}ms infinite ease-out;
-    animation-delay: ${delay}ms;
+export const AnimatedEasterEggPiece = styled(
+  EasterEggPiece
+)<EasterEggStyleProps>`
+  ${({ $left, $rotate, $delay, $duration }) => css`
+    left: ${$left};
+    transform: rotate(${$rotate});
+    animation: ${RainyEffect} ${$duration}ms infinite ease-out;
+    animation-delay: ${$delay}ms;
   `}
 `;

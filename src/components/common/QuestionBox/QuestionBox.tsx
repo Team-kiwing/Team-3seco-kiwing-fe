@@ -1,5 +1,4 @@
-import { useRef, useState } from 'react';
-import React from 'react';
+import useAccordion from '@/hooks/useAccordion';
 
 import {
   Body,
@@ -16,31 +15,13 @@ const QuestionBox = ({
   answer = '',
   rightItem,
 }: QuestionBoxProps) => {
-  const parentRef = useRef<HTMLDivElement>(null);
-  const childRef = useRef<HTMLDivElement>(null);
-  const [isActive, setIsActive] = useState(false);
-
-  const handleButtonClick = React.useCallback(
-    (event: React.MouseEvent) => {
-      event.stopPropagation();
-      if (parentRef.current === null || childRef.current === null) {
-        return;
-      }
-      if (parentRef.current.clientHeight > 0 && isActive) {
-        parentRef.current.style.height = '0';
-      } else {
-        parentRef.current.style.height = `${childRef.current.clientHeight}px`;
-      }
-      setIsActive(!isActive);
-    },
-    [isActive]
-  );
+  const { parentRef, childRef, isActive, handleClick } = useAccordion();
 
   return (
     <>
       <Container>
         <TitleWrapper $isActive={isActive}>
-          <Header onClick={(e) => handleButtonClick(e)}>{question}</Header>
+          <Header onClick={(e) => handleClick(e)}>{question}</Header>
           <RightItem>{rightItem}</RightItem>
         </TitleWrapper>
 

@@ -46,3 +46,13 @@ export const modalStore = create<ModalState>((set) => ({
   closeModal: () =>
     set({ isOpen: false, title: '', content: '', callBack: undefined }),
 }));
+
+interface TokenStoreType {
+  token: string;
+  setAccessToken: (newToken: string) => void;
+}
+
+export const accessTokenStore = create<TokenStoreType>((set) => ({
+  token: '',
+  setAccessToken: (newToken: string) => set({ token: newToken }),
+}));

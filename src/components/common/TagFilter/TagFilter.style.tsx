@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MOBILE, MOBILE_MIN } from '@/constants';
 import { Row } from '@/styles/globalStyles';
 export const TagFilterWrapper = styled.div`
-  width: 90%;
+  width: 100%;
 `;
 
 export const TagItemWrapper = styled(Row)`
