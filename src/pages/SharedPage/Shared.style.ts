@@ -10,6 +10,7 @@ export const SharedWrapper = styled.div`
   gap: 3rem;
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
+    gap: 1rem;
   }
 `;
 

@@ -54,6 +54,7 @@ const Shared = () => {
         <SearchWrapper>
           <FormProvider {...methods}>
             <SearchBar
+              fontSize={1.8}
               handleSearchSubmit={onSubmit}
               REGISTER={REGISTER}
             />
