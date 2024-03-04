@@ -29,10 +29,16 @@ export const useModal = () => {
     }
   }, [closeModal]);
 
+  const setModalCompleteClose = useCallback(() => {
+    disableScrollLock();
+    closeModal();
+  }, [closeModal]);
+
   return {
     isOpen,
     modalState: { title, content, callBack },
     setModalOpen,
     setModalClose,
+    setModalCompleteClose,
   };
 };

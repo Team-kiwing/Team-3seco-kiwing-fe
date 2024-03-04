@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 
 import useResize from '@/hooks/useResize';
+import { Tag } from '@/types';
 
 import Badge from '../Badge';
 import ShadowBox from '../ShadowBox';
@@ -11,8 +12,7 @@ import {
   TagItemWrapper,
   TextWrapper,
 } from './TagFilter.style';
-import { TagFilterProps, TagProps } from './TagFilter.type';
-
+import { TagFilterProps } from './TagFilter.type';
 /**
  * @summary 사용법   <TagFilter
         tagList={tagList}
@@ -33,7 +33,7 @@ const TagFilter = ({
   ...props
 }: TagFilterProps) => {
   const isSelectedTag = useCallback(
-    (item: TagProps) => {
+    (item: Tag) => {
       return selectedTags.find((tag) => tag.id === item.id);
     },
     [selectedTags]
@@ -41,7 +41,7 @@ const TagFilter = ({
   const { isMobileSize } = useResize();
 
   const toggleActiveName = useCallback(
-    (tag: TagProps) => {
+    (tag: Tag) => {
       if (isSelectedTag(tag)) {
         setSelectedTags(
           selectedTags.filter((selectedTag) => selectedTag.id !== tag.id)

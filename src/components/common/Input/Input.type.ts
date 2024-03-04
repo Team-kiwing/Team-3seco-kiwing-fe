@@ -5,6 +5,9 @@ export interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
   label?: string;
   placeholder?: string;
   errorMessage?: string;
+  inputType?: string;
+  isOnlyBorderBottom?: boolean;
+  isDisabled?: boolean;
 }
 
 export interface InputStyledProps {
@@ -12,4 +15,5 @@ export interface InputStyledProps {
   $fontSize?: number;
   $margin?: number;
   $isError?: boolean;
+  $isOnlyBorderBottom?: boolean;
 }

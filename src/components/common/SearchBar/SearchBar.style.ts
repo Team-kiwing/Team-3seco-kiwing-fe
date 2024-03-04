@@ -10,7 +10,7 @@ export const SearchBarWrapper = styled.div<SearchBarStyleProps>`
   }
 
   position: relative;
-  width: 80%;
+  width: 100%;
   max-width: ${(props) =>
     props.$maxWidth ? props.$maxWidth : `calc(${MOBILE}px * 0.8)`};
   min-width: 224px;
@@ -18,7 +18,7 @@ export const SearchBarWrapper = styled.div<SearchBarStyleProps>`
   & > :nth-child(2) {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 0.5rem;
     color: ${({ theme }) => theme.primary_color};
   }
 `;

@@ -13,6 +13,7 @@ $${\LARGE\textsf{\textcolor{#48DA79}{당신의}  \textcolor{#48DA79}{면접에} 
 
 > **더 자세한 정보는 [📄키윙 기획서](https://prgrms.notion.site/2794be1a25474d5a8ce0bed8b3191539?pvs=4)혹은 [📚Wiki](https://github.com/Team-kiwing/Team-3seco-kiwing-fe/wiki) 페이지를 확인해주세요!**
 
+#### 🌐데모 주소 [kiwing.shop](https://kiwing.shop/) 
 ### 🌐서비스 주소 [kiwing.kr](https://www.kiwing.kr/)
 
 <!--##### [🌐도메인 만료 시 서비스 URL]()-->
@@ -26,7 +27,7 @@ $${\LARGE\textsf{\textcolor{#48DA79}{당신의}  \textcolor{#48DA79}{면접에} 
 | **🚀FE 팀장** | **🚀팀원** | **🚀팀원** | **🚀팀원** |
 | :-: | :-: | :-: | :-: |
 | [김석주](https://github.com/SoJuSo) | [김현주](https://github.com/kim-hyunjoo) | [박경빈](https://github.com/pkb9239) | [안재현](https://github.com/JaeHyunGround) |
-| asdfg7123@gmail.com | rarara2009@naver.com | pkb8839@naver.com | gothddlek2603@gmail.com |
+| asdfg7123@gmail.com | khj9x.x@gmail.com | pkb9239@gmail.com | gothddlek2603@gmail.com |
 | <img src="https://avatars.githubusercontent.com/u/90549862?v=4" width="200" alt="김석주" /> | <img src="https://avatars.githubusercontent.com/u/78135416?v=4" width="200" alt="김현주" /> | <img src="https://avatars.githubusercontent.com/u/81172451?v=4" width="200" alt="박경빈" /> | <img src="https://avatars.githubusercontent.com/u/97944429?v=4" width="200" alt="안재현" /> |
 
 ### 🛠️ BE 팀원
