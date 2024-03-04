@@ -8,7 +8,6 @@ export interface MyBundleDropDownProps {
   setIsDropDownShow: (state: boolean) => void;
   isShared: boolean;
   setIsShared: (state: boolean) => void;
-  //triggerId: string;
   bundle: Bundle;
   closeDropDown: (e: Event) => void;
   direction: Direction;
