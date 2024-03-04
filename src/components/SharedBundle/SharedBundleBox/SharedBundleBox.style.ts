@@ -7,7 +7,12 @@ export const AllCheckWrapper = styled(Row)`
   width: 90%;
   margin: 2rem auto 1rem;
   justify-content: end;
+  padding: 1rem 1.2rem 1rem 0rem;
+  box-sizing: border-box;
   gap: 1rem;
+  @media screen and (max-width: ${MOBILE}px) {
+    padding: 0.5rem 1.2rem 0rem 0rem;
+  }
 `;
 export const SharedBundleBoxWrapper = styled(Col)`
   width: 90%;
