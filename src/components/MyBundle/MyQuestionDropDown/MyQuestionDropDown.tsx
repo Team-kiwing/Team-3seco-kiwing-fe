@@ -13,26 +13,32 @@ const MyQuestionDropDown = ({
   setIsShow,
   isShared,
   setIsShared,
-  triggerId,
-  questionId,
+  question,
+  closeDropDown,
+  direction,
 }: MyQuestionDropDownProps) => {
   const { isMobileSize } = useResize();
 
-  const handleDeleteQuestion = (questionId: number) => {
-    confirm(`id ${questionId} 꾸러미를 삭제하시겠습니까?`);
+  const handleDeleteQuestion = () => {
+    confirm(`id ${question.id} 질문을 삭제하시겠습니까?`);
     // @TODO 추후에 질문 삭제 API 함수를 호출합니다.
   };
 
-  const handleEditQuestion = (questionId: number) => {
-    console.log(`id ${questionId} 꾸러미 편집`);
+  const handleEditQuestion = () => {
+    console.log(`id ${question.id} 질문 편집`);
     // @TODO 추후에 질문 편집을 할 수 있는 모달을 띄웁니다.
   };
 
   const options = [
     {
       id: 1,
-      title: '공개 여부',
-      rightItem: <Toggle on={isShared} />,
+      title: '답변 공개 여부',
+      rightItem: (
+        <Toggle
+          on={isShared}
+          width="3.5rem"
+        />
+      ),
       handler: () => {
         setIsShared(!isShared);
         // @TODO 추후에 답변 공개/비공개를 결정하는 api 로직을 연동합니다.
@@ -47,7 +53,7 @@ const MyQuestionDropDown = ({
         </IconWrapper>
       ),
       handler: () => {
-        handleEditQuestion(questionId);
+        handleEditQuestion();
         setIsShow(false);
       },
     },
@@ -60,19 +66,20 @@ const MyQuestionDropDown = ({
         </IconWrapper>
       ),
       handler: () => {
-        handleDeleteQuestion(questionId);
+        handleDeleteQuestion();
         setIsShow(false);
       },
     },
   ];
   return (
     <DropDown
-      width="12rem"
-      height="fit-content"
+      width={14}
+      optionHeight={5}
       options={options}
       isShow={isShow}
       setIsShow={setIsShow}
-      triggerId={triggerId}
+      direction={direction}
+      closeDropDown={closeDropDown}
     />
   );
 };
