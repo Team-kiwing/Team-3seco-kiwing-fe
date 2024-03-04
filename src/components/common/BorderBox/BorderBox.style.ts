@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import {
   BORDER_CARD_MOBILE,
@@ -33,10 +33,19 @@ export const Container = styled.div<ContainerProps>`
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       scale: ${(props) => (props.$isHoverActive ? 1.05 : undefined)};
-      border-color: ${(props) =>
-        props.$isHoverActive
-          ? props.theme.symbol_color
-          : props.theme.border_color};
+      ${(props) => {
+        if (props.$isHoverActive) {
+          return css`
+            border-color: ${props.theme.symbol_color};
+          `;
+        } else {
+          return css`
+            border-color: ${props.$isActive
+              ? props.theme.symbol_color
+              : props.theme.border_color};
+          `;
+        }
+      }}
     }
   }
 
