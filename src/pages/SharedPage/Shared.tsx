@@ -1,14 +1,21 @@
 import { useEffect, useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import BundleCard from '@/components/common/BundleCard';
 import SearchBar from '@/components/common/SearchBar';
 import Selector from '@/components/common/Selector';
 import TagFilter from '@/components/common/TagFilter';
-import { BundlesBasic, Tag } from '@/types';
+import { Tag } from '@/types';
 
 import { SelectorConstants } from './Shared.const';
-import { useBundleDisplay } from './Shared.hook';
-import useBundleFilter from './Shared.hook';
+import {
+  useLatestBundles,
+  useLatestSearchedBundles,
+  useLatestSelectedTagBundles,
+  usePopularBundles,
+  usePopularSearchedBundles,
+  usePopularSelectedTagBundles,
+} from './Shared.hook';
 import {
   CardWrapper,
   SearchWrapper,
@@ -20,50 +27,98 @@ import {
 const Shared = () => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [isRecent, setIsRecent] = useState<boolean>(true);
-  const [bundles, setBundles] = useState<BundlesBasic[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
-  const { filteredBundles } = useBundleFilter({ selectedTags, bundles });
-  const {
-    recentBundles,
-    popularBundles,
-    recentFilterBundles,
-    popularFilteredBundles,
-  } = useBundleDisplay({ bundles, filteredBundles });
+  const [searchedBundles, setSearchedBundles] = useState<string>('');
+  const [isSearch, setIsSearch] = useState<boolean>(false);
+
+  const tagsId = selectedTags.map((tag) => tag.id);
+
+  const { data: latestBundles } = useLatestBundles();
+  const { data: popularBundles } = usePopularBundles();
+  const { data: latestSelectedBundles } = useLatestSelectedTagBundles(tagsId);
+  const { data: popularSelectedBundles } = usePopularSelectedTagBundles(tagsId);
+  const { data: latestSearchedBundles } =
+    useLatestSearchedBundles(searchedBundles);
+  const { data: popularSearchedBundles } =
+    usePopularSearchedBundles(searchedBundles);
+
+  const methods = useForm({ mode: 'onSubmit' });
+  const REGISTER = 'searchBundle';
+
+  console.log(latestSearchedBundles, popularSearchedBundles);
+
+  const onSubmit = async () => {
+    const searchedBundles = methods.getValues(REGISTER).trim();
+    setSearchedBundles(searchedBundles);
+    setIsSearch(true);
+  };
 
   const displayBundle = () => {
-    if (selectedTags.length == 0) {
-      if (isRecent) {
-        return recentBundles.map(
-          (bundle) =>
-            bundle.shareType === 'PUBLIC' && (
-              <BundleCard
-                key={bundle.id}
-                id={bundle.id}
-                bundleName={bundle.name}
-                hashTags={bundle.tags}
-                isHot={bundle.isHot}
-                subscribedCount={bundle.scrapeCount}
-              />
-            )
-        );
+    if (!isSearch) {
+      if (selectedTags.length == 0) {
+        if (isRecent) {
+          return latestBundles?.content?.map(
+            (bundle) =>
+              bundle.shareType === 'PUBLIC' && (
+                <BundleCard
+                  key={bundle.id}
+                  id={bundle.id}
+                  bundleName={bundle.name}
+                  hashTags={bundle.tags}
+                  isHot={bundle.isHot}
+                  subscribedCount={bundle.scrapeCount}
+                />
+              )
+          );
+        } else {
+          return popularBundles?.content.map(
+            (bundle) =>
+              bundle.shareType === 'PUBLIC' && (
+                <BundleCard
+                  key={bundle.id}
+                  id={bundle.id}
+                  bundleName={bundle.name}
+                  hashTags={bundle.tags}
+                  isHot={bundle.isHot}
+                  subscribedCount={bundle.scrapeCount}
+                />
+              )
+          );
+        }
       } else {
-        return popularBundles.map(
-          (bundle) =>
-            bundle.shareType === 'PUBLIC' && (
-              <BundleCard
-                key={bundle.id}
-                id={bundle.id}
-                bundleName={bundle.name}
-                hashTags={bundle.tags}
-                isHot={bundle.isHot}
-                subscribedCount={bundle.scrapeCount}
-              />
-            )
-        );
+        if (isRecent) {
+          return latestSelectedBundles?.content?.map(
+            (bundle) =>
+              bundle.shareType === 'PUBLIC' && (
+                <BundleCard
+                  key={bundle.id}
+                  id={bundle.id}
+                  bundleName={bundle.name}
+                  hashTags={bundle.tags}
+                  isHot={bundle.isHot}
+                  subscribedCount={bundle.scrapeCount}
+                />
+              )
+          );
+        } else {
+          return popularSelectedBundles?.content.map(
+            (bundle) =>
+              bundle.shareType === 'PUBLIC' && (
+                <BundleCard
+                  key={bundle.id}
+                  id={bundle.id}
+                  bundleName={bundle.name}
+                  hashTags={bundle.tags}
+                  isHot={bundle.isHot}
+                  subscribedCount={bundle.scrapeCount}
+                />
+              )
+          );
+        }
       }
     } else {
       if (isRecent) {
-        return recentFilterBundles.map(
+        return latestSearchedBundles?.content?.map(
           (bundle) =>
             bundle.shareType === 'PUBLIC' && (
               <BundleCard
@@ -77,7 +132,7 @@ const Shared = () => {
             )
         );
       } else {
-        return popularFilteredBundles.map(
+        return popularSearchedBundles?.content.map(
           (bundle) =>
             bundle.shareType === 'PUBLIC' && (
               <BundleCard
@@ -95,18 +150,14 @@ const Shared = () => {
   };
 
   useEffect(() => {
-    fetch('/bundles')
-      .then((res) => res.json())
-      .then((data) => setBundles(data));
+    console.log(searchedBundles);
+  }, [searchedBundles, isSearch]);
 
+  useEffect(() => {
     fetch('/api/v1/tags')
       .then((res) => res.json())
-      .then((res) => setTags(res.data));
+      .then((res) => setTags(res));
   }, []);
-
-  if (bundles.length === 0) {
-    return null;
-  }
 
   return (
     <>
@@ -119,7 +170,12 @@ const Shared = () => {
           />
         </TagFilterWrapper>
         <SearchWrapper>
-          <SearchBar />
+          <FormProvider {...methods}>
+            <SearchBar
+              handleSearchSubmit={onSubmit}
+              REGISTER={REGISTER}
+            />
+          </FormProvider>
         </SearchWrapper>
         <SelectorWrapper>
           <Selector
