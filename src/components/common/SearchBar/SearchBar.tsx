@@ -46,6 +46,7 @@ const SearchBar = ({
     formState: { errors },
   } = useFormContext();
 
+  // TODO: warning 원인 찾아서 해결하기. (useCallback에 의존성을 주면 함수 실행 자체가 안됨... 현재의 형태 말고는 debounce가 정상적으로 동작하는 형태가 없었는데, 코드 품질을 위해 해결해야함.)
   const SearchSubmit = useCallback(
     debounce(() => {
       if (!errors[REGISTER]?.message) {
