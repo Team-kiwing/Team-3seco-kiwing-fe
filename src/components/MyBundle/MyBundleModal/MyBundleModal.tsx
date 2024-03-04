@@ -10,13 +10,19 @@ import useResize from '@/hooks/useResize';
 import { modalStore } from '@/stores';
 import { Tag } from '@/types';
 
-import { MODAL, MyBundleModalValidation } from './MyBundleList.const';
-import { ButtonContainer, ModalContainer } from './MyBundleList.style';
-import { AddBundleModalProps, FormField } from './MyBundleList.type';
+import { MODAL, MyBundleModalValidation } from './MyBundleModal.const';
+import { ButtonContainer, ModalContainer } from './MyBundleModal.style';
+import { AddBundleModalProps, FormField } from './MyBundleModal.type';
 
-const AddBundleModal = ({ tags }: AddBundleModalProps) => {
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
-  const [isShared, setIsShared] = useState(false);
+const MyBundleModal = ({
+  tags,
+  mode = 'add',
+  bundleNameField = '',
+  selectedTagsField = [],
+  isSharedField = false,
+}: AddBundleModalProps) => {
+  const [selectedTags, setSelectedTags] = useState<Tag[]>(selectedTagsField);
+  const [isShared, setIsShared] = useState(isSharedField);
 
   const { isMobileSize } = useResize();
   const { closeModal } = modalStore();
@@ -29,9 +35,9 @@ const AddBundleModal = ({ tags }: AddBundleModalProps) => {
   } = useForm<FormField>({
     mode: 'onChange',
     defaultValues: {
-      bundleNameField: '',
-      selectedTagsField: [],
-      isSharedField: false,
+      bundleNameField,
+      selectedTagsField,
+      isSharedField,
     },
   });
 
@@ -95,7 +101,7 @@ const AddBundleModal = ({ tags }: AddBundleModalProps) => {
           />
           <Button
             style={{ marginTop: '1rem' }}
-            text={MODAL.SUBMIT_BUTTON_TEXT}
+            text={MODAL.SUBMIT_BUTTON_TEXT(mode)}
             width="100%"
             type="submit"
             height={isMobileSize ? '3.5rem' : '4.4rem'}
@@ -106,4 +112,4 @@ const AddBundleModal = ({ tags }: AddBundleModalProps) => {
   );
 };
 
-export default AddBundleModal;
+export default MyBundleModal;

@@ -5,9 +5,11 @@ import DropDown from '@/components/common/DropDown';
 import IconWrapper from '@/components/common/IconWrapper';
 import Toggle from '@/components/common/Toggle';
 import { PATH } from '@/constants/router';
+import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
+import { COPY_NOTIFY } from './MyBundleDropDown.const';
 import { MyBundleDropDownProps } from './MyBundleDropDown.type';
 
 const MyBundleDropDown = ({
@@ -15,25 +17,35 @@ const MyBundleDropDown = ({
   setIsDropDownShow,
   isShared,
   setIsShared,
-  triggerId,
-  bundleId,
+  closeDropDown,
+  bundle,
+  direction,
+  handleEditBundleClick,
 }: MyBundleDropDownProps) => {
   const { isMobileSize } = useResize();
-  const handleDeleteBundle = (bundleId: number) => {
-    confirm(`id ${bundleId} 꾸러미를 삭제하시겠습니까?`);
+  const handleDeleteBundle = () => {
+    confirm(`id ${bundle.id} 꾸러미를 삭제하시겠습니까?`);
     // @TODO 추후에 꾸러미 삭제 API 함수를 호출합니다.
   };
 
-  const handleEditBundle = (bundleId: number) => {
-    console.log(`id ${bundleId} 꾸러미 편집`);
-    // @TODO 추후에 꾸러미 편집을 할 수 있는 모달을 띄웁니다.
+  const handleEditBundle = () => {
+    handleEditBundleClick({
+      bundleNameField: bundle.name,
+      isSharedField: bundle.shareType === 'PUBLIC',
+      selectedTagsField: bundle.tags,
+    });
   };
 
   const options = [
     {
       id: 1,
       title: '공개 여부',
-      rightItem: <Toggle on={isShared} />,
+      rightItem: (
+        <Toggle
+          on={isShared}
+          width="4rem"
+        />
+      ),
 
       handler: () => {
         setIsShared(!isShared);
@@ -52,11 +64,13 @@ const MyBundleDropDown = ({
       handler: () => {
         if (isShared) {
           const host = window.location.host;
-          const pathname = `${PATH.SHARED}/${bundleId}`;
+          const pathname = `${PATH.SHARED}/${bundle.id}`;
           handleCopyClipBoard(host, pathname);
         } else {
-          // @TODO 추후에 alert -> 토스트 알림으로 변경합니다.
-          alert('공개된 리스트만 링크를 복사할 수 있습니다.');
+          notify({
+            type: 'warning',
+            text: COPY_NOTIFY,
+          });
         }
         setIsDropDownShow(false);
       },
@@ -70,7 +84,7 @@ const MyBundleDropDown = ({
         </IconWrapper>
       ),
       handler: () => {
-        handleDeleteBundle(bundleId);
+        handleDeleteBundle();
         setIsDropDownShow(false);
       },
     },
@@ -83,7 +97,7 @@ const MyBundleDropDown = ({
         </IconWrapper>
       ),
       handler: () => {
-        handleEditBundle(bundleId);
+        handleEditBundle();
         setIsDropDownShow(false);
       },
     },
@@ -91,12 +105,13 @@ const MyBundleDropDown = ({
 
   return (
     <DropDown
-      width="120px"
-      height="fit-content"
+      width={13}
+      optionHeight={5}
       options={options}
       isShow={isDropDownShow}
       setIsShow={setIsDropDownShow}
-      triggerId={triggerId}
+      direction={direction}
+      closeDropDown={closeDropDown}
     />
   );
 };
