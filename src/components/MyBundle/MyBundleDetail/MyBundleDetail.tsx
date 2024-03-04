@@ -17,6 +17,10 @@ import { MyBundleDetailProps } from './MyBundleDetail.type';
 const MyBundleDetail = ({ questions }: MyBundleDetailProps) => {
   const [isAll, setIsAll] = useState(true);
 
+  const filteredQuestions = isAll
+    ? questions
+    : questions.filter((question) => question.id === question.originId);
+
   return (
     <BorderBox
       width="100%"
@@ -31,7 +35,7 @@ const MyBundleDetail = ({ questions }: MyBundleDetailProps) => {
           />
         </Header>
         <Body>
-          {questions.map((question) => (
+          {filteredQuestions.map((question) => (
             <MyQuestionBox
               key={question.id}
               question={question.content}
