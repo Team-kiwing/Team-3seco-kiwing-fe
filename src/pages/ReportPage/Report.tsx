@@ -1,9 +1,5 @@
-import { debounce } from 'lodash';
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-
 import Button from '@/components/common/Button';
 import Textarea from '@/components/common/Textarea';
-import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
 
 import {
@@ -11,6 +7,7 @@ import {
   ReportPageConstants,
   ReportPageGuide,
 } from './Report.const';
+import { useReportForm } from './Report.hook';
 import {
   ReportForm,
   ReportGuideContainer,
@@ -22,54 +19,8 @@ import {
 
 const Report = () => {
   const { isMobileSize } = useResize();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<{ createReport: string }>({
-    mode: 'onChange',
-    defaultValues: { createReport: '' },
-  });
-
-  const onValid: SubmitHandler<{ createReport: string }> = ({
-    createReport,
-  }) => {
-    // todo 문의 제출 API 연동
-    // API fail 에러는 현재 로직에서 처리함
-    if (window.confirm(ReportPageConstants.SUBMIT_CONFIRM_MESSAGE)) {
-      console.log(createReport);
-    } else {
-      return;
-    }
-
-    // 성공시
-    notify({
-      type: 'default',
-      text: ReportPageConstants.NOTIFY_REPORT_SUCCESS_MESSAGE,
-    });
-
-    // 홈으로
-
-    // 실패해도...집으로 가야하지 않을까..?
-  };
-
-  const onInValid: SubmitErrorHandler<{ createReport: string }> = () => {
-    if (errors.createReport?.message) {
-      notify({ type: 'error', text: errors.createReport?.message });
-    }
-  };
-
-  const handleSubmitDebounce = debounce(
-    () => handleSubmit(onValid, onInValid)(),
-    250
-  );
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmitDebounce();
-    }
-  };
+  const { register, handleSubmit, onValid, onInValid, handleKeyPress, errors } =
+    useReportForm();
 
   return (
     <>
