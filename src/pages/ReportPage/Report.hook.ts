@@ -18,8 +18,8 @@ export const useReportForm = () => {
 
   const onValid: SubmitHandler<ReportSubmitProps> = ({ createReport }) => {
     if (window.confirm(ReportPageConstants.SUBMIT_CONFIRM_MESSAGE)) {
+      // todo API 연동
       console.log(createReport);
-
       notify({
         type: 'default',
         text: ReportPageConstants.NOTIFY_REPORT_SUCCESS_MESSAGE,
