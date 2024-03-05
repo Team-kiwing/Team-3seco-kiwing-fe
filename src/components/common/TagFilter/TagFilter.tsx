@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 
+import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
 import { Tag } from '@/types';
 
@@ -30,6 +31,7 @@ const TagFilter = ({
   tagList,
   selectedTags,
   setSelectedTags,
+  isLimit = false,
   ...props
 }: TagFilterProps) => {
   const isSelectedTag = useCallback(
@@ -42,6 +44,14 @@ const TagFilter = ({
 
   const toggleActiveName = useCallback(
     (tag: Tag) => {
+      if (isLimit && selectedTags.length >= 3 && !isSelectedTag(tag)) {
+        notify({
+          type: 'warning',
+          text: '태그는 3개까지만 선택할 수 있습니다!',
+        });
+        return;
+      }
+
       if (isSelectedTag(tag)) {
         setSelectedTags(
           selectedTags.filter((selectedTag) => selectedTag.id !== tag.id)
@@ -50,7 +60,7 @@ const TagFilter = ({
         setSelectedTags([...selectedTags, tag]);
       }
     },
-    [isSelectedTag, selectedTags, setSelectedTags]
+    [isSelectedTag, selectedTags, setSelectedTags, isLimit]
   );
 
   return (
