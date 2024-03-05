@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
 import Input from '@/components/common/Input';
@@ -7,8 +8,9 @@ import TagFilter from '@/components/common/TagFilter';
 import { notify } from '@/hooks/toast';
 import { useFetchTags } from '@/hooks/useFetchTags';
 import useResize from '@/hooks/useResize';
-import { themeStore } from '@/stores';
+import { accessTokenStore, themeStore } from '@/stores';
 import { Tag } from '@/types';
+import { setItem } from '@/utils/localStorage';
 
 import {
   RegisterCheckbox,
@@ -23,9 +25,11 @@ import {
 } from './Register.style';
 
 const Register = () => {
+  const navigate = useNavigate();
   const { isMobileSize } = useResize();
   const { isDarkMode } = themeStore();
   const theme = useTheme();
+  const { setAccessToken } = accessTokenStore();
 
   const { data: tags, isLoading } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
@@ -34,6 +38,7 @@ const Register = () => {
   const handleRegisterSubmit = () => {
     if (isChecked) {
       notify({ type: 'success', text: '가입에 성공했습니다 !' });
+      navigate('/');
     } else {
       notify({
         type: 'error',
@@ -42,8 +47,24 @@ const Register = () => {
     }
   };
 
+  const accessToken = new URL(window.location.href).searchParams.get(
+    'access-token'
+  );
+  const refreshToken = new URL(window.location.href).searchParams.get(
+    'refresh-token'
+  );
+
+  useEffect(() => {
+    if (accessToken && refreshToken) {
+      setAccessToken(accessToken);
+      setItem('refresh-token', refreshToken);
+      navigate('/register');
+    }
+  }, [navigate, accessToken, setAccessToken, refreshToken]);
+
   return (
     <RegisterPageWrapper>
+      {/* TODO: Auth의 Spinner 컴포넌트를 common으로 위치 변경 후 적용하기 */}
       {!isMobileSize && (
         <RegisterLogo>
           <img
