@@ -9,9 +9,9 @@ export const RegisterPageWrapper = styled(Row)`
   align-items: center;
 `;
 
-export const RegisterLogo = styled.div`
+export const RegisterLogo = styled(Row)`
   width: 40%;
-
+  justify-content: center;
   & > img {
     width: 100%;
     max-width: 30rem;
