@@ -6,7 +6,11 @@ import Textarea from '@/components/common/Textarea';
 import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
 
-import { ReportContentValidation, ReportPageConstants } from './Report.const';
+import {
+  ReportContentValidation,
+  ReportPageConstants,
+  ReportPageGuide,
+} from './Report.const';
 import {
   ReportForm,
   ReportGuideContainer,
@@ -70,32 +74,17 @@ const Report = () => {
   return (
     <>
       <ReportPageLayout>
-        {/* todo 반복문 map 객체로 줄이기 */}
         <ReportGuideContainer>
           <ReportPageTitle>{ReportPageConstants.REPORT_TITLE}</ReportPageTitle>
-          <ReportGuideTitle>
-            {ReportPageConstants.REPORT_GUIDE_ERROR_TITLE}
-          </ReportGuideTitle>
-          <ReportGuideText>
-            {ReportPageConstants.REPORT_GUIDE_ERROR_TEXT}
-          </ReportGuideText>
         </ReportGuideContainer>
-        <ReportGuideContainer>
-          <ReportGuideTitle>
-            {ReportPageConstants.REPORT_GUIDE_SUGGEST_TITLE}
-          </ReportGuideTitle>
-          <ReportGuideText>
-            {ReportPageConstants.REPORT_GUIDE_SUGGEST_TEXT}
-          </ReportGuideText>
-        </ReportGuideContainer>
-        <ReportGuideContainer>
-          <ReportGuideTitle>
-            {ReportPageConstants.REPORT_GUIDE_ASK_TITLE}
-          </ReportGuideTitle>
-          <ReportGuideText>
-            {ReportPageConstants.REPORT_GUIDE_ASK_TEXT}
-          </ReportGuideText>
-        </ReportGuideContainer>
+        {ReportPageGuide.map((val, index) => {
+          return (
+            <ReportGuideContainer key={index}>
+              <ReportGuideTitle>{val.title}</ReportGuideTitle>
+              <ReportGuideText>{val.text}</ReportGuideText>
+            </ReportGuideContainer>
+          );
+        })}
         <ReportForm onSubmit={handleSubmit(onValid, onInValid)}>
           <Textarea
             {...register('createReport', ReportContentValidation)}
