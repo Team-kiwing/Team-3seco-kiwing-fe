@@ -21,7 +21,7 @@ export const RegisterLogo = styled(Row)`
 export const RegisterHeader = styled.div`
   font-size: 5rem;
   font-weight: ${FONT_BOLD};
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   word-break: keep-all;
   color: ${({ theme }) => theme.primary_color};
 
@@ -53,7 +53,7 @@ export const RegisterLabel = styled.label`
 `;
 
 export const RegisterItemWrapper = styled.div`
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 `;
 
 export const RegisterCheckboxWrapper = styled(Row)`
