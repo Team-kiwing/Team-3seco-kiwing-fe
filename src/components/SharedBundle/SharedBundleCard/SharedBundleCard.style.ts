@@ -32,6 +32,6 @@ export const ClickContent = styled.div`
   align-items: center;
   position: absolute;
   right: 0;
-  margin: 0 1rem;
-  gap: 1rem;
+  margin: 0 2rem;
+  gap: 2rem;
 `;
