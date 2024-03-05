@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import {
   BORDER_MOBILE,
   BORDER_WEB,
-  FONT_MEDIUM,
+  FONT_REGULAR,
   MOBILE,
   MOBILE_FONT_SIZE,
   WEB_FONT_SIZE,
@@ -47,7 +47,7 @@ export const Header = styled.h1`
   align-items: center;
   cursor: pointer;
   width: 100%;
-  font-weight: ${FONT_MEDIUM};
+  font-weight: ${FONT_REGULAR};
   font-size: ${WEB_FONT_SIZE}rem;
 
   @media screen and (max-width: ${MOBILE}px) {
