@@ -1,6 +1,10 @@
+import { Direction } from '@/types/dropdown';
+
 export interface SharedBundleDropDownProps {
-  isDropDownShow: boolean;
-  setIsDropDownShow: (state: boolean) => void;
-  triggerId: string;
-  width?: string;
+  isShow: boolean;
+  setIsShow: (state: boolean) => void;
+  closeDropDown: (e: Event) => void;
+  direction: Direction;
+  onAddBundle: () => void;
+  bundleId: number;
 }
