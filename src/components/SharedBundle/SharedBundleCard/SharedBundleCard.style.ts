@@ -4,8 +4,7 @@ import { MOBILE_FONT_SIZE, WEB_FONT_SIZE } from '@/constants';
 import { FONT_MEDIUM, MOBILE, MOBILE_MIN } from '@/constants';
 
 export const SharedBundleCardWrapper = styled.div`
-  width: 90%;
-  max-width: 80rem;
+  width: 100%;
   min-width: 28rem;
 `;
 
@@ -18,12 +17,12 @@ export const BundleTitle = styled.div`
   color: ${({ theme }) => theme.primary_white_text_color};
 
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: ${WEB_FONT_SIZE};
+    font-size: ${WEB_FONT_SIZE}rem;
     padding: 1.5rem;
   }
 
   @media screen and (max-width: ${MOBILE_MIN}px) {
-    font-size: ${MOBILE_FONT_SIZE};
+    font-size: ${MOBILE_FONT_SIZE}rem;
     padding: 1rem;
   }
 `;
