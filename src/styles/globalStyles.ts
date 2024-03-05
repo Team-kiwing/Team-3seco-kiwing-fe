@@ -1,10 +1,13 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
+import { MOBILE } from '@/constants';
+
 export const GlobalStyle = createGlobalStyle`
     ${normalize}
 
-    * {
+    @media not all and (max-width: ${MOBILE}px) {
+      * {
         &::-webkit-scrollbar {
           width: 0.4rem;
         }
@@ -12,7 +15,8 @@ export const GlobalStyle = createGlobalStyle`
           background-color: ${(props) => props.theme.border_color};
           border-radius: 100px;
         }
-    }   
+      }
+    }
 
     html,   
     body {
