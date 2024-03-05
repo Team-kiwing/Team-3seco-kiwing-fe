@@ -6,6 +6,13 @@ import Textarea from '@/components/common/Textarea';
 import { notify } from '@/hooks/toast';
 
 import { ReportContentValidation, ReportPageConstants } from './Report.const';
+import {
+  ReportForm,
+  ReportGuideText,
+  ReportGuideTitle,
+  ReportPageLayout,
+  ReportPageTitle,
+} from './Report.style';
 
 const Report = () => {
   const {
@@ -59,73 +66,34 @@ const Report = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '50%',
-          margin: '0 auto',
-          height: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+      <ReportPageLayout>
+        {/* todo 반복문 map 객체로 줄이기 */}
         <div>
-          <h2 style={{ fontSize: '3rem' }}>
-            {ReportPageConstants.REPORT_TITLE}
-          </h2>
-          <span style={{ fontSize: '2rem', fontWeight: '700' }}>
+          <ReportPageTitle>{ReportPageConstants.REPORT_TITLE}</ReportPageTitle>
+          <ReportGuideTitle>
             {ReportPageConstants.REPORT_GUIDE_ERROR_TITLE}
-          </span>
-          <p
-            style={{
-              fontSize: '1.6rem',
-              fontWeight: '500',
-              lineHeight: 'normal',
-            }}
-          >
+          </ReportGuideTitle>
+          <ReportGuideText>
             {ReportPageConstants.REPORT_GUIDE_ERROR_TEXT}
-          </p>
+          </ReportGuideText>
         </div>
         <div>
-          <span style={{ fontSize: '2rem', fontWeight: '700' }}>
+          <ReportGuideTitle>
             {ReportPageConstants.REPORT_GUIDE_SUGGEST_TITLE}
-          </span>
-          <p
-            style={{
-              fontSize: '1.6rem',
-              fontWeight: '500',
-              lineHeight: 'normal',
-            }}
-          >
+          </ReportGuideTitle>
+          <ReportGuideText>
             {ReportPageConstants.REPORT_GUIDE_SUGGEST_TEXT}
-          </p>
+          </ReportGuideText>
         </div>
         <div>
-          <span style={{ fontSize: '2rem', fontWeight: '700' }}>
+          <ReportGuideTitle>
             {ReportPageConstants.REPORT_GUIDE_ASK_TITLE}
-          </span>
-          <p
-            style={{
-              fontSize: '1.6rem',
-              fontWeight: '500',
-              lineHeight: 'normal',
-            }}
-          >
+          </ReportGuideTitle>
+          <ReportGuideText>
             {ReportPageConstants.REPORT_GUIDE_ASK_TEXT}
-          </p>
+          </ReportGuideText>
         </div>
-        <form
-          onSubmit={handleSubmit(onValid, onInValid)}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            height: 'auto',
-            flexDirection: 'column',
-          }}
-        >
+        <ReportForm onSubmit={handleSubmit(onValid, onInValid)}>
           <Textarea
             {...register('createReport', ReportContentValidation)}
             style={{ height: '30rem' }}
@@ -144,8 +112,8 @@ const Report = () => {
             text={ReportPageConstants.SUBMIT_BUTTON_TEXT}
             type="submit"
           />
-        </form>
-      </div>
+        </ReportForm>
+      </ReportPageLayout>
     </>
   );
 };
