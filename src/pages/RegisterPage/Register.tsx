@@ -90,14 +90,6 @@ const Register = () => {
         <RegisterItemWrapper>
           <Input
             fontSize={1.8}
-            label={'이름'}
-            width="100%"
-            placeholder="Input의 props로 disabled 속성을 추가한 뒤 구글 로그인 한 결과에서 이름을 넣어야함."
-          />
-        </RegisterItemWrapper>
-        <RegisterItemWrapper>
-          <Input
-            fontSize={1.8}
             label={'이메일'}
             width="100%"
             placeholder="Input의 props로 disabled 속성을 추가한 뒤 구글 로그인 한 결과에서 이메일을 넣어야함."
@@ -106,7 +98,7 @@ const Register = () => {
         <RegisterItemWrapper>
           <Input
             fontSize={1.8}
-            label={'사용자 이름'}
+            label={'닉네임'}
             width="100%"
             errorMessage="영어, 숫자 이외에 문자를 넣으면 출력"
             placeholder="영어와 숫자 조합으로 적어주세요."
@@ -130,19 +122,19 @@ const Register = () => {
         <RegisterItemWrapper>
           <Input
             fontSize={1.8}
-            label={'링크 추가'}
+            label={'링크'}
             width="100%"
-            placeholder="자신을 뽐낼 수 있는 링크를 추가해보세요."
+            placeholder="GitHub"
           />
           <Input
             fontSize={1.8}
             width="100%"
-            placeholder="자신을 뽐낼 수 있는 링크를 추가해보세요."
+            placeholder="블로그"
           />
           <Input
             fontSize={1.8}
             width="100%"
-            placeholder="자신을 뽐낼 수 있는 링크를 추가해보세요."
+            placeholder="기타"
           />
         </RegisterItemWrapper>
         <RegisterCheckboxWrapper>
