@@ -14,6 +14,7 @@ import { Direction } from '@/types/dropdown';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
 import SharedBundleDropDown from '../SharedBundleDropDown';
+import { SHARED_BUNDLE_CARD } from './SharedBundleCard.const';
 import {
   BundleTitle,
   ClickContent,
@@ -48,12 +49,12 @@ const SharedBundleCard = ({
     if (result) {
       notify({
         type: 'success',
-        text: '꾸러미가 스크랩되었습니다.',
+        text: SHARED_BUNDLE_CARD.SUCCESS_SCRAPE_NOTIFY,
       });
     } else {
       notify({
         type: 'error',
-        text: '꾸러미 스크랩을 실패하였습니다.',
+        text: SHARED_BUNDLE_CARD.FAIL_SCRAPE_NOTIFY,
       });
     }
   };
