@@ -9,6 +9,7 @@ import {
 import BorderBox from '@/components/common/BorderBox';
 import Button from '@/components/common/Button';
 import Selector from '@/components/common/Selector';
+import { Question } from '@/types';
 
 import MyQuestionBox from '../MyQuestionBox';
 import {
@@ -18,20 +19,34 @@ import {
   CountText,
   Footer,
   Header,
+  QuestionWrapper,
 } from './MyBundleDetail.style';
 import { MyBundleDetailProps } from './MyBundleDetail.type';
 
 const MyBundleDetail = ({ questions }: MyBundleDetailProps) => {
   const [isAll, setIsAll] = useState(true);
 
+  const [orderedQuestions, setOrderedQuestions] =
+    useState<Question[]>(questions);
+
   const filteredQuestions = isAll
-    ? questions
-    : questions.filter((question) => question.id === question.originId);
+    ? orderedQuestions
+    : orderedQuestions.filter((question) => question.id === question.originId);
 
   // --- Draggable이 Droppable로 드래그 되었을 때 실행되는 이벤트
   const onDragEnd = ({ source, destination }: DropResult) => {
-    console.log('>>> source', source);
-    console.log('>>> destination', destination);
+    if (!destination) return;
+
+    // 깊은 복사
+    const _items = JSON.parse(
+      JSON.stringify(orderedQuestions)
+    ) as typeof orderedQuestions;
+    // 기존 아이템 뽑아내기
+    const [targetItem] = _items.splice(source.index, 1);
+    // 기존 아이템을 새로운 위치에 삽입하기
+    _items.splice(destination.index, 0, targetItem);
+    // 상태 변경
+    setOrderedQuestions(_items);
   };
 
   // --- requestAnimationFrame 초기화
@@ -79,7 +94,7 @@ const MyBundleDetail = ({ questions }: MyBundleDetailProps) => {
                       index={index}
                     >
                       {(provided) => (
-                        <div
+                        <QuestionWrapper
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
@@ -89,7 +104,7 @@ const MyBundleDetail = ({ questions }: MyBundleDetailProps) => {
                             question={question.content}
                             answer={question.answer}
                           />
-                        </div>
+                        </QuestionWrapper>
                       )}
                     </Draggable>
                   ))}
