@@ -73,9 +73,9 @@ const Register = () => {
           />
         </RegisterLogo>
       )}
-      <RegisterFormWrapper $isMobile={isMobileSize}>
-        <RegisterHeader $isMobile={isMobileSize}>
-          안녕하세요. 저희는&nbsp;
+      <RegisterFormWrapper>
+        <RegisterHeader>
+          안녕하세요. <br /> 저희는&nbsp;
           <span
             style={{
               color: isDarkMode
@@ -113,7 +113,7 @@ const Register = () => {
           />
         </RegisterItemWrapper>
         <RegisterItemWrapper>
-          <RegisterLabel $isMobile={isMobileSize}>관심 분야</RegisterLabel>
+          <RegisterLabel>관심 분야</RegisterLabel>
           {isLoading ? (
             <Skeleton.Box
               $width={'100%'}
@@ -145,7 +145,7 @@ const Register = () => {
             placeholder="자신을 뽐낼 수 있는 링크를 추가해보세요."
           />
         </RegisterItemWrapper>
-        <RegisterCheckboxWrapper $isMobile={isMobileSize}>
+        <RegisterCheckboxWrapper>
           <RegisterCheckbox
             type="checkbox"
             checked={isChecked}
@@ -155,10 +155,7 @@ const Register = () => {
             <a href="/policy">이용약관</a>에 동의합니다.
           </div>
         </RegisterCheckboxWrapper>
-        <RegisterSubmitButton
-          onClick={handleRegisterSubmit}
-          $isMobile={isMobileSize}
-        >
+        <RegisterSubmitButton onClick={handleRegisterSubmit}>
           가입
         </RegisterSubmitButton>
       </RegisterFormWrapper>
