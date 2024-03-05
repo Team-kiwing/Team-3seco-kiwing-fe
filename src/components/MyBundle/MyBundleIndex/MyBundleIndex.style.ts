@@ -10,7 +10,21 @@ export const Container = styled(Col)`
   overflow-y: auto;
 `;
 export const Text = styled.div`
-  color: ${({ theme }) => theme.gray_300};
-  font-size: 1.2rem;
-  cursor: pointer;
+  > a {
+    color: ${({ theme }) => theme.gray_300};
+    font-size: 1.2rem;
+
+    &:hover {
+      color: ${({ theme }) => theme.symbol_secondary_color};
+    }
+    > span {
+    }
+  }
+  // white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  //width: 90%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `;
