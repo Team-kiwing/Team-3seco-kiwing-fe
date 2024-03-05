@@ -1,13 +1,9 @@
 import BorderBox from '@/components/common/BorderBox';
-import { Question } from '@/types';
 
 import { Container, Text } from './MyBundleIndex.style';
+import { MyBundleIndexProps } from './MyBundleIndex.type';
 
-const MyBundleIndex = ({
-  questions,
-}: {
-  questions: Question[] | undefined;
-}) => {
+const MyBundleIndex = ({ questions }: MyBundleIndexProps) => {
   if (!questions) {
     return;
   }

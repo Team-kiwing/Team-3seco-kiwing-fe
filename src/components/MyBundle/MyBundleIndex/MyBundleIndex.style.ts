@@ -17,13 +17,10 @@ export const Text = styled.div`
     &:hover {
       color: ${({ theme }) => theme.symbol_secondary_color};
     }
-    > span {
-    }
   }
-  // white-space: nowrap;
+
   overflow: hidden;
   text-overflow: ellipsis;
-  //width: 90%;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
