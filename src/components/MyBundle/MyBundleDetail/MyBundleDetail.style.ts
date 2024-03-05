@@ -17,12 +17,13 @@ export const Body = styled(Col)`
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-
-  // margin: 1rem;
-
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+`;
 
+export const BodyInnerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 `;
 
