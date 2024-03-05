@@ -40,27 +40,6 @@ const SharedBundleCard = ({
   const { triggerId, isShow, setIsShow, toggleDropDown, closeDropDown } =
     useDropDown('sharedBundle-dropdown');
 
-  const toastClipBoard = () => {
-    notify({
-      type: 'success',
-      text: '클립보드에 링크가 복사되었습니다.',
-    });
-  };
-
-  const toastAddBundle = () => {
-    notify({
-      type: 'success',
-      text: '꾸러미가 스크랩되었습니다.',
-    });
-  };
-
-  const toastErrorAddBundle = () => {
-    notify({
-      type: 'error',
-      text: '꾸러미 스크랩을 실패하였습니다.',
-    });
-  };
-
   const handleOpenDropdown = (e: React.MouseEvent) => {
     toggleDropDown(e);
   };
@@ -68,9 +47,15 @@ const SharedBundleCard = ({
   const handleScrapBundle = async () => {
     const result = await scrapeBundle(bundleId);
     if (result) {
-      toastAddBundle();
+      notify({
+        type: 'success',
+        text: '꾸러미가 스크랩되었습니다.',
+      });
     } else {
-      toastErrorAddBundle();
+      notify({
+        type: 'error',
+        text: '꾸러미 스크랩을 실패하였습니다.',
+      });
     }
   };
 
@@ -101,7 +86,6 @@ const SharedBundleCard = ({
                 $hoverIconColor={theme.symbol_secondary_color}
                 onClick={() => {
                   handleCopyClipBoard(SERVICE_URL, CURRENT_URL);
-                  toastClipBoard();
                 }}
               >
                 <RiFileCopyLine id={triggerId} />
