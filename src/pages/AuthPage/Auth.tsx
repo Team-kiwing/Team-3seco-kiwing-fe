@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
-import Spinner from '@/components/Auth/Spinner';
+import Spinner from '@/components/common/Spinner';
 import useResize from '@/hooks/useResize';
 import { accessTokenStore, themeStore } from '@/stores';
 import { setItem } from '@/utils/localStorage';
