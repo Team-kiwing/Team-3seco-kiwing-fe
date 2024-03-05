@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import {
   BORDER_MOBILE,
   BORDER_WEB,
+  FONT_MEDIUM,
   MOBILE,
   MOBILE_FONT_SIZE,
   WEB_FONT_SIZE,
@@ -39,13 +40,19 @@ export const TitleWrapper = styled.div<{ $isActive: boolean }>`
   }
 `;
 
-export const Header = styled.div`
+export const Header = styled.h1`
   display: flex;
   padding: 1rem;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   width: 100%;
+  font-weight: ${FONT_MEDIUM};
+  font-size: ${WEB_FONT_SIZE}rem;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: ${MOBILE_FONT_SIZE}rem;
+  }
 `;
 
 export const RightItem = styled.div`
