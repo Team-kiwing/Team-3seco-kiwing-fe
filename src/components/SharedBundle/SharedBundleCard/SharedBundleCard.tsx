@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { RiFileCopyLine, RiShareLine } from 'react-icons/ri';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from 'styled-components';
@@ -9,6 +10,7 @@ import { notify } from '@/hooks/toast';
 import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
 import { scrapeBundle } from '@/services/bundles';
+import { Direction } from '@/types/dropdown';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
 import SharedBundleDropDown from '../SharedBundleDropDown';
@@ -37,12 +39,9 @@ const SharedBundleCard = ({
   const location = useLocation();
   const SERVICE_URL = window.location.host;
   const CURRENT_URL = location.pathname;
+  const [direction, setDirection] = useState<Direction>('bottom-left');
   const { triggerId, isShow, setIsShow, toggleDropDown, closeDropDown } =
     useDropDown('sharedBundle-dropdown');
-
-  const handleOpenDropdown = (e: React.MouseEvent) => {
-    toggleDropDown(e);
-  };
 
   const handleScrapBundle = async () => {
     const result = await scrapeBundle(bundleId);
@@ -57,6 +56,18 @@ const SharedBundleCard = ({
         text: '꾸러미 스크랩을 실패하였습니다.',
       });
     }
+  };
+
+  const handleOpenDropdown = (e: React.MouseEvent) => {
+    if ((e.target as Element).id === triggerId) {
+      if (e.clientY > window.innerHeight / 2) {
+        setDirection('top-left');
+      } else {
+        setDirection('bottom-left');
+      }
+    }
+
+    toggleDropDown(e);
   };
 
   return (
@@ -112,7 +123,7 @@ const SharedBundleCard = ({
                 setIsShow={setIsShow}
                 closeDropDown={closeDropDown}
                 onAddBundle={handleScrapBundle}
-                direction="bottom-left"
+                direction={direction}
               />
             </ClickContent>
           )}
