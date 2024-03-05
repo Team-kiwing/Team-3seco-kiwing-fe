@@ -34,4 +34,8 @@ export const ClickContent = styled.div`
   right: 0;
   margin: 0 2rem;
   gap: 2rem;
+  @media screen and (max-width: ${MOBILE}px) {
+    margin: 0 0.5rem;
+    gap: 0;
+  }
 `;
