@@ -4,10 +4,12 @@ import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '@/components/common/Button';
 import Textarea from '@/components/common/Textarea';
 import { notify } from '@/hooks/toast';
+import useResize from '@/hooks/useResize';
 
 import { ReportContentValidation, ReportPageConstants } from './Report.const';
 import {
   ReportForm,
+  ReportGuideContainer,
   ReportGuideText,
   ReportGuideTitle,
   ReportPageLayout,
@@ -15,6 +17,7 @@ import {
 } from './Report.style';
 
 const Report = () => {
+  const { isMobileSize } = useResize();
   const {
     register,
     handleSubmit,
@@ -68,7 +71,7 @@ const Report = () => {
     <>
       <ReportPageLayout>
         {/* todo 반복문 map 객체로 줄이기 */}
-        <div>
+        <ReportGuideContainer>
           <ReportPageTitle>{ReportPageConstants.REPORT_TITLE}</ReportPageTitle>
           <ReportGuideTitle>
             {ReportPageConstants.REPORT_GUIDE_ERROR_TITLE}
@@ -76,27 +79,27 @@ const Report = () => {
           <ReportGuideText>
             {ReportPageConstants.REPORT_GUIDE_ERROR_TEXT}
           </ReportGuideText>
-        </div>
-        <div>
+        </ReportGuideContainer>
+        <ReportGuideContainer>
           <ReportGuideTitle>
             {ReportPageConstants.REPORT_GUIDE_SUGGEST_TITLE}
           </ReportGuideTitle>
           <ReportGuideText>
             {ReportPageConstants.REPORT_GUIDE_SUGGEST_TEXT}
           </ReportGuideText>
-        </div>
-        <div>
+        </ReportGuideContainer>
+        <ReportGuideContainer>
           <ReportGuideTitle>
             {ReportPageConstants.REPORT_GUIDE_ASK_TITLE}
           </ReportGuideTitle>
           <ReportGuideText>
             {ReportPageConstants.REPORT_GUIDE_ASK_TEXT}
           </ReportGuideText>
-        </div>
+        </ReportGuideContainer>
         <ReportForm onSubmit={handleSubmit(onValid, onInValid)}>
           <Textarea
             {...register('createReport', ReportContentValidation)}
-            style={{ height: '30rem' }}
+            style={{ height: `${isMobileSize ? '15rem' : '30rem'}` }}
             width="100%"
             height="100%"
             placeholder={ReportPageConstants.TEXTAREA_PLACEHOLDER}
