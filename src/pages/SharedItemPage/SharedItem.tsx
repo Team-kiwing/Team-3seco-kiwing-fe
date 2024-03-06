@@ -13,20 +13,27 @@ const SharedItemWrapper = styled(Col)`
   margin: 0 auto;
   gap: 3rem;
   @media screen and (max-width: ${MOBILE}px) {
-    width: 90%;
-    gap: 1rem;
+    width: 100%;
+    gap: 1.5rem;
   }
 `;
 
 const UserInfoWrapper = styled.div`
   margin-top: 5rem;
   width: 100%;
+  @media screen and (max-width: ${MOBILE}px) {
+    margin-top: 1rem;
+  }
 `;
 
 const SharedWrapper = styled(Col)`
   width: 100%;
   align-items: center;
   gap: 3rem;
+  @media screen and (max-width: ${MOBILE}px) {
+    width: 90%;
+    gap: 1.5rem;
+  }
 `;
 
 const SharedItem = () => {
@@ -50,11 +57,18 @@ const SharedItem = () => {
             userImage=""
             userName="pkb"
             tags={['개발자', '프론트엔드', '백엔드']}
-            links={['pkb8839@naver.com']}
+            links={[
+              'pkb8839@naver.com',
+              'pkb8839@naver.com',
+              'pkb8839@naver.comdsasdsadasdasdasdasdasdasdl;kasd;koas;dkas;dkasl;dk;askd;laskdas;.lkdals;dkas;dkl;asdkls;',
+            ]}
           />
         </UserInfoWrapper>
         <SharedWrapper>
-          <SharedBundleCard bundleName={bundles[0]?.name} />
+          <SharedBundleCard
+            bundleId={bundles[0].id}
+            bundleName={bundles[0]?.name}
+          />
           <SharedBundleBox questions={questions} />
         </SharedWrapper>
       </SharedItemWrapper>
