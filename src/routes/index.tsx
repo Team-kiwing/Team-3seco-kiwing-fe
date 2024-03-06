@@ -23,6 +23,8 @@ import {
   TestPage,
 } from '@/pages';
 
+import AuthRoute from './AuthRoute';
+
 const Router = () => {
   return (
     <>
@@ -54,15 +56,15 @@ const Router = () => {
             />
             <Route
               path={PATH.SHARED_ITEM} // 공유된 질문 페이지(별개의 페이지)
-              element={<SharedItemPage />}
+              element={<AuthRoute element={<SharedItemPage />} />}
             />
             <Route
               path={PATH.MY} // 내 질문 리스트, 이메일 주소로 개인 페이지
-              element={<MyListPage />}
+              element={<AuthRoute element={<MyListPage />} />}
             />
             <Route
               path={PATH.REPORT} // 신고, 건의 페이지
-              element={<ReportPage />}
+              element={<AuthRoute element={<ReportPage />} />}
             />
             <Route
               path={PATH.POLICY} // Policy 페이지
