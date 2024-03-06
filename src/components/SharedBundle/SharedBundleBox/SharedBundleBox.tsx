@@ -5,7 +5,6 @@ import DropDown from '@/components/common/DropDown';
 import ShadowBox from '@/components/common/ShadowBox';
 import { notify } from '@/hooks/toast';
 import useDropDown from '@/hooks/useDropDown';
-import { Direction } from '@/types/dropdown';
 
 import SharedQuestionBox from '../SharedQuestionBox';
 import { CheckBoxInput } from '../SharedQuestionBox/SharedQuestionBox.style';
@@ -31,7 +30,6 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
 
   const [checkedAllItems, setCheckedAllItems] = useState(false);
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
-  const [direction, setDirection] = useState<Direction>('bottom-left');
   const myBundles = [
     // 추후에 API 내꾸러미 불러오기 로직으로 변경
     {
@@ -127,14 +125,7 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
     }
   };
 
-  const handleOpenDropdown = (e: React.MouseEvent) => {
-    if ((e.target as Element).id === triggerId) {
-      setDirection('top-left');
-    }
-    toggleDropDown(e);
-  };
-
-  const OPTIONS = myBundles.map((item) => ({
+  const BUNDLE_BOX_OPTIONS = myBundles.map((item) => ({
     id: item.id,
     title: item.name,
     body: '', // 추후에 중복 질문 로직 연동예정
@@ -177,7 +168,7 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
           <CountText>{questions.length}/100</CountText>
           <Button
             style={{ position: 'relative' }}
-            onClick={handleOpenDropdown}
+            onClick={toggleDropDown}
             id={triggerId}
             width="20rem"
             text="내 꾸러미에 가져가기"
@@ -185,14 +176,14 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
             <DropDown
               width={20}
               optionHeight={5}
-              height={4.7 * OPTIONS.length}
-              options={OPTIONS}
+              height={4.7 * BUNDLE_BOX_OPTIONS.length}
+              options={BUNDLE_BOX_OPTIONS}
               isShow={isShow}
               closeDropDown={closeDropDown}
               setIsShow={setIsShow}
               mode="checkbox"
               onAdd={handleAddQuestion}
-              direction={direction}
+              direction="top"
             />
           </Button>
         </SharedBundleBoxFooter>
