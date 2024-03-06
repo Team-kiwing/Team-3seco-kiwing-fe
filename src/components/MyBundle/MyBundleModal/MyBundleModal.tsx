@@ -82,6 +82,7 @@ const MyBundleModal = ({
           tagList={tags}
           selectedTags={selectedTags}
           setSelectedTags={setSelectedTags}
+          isLimit={true}
         />
       ) : (
         <BorderBox
