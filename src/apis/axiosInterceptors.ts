@@ -7,7 +7,7 @@ export const setAuthorization = (config: InternalAxiosRequestConfig) => {
     return config;
   }
 
-  const { token: accessToken } = accessTokenStore();
+  const accessToken = accessTokenStore.getState().token;
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
     return config;
