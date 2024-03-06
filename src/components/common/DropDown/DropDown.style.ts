@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { MOBILE } from '@/constants';
+import { DROP_DOWN, MOBILE } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 import { Direction } from '@/types/dropdown';
 
@@ -99,6 +99,8 @@ export const Wrapper = styled.div<{
 }>`
   display: ${({ $isShow }) => ($isShow ? 'flex' : 'none')};
   position: absolute;
+
+  z-index: ${DROP_DOWN};
 
   ${({ $direction, $width, $height }) =>
     positionByDirection($direction, $width, $height)}
