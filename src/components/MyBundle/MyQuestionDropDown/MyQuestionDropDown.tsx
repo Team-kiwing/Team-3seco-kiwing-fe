@@ -32,7 +32,7 @@ const MyQuestionDropDown = ({
   const options = [
     {
       id: 1,
-      title: '답변 공개 여부',
+      title: '공개 여부',
       rightItem: (
         <Toggle
           on={isShared}
