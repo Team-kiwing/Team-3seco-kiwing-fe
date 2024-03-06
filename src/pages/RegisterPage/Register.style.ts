@@ -81,6 +81,7 @@ export const RegisterCheckboxWrapper = styled(Row)`
     }
 
     & > span {
+      cursor: pointer;
       color: ${({ theme }) => theme.symbol_secondary_color};
     }
   }
