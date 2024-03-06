@@ -9,7 +9,7 @@ import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
-import { COPY_NOTIFY } from './MyBundleDropDown.const';
+import { COPY_WARN_NOTIFY } from './MyBundleDropDown.const';
 import { MyBundleDropDownProps } from './MyBundleDropDown.type';
 
 const MyBundleDropDown = ({
@@ -69,7 +69,7 @@ const MyBundleDropDown = ({
         } else {
           notify({
             type: 'warning',
-            text: COPY_NOTIFY,
+            text: COPY_WARN_NOTIFY,
           });
         }
         setIsDropDownShow(false);
