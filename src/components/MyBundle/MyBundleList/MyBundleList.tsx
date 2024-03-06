@@ -1,9 +1,9 @@
 import Button from '@/components/common/Button';
+import { useFetchTags } from '@/hooks/useFetchTags';
 import useResize from '@/hooks/useResize';
 
 import MyBundleItem from '../MyBundleItem';
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
-import { useFetchTags } from './MyBundleList.hook';
 import { BundleWrapper, ButtonWrapper, Container } from './MyBundleList.style';
 import { MyBundleListProps } from './MyBundleList.type';
 import BundleListSkeleton from './Skeletion';
