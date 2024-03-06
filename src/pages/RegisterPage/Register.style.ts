@@ -80,7 +80,7 @@ export const RegisterCheckboxWrapper = styled(Row)`
       font-size: 1.6rem;
     }
 
-    & > a {
+    & > span {
       color: ${({ theme }) => theme.symbol_secondary_color};
     }
   }

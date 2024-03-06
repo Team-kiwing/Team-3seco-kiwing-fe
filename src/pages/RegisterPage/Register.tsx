@@ -144,7 +144,8 @@ const Register = () => {
             onChange={() => setIsChecked((idx) => !idx)}
           />
           <div>
-            <a href="/policy">이용약관</a>에 동의합니다.
+            <span onClick={() => navigate('/policy')}>이용약관</span>에
+            동의합니다.
           </div>
         </RegisterCheckboxWrapper>
         <RegisterSubmitButton onClick={handleRegisterSubmit}>
