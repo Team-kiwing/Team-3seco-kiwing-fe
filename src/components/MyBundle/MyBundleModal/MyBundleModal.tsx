@@ -60,7 +60,7 @@ const MyBundleModal = ({
 
     notify({
       type: 'default',
-      text: MODAL.SUCCESS_NOTIFY,
+      text: MODAL.SUCCESS_NOTIFY(mode),
     });
 
     setModalCompleteClose();

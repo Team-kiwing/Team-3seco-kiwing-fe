@@ -6,7 +6,8 @@ export const MODAL = {
 
   SUBMIT_BUTTON_TEXT: (mode: string) => (mode === 'add' ? '추가' : '수정'),
 
-  SUCCESS_NOTIFY: '꾸러미를 생성했습니다!',
+  SUCCESS_NOTIFY: (mode: string) =>
+    mode === 'add' ? '꾸러미를 생성했습니다!' : '꾸러미를 수정했습니다!',
   FETCH_FAIL_NOTIFY: '태그 정보를 불러오는데 실패했습니다',
 };
 
