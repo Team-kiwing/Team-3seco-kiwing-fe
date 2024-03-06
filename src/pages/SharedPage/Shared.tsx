@@ -28,7 +28,7 @@ const Shared = () => {
   const methods = useForm({ mode: 'onSubmit' });
   const REGISTER = 'searchBundle';
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     const searchedBundles = methods.getValues(REGISTER).trim();
     if (searchedBundles !== '') {
       setSearchedBundles(searchedBundles);
