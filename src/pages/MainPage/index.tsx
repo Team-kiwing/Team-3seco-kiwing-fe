@@ -44,10 +44,12 @@ const MainPage = () => {
       <div style={{ display: 'flex' }}>This is Main</div>
       <button onClick={handle}>XXX</button>
       <button onClick={handler}>OOO</button>
-      <button onClick={onClick}>OXOXOXOXOXO</button>
-      <button onClick={isToken}>토큰있?</button>
-      <button onClick={tagfetch}>태그 정보 오나</button>
-      <button onClick={getMy}>내 정보</button>
+      <button onClick={isToken}>토큰 정보 확인</button>
+      <button onClick={tagfetch}>태그 정보 호출(인증 필요X)</button>
+      <button onClick={onClick}>
+        번들 아이디 2번의 상세정보 호출(인증 필요O)
+      </button>
+      <button onClick={getMy}>내 정보 호출(인증 필요O)</button>
     </>
   );
 };
