@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { DOMAIN, NETWORK } from '@/constants/api';
-import { accessTokenStore } from '@/stores';
+import { userDataStore } from '@/stores';
 import { getItem, removeItem } from '@/utils/localStorage';
 
 import { setAuthorization } from './axiosInterceptors';
@@ -24,7 +24,7 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async function (error) {
-    const setAccessToken = accessTokenStore.getState().setAccessToken;
+    const setAccessToken = userDataStore.getState().setAccessToken;
     const originalConfig = error.config;
     const msg = error.response.data.message;
     const status = error.response.status;

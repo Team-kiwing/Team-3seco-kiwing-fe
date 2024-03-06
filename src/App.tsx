@@ -2,21 +2,31 @@ import { useEffect } from 'react';
 
 import Router from '@/routes';
 
+import { getAccessToken } from './services/auth';
+import { userDataStore } from './stores';
+import { getItem } from './utils/localStorage';
+
 const App = () => {
+  const { accessToken, setAccessToken } = userDataStore();
   const Auth = async () => {
-    console.log('추후에 추가');
-    // const refreshToken = getItem('refresh-token', null);
-    // console.log(refreshToken);
-    // if (refreshToken) {
-    //   const res = await getAccessToken({ refreshToken });
-    //   console.log(res);
-    // } else {
-    //   console.log(`저장된 토큰 없음`);
-    // }
+    const refreshToken = getItem('refresh-token', null);
+    if (refreshToken) {
+      const res = await getAccessToken({ refreshToken });
+      if (res) {
+        console.log(res);
+        setAccessToken(res.accessToken);
+      } else {
+        throw new Error(`토큰값이 없어요!`);
+      }
+    } else {
+      console.log(`저장된 토큰 없음`);
+    }
   };
 
   useEffect(() => {
-    Auth();
+    if (!accessToken) {
+      Auth();
+    }
   });
 
   return (

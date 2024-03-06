@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components';
 
 import Spinner from '@/components/common/Spinner';
 import useResize from '@/hooks/useResize';
-import { accessTokenStore, themeStore } from '@/stores';
+import { themeStore, userDataStore } from '@/stores';
 import { setItem } from '@/utils/localStorage';
 
 import { SignInUrl } from './Auth.const';
@@ -21,7 +21,7 @@ import {
 const Auth = () => {
   const { isMobileSize } = useResize();
   const { isDarkMode } = themeStore();
-  const { setAccessToken } = accessTokenStore();
+  const { setAccessToken } = userDataStore();
   const theme = useTheme();
 
   const navigate = useNavigate();
