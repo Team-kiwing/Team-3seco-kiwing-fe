@@ -13,7 +13,6 @@ import { SHARED_BUNDLE_BOX } from './SharedBundleBox.const';
 import {
   AllCheckWrapper,
   CountText,
-  DropDownWrapper,
   SharedBundleBoxFooter,
   SharedBundleBoxWrapper,
 } from './SharedBundleBox.style';
@@ -177,26 +176,26 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
         <SharedBundleBoxFooter>
           <CountText>{questions.length}/100</CountText>
           <Button
+            style={{ position: 'relative' }}
             onClick={handleOpenDropdown}
             id={triggerId}
-            width="fit-content"
+            width="20rem"
             text="내 꾸러미에 가져가기"
-          />
+          >
+            <DropDown
+              width={20}
+              optionHeight={5}
+              height={4.7 * OPTIONS.length}
+              options={OPTIONS}
+              isShow={isShow}
+              closeDropDown={closeDropDown}
+              setIsShow={setIsShow}
+              mode="checkbox"
+              onAdd={handleAddQuestion}
+              direction={direction}
+            />
+          </Button>
         </SharedBundleBoxFooter>
-        <DropDownWrapper>
-          <DropDown
-            width={20}
-            optionHeight={5}
-            height={4.7 * OPTIONS.length}
-            options={OPTIONS}
-            isShow={isShow}
-            closeDropDown={closeDropDown}
-            setIsShow={setIsShow}
-            mode="checkbox"
-            onAdd={handleAddQuestion}
-            direction={direction}
-          />
-        </DropDownWrapper>
       </ShadowBox>
     </>
   );

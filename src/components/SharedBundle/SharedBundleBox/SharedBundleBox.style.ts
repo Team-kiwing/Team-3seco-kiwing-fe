@@ -47,14 +47,3 @@ export const CountText = styled(Row)`
   align-items: center;
   color: ${({ theme }) => theme.gray_200};
 `;
-
-export const DropDownWrapper = styled.div`
-  position: absolute;
-  bottom: 5rem;
-  right: 4rem;
-  width: 20rem;
-  @media screen and (max-width: ${MOBILE}px) {
-    right: 0rem;
-    bottom: 4rem;
-  }
-`;
