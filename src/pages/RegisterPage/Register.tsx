@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
@@ -12,6 +13,7 @@ import { accessTokenStore, themeStore } from '@/stores';
 import { Tag } from '@/types';
 import { setItem } from '@/utils/localStorage';
 
+import { RegisterNicknameValidation } from './Register.const';
 import {
   RegisterCheckbox,
   RegisterCheckboxWrapper,
@@ -23,8 +25,25 @@ import {
   RegisterPageWrapper,
   RegisterSubmitButton,
 } from './Register.style';
+import { RegisterForm } from './Register.type';
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterForm>({
+    mode: 'onChange',
+    defaultValues: {
+      // TODO : 사용자의 이메일로 바꾸기
+      email: 'gothddlek@naver.com',
+      nickname: '',
+      github: '',
+      blog: '',
+      etc: '',
+    },
+  });
+
   const navigate = useNavigate();
   const { isMobileSize } = useResize();
   const { isDarkMode } = themeStore();
@@ -35,8 +54,9 @@ const Register = () => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
   const [isChecked, setIsChecked] = useState(false);
-  const handleRegisterSubmit = () => {
+  const handleRegisterSubmit = async () => {
     if (isChecked) {
+      // await
       notify({ type: 'success', text: '가입에 성공했습니다 !' });
       navigate('/');
     } else {
@@ -93,15 +113,8 @@ const Register = () => {
             label={'이메일'}
             width="100%"
             placeholder="Input의 props로 disabled 속성을 추가한 뒤 구글 로그인 한 결과에서 이메일을 넣어야함."
-          />
-        </RegisterItemWrapper>
-        <RegisterItemWrapper>
-          <Input
-            fontSize={1.8}
-            label={'닉네임'}
-            width="100%"
-            errorMessage="영어, 숫자 이외에 문자를 넣으면 출력"
-            placeholder="영어와 숫자 조합으로 적어주세요."
+            isDisabled={true}
+            {...register('email')}
           />
         </RegisterItemWrapper>
         <RegisterItemWrapper>
@@ -119,24 +132,47 @@ const Register = () => {
             />
           )}
         </RegisterItemWrapper>
-        <RegisterItemWrapper>
-          <Input
-            fontSize={1.8}
-            label={'링크'}
-            width="100%"
-            placeholder="GitHub"
-          />
-          <Input
-            fontSize={1.8}
-            width="100%"
-            placeholder="블로그"
-          />
-          <Input
-            fontSize={1.8}
-            width="100%"
-            placeholder="기타"
-          />
-        </RegisterItemWrapper>
+        <form onSubmit={handleSubmit(handleRegisterSubmit)}>
+          <RegisterItemWrapper>
+            <Input
+              fontSize={1.8}
+              label={'닉네임'}
+              width="100%"
+              errorMessage={
+                errors?.nickname?.type === 'required'
+                  ? '닉네임을 입력해주세요.'
+                  : errors?.nickname?.type === 'pattern'
+                    ? '닉네임은 영어와 숫자 조합으로 작성해주세요.'
+                    : errors?.nickname?.type === 'minLength'
+                      ? '닉네임은 2자 이상 작성해주세요.'
+                      : ''
+              }
+              placeholder="영어와 숫자 조합으로 적어주세요."
+              {...register('nickname', RegisterNicknameValidation)}
+            />
+          </RegisterItemWrapper>
+          <RegisterItemWrapper>
+            <Input
+              fontSize={1.8}
+              label={'링크'}
+              width="100%"
+              placeholder="GitHub"
+              {...register('github')}
+            />
+            <Input
+              fontSize={1.8}
+              width="100%"
+              placeholder="블로그"
+              {...register('blog')}
+            />
+            <Input
+              fontSize={1.8}
+              width="100%"
+              placeholder="기타"
+              {...register('etc')}
+            />
+          </RegisterItemWrapper>
+        </form>
         <RegisterCheckboxWrapper>
           <RegisterCheckbox
             type="checkbox"
