@@ -21,7 +21,9 @@ const MyBundleList = ({
   if (!tags || isLoading) {
     return (
       <Container>
-        <BundleListSkeleton />
+        <BundleWrapper>
+          <BundleListSkeleton />
+        </BundleWrapper>
       </Container>
     );
   }
