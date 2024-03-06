@@ -11,10 +11,9 @@ export const MODAL = {
   FETCH_FAIL_NOTIFY: '태그 정보를 불러오는데 실패했습니다',
 };
 
-// @TODO 제한 길이가 정해진다면 수치 업데이트
 export const MyBundleModalValidation = {
   maxLength: {
-    value: 20,
-    message: '꾸러미 이름은 최대 20자까지 작성 가능합니다.',
+    value: 100,
+    message: '꾸러미 이름은 최대 100자까지 작성 가능합니다.',
   },
 };
