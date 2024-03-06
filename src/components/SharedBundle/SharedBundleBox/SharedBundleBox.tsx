@@ -5,6 +5,7 @@ import DropDown from '@/components/common/DropDown';
 import ShadowBox from '@/components/common/ShadowBox';
 import { notify } from '@/hooks/toast';
 import useDropDown from '@/hooks/useDropDown';
+import { Direction } from '@/types/dropdown';
 
 import SharedQuestionBox from '../SharedQuestionBox';
 import { CheckBoxInput } from '../SharedQuestionBox/SharedQuestionBox.style';
@@ -31,7 +32,7 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
 
   const [checkedAllItems, setCheckedAllItems] = useState(false);
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
-
+  const [direction, setDirection] = useState<Direction>('bottom-left');
   const myBundles = [
     // 추후에 API 내꾸러미 불러오기 로직으로 변경
     {
@@ -127,6 +128,13 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
     }
   };
 
+  const handleOpenDropdown = (e: React.MouseEvent) => {
+    if ((e.target as Element).id === triggerId) {
+      setDirection('top-left');
+    }
+    toggleDropDown(e);
+  };
+
   const OPTIONS = myBundles.map((item) => ({
     id: item.id,
     title: item.name,
@@ -138,9 +146,8 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
       <ShadowBox
         height="100%"
         isCard={true}
-        width="90%"
+        width="100%"
         style={{
-          maxWidth: '80rem',
           display: 'flex',
           justifyContent: 'center',
           flexDirection: 'column',
@@ -170,7 +177,7 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
         <SharedBundleBoxFooter>
           <CountText>{questions.length}/100</CountText>
           <Button
-            onClick={toggleDropDown}
+            onClick={handleOpenDropdown}
             id={triggerId}
             width="fit-content"
             text="내 꾸러미에 가져가기"
@@ -180,14 +187,14 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
           <DropDown
             width={20}
             optionHeight={5}
-            height={20}
+            height={4.7 * OPTIONS.length}
             options={OPTIONS}
             isShow={isShow}
             closeDropDown={closeDropDown}
             setIsShow={setIsShow}
             mode="checkbox"
             onAdd={handleAddQuestion}
-            direction="top"
+            direction={direction}
           />
         </DropDownWrapper>
       </ShadowBox>

@@ -7,11 +7,11 @@ export const AllCheckWrapper = styled(Row)`
   width: 90%;
   margin: 2rem auto 1rem;
   justify-content: end;
-  padding: 1rem 1.2rem 1rem 0rem;
+  padding: 1rem 0.9rem 1rem 0rem;
   box-sizing: border-box;
   gap: 1rem;
   @media screen and (max-width: ${MOBILE}px) {
-    padding: 0.5rem 1.2rem 0rem 0rem;
+    padding: 0.5rem 0.9rem 0rem 0rem;
   }
 `;
 export const SharedBundleBoxWrapper = styled(Col)`
@@ -22,14 +22,14 @@ export const SharedBundleBoxWrapper = styled(Col)`
   gap: 2rem;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 30rem;
+  height: 35rem;
   @media screen and (max-width: ${MOBILE}px) {
     gap: 1rem;
-    height: 20rem;
+    height: 100%;
   }
   @media screen and (max-width: ${MOBILE_MIN}px) {
     gap: 1rem;
-    height: 16rem;
+    height: 100%;
   }
 `;
 
@@ -50,7 +50,11 @@ export const CountText = styled(Row)`
 
 export const DropDownWrapper = styled.div`
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 5rem;
+  right: 4rem;
   width: 20rem;
+  @media screen and (max-width: ${MOBILE}px) {
+    right: 0rem;
+    bottom: 4rem;
+  }
 `;
