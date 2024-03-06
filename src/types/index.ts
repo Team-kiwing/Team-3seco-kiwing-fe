@@ -18,27 +18,31 @@ export interface ImageResponse {
   profileImage: string;
 }
 
-// nickname 변경 request, 내 정보 request
-export interface UserInfoRequest {
-  email: string;
-  createdAt: string;
-  updatedAt: string;
-  id: number;
-  nickname: string;
-  profileImage: string;
-  provider: Provider;
-  lastLoginedAt: string;
-  deletedAt: string;
-  memberRoles: Roles;
+// nickname 변경 request, 내 정보 response
+
+export interface SnsList {
+  name: string;
+  url: string;
 }
 
-// nickname 변경 response, 내 정보 response
+export interface MemberTag {
+  id: number;
+  name: string;
+}
+
+export interface UserInfoRequest {
+  nickname: string;
+  snsRequests: SnsList[];
+  tagIds: number[];
+}
 export interface UserInfoResponse {
   id: number;
   nickname: string;
   email: string;
-  provider: Provider;
+  provider: string;
   profileImage: string;
+  snsList: SnsList[];
+  memberTags: MemberTag[];
 }
 
 // access 토큰 재발급, 로그아웃
