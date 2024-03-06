@@ -26,7 +26,6 @@ export const Body = styled(Col)`
 export const BodyInnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  //gap: 1rem;
 `;
 
 export const QuestionWrapper = styled.div`
