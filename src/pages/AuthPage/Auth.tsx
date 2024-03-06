@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components';
 import Spinner from '@/components/common/Spinner';
 import useResize from '@/hooks/useResize';
 import { themeStore, userDataStore } from '@/stores';
-import { setItem } from '@/utils/localStorage';
+import { getItem, setItem } from '@/utils/localStorage';
 
 import { SignInUrl } from './Auth.const';
 import {
@@ -21,7 +21,8 @@ import {
 const Auth = () => {
   const { isMobileSize } = useResize();
   const { isDarkMode } = themeStore();
-  const { setAccessToken } = userDataStore();
+  const { accessToken: storedAccessToken, setAccessToken } = userDataStore();
+  const storedRefreshToken = getItem('refresh-token', null);
   const theme = useTheme();
 
   const navigate = useNavigate();
@@ -38,12 +39,27 @@ const Auth = () => {
   };
 
   useEffect(() => {
-    if (accessToken && refreshToken) {
-      setAccessToken(accessToken);
-      setItem('refresh-token', refreshToken);
+    if (!storedAccessToken && !storedRefreshToken) {
+      if (accessToken && refreshToken) {
+        setAccessToken(accessToken);
+        setItem('refresh-token', refreshToken);
+        navigate('/');
+      }
+    } else {
       navigate('/');
     }
-  }, [navigate, accessToken, setAccessToken, refreshToken]);
+  }, [
+    navigate,
+    accessToken,
+    setAccessToken,
+    refreshToken,
+    storedAccessToken,
+    storedRefreshToken,
+  ]);
+
+  if (storedAccessToken || storedRefreshToken) {
+    return <Spinner />;
+  }
 
   return (
     <>
