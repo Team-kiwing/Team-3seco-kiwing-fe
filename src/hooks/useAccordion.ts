@@ -15,7 +15,7 @@ const useAccordion = () => {
       if (parentRef.current.clientHeight > 0 && isActive) {
         parentRef.current.style.height = '0';
       } else {
-        parentRef.current.style.height = `${childRef.current.clientHeight}px`;
+        parentRef.current.style.height = `${childRef.current.clientHeight + 3}px`;
       }
       setIsActive(!isActive);
     },

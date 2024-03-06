@@ -1,12 +1,9 @@
-export interface TagProps {
-  id: number;
-  content: string;
-}
+import { Tag } from '@/types';
 
 export interface BundleProps {
   id: number;
   bundleName: string;
-  hashTags: TagProps[];
+  hashTags: Tag[];
   subscribedCount: number;
   isHot: boolean;
   createdAt?: string;
