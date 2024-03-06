@@ -1,12 +1,10 @@
 import Button from '@/components/common/Button';
-import { useFetchTags } from '@/hooks/useFetchTags';
 import useResize from '@/hooks/useResize';
 
 import MyBundleItem from '../MyBundleItem';
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
 import { BundleWrapper, ButtonWrapper, Container } from './MyBundleList.style';
 import { MyBundleListProps } from './MyBundleList.type';
-import BundleListSkeleton from './Skeletion';
 
 const MyBundleList = ({
   bundles,
@@ -15,18 +13,7 @@ const MyBundleList = ({
 }: MyBundleListProps) => {
   const { isMobileSize } = useResize();
 
-  const { data: tags, isLoading } = useFetchTags();
-  const { handleAddBundleClick } = useMyBundleModal(tags);
-
-  if (!tags || isLoading) {
-    return (
-      <Container>
-        <BundleWrapper>
-          <BundleListSkeleton />
-        </BundleWrapper>
-      </Container>
-    );
-  }
+  const { handleAddBundleClick } = useMyBundleModal();
 
   return (
     <Container>
@@ -38,7 +25,6 @@ const MyBundleList = ({
             setSelectedBundle={setSelectedBundle}
             bundle={bundle}
             isMobileSize={isMobileSize}
-            tags={tags}
           />
         ))}
       </BundleWrapper>

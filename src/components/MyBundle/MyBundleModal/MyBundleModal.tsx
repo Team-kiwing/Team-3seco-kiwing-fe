@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
+import BorderBox from '@/components/common/BorderBox';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
+import Skeleton from '@/components/common/Skeleton';
 import TagFilter from '@/components/common/TagFilter';
 import Toggle from '@/components/common/Toggle';
 import { notify } from '@/hooks/toast';
+import { useFetchTags } from '@/hooks/useFetchTags';
 import { useModal } from '@/hooks/useModal';
 import useResize from '@/hooks/useResize';
 import { Tag } from '@/types';
@@ -15,12 +18,12 @@ import { ButtonContainer, ModalContainer } from './MyBundleModal.style';
 import { AddBundleModalProps, FormField } from './MyBundleModal.type';
 
 const MyBundleModal = ({
-  tags,
   mode = 'add',
   bundleNameField = '',
   selectedTagsField = [],
   isSharedField = false,
 }: AddBundleModalProps) => {
+  const { data: tags } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>(selectedTagsField);
   const [isShared, setIsShared] = useState(isSharedField);
 
@@ -74,11 +77,25 @@ const MyBundleModal = ({
 
   return (
     <ModalContainer>
-      <TagFilter
-        tagList={tags}
-        selectedTags={selectedTags}
-        setSelectedTags={setSelectedTags}
-      />
+      {tags ? (
+        <TagFilter
+          tagList={tags}
+          selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
+        />
+      ) : (
+        <BorderBox
+          width="100%"
+          height="10rem"
+        >
+          <Skeleton.Paragraph
+            $width="50rem"
+            $height="2rem"
+            $line={3}
+          />
+        </BorderBox>
+      )}
+
       <form onSubmit={handleSubmit(onValid, onInValid)}>
         <Input
           {...register('bundleNameField', MyBundleModalValidation)}

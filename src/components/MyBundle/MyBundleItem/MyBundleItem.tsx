@@ -18,7 +18,6 @@ const MyBundleItem = ({
   setSelectedBundle,
   bundle,
   isMobileSize,
-  tags,
 }: MyBundleItem) => {
   const { isDarkMode } = themeStore();
 
@@ -33,10 +32,9 @@ const MyBundleItem = ({
   const { triggerId, isShow, setIsShow, closeDropDown, toggleDropDown } =
     useDropDown(`my-bundle-right-btn-${bundle.id}`);
 
-  const [isShared, setIsShared] = useState(false);
   const [direction, setDirection] = useState<Direction>('bottom-left');
 
-  const { handleEditBundleClick } = useMyBundleModal(tags);
+  const { handleEditBundleClick } = useMyBundleModal();
 
   useEffect(() => {
     // size가 바뀌면 모바일에서의 모든 active를 초기화 한다.
@@ -105,8 +103,6 @@ const MyBundleItem = ({
                 isDropDownShow={isShow}
                 setIsDropDownShow={setIsShow}
                 closeDropDown={closeDropDown}
-                isShared={isShared}
-                setIsShared={setIsShared}
                 bundle={bundle}
                 direction={direction}
                 handleEditBundleClick={handleEditBundleClick}

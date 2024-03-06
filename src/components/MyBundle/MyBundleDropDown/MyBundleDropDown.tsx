@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FiEdit3 } from 'react-icons/fi';
 import { RiDeleteBin5Line, RiFileCopyLine } from 'react-icons/ri';
 
@@ -15,14 +16,13 @@ import { MyBundleDropDownProps } from './MyBundleDropDown.type';
 const MyBundleDropDown = ({
   isDropDownShow,
   setIsDropDownShow,
-  isShared,
-  setIsShared,
   closeDropDown,
   bundle,
   direction,
   handleEditBundleClick,
 }: MyBundleDropDownProps) => {
   const { isMobileSize } = useResize();
+  const [isShared, setIsShared] = useState(bundle.shareType === 'PUBLIC');
   const handleDeleteBundle = () => {
     confirm(`id ${bundle.id} 꾸러미를 삭제하시겠습니까?`);
     // @TODO 추후에 꾸러미 삭제 API 함수를 호출합니다.
