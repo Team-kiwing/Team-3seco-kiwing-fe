@@ -21,9 +21,7 @@ const MyBundleIndex = ({ questions }: MyBundleIndexProps) => {
           <Text key={question.id}>
             <a href={`#${question.id}`}>
               <span>
-                Q{index + 1}
-                {`. `}
-                {question.content}
+                <span>{`Q${index + 1}. ${question.content}`}</span>
               </span>
             </a>
           </Text>
