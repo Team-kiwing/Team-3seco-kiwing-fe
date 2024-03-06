@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+import { MemberTag, SnsList } from '@/types';
+
 interface ThemeState {
   isDarkMode: boolean;
   updateTheme: () => void;
@@ -47,12 +49,46 @@ export const modalStore = create<ModalState>((set) => ({
     set({ isOpen: false, title: '', content: '', callBack: undefined }),
 }));
 
-interface TokenStoreType {
-  token: string;
-  setAccessToken: (newToken: string) => void;
+interface UserDataStoreType {
+  id: number | null;
+  nickName: string;
+  profileImage: string;
+  snsList: SnsList[];
+  memberTags: MemberTag[];
+  accessToken: string;
+  isLogin: boolean;
+  setAccessToken: (newAccessToken: string) => void;
+  setIsLogin: (newIsLogin: boolean) => void;
+  setUserData: (userData: UserDataSetType) => void;
 }
 
-export const accessTokenStore = create<TokenStoreType>((set) => ({
-  token: '',
-  setAccessToken: (newToken: string) => set({ token: newToken }),
+interface UserDataSetType {
+  id: number | null;
+  nickName: string;
+  profileImage: string;
+  snsList: SnsList[];
+  memberTags: MemberTag[];
+}
+
+export const userDataStore = create<UserDataStoreType>((set) => ({
+  id: null,
+  nickName: '',
+  profileImage: '',
+  snsList: [],
+  memberTags: [],
+  accessToken: '',
+  isLogin: false,
+  setAccessToken: (newAccessToken: string) =>
+    set({ accessToken: newAccessToken }),
+  setIsLogin: (newIsLogin: boolean) => {
+    set({ isLogin: newIsLogin });
+  },
+  setUserData: (userData: UserDataSetType) =>
+    set({
+      id: userData.id,
+      nickName: userData.nickName,
+      profileImage: userData.profileImage,
+      snsList: userData.snsList,
+      memberTags: userData.memberTags,
+    }),
 }));

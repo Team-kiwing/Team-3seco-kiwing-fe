@@ -7,6 +7,7 @@ export const DOMAIN = {
   PROFILE_IMAGE: '/members/me/profile-image',
   CHANGE_NICKNAME: '/members/me/nickname',
   AUTH_USER: '/members/me',
+  AUTH_ANOTHER_USER: (userId: number) => `/members/${userId}`,
 
   //Auth
   TOKEN: '/auth/refresh-access-token',
