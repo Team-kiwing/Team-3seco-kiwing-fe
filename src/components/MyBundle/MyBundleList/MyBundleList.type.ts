@@ -1,8 +1,7 @@
 import { Bundle } from '@/types';
 
-export interface MyBundleItem {
+export interface MyBundleListProps {
+  bundles: Bundle[];
   selectedBundle: Bundle | null;
   setSelectedBundle: (state: Bundle) => void;
-  bundle: Bundle;
-  isMobileSize: boolean;
 }

@@ -99,6 +99,7 @@ export const Wrapper = styled.div<{
 }>`
   display: ${({ $isShow }) => ($isShow ? 'flex' : 'none')};
   position: absolute;
+  z-index: ${DROP_DOWN};
 
   z-index: ${DROP_DOWN};
 
