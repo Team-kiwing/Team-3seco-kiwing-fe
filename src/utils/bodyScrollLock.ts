@@ -3,6 +3,7 @@ import { detectMobileDevice } from './isMobile';
 export const enableScrollLock = () => {
   const { body } = document;
   const isMobile = detectMobileDevice();
+  const hasScroll = window.innerWidth > document.documentElement.clientWidth;
 
   if (!body.getAttribute('scrollY')) {
     const pageY = window.scrollY;
@@ -16,14 +17,15 @@ export const enableScrollLock = () => {
     body.style.bottom = '0px';
     body.style.top = `-${pageY}px`;
     if (!isMobile) {
-      body.style.paddingRight = '0.4rem';
+      if (hasScroll) {
+        body.style.paddingRight = '0.4rem';
+      }
     }
   }
 };
 
 export const disableScrollLock = () => {
   const { body } = document;
-  const isMobile = detectMobileDevice();
 
   if (body.getAttribute('scrollY')) {
     body.style.removeProperty('overflow');
@@ -32,9 +34,7 @@ export const disableScrollLock = () => {
     body.style.removeProperty('left');
     body.style.removeProperty('right');
     body.style.removeProperty('bottom');
-    if (!isMobile) {
-      body.style.removeProperty('padding-right');
-    }
+    body.style.removeProperty('padding-right');
 
     window.scrollTo(0, Number(body.getAttribute('scrollY')));
 
