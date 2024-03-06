@@ -88,10 +88,12 @@ export const MobileModalCloseArea = styled.div`
 
   &:active {
     background-color: ${(props) => props.theme.gray_200};
-    border-radius: ${BORDER_WEB}rem;
+    border-bottom-left-radius: ${BORDER_WEB}rem;
+    border-bottom-right-radius: ${BORDER_WEB}rem;
   }
 
   @media screen and (max-width: ${MOBILE}px) {
-    border-radius: ${BORDER_MOBILE}rem;
+    border-bottom-left-radius: ${BORDER_WEB}rem;
+    border-bottom-right-radius: ${BORDER_WEB}rem;
   }
 `;
