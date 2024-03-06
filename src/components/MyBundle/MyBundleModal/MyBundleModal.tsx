@@ -6,8 +6,8 @@ import Input from '@/components/common/Input';
 import TagFilter from '@/components/common/TagFilter';
 import Toggle from '@/components/common/Toggle';
 import { notify } from '@/hooks/toast';
+import { useModal } from '@/hooks/useModal';
 import useResize from '@/hooks/useResize';
-import { modalStore } from '@/stores';
 import { Tag } from '@/types';
 
 import { MODAL, MyBundleModalValidation } from './MyBundleModal.const';
@@ -25,7 +25,7 @@ const MyBundleModal = ({
   const [isShared, setIsShared] = useState(isSharedField);
 
   const { isMobileSize } = useResize();
-  const { closeModal } = modalStore();
+  const { setModalCompleteClose } = useModal();
 
   const {
     register,
@@ -63,7 +63,7 @@ const MyBundleModal = ({
       text: MODAL.SUCCESS_NOTIFY,
     });
 
-    closeModal();
+    setModalCompleteClose();
   };
 
   const onInValid: SubmitErrorHandler<{ bundleNameField: string }> = () => {
