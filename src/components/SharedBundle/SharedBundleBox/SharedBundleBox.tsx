@@ -8,6 +8,7 @@ import useDropDown from '@/hooks/useDropDown';
 
 import SharedQuestionBox from '../SharedQuestionBox';
 import { CheckBoxInput } from '../SharedQuestionBox/SharedQuestionBox.style';
+import { SHARED_BUNDLE_BOX } from './SharedBundleBox.const';
 import {
   AllCheckWrapper,
   CountText,
@@ -31,30 +32,6 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
   const [checkedAllItems, setCheckedAllItems] = useState(false);
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
 
-  const toastBundleSuccess = () => {
-    notify({
-      type: 'success',
-      text: '선택하신 꾸러미에 질문이 추가되었습니다!',
-    });
-  };
-  const toastBundleWarning = () => {
-    notify({
-      type: 'warning',
-      text: '추가할 꾸러미를 선택해주세요!',
-    });
-  };
-  const toastQuestionError = () => {
-    notify({
-      type: 'error',
-      text: '추가하고 싶은 질문을 선택해주세요!',
-    });
-  };
-  const toastBundleError = () => {
-    notify({
-      type: 'error',
-      text: '추가할 꾸러미를 선택해주세요!',
-    });
-  };
   const myBundles = [
     // 추후에 API 내꾸러미 불러오기 로직으로 변경
     {
@@ -125,12 +102,21 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
   const handleAddQuestion = (checkedBundleId: number[]) => {
     if (checkedBundleId) {
       if (checkedItems.length == 0) {
-        toastQuestionError();
+        notify({
+          type: 'error',
+          text: SHARED_BUNDLE_BOX.FAIL_QUESTION_NOTIFY,
+        });
       } else {
         if (checkedBundleId.length == 0) {
-          toastBundleWarning();
+          notify({
+            type: 'warning',
+            text: SHARED_BUNDLE_BOX.WARNING_BUNDLE_NOTIFY,
+          });
         } else {
-          toastBundleSuccess();
+          notify({
+            type: 'success',
+            text: SHARED_BUNDLE_BOX.SUCCESS_QUESTION_NOTIFY,
+          });
           console.log(
             `선택한 BundleId가 ${checkedBundleId}인 질문꾸러미에 체크 된 QuestionId ${checkedItems}를 가진 질문을 추가합니다.`
           );
@@ -138,8 +124,6 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
           setCheckedAllItems(false);
         }
       }
-    } else {
-      toastBundleError();
     }
   };
 
