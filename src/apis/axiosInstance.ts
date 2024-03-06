@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { DOMAIN, NETWORK } from '@/constants/api';
 import { accessTokenStore } from '@/stores';
+import { getItem } from '@/utils/localStorage';
 
 import { setAuthorization } from './axiosInterceptors';
 
@@ -20,13 +21,15 @@ axiosInstance.interceptors.request.use(setAuthorization, (error) => {
 
 axiosInstance.interceptors.response.use(
   function (response) {
+    console.log(response);
     return response;
   },
   async function (error) {
-    const { setAccessToken } = accessTokenStore();
+    const setAccessToken = accessTokenStore.getState().setAccessToken;
     const originalConfig = error.config;
     const msg = error.response.data.message;
     const status = error.response.status;
+    console.log(error);
 
     if (status == 401) {
       if (msg == 'access token expired') {
@@ -34,7 +37,7 @@ axiosInstance.interceptors.response.use(
           url: DOMAIN.TOKEN,
           method: 'GET',
           headers: {
-            refreshToken: localStorage.getItem('refreshToken'),
+            refreshToken: getItem('refresh-token', null),
           },
         })
           .then((res) => {

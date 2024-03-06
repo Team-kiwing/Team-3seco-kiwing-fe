@@ -8,7 +8,9 @@ import { ClaimsCreateRequest, ClaimsCreateResponse, Tag } from '@/types';
  */
 export const getTag = async () => {
   try {
-    const res = await axiosInstance.get<Tag[]>(DOMAIN.TAGS);
+    const res = await axiosInstance.get<Tag[]>(DOMAIN.TAGS, {
+      useAuth: false,
+    });
     return res.data;
   } catch (e) {
     axiosErrorHandler(e);

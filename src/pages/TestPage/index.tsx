@@ -1,8 +1,14 @@
+import { getBundleDetail } from '@/services/bundles';
+
 const TestPage = () => {
-  // 요기다가 하시면 됩니다
+  const onClick = async () => {
+    const res = await getBundleDetail({ bundleId: 2 });
+    console.log(res);
+  };
+
   return (
     <>
-      <div>테스트 페이지 입니다.</div>
+      <button onClick={onClick}>버튼ㄴ</button>
     </>
   );
 };

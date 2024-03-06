@@ -7,7 +7,7 @@ import { Tag } from '@/types';
 export const useFetchTags = () => {
   const query = useQuery<Tag[] | null>({
     queryKey: [QUERYKEY.TAGS],
-    queryFn: () => getTag(),
+    queryFn: getTag,
   });
 
   return query;
