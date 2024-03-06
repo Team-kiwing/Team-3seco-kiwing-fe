@@ -17,9 +17,9 @@ import {
   RegisterCheckboxWrapper,
   RegisterFormWrapper,
   RegisterHeader,
+  RegisterIntro,
   RegisterItemWrapper,
   RegisterLabel,
-  RegisterLogo,
   RegisterPageWrapper,
   RegisterSubmitButton,
 } from './Register.style';
@@ -65,15 +65,7 @@ const Register = () => {
   return (
     <RegisterPageWrapper>
       {/* TODO: Auth의 Spinner 컴포넌트를 common으로 위치 변경 후 적용하기 */}
-      {!isMobileSize && (
-        <RegisterLogo>
-          <img
-            src="./kiwing_circle_green.png"
-            alt="kiwing logo"
-          />
-        </RegisterLogo>
-      )}
-      <RegisterFormWrapper>
+      <RegisterIntro>
         <RegisterHeader>
           안녕하세요. <br /> 저희는&nbsp;
           <span
@@ -87,6 +79,14 @@ const Register = () => {
           </span>
           이에요.
         </RegisterHeader>
+        {!isMobileSize && (
+          <img
+            src="./kiwing_circle_green.png"
+            alt="kiwing logo"
+          />
+        )}
+      </RegisterIntro>
+      <RegisterFormWrapper>
         <RegisterItemWrapper>
           <Input
             fontSize={1.8}

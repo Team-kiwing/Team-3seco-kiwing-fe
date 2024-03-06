@@ -3,18 +3,30 @@ import styled from 'styled-components';
 import { FONT_BOLD, MOBILE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
-export const RegisterPageWrapper = styled(Row)`
+export const RegisterPageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
   width: 80%;
   margin: 6rem auto 0 auto;
   align-items: center;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    flex-direction: column;
+    font-size: 2.8rem;
+  }
 `;
 
-export const RegisterLogo = styled(Row)`
+export const RegisterIntro = styled(Col)`
   width: 40%;
-  justify-content: center;
+  align-items: center;
   & > img {
     width: 100%;
-    max-width: 30rem;
+    max-width: 20rem;
+  }
+
+  @media screen and (max-width: ${MOBILE}px) {
+    width: 100%;
+    align-items: flex-start;
   }
 `;
 
@@ -22,7 +34,7 @@ export const RegisterHeader = styled.div`
   font-size: 5rem;
   font-weight: ${FONT_BOLD};
   margin-bottom: 3rem;
-  word-break: keep-all;
+  word-break: break-all;
   color: ${({ theme }) => theme.primary_color};
 
   @media screen and (max-width: ${MOBILE}px) {
