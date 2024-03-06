@@ -1,7 +1,7 @@
 import { Tag } from '@/types';
 
 export interface MyQuestionModalProps {
-  mode?: 'add' | 'edit';
+  modalMode?: 'add' | 'edit';
   questionNameField?: string;
   questionAnswerField?: string;
   selectedTagsField?: Tag[];

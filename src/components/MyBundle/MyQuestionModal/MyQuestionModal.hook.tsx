@@ -24,7 +24,7 @@ export const useMyQuestionModal = () => {
       title: MODAL.TITLE,
       content: (
         <MyQuestionModal
-          mode="edit"
+          modalMode="edit"
           questionNameField={questionNameField}
           questionAnswerField={questionAnswerField}
           selectedTagsField={selectedTagsField}

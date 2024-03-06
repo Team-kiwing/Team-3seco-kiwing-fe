@@ -16,7 +16,7 @@ import { ButtonContainer, ModalContainer } from './MyQuestionModal.style';
 import { FormField, MyQuestionModalProps } from './MyQuestionModal.type';
 
 const MyQuestionModal = ({
-  mode = 'add',
+  modalMode = 'add',
   questionNameField = '',
   questionAnswerField = '',
   selectedTagsField = [],
@@ -36,7 +36,7 @@ const MyQuestionModal = ({
     setValue,
     formState: { errors },
   } = useForm<FormField>({
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       questionNameField,
       questionAnswerField,
@@ -127,7 +127,7 @@ const MyQuestionModal = ({
           />
           <Button
             style={{ marginTop: '1rem' }}
-            text={MODAL.SUBMIT_BUTTON_TEXT(mode)}
+            text={MODAL.SUBMIT_BUTTON_TEXT(modalMode)}
             width="100%"
             type="submit"
             height={isMobileSize ? '3.5rem' : '4.4rem'}
