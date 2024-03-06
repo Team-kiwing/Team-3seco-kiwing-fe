@@ -32,7 +32,9 @@ export const BundleWrapper = styled.div`
   height: 100%;
   gap: 2rem;
   margin-bottom: 1.5rem;
-  padding: 1rem;
+  padding: 1.5rem;
+  padding-top: 1rem;
+  box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
 
