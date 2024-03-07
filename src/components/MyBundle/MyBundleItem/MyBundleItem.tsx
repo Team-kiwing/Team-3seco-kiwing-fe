@@ -5,21 +5,24 @@ import BorderBox from '@/components/common/BorderBox';
 import IconWrapper from '@/components/common/IconWrapper';
 import useAccordion from '@/hooks/useAccordion';
 import useDropDown from '@/hooks/useDropDown';
+import useResize from '@/hooks/useResize';
 import { themeStore } from '@/stores';
 import { Direction } from '@/types/dropdown';
 
 import MyBundleDropDown from '../MyBundleDropDown';
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
+import { useFetchBundleDetail } from './MyBundleItem.hook';
 import { BodyWrapper, RightItem, Title } from './MyBundleItem.style';
 import { MyBundleItem } from './MyBundleItem.type';
 
 const MyBundleItem = ({
   selectedBundle,
   setSelectedBundle,
-  bundle,
-  isMobileSize,
+  bundleId,
 }: MyBundleItem) => {
   const { isDarkMode } = themeStore();
+  const { isMobileSize } = useResize();
+  const { data: bundle } = useFetchBundleDetail(bundleId);
 
   const {
     parentRef,
@@ -30,7 +33,7 @@ const MyBundleItem = ({
   } = useAccordion();
 
   const { triggerId, isShow, setIsShow, closeDropDown, toggleDropDown } =
-    useDropDown(`my-bundle-right-btn-${bundle.id}`);
+    useDropDown(`my-bundle-right-btn-${bundleId}`);
 
   const [direction, setDirection] = useState<Direction>('bottom-left');
 
@@ -39,7 +42,12 @@ const MyBundleItem = ({
   useEffect(() => {
     // size가 바뀌면 모바일에서의 모든 active를 초기화 한다.
     setIsActive(false);
-  }, [isMobileSize, setIsActive]);
+  }, [setIsActive]);
+
+  // @TODO 스켈레톤 만들기
+  if (!bundle) {
+    return <div>로딩 중</div>;
+  }
 
   const handleWebClick = () => {
     setSelectedBundle(bundle);

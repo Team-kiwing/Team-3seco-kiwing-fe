@@ -10,7 +10,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 1rem;
+
   overflow-x: hidden;
   padding-left: 0.5rem;
   padding-right: 0.5rem;

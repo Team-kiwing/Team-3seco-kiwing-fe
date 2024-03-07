@@ -4,7 +4,9 @@ import { Col } from '@/styles/globalStyles';
 
 export const Container = styled(Col)`
   width: 100%;
+  height: 100%;
   padding: 2rem;
+  box-sizing: border-box;
 `;
 export const Header = styled.div`
   width: 100%;
