@@ -17,7 +17,10 @@ const CircleButton = ({
 }: PropsWithChildren<CircleButtonProps>) => {
   return (
     <>
-      <Circle $size={size}>
+      <Circle
+        $isBackgroundWhite={isBackgroundWhite}
+        $size={size}
+      >
         <TransparentCircle
           $size={size}
           $isBackgroundWhite={isBackgroundWhite}

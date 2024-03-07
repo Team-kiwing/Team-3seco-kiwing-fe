@@ -10,6 +10,7 @@ export const SharedWrapper = styled.div`
   gap: 3rem;
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
+    gap: 1rem;
   }
 `;
 
@@ -18,6 +19,9 @@ export const TagFilterWrapper = styled.div`
   margin: 5rem auto;
   display: flex;
   justify-content: center;
+  @media screen and (max-width: ${MOBILE}px) {
+    margin: 2rem auto;
+  }
 `;
 
 export const SearchWrapper = styled.div`
