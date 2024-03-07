@@ -9,6 +9,7 @@ import useResize from '@/hooks/useResize';
 import { themeStore } from '@/stores';
 import { Direction } from '@/types/dropdown';
 
+import MyBundleDetail from '../MyBundleDetail';
 import MyBundleDropDown from '../MyBundleDropDown';
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
 import { useFetchBundleDetail } from './MyBundleItem.hook';
@@ -125,14 +126,20 @@ const MyBundleItem = ({
           $isDarkMode={isDarkMode}
           ref={parentRef}
         >
-          <BorderBox
+          <div
             ref={childRef}
-            width="auto"
-            height="45rem"
-            style={{ fontSize: 'inherit' }}
+            style={{
+              width: 'auto',
+              height: '45rem',
+              fontSize: 'inherit',
+            }}
           >
-            <div>{bundle.name}의 상세 질문 목록입니다.</div>
-          </BorderBox>
+            <MyBundleDetail
+              isBundleSelected={true}
+              isMyBundlesEmpty={false}
+              questions={bundle.questions}
+            />
+          </div>
         </BodyWrapper>
       )}
     </>

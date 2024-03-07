@@ -26,6 +26,7 @@ import { MyBundleDetailProps } from './MyBundleDetail.type';
 
 const MyBundleDetail = ({
   isBundleSelected,
+  isMyBundlesEmpty,
   questions,
 }: MyBundleDetailProps) => {
   const [isAll, setIsAll] = useState(true);
@@ -80,8 +81,17 @@ const MyBundleDetail = ({
         <BorderBox
           width="100%"
           height="100%"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         >
-          없음
+          {isMyBundlesEmpty ? (
+            <span>나만의 꾸러미를 생성해보세요!</span>
+          ) : (
+            <span>나만의 꾸러미를 선택해보세요!</span>
+          )}
         </BorderBox>
       </Container>
     );
@@ -92,6 +102,9 @@ const MyBundleDetail = ({
       <BorderBox
         width="100%"
         height="100%"
+        style={{
+          boxSizing: 'border-box',
+        }}
       >
         <InnerContainer>
           <Header>

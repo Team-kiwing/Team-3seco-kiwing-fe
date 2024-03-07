@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { MOBILE } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
 export const Container = styled.section<{ $isBundleSelected: boolean }>`
@@ -9,6 +10,10 @@ export const Container = styled.section<{ $isBundleSelected: boolean }>`
   box-sizing: border-box;
 
   transition: all 1s ease;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    width: 100%;
+  }
 `;
 
 export const InnerContainer = styled(Col)`

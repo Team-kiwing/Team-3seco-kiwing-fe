@@ -28,6 +28,7 @@ const MyBundle = () => {
         {!isMobileSize && (
           <MyBundleDetail
             isBundleSelected={selectedBundle !== null}
+            isMyBundlesEmpty={bundles?.length === 0}
             questions={selectedBundle?.questions || []}
           />
         )}
