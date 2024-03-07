@@ -1,13 +1,13 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" },
     {
       "source": "/api/:path*",
-      "destination": "https://apis.data.go.kr/:path*"
+      "destination": "https://api-dev.kiwing.kr/api/v1/:path*"
     },
     {
       "source": "/api/:path*/",
-      "destination": "https://apis.data.go.kr/:path*/"
-    }
+      "destination": "https://api-dev.kiwing.kr/api/v1/:path*/"
+    },
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
