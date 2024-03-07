@@ -1,6 +1,9 @@
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
+import { userDataStore } from '@/stores';
 
 import Badge from '../Badge';
 import ShadowBox from '../ShadowBox';
@@ -39,10 +42,22 @@ const BundleCard = ({
   isHot,
 }: BundleProps) => {
   const { isMobileSize } = useResize();
-
   const navigate = useNavigate();
+  const { isLogin } = userDataStore();
+
+  const handleMoveDetail = useCallback(() => {
+    if (isLogin) {
+      navigate(`/shared/${id}`);
+    } else {
+      notify({
+        type: 'warning',
+        text: '로그인이 필요한 기능이에요 !',
+      });
+    }
+  }, [isLogin, navigate, id]);
+
   return (
-    <BundleCardWrapper onClick={() => navigate(`/shared/${id}`)}>
+    <BundleCardWrapper onClick={handleMoveDetail}>
       <ShadowBox
         style={{
           boxSizing: 'border-box',
