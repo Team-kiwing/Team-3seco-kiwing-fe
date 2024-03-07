@@ -95,6 +95,7 @@ const MyQuestionModal = ({
         tagList={tags}
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
+        isLimit={true}
       />
       <form onSubmit={handleSubmit(onValid, onInValid)}>
         <Textarea
