@@ -4,11 +4,11 @@ import { MOBILE } from '@/constants';
 
 export const Container = styled.article`
   display: flex;
-  justify-content: center;
   gap: 2rem;
-  padding: 1rem;
+  padding: 4rem;
+  padding-top: 2rem;
   width: 100%;
-  height: 95%;
+  height: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
 
