@@ -8,10 +8,9 @@ import { TokenRequest, TokenResponse } from '@/types';
  */
 export const getAccessToken = async ({ refreshToken }: TokenRequest) => {
   try {
-    const res = await axiosInstance.get<TokenResponse>(DOMAIN.TOKEN, {
-      params: {
-        refreshToken,
-      },
+    const res = await axiosInstance.post<TokenResponse>(DOMAIN.TOKEN, {
+      refreshToken,
+      useAuth: false,
     });
     return res.data;
   } catch (e) {
