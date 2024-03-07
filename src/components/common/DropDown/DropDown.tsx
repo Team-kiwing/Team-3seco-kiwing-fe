@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+import { SHARED_BUNDLE_BOX } from '@/components/SharedBundle/SharedBundleBox/SharedBundleBox.const';
+import { notify } from '@/hooks/toast';
+
 import Button from '../Button';
 import ShadowBox from '../ShadowBox';
 import useClickAway from './DropDown.hook';
@@ -53,24 +56,24 @@ const DropDown = ({
     closeDropDown(e);
   });
 
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
+  const [checkedItems, setCheckedItems] = useState<number | null>();
 
   const checkedItemHandler = (id: number) => {
-    const isChecked = checkedItems.includes(id);
-    if (!isChecked) {
-      const newCheckedItems = [...checkedItems, id];
-      setCheckedItems(newCheckedItems);
-    } else if (isChecked && checkedItems.includes(id)) {
-      const newCheckedItems = checkedItems.filter((item) => item !== id);
-      setCheckedItems(newCheckedItems);
-    }
+    setCheckedItems(id);
   };
 
   const handleAddClick = () => {
+    if (!checkedItems) {
+      notify({
+        type: 'warning',
+        text: SHARED_BUNDLE_BOX.WARNING_BUNDLE_NOTIFY,
+      });
+      return;
+    }
     if (onAdd) {
       onAdd(checkedItems);
     }
-    setCheckedItems([]);
+    setCheckedItems(null);
     setIsShow(false);
   };
 
@@ -118,7 +121,7 @@ const DropDown = ({
                 <CheckBoxInput
                   type="checkbox"
                   onChange={() => checkedItemHandler(option.id)}
-                  checked={checkedItems.includes(option.id)}
+                  checked={checkedItems === option.id}
                 />
               )}
             </Item>
