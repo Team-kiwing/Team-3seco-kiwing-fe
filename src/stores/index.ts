@@ -51,7 +51,7 @@ export const modalStore = create<ModalState>((set) => ({
 
 interface UserDataStoreType {
   id: number | null;
-  nickName: string;
+  nickname: string;
   profileImage: string;
   snsList: SnsList[];
   memberTags: MemberTag[];
@@ -64,7 +64,7 @@ interface UserDataStoreType {
 
 interface UserDataSetType {
   id: number | null;
-  nickName: string;
+  nickname: string;
   profileImage: string;
   snsList: SnsList[];
   memberTags: MemberTag[];
@@ -72,7 +72,7 @@ interface UserDataSetType {
 
 export const userDataStore = create<UserDataStoreType>((set) => ({
   id: null,
-  nickName: '',
+  nickname: '',
   profileImage: '',
   snsList: [],
   memberTags: [],
@@ -86,7 +86,7 @@ export const userDataStore = create<UserDataStoreType>((set) => ({
   setUserData: (userData: UserDataSetType) =>
     set({
       id: userData.id,
-      nickName: userData.nickName,
+      nickname: userData.nickname,
       profileImage: userData.profileImage,
       snsList: userData.snsList,
       memberTags: userData.memberTags,
