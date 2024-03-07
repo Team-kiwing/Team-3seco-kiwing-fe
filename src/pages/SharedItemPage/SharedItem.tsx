@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import UserInfoCard from '@/components/common/UserInfoCard';
 import SharedBundleBox from '@/components/SharedBundle/SharedBundleBox';
 import SharedBundleCard from '@/components/SharedBundle/SharedBundleCard';
 import { MOBILE } from '@/constants';
+import { getUserInfo } from '@/services/members';
 import { Col } from '@/styles/globalStyles';
+import { UserInfoResponse } from '@/types';
+
+import { useGetBundleDetail } from './SharedItem.hook';
 
 const SharedItemWrapper = styled(Col)`
   width: 70%;
@@ -37,37 +42,45 @@ const SharedWrapper = styled(Col)`
 `;
 
 const SharedItem = () => {
-  const [bundles, setBundles] = useState([]);
-  useEffect(() => {
-    fetch('/bundles')
-      .then((res) => res.json())
-      .then((data) => setBundles(data));
-  }, []);
+  const params = useParams();
+  const bundleId = Number(params.id);
+  const { data: detail } = useGetBundleDetail({ bundleId: bundleId });
 
-  if (bundles.length === 0) {
-    return <div>Loading...</div>;
+  const [user, setUser] = useState<UserInfoResponse | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (detail && detail.writerId) {
+        const userData: UserInfoResponse | null = await getUserInfo(
+          detail.writerId
+        );
+        setUser(userData);
+      }
+    };
+    fetchUser();
+  }, [detail]);
+
+  const questions = detail?.questions;
+
+  if (!questions || !user) {
+    return null; // 로딩 UI or Skeleton ...? 둘중 뭐가 좋을까요?
   }
-  const questions = bundles[0]?.questions;
-  console.log(questions);
+
   return (
     <>
       <SharedItemWrapper>
         <UserInfoWrapper>
           <UserInfoCard
-            userImage=""
-            userName="pkb"
-            tags={['개발자', '프론트엔드', '백엔드']}
-            links={[
-              'pkb8839@naver.com',
-              'pkb8839@naver.com',
-              'pkb8839@naver.comdsasdsadasdasdasdasdasdasdl;kasd;koas;dkas;dkasl;dk;askd;laskdas;.lkdals;dkas;dkl;asdkls;',
-            ]}
+            userImage={user.profileImage}
+            userName={user.email}
+            tags={user.memberTags}
+            links={user.snsList}
           />
         </UserInfoWrapper>
         <SharedWrapper>
           <SharedBundleCard
-            bundleId={bundles[0].id}
-            bundleName={bundles[0]?.name}
+            bundleId={bundleId}
+            bundleName={detail.name}
           />
           <SharedBundleBox questions={questions} />
         </SharedWrapper>
