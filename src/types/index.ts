@@ -74,6 +74,7 @@ export interface Question {
   isHot: boolean;
   createdAt: string;
   updatedAt: string;
+  writerId: number;
 }
 
 export interface Tag {
@@ -146,6 +147,7 @@ export interface BundlesBasic {
   isHot: boolean;
   createdAt: string;
   updatedAt: string;
+  writerId: number;
 }
 export interface Bundle {
   id: number;
@@ -157,6 +159,7 @@ export interface Bundle {
   createdAt: string;
   updatedAt: string;
   questions: Question[];
+  writerId: number;
 }
 
 export interface BundlesUpdateResponse extends BundlesBasic {}
