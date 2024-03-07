@@ -12,7 +12,7 @@ export const useReportForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<{ createReport: string }>({
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: { createReport: '' },
   });
 
