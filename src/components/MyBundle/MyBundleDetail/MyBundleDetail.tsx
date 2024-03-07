@@ -83,10 +83,19 @@ const MyBundleDetail = ({
           height="100%"
           style={{
             display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
+          <img
+            src="./kiwing_circle_transparent.png"
+            alt="kiwing logo"
+            style={{
+              width: '30%',
+            }}
+          />
           {isMyBundlesEmpty ? (
             <span>나만의 꾸러미를 생성해보세요!</span>
           ) : (
