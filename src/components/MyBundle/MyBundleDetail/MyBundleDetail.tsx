@@ -12,6 +12,7 @@ import Selector from '@/components/common/Selector';
 import { Question } from '@/types';
 
 import MyQuestionBox from '../MyQuestionBox';
+import { useMyQuestionModal } from '../MyQuestionModal/MyQuestionModal.hook';
 import {
   Body,
   BodyInnerWrapper,
@@ -30,9 +31,10 @@ const MyBundleDetail = ({
   questions,
 }: MyBundleDetailProps) => {
   const [isAll, setIsAll] = useState(true);
-
   const [orderedQuestions, setOrderedQuestions] =
     useState<Question[]>(questions);
+
+  const { handleAddBundleClick } = useMyQuestionModal();
 
   const filteredQuestions = isAll
     ? orderedQuestions
@@ -162,6 +164,7 @@ const MyBundleDetail = ({
             <Button
               width="100%"
               text="+ 새 질문 추가하기"
+              onClick={handleAddBundleClick}
             />
             <CountText>{questions.length}/100</CountText>
           </Footer>
