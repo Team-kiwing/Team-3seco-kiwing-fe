@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { getMyBundles } from '@/services/bundles';
+import { createQuestionsToBundle, getMyBundles } from '@/services/bundles';
 import { BundlesBasic, SortingType } from '@/types';
 
 export const useGetMyBundles = (sortingType: SortingType) => {
@@ -9,4 +9,16 @@ export const useGetMyBundles = (sortingType: SortingType) => {
     queryFn: () => getMyBundles(sortingType),
   });
   return query;
+};
+
+export const useCreateQuestionsToBundle = () => {
+  return useMutation({
+    mutationFn: ({
+      bundleId,
+      questionIds,
+    }: {
+      bundleId: number;
+      questionIds: number[];
+    }) => createQuestionsToBundle(bundleId, questionIds),
+  });
 };
