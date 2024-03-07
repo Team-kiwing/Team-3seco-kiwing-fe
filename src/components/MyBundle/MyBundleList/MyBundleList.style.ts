@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FONT_MEDIUM, MOBILE } from '@/constants';
 
 //MyBundleList
-export const Container = styled.div`
+export const Container = styled.section`
   width: 20%;
   height: 100%;
   display: flex;
@@ -14,6 +14,8 @@ export const Container = styled.div`
   overflow-x: hidden;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+
+  min-width: 20%;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;

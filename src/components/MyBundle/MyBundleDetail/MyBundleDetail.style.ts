@@ -2,11 +2,21 @@ import styled from 'styled-components';
 
 import { Col } from '@/styles/globalStyles';
 
-export const Container = styled(Col)`
+export const Container = styled.section<{ $isBundleSelected: boolean }>`
+  width: ${({ $isBundleSelected }) => ($isBundleSelected ? '60%' : '80%')};
+  height: 100%;
+  padding-top: 1rem;
+  box-sizing: border-box;
+
+  transition: all 1s ease;
+`;
+
+export const InnerContainer = styled(Col)`
   width: 100%;
   height: 100%;
   padding: 2rem;
   box-sizing: border-box;
+  transition: width 0.2s ease;
 `;
 export const Header = styled.div`
   width: 100%;

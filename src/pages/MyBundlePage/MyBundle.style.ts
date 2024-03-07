@@ -17,8 +17,9 @@ export const Container = styled.article`
   }
 `;
 export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
+  padding-top: 1rem;
+  box-sizing: border-box;
   width: 20rem;
-  min-width: 16rem;
   height: 100%;
   display: flex;
   flex-direction: column;

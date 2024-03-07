@@ -19,11 +19,15 @@ import {
   CountText,
   Footer,
   Header,
+  InnerContainer,
   QuestionWrapper,
 } from './MyBundleDetail.style';
 import { MyBundleDetailProps } from './MyBundleDetail.type';
 
-const MyBundleDetail = ({ questions }: MyBundleDetailProps) => {
+const MyBundleDetail = ({
+  isBundleSelected,
+  questions,
+}: MyBundleDetailProps) => {
   const [isAll, setIsAll] = useState(true);
 
   const [orderedQuestions, setOrderedQuestions] =
@@ -32,6 +36,10 @@ const MyBundleDetail = ({ questions }: MyBundleDetailProps) => {
   const filteredQuestions = isAll
     ? orderedQuestions
     : orderedQuestions.filter((question) => question.id === question.originId);
+
+  useEffect(() => {
+    setOrderedQuestions(questions);
+  }, [questions]);
 
   // --- Draggable이 Droppable로 드래그 되었을 때 실행되는 이벤트
   const onDragEnd = ({ source, destination }: DropResult) => {
@@ -66,63 +74,78 @@ const MyBundleDetail = ({ questions }: MyBundleDetailProps) => {
   }
   // --- requestAnimationFrame 초기화 END
 
-  return (
-    <BorderBox
-      width="100%"
-      height="100%"
-    >
-      <Container>
-        <Header>
-          <Selector
-            content={['전체', '내가 작성한 질문']}
-            isState={isAll}
-            setIsState={setIsAll}
-          />
-        </Header>
-        <Body>
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="droppable">
-              {(provided) => (
-                <BodyInnerWrapper
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  {filteredQuestions.map((question, index) => (
-                    <Draggable
-                      key={String(question.id)}
-                      draggableId={String(question.id)}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <QuestionWrapper
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <MyQuestionBox
-                            key={question.id}
-                            question={question.content}
-                            answer={question.answer}
-                          />
-                        </QuestionWrapper>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </BodyInnerWrapper>
-              )}
-            </Droppable>
-          </DragDropContext>
-        </Body>
-        <Footer>
-          <Button
-            width="100%"
-            text="+ 새 질문 추가하기"
-          />
-          <CountText>{questions.length}/100</CountText>
-        </Footer>
+  if (!isBundleSelected) {
+    return (
+      <Container $isBundleSelected={isBundleSelected}>
+        <BorderBox
+          width="100%"
+          height="100%"
+        >
+          없음
+        </BorderBox>
       </Container>
-    </BorderBox>
+    );
+  }
+
+  return (
+    <Container $isBundleSelected={isBundleSelected}>
+      <BorderBox
+        width="100%"
+        height="100%"
+      >
+        <InnerContainer>
+          <Header>
+            <Selector
+              content={['전체', '내가 작성한 질문']}
+              isState={isAll}
+              setIsState={setIsAll}
+            />
+          </Header>
+          <Body>
+            <DragDropContext onDragEnd={onDragEnd}>
+              <Droppable droppableId="droppable">
+                {(provided) => (
+                  <BodyInnerWrapper
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+                    {filteredQuestions.map((question, index) => (
+                      <Draggable
+                        key={String(question.id)}
+                        draggableId={String(question.id)}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <QuestionWrapper
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <MyQuestionBox
+                              key={question.id}
+                              question={question.content}
+                              answer={question.answer}
+                            />
+                          </QuestionWrapper>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </BodyInnerWrapper>
+                )}
+              </Droppable>
+            </DragDropContext>
+          </Body>
+          <Footer>
+            <Button
+              width="100%"
+              text="+ 새 질문 추가하기"
+            />
+            <CountText>{questions.length}/100</CountText>
+          </Footer>
+        </InnerContainer>
+      </BorderBox>
+    </Container>
   );
 };
 
