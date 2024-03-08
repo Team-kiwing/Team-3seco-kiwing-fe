@@ -16,6 +16,7 @@ import {
 import {
   AllCheckWrapper,
   CountText,
+  EmptyContent,
   SharedBundleBoxFooter,
   SharedBundleBoxWrapper,
 } from './SharedBundleBox.style';
@@ -94,49 +95,55 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
           position: 'relative',
         }}
       >
-        <AllCheckWrapper>
-          <span>전체 선택</span>
-          <CheckBoxInput
-            type="checkbox"
-            onChange={handleAllCheck}
-            checked={checkedAllItems}
-          />
-        </AllCheckWrapper>
-        <SharedBundleBoxWrapper>
-          {questions.map((item) => (
-            <SharedQuestionBox
-              key={item.id}
-              question={item?.content}
-              answer={item?.answer}
-              questionId={item?.id}
-              isChecked={checkedQuestionId.includes(item?.id)}
-              onToggleCheck={handleToggleCheck}
-            />
-          ))}
-        </SharedBundleBoxWrapper>
-        <SharedBundleBoxFooter>
-          <CountText>{questions.length}/100</CountText>
-          <Button
-            style={{ position: 'relative' }}
-            onClick={toggleDropDown}
-            id={triggerId}
-            width="20rem"
-            text="내 꾸러미에 가져가기"
-          >
-            <DropDown
-              width={20}
-              optionHeight={5}
-              height={15}
-              options={BUNDLE_BOX_OPTIONS}
-              isShow={isShow}
-              closeDropDown={closeDropDown}
-              setIsShow={setIsShow}
-              mode="checkbox"
-              onAdd={handleAddQuestion}
-              direction="top"
-            />
-          </Button>
-        </SharedBundleBoxFooter>
+        {questions.length > 0 ? (
+          <>
+            <AllCheckWrapper>
+              <span>전체 선택</span>
+              <CheckBoxInput
+                type="checkbox"
+                onChange={handleAllCheck}
+                checked={checkedAllItems}
+              />
+            </AllCheckWrapper>
+            <SharedBundleBoxWrapper>
+              {questions.map((item) => (
+                <SharedQuestionBox
+                  key={item.id}
+                  question={item?.content}
+                  answer={item?.answer}
+                  questionId={item?.id}
+                  isChecked={checkedQuestionId.includes(item?.id)}
+                  onToggleCheck={handleToggleCheck}
+                />
+              ))}
+            </SharedBundleBoxWrapper>
+            <SharedBundleBoxFooter>
+              <CountText>{questions.length}/100</CountText>
+              <Button
+                style={{ position: 'relative' }}
+                onClick={toggleDropDown}
+                id={triggerId}
+                width="20rem"
+                text="내 꾸러미에 가져가기"
+              >
+                <DropDown
+                  width={20}
+                  optionHeight={5}
+                  height={15}
+                  options={BUNDLE_BOX_OPTIONS}
+                  isShow={isShow}
+                  closeDropDown={closeDropDown}
+                  setIsShow={setIsShow}
+                  mode="checkbox"
+                  onAdd={handleAddQuestion}
+                  direction="top"
+                />
+              </Button>
+            </SharedBundleBoxFooter>{' '}
+          </>
+        ) : (
+          <EmptyContent>추가 된 질문이 없습니다</EmptyContent>
+        )}
       </ShadowBox>
     </>
   );

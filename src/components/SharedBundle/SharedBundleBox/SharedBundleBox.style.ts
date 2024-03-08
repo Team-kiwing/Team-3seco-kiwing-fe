@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { FONT_MEDIUM, MOBILE_FONT_SIZE, WEB_FONT_SIZE } from '@/constants';
 import { MOBILE, MOBILE_MIN } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
@@ -46,4 +47,21 @@ export const CountText = styled(Row)`
   justify-content: center;
   align-items: center;
   color: ${({ theme }) => theme.gray_200};
+`;
+
+export const EmptyContent = styled.span`
+  font-size: ${WEB_FONT_SIZE}rem;
+  font-weight: ${FONT_MEDIUM};
+  text-align: center;
+  padding: 25rem 0;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: ${MOBILE_FONT_SIZE}rem;
+    padding: 14rem 0;
+  }
+
+  @media screen and (max-width: ${MOBILE_MIN}px) {
+    font-size: ${MOBILE_FONT_SIZE}rem;
+    padding: 10rem 0;
+  }
 `;
