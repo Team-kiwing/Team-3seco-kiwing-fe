@@ -74,7 +74,7 @@ const UserInfoCard = ({
 
   return (
     <ShadowBox
-      width={viewportWidth <= MOBILE ? '90%' : '80%'}
+      width={viewportWidth <= MOBILE ? '90%' : '100%'}
       height={'100%'}
       style={{ minWidth: '260px', margin: '0 auto' }}
     >
