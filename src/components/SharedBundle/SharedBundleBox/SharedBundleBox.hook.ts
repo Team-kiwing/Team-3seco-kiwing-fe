@@ -14,11 +14,11 @@ export const useGetMyBundles = (sortingType: SortingType) => {
 export const useCreateQuestionsToBundle = () => {
   return useMutation({
     mutationFn: ({
-      bundleId,
+      bundleIds,
       questionIds,
     }: {
-      bundleId: number;
+      bundleIds: number[];
       questionIds: number[];
-    }) => createQuestionsToBundle(bundleId, questionIds),
+    }) => createQuestionsToBundle({ bundleIds, questionIds }),
   });
 };

@@ -56,23 +56,32 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
     }
   };
 
-  const handleAddQuestion = (checkedBundleId: number | null) => {
-    if (checkedBundleId == null) {
-      return;
-    }
-    if (checkedQuestionId.length == 0) {
-      notify({
-        type: 'warning',
-        text: SHARED_BUNDLE_BOX.FAIL_QUESTION_NOTIFY,
-      });
-    } else {
-      mutate({ bundleId: checkedBundleId, questionIds: checkedQuestionId });
-      setCheckedQuestionId([]);
-      setCheckedAllItems(false);
-      notify({
-        type: 'success',
-        text: SHARED_BUNDLE_BOX.SUCCESS_QUESTION_NOTIFY,
-      });
+  const handleAddQuestion = (checkedBundleId: number[]) => {
+    if (checkedBundleId) {
+      if (checkedQuestionId.length == 0) {
+        notify({
+          type: 'warning',
+          text: SHARED_BUNDLE_BOX.FAIL_QUESTION_NOTIFY,
+        });
+      } else {
+        if (checkedBundleId.length == 0) {
+          notify({
+            type: 'warning',
+            text: SHARED_BUNDLE_BOX.WARNING_BUNDLE_NOTIFY,
+          });
+        } else {
+          notify({
+            type: 'success',
+            text: SHARED_BUNDLE_BOX.SUCCESS_QUESTION_NOTIFY,
+          });
+          mutate({
+            bundleIds: checkedBundleId,
+            questionIds: checkedQuestionId,
+          });
+          setCheckedQuestionId([]);
+          setCheckedAllItems(false);
+        }
+      }
     }
   };
 
