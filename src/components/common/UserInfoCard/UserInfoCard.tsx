@@ -92,7 +92,7 @@ const UserInfoCard = ({
                   <Badge
                     $state={'basic'}
                     $size={viewportWidth <= MOBILE ? 'xxs' : 'xs'}
-                    $text={tag}
+                    $text={tag.name}
                     style={{
                       backgroundColor: `${theme.symbol_secondary_color}`,
                     }}
@@ -112,10 +112,10 @@ const UserInfoCard = ({
                     <IoIosLink />
                   </IconWrapper>
                   <a
-                    href={link}
+                    href={link.url}
                     target="_blank"
                   >
-                    {link}
+                    {link.url}
                   </a>
                 </UserInfoLink>
               ))
