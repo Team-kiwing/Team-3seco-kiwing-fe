@@ -135,7 +135,9 @@ export interface BundlesCreateRequest {
   tagIds: number[];
 }
 
-export interface BundlesUpdateRequest extends BundlesCreateRequest {}
+export interface BundlesUpdateRequest extends BundlesCreateRequest {
+  bundleId: number;
+}
 
 export interface BundlesBasic {
   id: number;

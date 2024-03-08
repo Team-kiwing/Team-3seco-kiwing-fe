@@ -126,10 +126,12 @@ export const deleteBundle = async (bundleId: number) => {
 /**
  * @brief 꾸러미를 수정합니다.
  */
-export const updateBundle = async (
-  bundleId: number,
-  { name, shareType, tagIds }: BundlesUpdateRequest
-) => {
+export const updateBundle = async ({
+  bundleId,
+  name,
+  shareType,
+  tagIds,
+}: BundlesUpdateRequest) => {
   try {
     const res = await axiosInstance.patch<BundlesUpdateResponse>(
       DOMAIN.UPDATE_BUNDLE(bundleId),
