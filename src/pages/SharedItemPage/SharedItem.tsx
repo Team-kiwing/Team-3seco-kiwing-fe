@@ -34,7 +34,11 @@ const SharedItem = () => {
 
   const questions = detail?.questions;
 
-  if (!questions || !user) {
+  const latestQuestions = questions?.sort(
+    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+  );
+
+  if (!questions || !user || !latestQuestions) {
     return null; // 로딩 UI or Skeleton ...? 둘중 뭐가 좋을까요?
   }
 
@@ -54,7 +58,7 @@ const SharedItem = () => {
             bundleId={bundleId}
             bundleName={detail.name}
           />
-          <SharedBundleBox questions={questions} />
+          <SharedBundleBox questions={latestQuestions} />
         </SharedWrapper>
       </SharedItemWrapper>
     </>
