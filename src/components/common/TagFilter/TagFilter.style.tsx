@@ -11,6 +11,7 @@ export const TagItemWrapper = styled(Row)`
   width: 95%;
   height: 100%;
   gap: 0.5rem;
+  user-select: none;
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
     padding: 1rem;

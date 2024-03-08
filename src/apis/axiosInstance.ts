@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 import { DOMAIN, NETWORK } from '@/constants/api';
-import { accessTokenStore } from '@/stores';
+import { userDataStore } from '@/stores';
+import { getItem, removeItem } from '@/utils/localStorage';
 
 import { setAuthorization } from './axiosInterceptors';
 
 const axiosRequestConfig = {
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: `/api`,
   timeout: NETWORK.TIMEOUT,
   useAuth: true,
 };
@@ -23,7 +24,7 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async function (error) {
-    const { setAccessToken } = accessTokenStore();
+    const setAccessToken = userDataStore.getState().setAccessToken;
     const originalConfig = error.config;
     const msg = error.response.data.message;
     const status = error.response.status;
@@ -33,9 +34,7 @@ axiosInstance.interceptors.response.use(
         await axios({
           url: DOMAIN.TOKEN,
           method: 'GET',
-          headers: {
-            refreshToken: localStorage.getItem('refreshToken'),
-          },
+          headers: { refreshToken: getItem('refresh-token', null) },
         })
           .then((res) => {
             setAccessToken(res.data.accessToken);
@@ -48,11 +47,14 @@ axiosInstance.interceptors.response.use(
           .then(() => {
             window.location.reload();
           });
-      } else if (msg == 'refresh token expired') {
-        localStorage.clear();
+      } else if (
+        msg == '리프레시 토큰이 만료되었습니다. 다시 로그인 해주세요.'
+      ) {
+        removeItem('refresh-token');
         window.alert('토큰이 만료되어 자동으로 로그아웃 되었습니다.');
       }
     } else if (status == 400 || status == 404 || status == 409) {
+      removeItem('refresh-token');
       window.alert(msg);
     }
     return Promise.reject(error);
