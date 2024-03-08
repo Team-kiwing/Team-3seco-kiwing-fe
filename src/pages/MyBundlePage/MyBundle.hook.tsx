@@ -8,7 +8,7 @@ export const useFetchMyBundles = () => {
   return useQuery({
     queryKey: [QUERYKEY.MY_BUNDLES],
     queryFn: async () => {
-      const data = await getMyBundles('CUSTOM');
+      const data = await getMyBundles('LATEST');
       if (!data) {
         notify({
           type: 'error',
