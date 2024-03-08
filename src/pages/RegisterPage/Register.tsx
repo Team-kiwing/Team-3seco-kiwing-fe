@@ -28,6 +28,7 @@ import {
 } from './Register.style';
 import { RegisterForm } from './Register.type';
 
+// TODO: 닉네임 중복 처리 로직 추가
 const Register = () => {
   const { nickname, setAccessToken } = userDataStore();
   const {
