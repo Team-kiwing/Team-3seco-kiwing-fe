@@ -83,6 +83,8 @@ export const BodyWrapper = styled.div`
 
 export const Body = styled.div<{ $isEmpty: boolean }>`
   padding: 2rem;
+  line-height: normal;
+  word-break: break-all;
   font-size: calc(${WEB_FONT_SIZE}rem - 0.2rem);
   color: ${(props) =>
     props.$isEmpty ? props.theme.gray_300 : props.theme.primary_color};
