@@ -9,11 +9,12 @@ import TagFilter from '@/components/common/TagFilter';
 import { notify } from '@/hooks/toast';
 import { useFetchTags } from '@/hooks/useFetchTags';
 import useResize from '@/hooks/useResize';
-import { accessTokenStore, themeStore } from '@/stores';
+import { themeStore, userDataStore } from '@/stores';
 import { Tag } from '@/types';
-import { setItem } from '@/utils/localStorage';
+import { getItem, setItem } from '@/utils/localStorage';
 
 import { RegisterNicknameValidation } from './Register.const';
+import { useUpdateMyInfo } from './Register.hook';
 import {
   RegisterCheckbox,
   RegisterCheckboxWrapper,
@@ -28,15 +29,15 @@ import {
 import { RegisterForm } from './Register.type';
 
 const Register = () => {
+  const { nickname, setAccessToken } = userDataStore();
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<RegisterForm>({
     mode: 'onChange',
     defaultValues: {
-      // TODO : 사용자의 이메일로 바꾸기
-      email: 'gothddlek@naver.com',
       nickname: '',
       github: '',
       blog: '',
@@ -48,17 +49,30 @@ const Register = () => {
   const { isMobileSize } = useResize();
   const { isDarkMode } = themeStore();
   const theme = useTheme();
-  const { setAccessToken } = accessTokenStore();
+  const { mutate } = useUpdateMyInfo();
 
-  const { data: tags, isLoading } = useFetchTags();
+  const { data: tags, isLoading: tagsLoading } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
   const [isChecked, setIsChecked] = useState(false);
-  const handleRegisterSubmit = async () => {
-    if (isChecked) {
-      // await
-      notify({ type: 'success', text: '가입에 성공했습니다 !' });
-      navigate('/');
+  const handleRegisterSubmit = () => {
+    const snsRequests = [
+      { name: 'github', url: getValues('github') },
+      { name: 'blog', url: getValues('blog') },
+      { name: 'etc', url: getValues('etc') },
+    ];
+    const tagIds = selectedTags.map((tag) => tag.id);
+    if (isChecked && getValues('nickname') !== '') {
+      mutate({
+        nickname: `@${getValues('nickname')}`,
+        snsRequests,
+        tagIds,
+      });
+    } else if (isChecked && getValues('nickname') === '') {
+      notify({
+        type: 'error',
+        text: '닉네임은 필수입니다.',
+      });
     } else {
       notify({
         type: 'error',
@@ -75,16 +89,19 @@ const Register = () => {
   );
 
   useEffect(() => {
-    if (accessToken && refreshToken) {
-      setAccessToken(accessToken);
-      setItem('refresh-token', refreshToken);
-      navigate('/register');
+    if (getItem('refresh-token', null) && nickname) {
+      navigate('/');
+    } else {
+      if (accessToken && refreshToken) {
+        setAccessToken(accessToken);
+        setItem('refresh-token', refreshToken);
+        navigate('/register');
+      }
     }
-  }, [navigate, accessToken, setAccessToken, refreshToken]);
+  }, [navigate, nickname, accessToken, setAccessToken, refreshToken]);
 
   return (
     <RegisterPageWrapper>
-      {/* TODO: Auth의 Spinner 컴포넌트를 common으로 위치 변경 후 적용하기 */}
       <RegisterIntro>
         <RegisterHeader>
           안녕하세요. <br /> 저희는&nbsp;
@@ -108,18 +125,8 @@ const Register = () => {
       </RegisterIntro>
       <RegisterFormWrapper>
         <RegisterItemWrapper>
-          <Input
-            fontSize={1.8}
-            label={'이메일'}
-            width="100%"
-            placeholder="Input의 props로 disabled 속성을 추가한 뒤 구글 로그인 한 결과에서 이메일을 넣어야함."
-            isDisabled={true}
-            {...register('email')}
-          />
-        </RegisterItemWrapper>
-        <RegisterItemWrapper>
           <RegisterLabel>관심 분야</RegisterLabel>
-          {isLoading ? (
+          {tagsLoading ? (
             <Skeleton.Box
               $width={'100%'}
               $height={'20rem'}
@@ -129,6 +136,7 @@ const Register = () => {
               selectedTags={selectedTags}
               setSelectedTags={setSelectedTags}
               tagList={tags ?? []}
+              isLimit={true}
             />
           )}
         </RegisterItemWrapper>
