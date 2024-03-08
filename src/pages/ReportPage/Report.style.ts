@@ -9,9 +9,7 @@ import {
 } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
-export const ReportPageLayout = styled.div`
-  display: flex;
-  flex-direction: column;
+export const ReportPageLayout = styled(Col)`
   width: 50%;
   margin: 0 auto;
   height: 100%;
