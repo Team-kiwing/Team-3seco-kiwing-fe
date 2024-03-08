@@ -37,6 +37,7 @@ export const SharedBundleBoxWrapper = styled(Col)`
 export const SharedBundleBoxFooter = styled(Row)`
   width: 90%;
   margin: 2rem auto;
+  position: relative;
   justify-content: space-between;
   @media screen and (max-width: ${MOBILE}px) {
     margin: 1rem auto;

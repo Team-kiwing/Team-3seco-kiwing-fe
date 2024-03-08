@@ -120,26 +120,24 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
             <SharedBundleBoxFooter>
               <CountText>{questions.length}/100</CountText>
               <Button
-                style={{ position: 'relative' }}
                 onClick={toggleDropDown}
                 id={triggerId}
                 width="20rem"
                 text="내 꾸러미에 가져가기"
-              >
-                <DropDown
-                  width={20}
-                  optionHeight={5}
-                  height={15}
-                  options={BUNDLE_BOX_OPTIONS}
-                  isShow={isShow}
-                  closeDropDown={closeDropDown}
-                  setIsShow={setIsShow}
-                  mode="checkbox"
-                  onAdd={handleAddQuestion}
-                  direction="top"
-                />
-              </Button>
-            </SharedBundleBoxFooter>{' '}
+              />
+              <DropDown
+                width={20}
+                optionHeight={5}
+                height={15}
+                options={BUNDLE_BOX_OPTIONS}
+                isShow={isShow}
+                closeDropDown={closeDropDown}
+                setIsShow={setIsShow}
+                mode="checkbox"
+                onAdd={handleAddQuestion}
+                direction="top-right"
+              />
+            </SharedBundleBoxFooter>
           </>
         ) : (
           <EmptyContent>추가 된 질문이 없습니다</EmptyContent>
