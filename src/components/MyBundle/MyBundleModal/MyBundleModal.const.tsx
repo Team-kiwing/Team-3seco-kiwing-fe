@@ -8,6 +8,10 @@ export const MODAL = {
 
   SUCCESS_NOTIFY: (mode: string) =>
     mode === 'add' ? '꾸러미를 생성했습니다!' : '꾸러미를 수정했습니다!',
+  ERROR_NOTIFY: (mode: string) =>
+    mode === 'add'
+      ? '꾸러미를 생성하는데 실패했습니다. 다시 시도해주세요.'
+      : '꾸러미를 수정하는데 실패했습니다. 다시 시도해주세요.',
   FETCH_FAIL_NOTIFY: '태그 정보를 불러오는데 실패했습니다',
 };
 
