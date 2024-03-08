@@ -75,11 +75,10 @@ export const VerticalDivider = styled.hr`
   border: none;
   background-color: ${({ theme }) => theme.border_color};
   position: relative;
-  top: -1px;
-  display: inline-block;
   width: 0.1rem;
   height: 50rem;
   vertical-align: middle;
+  margin-top: 6rem;
 `;
 
 export const HorizontalDivider = styled.hr`

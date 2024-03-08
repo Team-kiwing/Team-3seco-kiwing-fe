@@ -20,7 +20,8 @@ import {
 const Main = () => {
   const { isMobileSize } = useResize();
 
-  const { id, nickName, profileImage, accessToken } = userDataStore();
+  const { nickname, profileImage, accessToken, memberTags, snsList, isLogin } =
+    userDataStore();
   const { data: threeQuestions } = useFetchQuestions({
     keyword: '',
     page: 1,
@@ -32,17 +33,15 @@ const Main = () => {
     sortingType: 'LATEST',
   });
 
-  console.log(id, nickName);
-
   return (
     <>
       <MainPageWrapper>
         {accessToken ? (
           <UserInfoCard
-            userName={nickName}
+            userName={nickname}
             userImage={profileImage}
-            // tags={memberTags}
-            // links={snsList}
+            tags={memberTags}
+            links={snsList}
           />
         ) : (
           // TODO: 배너 꾸미기
@@ -59,7 +58,7 @@ const Main = () => {
                   question={question.content}
                   subscribedCount={question.shareCount}
                   isHot={question.isHot}
-                  isLogin={accessToken !== ''}
+                  isLogin={isLogin}
                 />
               </MainQuestionsBox>
             ))}
