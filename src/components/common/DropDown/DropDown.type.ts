@@ -16,7 +16,7 @@ export interface DropDownProps {
   height?: number;
   options: OptionType[];
   mode?: 'normal' | 'checkbox';
-  onAdd?: (checkedItems: number | null) => void;
+  onAdd?: (checkedItems: number[]) => void;
   isShow: boolean;
   setIsShow: (state: boolean) => void;
   closeDropDown: (e: Event) => void;

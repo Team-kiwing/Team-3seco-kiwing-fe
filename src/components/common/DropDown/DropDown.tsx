@@ -56,10 +56,17 @@ const DropDown = ({
     closeDropDown(e);
   });
 
-  const [checkedItems, setCheckedItems] = useState<number | null>();
+  const [checkedItems, setCheckedItems] = useState<number[]>([]);
 
   const checkedItemHandler = (id: number) => {
-    setCheckedItems(id);
+    const isChecked = checkedItems.includes(id);
+    if (!isChecked) {
+      const newCheckedItems = [...checkedItems, id];
+      setCheckedItems(newCheckedItems);
+    } else if (isChecked && checkedItems.includes(id)) {
+      const newCheckedItems = checkedItems.filter((item) => item !== id);
+      setCheckedItems(newCheckedItems);
+    }
   };
 
   const handleAddClick = () => {
@@ -73,7 +80,7 @@ const DropDown = ({
     if (onAdd) {
       onAdd(checkedItems);
     }
-    setCheckedItems(null);
+    setCheckedItems([]);
     setIsShow(false);
   };
 
@@ -121,7 +128,7 @@ const DropDown = ({
                 <CheckBoxInput
                   type="checkbox"
                   onChange={() => checkedItemHandler(option.id)}
-                  checked={checkedItems === option.id}
+                  checked={checkedItems.includes(option.id)}
                 />
               )}
             </Item>
