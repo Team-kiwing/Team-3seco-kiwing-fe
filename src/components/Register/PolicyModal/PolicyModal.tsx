@@ -1,5 +1,13 @@
+import { POLICY } from '@/pages/PolicyPage/Policy.const';
+
+import { ModalContainer, PolicyContent } from './PolicyModal.style';
+
 const PolicyModal = () => {
-  return <div>레지스터에서 쓰일 이용 약관 모달</div>;
+  return (
+    <ModalContainer>
+      <PolicyContent>{POLICY}</PolicyContent>
+    </ModalContainer>
+  );
 };
 
 export default PolicyModal;
