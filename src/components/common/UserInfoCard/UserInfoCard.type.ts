@@ -5,4 +5,5 @@ export interface UserInfoCardProps {
   userName: string;
   tags?: MemberTag[];
   links?: SnsList[];
+  rightButtonOn?: boolean;
 }

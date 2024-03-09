@@ -51,6 +51,7 @@ const UserInfoCard = ({
   userName,
   tags = [],
   links = [],
+  rightButtonOn = false,
 }: UserInfoCardProps) => {
   const theme = useTheme();
 
@@ -124,20 +125,22 @@ const UserInfoCard = ({
             )}
           </UserInfoLinkWrapper>
         </UserInfoContentsWrapper>
-        <UserInfoIconWrapper>
-          <IconWrapper
-            $size={viewportWidth <= MOBILE ? 'xs' : 's'}
-            onClick={() => alert('회원 정보 수정 모달 띄우는 작업 해야함 !')}
-          >
-            <PiNotePencil />
-          </IconWrapper>
-          <IconWrapper
-            $size={viewportWidth <= MOBILE ? 'xs' : 's'}
-            onClick={() => alert('로그아웃 작업 해야함 !')}
-          >
-            <PiSignOut />
-          </IconWrapper>
-        </UserInfoIconWrapper>
+        {rightButtonOn && (
+          <UserInfoIconWrapper>
+            <IconWrapper
+              $size={viewportWidth <= MOBILE ? 'xs' : 's'}
+              onClick={() => alert('회원 정보 수정 모달 띄우는 작업 해야함 !')}
+            >
+              <PiNotePencil />
+            </IconWrapper>
+            <IconWrapper
+              $size={viewportWidth <= MOBILE ? 'xs' : 's'}
+              onClick={() => alert('로그아웃 작업 해야함 !')}
+            >
+              <PiSignOut />
+            </IconWrapper>
+          </UserInfoIconWrapper>
+        )}
       </UserInfoWrapper>
     </ShadowBox>
   );
