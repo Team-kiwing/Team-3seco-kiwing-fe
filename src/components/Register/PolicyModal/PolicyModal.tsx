@@ -1,4 +1,4 @@
-import { POLICY } from '@/pages/PolicyPage/Policy.const';
+import { POLICY } from '@/constants/policy';
 
 import { ModalContainer, PolicyContent } from './PolicyModal.style';
 
