@@ -31,18 +31,18 @@ import { QuestionCardProps } from './QuestionCard.type';
                 />
  * @description QuestionCard컴포넌트입니다. 모든 props가 필수요소입니다.
  * @param id: number
- * @param question: string;
+ * @param content: string;
  * @param tags: tagProps[ id: number; tagName: string; ];
- * @param subscribed: number;
+ * @param shareCount: number;
  * @param isHot: boolean;
  * @param isLogin: boolean;
  * @returns
  */
 const QuestionCard = ({
   id,
-  question,
+  content,
   tags,
-  subscribedCount,
+  shareCount,
   isHot,
   isLogin,
 }: QuestionCardProps) => {
@@ -93,7 +93,7 @@ const QuestionCard = ({
 
         <QuestionCardContainer id={String(id)}>
           <QuestionCardBodyWrapper>
-            <QuestionCardText>{question}</QuestionCardText>
+            <QuestionCardText>{content}</QuestionCardText>
             <QuestionCardHashTags>
               {tags.map((item) => (
                 <Badge
@@ -121,7 +121,7 @@ const QuestionCard = ({
                 style={{ cursor: 'default', padding: '0.5rem 1.3rem' }}
                 $size={isMobileSize ? 1.2 : 's'}
                 $state="subscribedTag"
-                $subscribedCount={subscribedCount}
+                $subscribedCount={shareCount}
               />
             </QuestionCardInfoBadges>
             {isLogin && (
