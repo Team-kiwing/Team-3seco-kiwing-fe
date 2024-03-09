@@ -1,3 +1,3 @@
 export const MODAL = {
-  TITLE: '이용약관',
+  TITLE: '서비스 이용약관',
 };
