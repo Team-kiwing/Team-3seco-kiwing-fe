@@ -8,7 +8,6 @@ export interface MyQuestionModalProps {
   isSharedField?: boolean;
   bundleId: number;
   questionId?: number;
-  refetch: () => void;
 }
 
 export interface FormField {

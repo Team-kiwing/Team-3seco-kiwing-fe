@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import MyBundleDetail from '@/components/MyBundle/MyBundleDetail';
@@ -7,9 +6,7 @@ import MyBundleIndex from '@/components/MyBundle/MyBundleIndex';
 import MyBundleList from '@/components/MyBundle/MyBundleList';
 import BundleListSkeleton from '@/components/MyBundle/MyBundleList/Skeletion';
 import MyBundleMenu from '@/components/MyBundle/MyBundleMenu';
-import { QUERYKEY } from '@/constants/queryKeys';
 import useResize from '@/hooks/useResize';
-import { getBundleDetail } from '@/services/bundles';
 
 import { useFetchMyBundles } from './MyBundle.hook';
 import { Container, StyledWrapper } from './MyBundle.style';
@@ -23,15 +20,6 @@ const MyBundle = () => {
 
   // 웹에서 사용
   const [selectedBundleId, setSelectedBundleId] = useState<null | number>(null);
-
-  const { data: selectedBundleDetail } = useQuery({
-    queryKey: [QUERYKEY.BUNDLE_DETAIL, selectedBundleId],
-    queryFn: async ({ queryKey }) => {
-      if (!queryKey[1]) return null;
-      const data = await getBundleDetail({ bundleId: queryKey[1] as number });
-      return data;
-    },
-  });
 
   if (!bundles) {
     return (
@@ -53,18 +41,19 @@ const MyBundle = () => {
 
         {!isMobileSize && (
           <MyBundleDetail
-            isBundleSelected={selectedBundleDetail != null}
+            isBundleSelected={selectedBundleId != null}
             isMyBundlesEmpty={bundles.length === 0}
-            bundleId={selectedBundleDetail ? selectedBundleDetail.id : null}
+            bundleId={selectedBundleId}
           />
         )}
 
         {!isMobileSize && (
-          <StyledWrapper $isSelected={selectedBundleDetail != null}>
-            <MyBundleMenu bundle={selectedBundleDetail} />
-            <MyBundleIndex
-              bundleId={selectedBundleDetail ? selectedBundleDetail.id : null}
+          <StyledWrapper $isSelected={selectedBundleId != null}>
+            <MyBundleMenu
+              bundleId={selectedBundleId}
+              setSelectedBundleId={setSelectedBundleId}
             />
+            <MyBundleIndex bundleId={selectedBundleId} />
           </StyledWrapper>
         )}
       </Container>

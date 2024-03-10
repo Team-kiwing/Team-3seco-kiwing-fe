@@ -28,7 +28,7 @@ export const useCreateQuestion = () => {
         text: MODAL.SUCCESS_NOTIFY('add'),
       });
       queryClient.refetchQueries({
-        queryKey: [QUERYKEY.MY_BUNDLES, QUERYKEY.BUNDLE_DETAIL],
+        queryKey: [QUERYKEY.BUNDLE_DETAIL],
       });
     },
     onError: () => {
@@ -40,7 +40,7 @@ export const useCreateQuestion = () => {
   });
 };
 
-export const useUpdateQuestion = (bundleId: number) => {
+export const useUpdateQuestion = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -58,7 +58,7 @@ export const useUpdateQuestion = (bundleId: number) => {
         text: MODAL.SUCCESS_NOTIFY('edit'),
       });
       queryClient.invalidateQueries({
-        queryKey: [QUERYKEY.MY_BUNDLES, QUERYKEY.BUNDLE_DETAIL, bundleId],
+        queryKey: [QUERYKEY.BUNDLE_DETAIL],
       });
     },
     onError: () => {
@@ -73,15 +73,10 @@ export const useUpdateQuestion = (bundleId: number) => {
 export const useMyQuestionModal = (bundleId: number) => {
   const { setModalOpen } = useModal();
 
-  const handleAddBundleClick = (bundleDetailRefetch: () => void) => {
+  const handleAddBundleClick = () => {
     setModalOpen({
       title: MODAL.TITLE,
-      content: (
-        <MyQuestionModal
-          bundleId={bundleId}
-          refetch={bundleDetailRefetch}
-        />
-      ),
+      content: <MyQuestionModal bundleId={bundleId} />,
     });
   };
 
@@ -92,7 +87,6 @@ export const useMyQuestionModal = (bundleId: number) => {
     isSharedField,
     bundleId,
     questionId,
-    bundleDetailRefetch,
   }: EditProps) => {
     setModalOpen({
       title: MODAL.TITLE,
@@ -105,7 +99,6 @@ export const useMyQuestionModal = (bundleId: number) => {
           isSharedField={isSharedField}
           bundleId={bundleId}
           questionId={questionId}
-          refetch={bundleDetailRefetch}
         />
       ),
     });

@@ -33,19 +33,15 @@ const MyBundleDetail = ({
   isMyBundlesEmpty,
   bundleId,
 }: MyBundleDetailProps) => {
-  const { data: bundle, refetch: bundleDetailRefetch } = useQuery({
+  const { data: bundle } = useQuery({
     queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
     queryFn: async () => {
       if (!bundleId) return null;
       const data = await getBundleDetail({ bundleId });
       return data;
     },
+    enabled: !!bundleId,
   });
-
-  const handler = () => {
-    console.log(`리페치 동작!!!!!!!`);
-    bundleDetailRefetch();
-  };
 
   const [isAll, setIsAll] = useState(true);
   const [orderedQuestions, setOrderedQuestions] = useState<Question[]>([]);
@@ -183,7 +179,7 @@ const MyBundleDetail = ({
             <Button
               width="100%"
               text="+ 새 질문 추가하기"
-              onClick={() => handleAddBundleClick(handler)}
+              onClick={() => handleAddBundleClick()}
             />
             <CountText>{bundle.questions.length}/100</CountText>
           </Footer>

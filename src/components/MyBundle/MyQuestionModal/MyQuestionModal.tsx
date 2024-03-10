@@ -30,9 +30,7 @@ const MyQuestionModal = ({
   isSharedField = false,
   bundleId,
   questionId,
-  refetch,
 }: MyQuestionModalProps) => {
-  console.log(refetch);
   const queryClient = useQueryClient();
   const { data: tags, isLoading } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>(selectedTagsField);
@@ -41,7 +39,7 @@ const MyQuestionModal = ({
   const { isMobileSize } = useResize();
   const { setModalCompleteClose } = useModal();
   const { mutate: createQuestion } = useCreateQuestion();
-  const { mutate: updateQuestion } = useUpdateQuestion(bundleId);
+  const { mutate: updateQuestion } = useUpdateQuestion();
 
   const {
     register,
@@ -93,8 +91,10 @@ const MyQuestionModal = ({
         questionId,
       });
     }
-    refetch();
-    queryClient.invalidateQueries({ queryKey: [QUERYKEY.BUNDLE_DETAIL] });
+
+    queryClient.refetchQueries({
+      queryKey: [QUERYKEY.BUNDLE_DETAIL],
+    });
 
     setModalCompleteClose();
   };
