@@ -58,6 +58,9 @@ export const Section1 = styled.div`
 export const Section2 = styled.div`
   display: grid;
   row-gap: 2rem;
+  @media screen and (max-width: ${MOBILE}px) {
+    margin-top: 2rem;
+  }
 `;
 
 export const SharedSearchNone = styled(Row)`
