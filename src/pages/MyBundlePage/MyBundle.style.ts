@@ -13,7 +13,6 @@ export const Container = styled.article`
   overflow-x: hidden;
 
   @media screen and (max-width: ${MOBILE}px) {
-    min-height: 100%;
     height: auto;
   }
 `;
