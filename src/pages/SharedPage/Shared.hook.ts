@@ -1,42 +1,41 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { searchBundles } from '@/services/bundles';
-import { BundleSearchResponse } from '@/types';
+import { SortingType } from '@/types';
 
-export const useLatestBundles = (tagsId: number[], keyword: string) => {
-  const LatestSelectedTagBundlesKey =
-    tagsId.length === 0 ? [] : tagsId.join(', ');
-  const query = useQuery<BundleSearchResponse | null>({
-    queryKey: [
-      `latest-${keyword}-${typeof LatestSelectedTagBundlesKey === 'string' ? LatestSelectedTagBundlesKey : ''}`,
-    ],
-    queryFn: () =>
-      searchBundles({
-        sortingType: 'LATEST',
-        tagIds: LatestSelectedTagBundlesKey,
-        keyword: keyword,
-        page: 1,
-        size: 30,
-      }),
-  });
-  return query;
-};
+import { SharedHookConstants } from './Shared.const';
 
-export const usePopularBundles = (tagsId: number[], keyword: string) => {
-  const LatestSelectedTagBundlesKey =
-    tagsId.length === 0 ? [] : tagsId.join(', ');
-  const query = useQuery<BundleSearchResponse | null>({
-    queryKey: [
-      `popular-${keyword}-${typeof LatestSelectedTagBundlesKey === 'string' ? LatestSelectedTagBundlesKey : ''}`,
-    ],
-    queryFn: () =>
+export const useSearchBundlesInfinite = (
+  tagsId: number[],
+  keyword: string,
+  isRecent: SortingType
+) => {
+  const filteredTags = SharedHookConstants.SHARED_TAG_FILTERING(tagsId);
+  const dynamicQueryKey = SharedHookConstants.SHARED_DYNAMIC_QUERY_KEY(
+    keyword,
+    filteredTags,
+    isRecent
+  );
+
+  const query = useInfiniteQuery({
+    queryKey: [dynamicQueryKey],
+    queryFn: ({ pageParam }) =>
       searchBundles({
-        sortingType: 'POPULAR',
-        tagIds: LatestSelectedTagBundlesKey,
+        sortingType: isRecent,
+        tagIds: filteredTags,
         keyword: keyword,
-        page: 1,
-        size: 30,
+        page: pageParam,
+        size: 10,
       }),
+    initialPageParam: 1,
+    getNextPageParam: (totalPages) => {
+      if (totalPages) {
+        if (totalPages?.currentPage < totalPages.totalPages) {
+          return totalPages?.currentPage + 1;
+        }
+      }
+    },
   });
+
   return query;
 };
