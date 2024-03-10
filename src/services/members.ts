@@ -1,6 +1,9 @@
+import { AxiosError } from 'axios';
+
 import axiosErrorHandler from '@/apis/axiosErrorHandler';
 import { axiosInstance } from '@/apis/axiosInstance';
 import { DOMAIN } from '@/constants/api';
+import { notify } from '@/hooks/toast';
 import {
   ImageRequest,
   ImageResponse,
@@ -13,9 +16,17 @@ import {
  */
 export const updateProfileImage = async ({ file }: ImageRequest) => {
   try {
-    const res = await axiosInstance.patch<ImageResponse>(DOMAIN.PROFILE_IMAGE, {
-      file,
-    });
+    const res = await axiosInstance.patch<ImageResponse>(
+      DOMAIN.PROFILE_IMAGE,
+      {
+        file,
+      },
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
     return res.data;
   } catch (e) {
     axiosErrorHandler(e);
@@ -39,7 +50,14 @@ export const patchMyInfo = async ({
     });
     return res.data;
   } catch (e) {
-    axiosErrorHandler(e);
+    const { message } = e as AxiosError;
+
+    if (message.includes('400')) {
+      notify({
+        type: 'warning',
+        text: '닉네임이 중복됐습니다.',
+      });
+    }
     return null;
   }
 };
