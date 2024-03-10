@@ -16,6 +16,7 @@ import { Question } from '@/types';
 
 import MyQuestionBox from '../MyQuestionBox';
 import { useMyQuestionModal } from '../MyQuestionModal/MyQuestionModal.hook';
+import { useReorderQuestion } from './MyBundleDetail.hook';
 import {
   Body,
   BodyInnerWrapper,
@@ -37,11 +38,15 @@ const MyBundleDetail = ({
     queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
     queryFn: async () => {
       if (!bundleId) return null;
-      const data = await getBundleDetail({ bundleId });
+      const data = await getBundleDetail({
+        bundleId,
+        showOnlyMyQuestions: isAll,
+      });
       return data;
     },
     enabled: !!bundleId,
   });
+  const { mutate: reorder } = useReorderQuestion();
 
   const [isAll, setIsAll] = useState(true);
   const [orderedQuestions, setOrderedQuestions] = useState<Question[]>([]);
@@ -50,7 +55,16 @@ const MyBundleDetail = ({
 
   const filteredQuestions = isAll
     ? orderedQuestions
-    : orderedQuestions.filter((question) => question.id === question.originId);
+    : orderedQuestions.filter((question) => question.originId === null);
+
+  useEffect(() => {
+    if (bundleId) {
+      reorder({
+        bundleId,
+        questionIds: orderedQuestions.map((question) => question.id),
+      });
+    }
+  }, [orderedQuestions]);
 
   useEffect(() => {
     if (bundle) {
