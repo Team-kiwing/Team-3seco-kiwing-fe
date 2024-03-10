@@ -47,7 +47,7 @@ const MyBundleItem = ({
   useEffect(() => {
     // size가 바뀌면 모바일에서의 모든 active를 초기화 한다.
     setIsActive(false);
-  }, [setIsActive]);
+  }, [setIsActive, isMobileSize]);
 
   const handleWebClick = () => {
     setSelectedBundleId(bundle.id);
