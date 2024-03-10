@@ -49,6 +49,15 @@ export const BundleWrapper = styled.div`
   }
 `;
 
+export const BundleInnerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const BundleItemWrapper = styled.div`
+  margin-bottom: 1.5rem;
+`;
+
 export const ButtonWrapper = styled.div`
   width: 100%;
   font-weight: ${FONT_MEDIUM};
