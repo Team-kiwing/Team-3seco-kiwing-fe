@@ -3,7 +3,6 @@ import { AxiosError } from 'axios';
 import axiosErrorHandler from '@/apis/axiosErrorHandler';
 import { axiosInstance } from '@/apis/axiosInstance';
 import { DOMAIN } from '@/constants/api';
-import { notify } from '@/hooks/toast';
 import {
   ImageRequest,
   ImageResponse,
@@ -52,12 +51,6 @@ export const patchMyInfo = async ({
   } catch (e) {
     const { message } = e as AxiosError;
 
-    if (message.includes('400')) {
-      notify({
-        type: 'warning',
-        text: '닉네임이 중복됐습니다.',
-      });
-    }
     return message;
   }
 };
