@@ -19,11 +19,14 @@ export const useUpdateMyInfo = () => {
           });
         }
       } else {
+        notify({
+          type: 'success',
+          text: '회원 정보가 수정됐습니다.',
+        });
         setModalCompleteClose();
         window.location.reload();
       }
     },
-    onError: () => {},
   });
 };
 
