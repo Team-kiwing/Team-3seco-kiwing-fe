@@ -12,6 +12,7 @@ import {
   BundleSearchResponse,
   BundlesUpdateRequest,
   BundlesUpdateResponse,
+  QuestionReorderRequest,
 } from '@/types';
 
 /**
@@ -157,10 +158,26 @@ export const updateBundle = async ({
 export const reorderQuestion = async ({
   bundleId,
   questionIds,
-}: BundleReorderRequest) => {
+}: QuestionReorderRequest) => {
   try {
-    await axiosInstance.patch(DOMAIN.REORDER_BUNDLE(bundleId), {
+    await axiosInstance.patch(DOMAIN.REORDER_QUESTION(bundleId), {
       questionOrder: questionIds,
+    });
+    return true;
+  } catch (e) {
+    axiosErrorHandler(e);
+    return false;
+  }
+};
+
+/**
+ * @brief 내 꾸러미들의 순서를 변경합니다.
+ * @return 성공 여부를 boolean값으로 반환합니다.
+ */
+export const reorderBundle = async ({ bundleIds }: BundleReorderRequest) => {
+  try {
+    await axiosInstance.patch(DOMAIN.REORDER_BUNDLE, {
+      bundleIds,
     });
     return true;
   } catch (e) {

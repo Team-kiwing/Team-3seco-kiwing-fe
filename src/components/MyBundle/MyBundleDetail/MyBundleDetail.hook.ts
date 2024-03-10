@@ -3,13 +3,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { QUERYKEY } from '@/constants/queryKeys';
 import { notify } from '@/hooks/toast';
 import { reorderQuestion } from '@/services/bundles';
-import { BundleReorderRequest } from '@/types';
+import { QuestionReorderRequest } from '@/types';
 
 export const useReorderQuestion = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ bundleId, questionIds }: BundleReorderRequest) =>
+    mutationFn: ({ bundleId, questionIds }: QuestionReorderRequest) =>
       reorderQuestion({ bundleId, questionIds }),
     onSuccess: () => {
       queryClient.refetchQueries({
@@ -19,7 +19,7 @@ export const useReorderQuestion = () => {
     onError: () => {
       notify({
         type: 'error',
-        text: '꾸러미 순서를 변경하는데에 문제가 생겼습니다. 다시 시도해주세요.',
+        text: '질문 순서를 변경하는데에 문제가 생겼습니다. 다시 시도해주세요.',
       });
     },
   });

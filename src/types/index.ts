@@ -197,7 +197,11 @@ export interface BundleDetailRequest {
   showOnlyMyQuestions?: boolean;
 }
 
-export interface BundleReorderRequest {
+export interface QuestionReorderRequest {
   bundleId: number;
   questionIds: number[];
+}
+
+export interface BundleReorderRequest {
+  bundleIds: number[];
 }
