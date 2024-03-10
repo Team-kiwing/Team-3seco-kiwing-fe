@@ -39,18 +39,25 @@ export const SelectorWrapper = styled(Row)`
 `;
 
 export const CardWrapper = styled.div`
-  width: 100%;
   display: grid;
-  margin: 0 auto;
-  grid-row-gap: 2rem;
-  grid-column-gap: 7rem;
-  grid-template-columns: repeat(2, 1fr);
-  box-sizing: border-box;
-  justify-items: center;
+  -webkit-box-align: start;
+  align-items: start;
+  column-gap: 7rem;
+  grid-template-columns: repeat(2, minmax(0px, 1fr));
 
   @media screen and (max-width: 1000px) {
     grid-template-columns: repeat(1, 1fr);
   }
+`;
+
+export const Section1 = styled.div`
+  display: grid;
+  row-gap: 2rem;
+`;
+
+export const Section2 = styled.div`
+  display: grid;
+  row-gap: 2rem;
 `;
 
 export const SharedSearchNone = styled.div`

@@ -15,6 +15,8 @@ import { useSearchBundlesInfinite } from './Shared.hook';
 import {
   CardWrapper,
   SearchWrapper,
+  Section1,
+  Section2,
   SelectorWrapper,
   SharedFooterWrapper,
   SharedInfiniteMessage,
@@ -85,29 +87,58 @@ const Shared = () => {
         </SelectorWrapper>
         {isFetching && <Spinner />}
         <CardWrapper>
-          {infinityData &&
-            infinityData.pages.map((pageList) => {
-              return pageList?.content.map(
-                (bundle: BundlesBasic) =>
-                  bundle.shareType === 'PUBLIC' && (
-                    <BundleCard
-                      key={bundle.id}
-                      bundleName={bundle.name}
-                      hashTags={bundle.tags}
-                      id={bundle.id}
-                      subscribedCount={bundle.scrapeCount}
-                      isHot={bundle.isHot}
-                    />
-                  )
-              );
-            })}
-          {!isFetching &&
-            !isFetchingNextPage &&
-            infinityData?.pages[0]?.content.length === 0 && (
-              <SharedSearchNone>
-                {SharedTextConstants.SHARED_SEARCH_NONE}
-              </SharedSearchNone>
-            )}
+          <Section1>
+            {infinityData &&
+              infinityData.pages.map((pageList) => {
+                return pageList?.content.map(
+                  (bundle: BundlesBasic, index) =>
+                    bundle.shareType === 'PUBLIC' &&
+                    index % 2 === 0 && (
+                      <BundleCard
+                        key={bundle.id}
+                        bundleName={bundle.name}
+                        hashTags={bundle.tags}
+                        id={bundle.id}
+                        subscribedCount={bundle.scrapeCount}
+                        isHot={bundle.isHot}
+                      />
+                    )
+                );
+              })}
+            {!isFetching &&
+              !isFetchingNextPage &&
+              infinityData?.pages[0]?.content.length === 0 && (
+                <SharedSearchNone>
+                  {SharedTextConstants.SHARED_SEARCH_NONE}
+                </SharedSearchNone>
+              )}
+          </Section1>
+          <Section2>
+            {infinityData &&
+              infinityData.pages.map((pageList) => {
+                return pageList?.content.map(
+                  (bundle: BundlesBasic, index) =>
+                    bundle.shareType === 'PUBLIC' &&
+                    index % 2 === 1 && (
+                      <BundleCard
+                        key={bundle.id}
+                        bundleName={bundle.name}
+                        hashTags={bundle.tags}
+                        id={bundle.id}
+                        subscribedCount={bundle.scrapeCount}
+                        isHot={bundle.isHot}
+                      />
+                    )
+                );
+              })}
+            {!isFetching &&
+              !isFetchingNextPage &&
+              infinityData?.pages[0]?.content.length === 0 && (
+                <SharedSearchNone>
+                  {SharedTextConstants.SHARED_SEARCH_NONE}
+                </SharedSearchNone>
+              )}
+          </Section2>
         </CardWrapper>
 
         <SharedFooterWrapper>
