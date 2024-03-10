@@ -3,22 +3,17 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 
 import IconWrapper from '@/components/common/IconWrapper';
 import useDropDown from '@/hooks/useDropDown';
-import { Question } from '@/types';
 import { Direction } from '@/types/dropdown';
 
 import MyQuestionDropDown from '../../MyQuestionDropDown';
+import { MobileRightItemProps } from './MobileRightItem.type';
 
 const MobileRightItem = ({
   isShared,
   setIsShared,
   question,
   bundleId,
-}: {
-  isShared: boolean;
-  setIsShared: (state: boolean) => void;
-  question: Question;
-  bundleId: number;
-}) => {
+}: MobileRightItemProps) => {
   const { triggerId, isShow, setIsShow, closeDropDown, toggleDropDown } =
     useDropDown(`my-question-right-btn-${question.id}`);
   const [direction, setDirection] = useState<Direction>('bottom-left');
