@@ -8,10 +8,15 @@ import useDropDown from '@/hooks/useDropDown';
 
 import SharedQuestionBox from '../SharedQuestionBox';
 import { CheckBoxInput } from '../SharedQuestionBox/SharedQuestionBox.style';
+import { SHARED_BUNDLE_BOX } from './SharedBundleBox.const';
+import {
+  useCreateQuestionsToBundle,
+  useGetMyBundles,
+} from './SharedBundleBox.hook';
 import {
   AllCheckWrapper,
   CountText,
-  DropDownWrapper,
+  EmptyContent,
   SharedBundleBoxFooter,
   SharedBundleBoxWrapper,
 } from './SharedBundleBox.style';
@@ -29,183 +34,123 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
     useDropDown('sharedBundle-dropdown');
 
   const [checkedAllItems, setCheckedAllItems] = useState(false);
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
-
-  const toastBundleSuccess = () => {
-    notify({
-      type: 'success',
-      text: '선택하신 꾸러미에 질문이 추가되었습니다!',
-    });
-  };
-  const toastBundleWarning = () => {
-    notify({
-      type: 'warning',
-      text: '추가할 꾸러미를 선택해주세요!',
-    });
-  };
-  const toastQuestionError = () => {
-    notify({
-      type: 'error',
-      text: '추가하고 싶은 질문을 선택해주세요!',
-    });
-  };
-  const toastBundleError = () => {
-    notify({
-      type: 'error',
-      text: '추가할 꾸러미를 선택해주세요!',
-    });
-  };
-  const myBundles = [
-    // 추후에 API 내꾸러미 불러오기 로직으로 변경
-    {
-      id: 1,
-      name: '데브코스 면접리스트',
-      shareType: 'string',
-      isHot: true,
-      createdAt: '2024-02-28T00:22:09.752Z',
-      updatedAt: '2024-02-28T00:22:09.752Z',
-    },
-    {
-      id: 2,
-      name: '삼성 면접리스트',
-      shareType: 'string',
-      isHot: true,
-      createdAt: '2024-02-28T00:22:09.752Z',
-      updatedAt: '2024-02-28T00:22:09.752Z',
-    },
-    {
-      id: 4,
-      name: '카카오 면접리스트',
-      shareType: 'string',
-      isHot: true,
-      createdAt: '2024-02-28T00:22:09.752Z',
-      updatedAt: '2024-02-28T00:22:09.752Z',
-    },
-    {
-      id: 5,
-      name: '네이버 면접리스트',
-      shareType: 'string',
-      isHot: true,
-      createdAt: '2024-02-28T00:22:09.752Z',
-      updatedAt: '2024-02-28T00:22:09.752Z',
-    },
-    {
-      id: 6,
-      name: '쿠팡 면접리스트',
-      shareType: 'string',
-      isHot: true,
-      createdAt: '2024-02-28T00:22:09.752Z',
-      updatedAt: '2024-02-28T00:22:09.752Z',
-    },
-  ];
-
-  // function checkQuestion(questionId: number[], checkedItems: number[]) {
-  //   // 추후에 중복 질문 로직 연동예정
-  //   return checkedItems.some((originId) => questionId.includes(originId));
-  // }
+  const [checkedQuestionId, setCheckedQuestionId] = useState<number[]>([]);
+  const { data: getMyBundles } = useGetMyBundles('LATEST');
+  const { mutate } = useCreateQuestionsToBundle();
 
   const handleToggleCheck = (id: number, isChecked: boolean) => {
     if (isChecked) {
-      setCheckedItems([...checkedItems, id]);
+      setCheckedQuestionId([...checkedQuestionId, id]);
     } else {
-      setCheckedItems(checkedItems.filter((item) => item !== id));
+      setCheckedQuestionId(checkedQuestionId.filter((item) => item !== id));
     }
   };
 
   const handleAllCheck = () => {
     setCheckedAllItems(!checkedAllItems);
     if (!checkedAllItems) {
-      const allId = questions.map((item) => item.id);
-      setCheckedItems(allId);
+      const allCheckedId = questions.map((item) => item.id);
+      setCheckedQuestionId(allCheckedId);
     } else {
-      setCheckedItems([]);
+      setCheckedQuestionId([]);
     }
   };
 
   const handleAddQuestion = (checkedBundleId: number[]) => {
     if (checkedBundleId) {
-      if (checkedItems.length == 0) {
-        toastQuestionError();
+      if (checkedQuestionId.length == 0) {
+        notify({
+          type: 'warning',
+          text: SHARED_BUNDLE_BOX.FAIL_QUESTION_NOTIFY,
+        });
       } else {
         if (checkedBundleId.length == 0) {
-          toastBundleWarning();
+          notify({
+            type: 'warning',
+            text: SHARED_BUNDLE_BOX.WARNING_BUNDLE_NOTIFY,
+          });
         } else {
-          toastBundleSuccess();
-          console.log(
-            `선택한 BundleId가 ${checkedBundleId}인 질문꾸러미에 체크 된 QuestionId ${checkedItems}를 가진 질문을 추가합니다.`
-          );
-          setCheckedItems([]);
+          notify({
+            type: 'success',
+            text: SHARED_BUNDLE_BOX.SUCCESS_QUESTION_NOTIFY,
+          });
+          mutate({
+            bundleIds: checkedBundleId,
+            questionIds: checkedQuestionId,
+          });
+          setCheckedQuestionId([]);
           setCheckedAllItems(false);
         }
       }
-    } else {
-      toastBundleError();
     }
   };
 
-  const OPTIONS = myBundles.map((item) => ({
-    id: item.id,
-    title: item.name,
-    body: '', // 추후에 중복 질문 로직 연동예정
-  }));
+  const BUNDLE_BOX_OPTIONS =
+    getMyBundles?.map((item) => ({
+      id: item.id,
+      title: item.name,
+    })) ?? [];
 
   return (
     <>
       <ShadowBox
         height="100%"
         isCard={true}
-        width="90%"
+        width="100%"
         style={{
-          maxWidth: '80rem',
           display: 'flex',
           justifyContent: 'center',
           flexDirection: 'column',
           position: 'relative',
         }}
       >
-        <AllCheckWrapper>
-          <span>전체 선택</span>
-          <CheckBoxInput
-            type="checkbox"
-            onChange={handleAllCheck}
-            checked={checkedAllItems}
-          />
-        </AllCheckWrapper>
-        <SharedBundleBoxWrapper>
-          {questions.map((item) => (
-            <SharedQuestionBox
-              key={item.id}
-              question={item?.content}
-              answer={item?.answer}
-              questionId={item?.id}
-              isChecked={checkedItems.includes(item?.id)}
-              onToggleCheck={handleToggleCheck}
-            />
-          ))}
-        </SharedBundleBoxWrapper>
-        <SharedBundleBoxFooter>
-          <CountText>{questions.length}/100</CountText>
-          <Button
-            onClick={toggleDropDown}
-            id={triggerId}
-            width="fit-content"
-            text="내 꾸러미에 가져가기"
-          />
-        </SharedBundleBoxFooter>
-        <DropDownWrapper>
-          <DropDown
-            width={20}
-            optionHeight={5}
-            height={20}
-            options={OPTIONS}
-            isShow={isShow}
-            closeDropDown={closeDropDown}
-            setIsShow={setIsShow}
-            mode="checkbox"
-            onAdd={handleAddQuestion}
-            direction="top"
-          />
-        </DropDownWrapper>
+        {questions.length > 0 ? (
+          <>
+            <AllCheckWrapper>
+              <span>전체 선택</span>
+              <CheckBoxInput
+                type="checkbox"
+                onChange={handleAllCheck}
+                checked={checkedAllItems}
+              />
+            </AllCheckWrapper>
+            <SharedBundleBoxWrapper>
+              {questions.map((item) => (
+                <SharedQuestionBox
+                  key={item.id}
+                  question={item?.content}
+                  answer={item?.answer}
+                  questionId={item?.id}
+                  isChecked={checkedQuestionId.includes(item?.id)}
+                  onToggleCheck={handleToggleCheck}
+                />
+              ))}
+            </SharedBundleBoxWrapper>
+            <SharedBundleBoxFooter>
+              <CountText>{questions.length}/100</CountText>
+              <Button
+                onClick={toggleDropDown}
+                id={triggerId}
+                width="20rem"
+                text="내 꾸러미에 가져가기"
+              />
+              <DropDown
+                width={20}
+                optionHeight={5}
+                height={15}
+                options={BUNDLE_BOX_OPTIONS}
+                isShow={isShow}
+                closeDropDown={closeDropDown}
+                setIsShow={setIsShow}
+                mode="checkbox"
+                onAdd={handleAddQuestion}
+                direction="top-right"
+              />
+            </SharedBundleBoxFooter>
+          </>
+        ) : (
+          <EmptyContent>추가 된 질문이 없습니다</EmptyContent>
+        )}
       </ShadowBox>
     </>
   );

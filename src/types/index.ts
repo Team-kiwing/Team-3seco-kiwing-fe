@@ -138,6 +138,11 @@ export interface BundlesCreateRequest {
 
 export interface BundlesUpdateRequest extends BundlesCreateRequest {}
 
+export interface AddQuestionsToBundlesRequest {
+  bundleIds: number[];
+  questionIds: number[];
+}
+
 export interface BundlesBasic {
   id: number;
   name: string;
@@ -171,8 +176,8 @@ export interface PageCondition {
 
 export interface BundleSearchRequest {
   sortingType: SortingType;
-  tagIds: number[] | string;
-  keyword: string;
+  tagIds?: number[] | string;
+  keyword?: string;
   page: number;
   size: number;
 }
