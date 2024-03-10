@@ -179,6 +179,7 @@ const MyBundleDetail = ({
                               key={question.id}
                               question={question}
                               bundleId={bundle.id}
+                              answerShareType={question.answerShareType}
                             />
                           </QuestionWrapper>
                         )}
