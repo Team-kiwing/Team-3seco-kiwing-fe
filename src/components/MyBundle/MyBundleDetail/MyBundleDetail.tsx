@@ -40,7 +40,6 @@ const MyBundleDetail = ({
       if (!bundleId) return null;
       const data = await getBundleDetail({
         bundleId,
-        showOnlyMyQuestions: isAll,
       });
       return data;
     },
@@ -56,15 +55,6 @@ const MyBundleDetail = ({
   const filteredQuestions = isAll
     ? orderedQuestions
     : orderedQuestions.filter((question) => question.originId === null);
-
-  useEffect(() => {
-    if (bundleId && orderedQuestions.length !== 0) {
-      reorder({
-        bundleId,
-        questionIds: orderedQuestions.map((question) => question.id),
-      });
-    }
-  }, [orderedQuestions]);
 
   useEffect(() => {
     if (bundle) {
@@ -86,6 +76,13 @@ const MyBundleDetail = ({
     _items.splice(destination.index, 0, targetItem);
     // 상태 변경
     setOrderedQuestions(_items);
+
+    if (bundleId) {
+      reorder({
+        bundleId,
+        questionIds: _items.map((question) => question.id),
+      });
+    }
   };
 
   // --- requestAnimationFrame 초기화
