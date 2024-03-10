@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
 import Button from '@/components/common/Button';
+import { POLICY } from '@/constants/policy';
 
-import { POLICY } from './Policy.const';
 import { PolicyContent, PolicyPageWrapper, PolicyTitle } from './Policy.style';
 
 const Policy = () => {
