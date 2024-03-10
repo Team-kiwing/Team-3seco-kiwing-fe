@@ -16,11 +16,15 @@ export const MainPageWrapper = styled(Col)`
 export const Banner = styled.div`
   width: 100%;
   height: 20rem;
-  background-color: ${({ theme }) => theme.symbol_color};
   border-radius: ${BORDER_WEB}rem;
+  background-image: url('/public/mainBanner.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
 
   @media screen and (max-width: ${MOBILE}px) {
-    height: 15rem;
+    height: 10rem;
     border-radius: ${BORDER_MOBILE}rem;
   }
 `;
