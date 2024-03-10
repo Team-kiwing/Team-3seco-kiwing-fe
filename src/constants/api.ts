@@ -27,8 +27,7 @@ export const DOMAIN = {
   //Bundle
   CREATE_BUNDLE: '/bundles',
   SCRAPE_BUNDLE: (bundleId: number) => `/bundles/${bundleId}/scrape`,
-  ADD_QUESTIONS_TO_BUNDLE: (bundleId: number) =>
-    `/bundles/${bundleId}/questions`,
+  ADD_QUESTIONS_TO_BUNDLE: '/bundles/questions',
   DELETE_QUESTIONS_FROM_BUNDLE: (bundleId: number) =>
     `/bundles/${bundleId}/questions`,
   GET_BUNDLE: (bundleId: number) => `/bundles/${bundleId}`,

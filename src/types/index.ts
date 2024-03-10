@@ -74,6 +74,7 @@ export interface Question {
   isHot: boolean;
   createdAt: string;
   updatedAt: string;
+  writerId: number;
 }
 
 export interface Tag {
@@ -137,6 +138,11 @@ export interface BundlesCreateRequest {
 
 export interface BundlesUpdateRequest extends BundlesCreateRequest {}
 
+export interface AddQuestionsToBundlesRequest {
+  bundleIds: number[];
+  questionIds: number[];
+}
+
 export interface BundlesBasic {
   id: number;
   name: string;
@@ -146,6 +152,7 @@ export interface BundlesBasic {
   isHot: boolean;
   createdAt: string;
   updatedAt: string;
+  writerId: number;
 }
 export interface Bundle {
   id: number;
@@ -157,6 +164,7 @@ export interface Bundle {
   createdAt: string;
   updatedAt: string;
   questions: Question[];
+  writerId: number;
 }
 
 export interface BundlesUpdateResponse extends BundlesBasic {}
@@ -168,8 +176,8 @@ export interface PageCondition {
 
 export interface BundleSearchRequest {
   sortingType: SortingType;
-  tagIds: number[] | string;
-  keyword: string;
+  tagIds?: number[] | string;
+  keyword?: string;
   page: number;
   size: number;
 }

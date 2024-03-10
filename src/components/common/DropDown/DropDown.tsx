@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+import { SHARED_BUNDLE_BOX } from '@/components/SharedBundle/SharedBundleBox/SharedBundleBox.const';
+import { notify } from '@/hooks/toast';
+
 import Button from '../Button';
 import ShadowBox from '../ShadowBox';
 import useClickAway from './DropDown.hook';
@@ -67,6 +70,13 @@ const DropDown = ({
   };
 
   const handleAddClick = () => {
+    if (!checkedItems) {
+      notify({
+        type: 'warning',
+        text: SHARED_BUNDLE_BOX.WARNING_BUNDLE_NOTIFY,
+      });
+      return;
+    }
     if (onAdd) {
       onAdd(checkedItems);
     }
