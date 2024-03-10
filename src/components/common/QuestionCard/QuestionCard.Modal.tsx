@@ -10,7 +10,7 @@ import {
   QuestionCardModalValidation,
 } from './QuestionCard.const';
 
-export const QuestionCardModal = () => {
+export const QuestionCardModal = ({ questionId }: { questionId: number }) => {
   const { setModalCompleteClose } = useModal();
   const {
     register,
@@ -24,7 +24,7 @@ export const QuestionCardModal = () => {
   const onValid: SubmitHandler<{ reportField: string }> = ({ reportField }) => {
     // todo 신고 제출 API 연동
     // API fail 에러는 현재 로직에서 처리함
-    console.log(reportField);
+    console.log(questionId, reportField);
 
     // 성공시
     notify({
