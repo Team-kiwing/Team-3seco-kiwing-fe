@@ -14,17 +14,23 @@ export const useReportQuestion = () => {
   const mutation = useMutation({
     mutationFn: ({ content }: { content: string }) => createClaim({ content }),
     onError: () => {
-      notify({ type: 'error', text: '에러가 발생했어요.' });
+      notify({
+        type: 'error',
+        text: ReportPageConstants.NOTIFY_REPORT_ERROR_MESSAGE,
+      });
     },
     onSuccess: (res) => {
       if (res) {
         notify({
           type: 'default',
-          text: '문의를 완료하였습니다. 최대한 빠르게 반영할게요!',
+          text: ReportPageConstants.NOTIFY_REPORT_SUCCESS_MESSAGE,
         });
         navigator('/');
       } else {
-        notify({ type: 'error', text: '에러가 발생했어요.' });
+        notify({
+          type: 'error',
+          text: ReportPageConstants.NOTIFY_REPORT_ERROR_MESSAGE,
+        });
       }
     },
   });
