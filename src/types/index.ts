@@ -149,7 +149,7 @@ export interface AddQuestionsToBundlesRequest {
 export interface BundlesBasic {
   id: number;
   name: string;
-  shareType: string;
+  shareType: SharedType;
   scrapeCount: number;
   tags: Tag[];
   isHot: boolean;
@@ -160,7 +160,7 @@ export interface BundlesBasic {
 export interface Bundle {
   id: number;
   name: string;
-  shareType: string;
+  shareType: SharedType;
   scrapeCount: number;
   tags: Tag[];
   isHot: boolean;
