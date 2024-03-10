@@ -38,7 +38,6 @@ const MyBundleDropDown = ({
   };
 
   const handleEditBundle = () => {
-    console.log(bundle);
     handleEditBundleClick({
       bundleId: bundle.id,
       bundleNameField: bundle.name,

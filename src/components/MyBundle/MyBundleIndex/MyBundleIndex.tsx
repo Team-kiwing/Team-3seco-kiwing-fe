@@ -6,7 +6,6 @@ import { MyBundleIndexProps } from './MyBundleIndex.type';
 
 const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
   const { data: bundle } = useFetchBundleDetail(bundleId);
-  console.log(bundle);
   if (!bundle?.questions) {
     return;
   }
