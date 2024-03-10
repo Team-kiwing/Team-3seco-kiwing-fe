@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Spinner from '@/components/common/Spinner';
 import UserInfoCard from '@/components/common/UserInfoCard';
 import SharedBundleBox from '@/components/SharedBundle/SharedBundleBox';
 import SharedBundleCard from '@/components/SharedBundle/SharedBundleCard';
@@ -39,7 +40,7 @@ const SharedItem = () => {
   );
 
   if (!questions || !user || !latestQuestions) {
-    return null; // 로딩 UI or Skeleton ...? 둘중 뭐가 좋을까요?
+    return <Spinner />;
   }
 
   return (
