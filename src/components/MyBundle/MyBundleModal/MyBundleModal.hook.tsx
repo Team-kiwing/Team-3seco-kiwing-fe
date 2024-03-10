@@ -46,7 +46,7 @@ export const useUpdateBundle = () => {
         text: MODAL.SUCCESS_NOTIFY('edit'),
       });
       queryClient.refetchQueries({
-        queryKey: [QUERYKEY.MY_BUNDLES, QUERYKEY.BUNDLE_DETAIL],
+        queryKey: [QUERYKEY.MY_BUNDLES],
       });
     },
     onError: () => {
