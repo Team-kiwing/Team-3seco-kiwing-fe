@@ -118,7 +118,7 @@ const MyBundleDetail = ({
           }}
         >
           <img
-            src="./kiwing_circle_transparent.png"
+            src="/kiwing_circle_transparent.png"
             alt="kiwing logo"
             style={{
               width: '30%',
