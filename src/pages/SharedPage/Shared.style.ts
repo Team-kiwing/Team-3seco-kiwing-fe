@@ -1,42 +1,40 @@
 import styled from 'styled-components';
 
-import { MOBILE } from '@/constants';
+import { MOBILE, MOBILE_FONT_SIZE } from '@/constants';
+import { Col, Row } from '@/styles/globalStyles';
 
-export const SharedWrapper = styled.div`
+export const SharedWrapper = styled(Col)`
   width: 70%;
-  display: flex;
-  flex-direction: column;
   margin: 0 auto;
   gap: 3rem;
+
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 `;
 
-export const TagFilterWrapper = styled.div`
+export const TagFilterWrapper = styled(Row)`
   width: 100%;
   margin: 5rem auto;
-  display: flex;
   justify-content: center;
+
   @media screen and (max-width: ${MOBILE}px) {
     margin: 2rem auto;
   }
 `;
 
-export const SearchWrapper = styled.div`
+export const SearchWrapper = styled(Row)`
   width: 100%;
-  display: flex;
-  margin: 0 auto;
-  gap: 2rem;
-  justify-content: start;
+  height: 4rem;
+
   @media screen and (max-width: ${MOBILE}px) {
-    flex-direction: column;
+    height: 3rem;
   }
 `;
 
-export const SelectorWrapper = styled.div`
-  display: flex;
+export const SelectorWrapper = styled(Row)`
+  margin: 1rem 0;
   justify-content: end;
 `;
 
@@ -49,7 +47,40 @@ export const CardWrapper = styled.div`
   grid-template-columns: repeat(2, 1fr);
   box-sizing: border-box;
   justify-items: center;
+
   @media screen and (max-width: 1000px) {
     grid-template-columns: repeat(1, 1fr);
   }
+`;
+
+export const SharedSearchNone = styled.div`
+  font-size: 1.6rem;
+  color: ${({ theme }) => theme.primary_color};
+`;
+
+export const SharedFooterWrapper = styled(Col)`
+  width: 70%;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+`;
+
+export const SharedInfiniteMessage = styled(Col)`
+  margin: 0 auto;
+  color: ${({ theme }) => theme.primary_color};
+  align-items: center;
+  font-size: 1.8rem;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: ${MOBILE_FONT_SIZE}rem;
+    padding: 1rem 0.5rem;
+  }
+`;
+
+export const SharedSearchError = styled(SharedSearchNone)`
+  display: flex;
+  width: 100%;
+  justify-content: center;
 `;
