@@ -27,10 +27,13 @@ const QuestionBox = ({
 
         <BodyWrapper ref={parentRef}>
           <Body
-            $isEmpty={answer.length === 0}
+            $isEmpty={answer === null || answer.length === 0}
             ref={childRef}
           >
-            {answer.length === 0 ? '작성된 답변이 없습니다.' : answer}
+            {answer === null && '비공개 된 답변입니다.'}
+            {answer !== null && answer.length === 0
+              ? '작성된 답변이 없습니다.'
+              : answer}
           </Body>
         </BodyWrapper>
       </Container>
