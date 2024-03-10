@@ -7,9 +7,12 @@ export const Container = styled(Col)`
   gap: 1rem;
   word-break: break-all;
   overflow-x: hidden;
+  width: 100%;
+  max-height: 45rem;
   overflow-y: auto;
 `;
 export const Text = styled.div`
+  flex-shrink: 0;
   > a {
     color: ${({ theme }) => theme.gray_300};
     font-size: 1.2rem;

@@ -156,6 +156,7 @@ const MyBundleDetail = ({
                       >
                         {(provided) => (
                           <QuestionWrapper
+                            id={String(question.id)}
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}

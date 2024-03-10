@@ -6,7 +6,7 @@ import { MyBundleIndexProps } from './MyBundleIndex.type';
 
 const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
   const { data: bundle } = useFetchBundleDetail(bundleId);
-
+  console.log(bundle);
   if (!bundle?.questions) {
     return;
   }
@@ -15,11 +15,6 @@ const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
     <BorderBox
       width="100%"
       height="100%"
-      style={
-        {
-          //maxHeight: '45rem',
-        }
-      }
     >
       <Container>
         {bundle.questions.map((question, index) => (

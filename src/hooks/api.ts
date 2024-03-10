@@ -6,10 +6,11 @@ import { getBundleDetail } from '@/services/bundles';
 export const useFetchBundleDetail = (bundleId: number | null) => {
   return useQuery({
     queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
-    queryFn: async ({ queryKey }) => {
-      if (!queryKey[1]) return null;
-      const data = await getBundleDetail({ bundleId: queryKey[1] as number });
+    queryFn: async () => {
+      if (!bundleId) return null;
+      const data = await getBundleDetail({ bundleId });
       return data;
     },
+    enabled: !!bundleId,
   });
 };

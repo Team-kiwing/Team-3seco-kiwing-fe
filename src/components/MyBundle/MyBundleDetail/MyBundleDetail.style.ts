@@ -34,6 +34,7 @@ export const Body = styled(Col)`
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  scroll-behavior: smooth;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 
