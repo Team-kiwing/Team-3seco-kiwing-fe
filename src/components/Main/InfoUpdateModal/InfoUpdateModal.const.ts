@@ -1,12 +1,12 @@
 export const MODAL = {
   TITLE: '사용자 정보 수정',
 
-  NICKNAME_LABEL: '닉네임',
+  USER_ID_LABEL: '사용자 아이디',
   TAG_LABEL: '관심 분야',
   GITHUB_LABEL: 'GitHub',
   BLOG_LABEL: '블로그',
   ETC_LABEL: '기타',
-  NICKNAME_PLACEHOLDER: '닉네임을 입력해주세요.',
+  USER_ID_PLACEHOLDER: '사용자 아이디를 입력해주세요.',
   GITHUB_PLACEHOLDER: 'GitHub 링크를 입력해주세요.',
   BLOG_PLACEHOLDER: '블로그 링크를 입력해주세요.',
   ETC_PLACEHOLDER: '기타',
@@ -15,15 +15,4 @@ export const MODAL = {
 
   SUCCESS_NOTIFY: '정보 수정에 성공했습니다.',
   FETCH_FAIL_NOTIFY: '태그 정보를 불러오는데 실패했습니다',
-};
-
-const nicknameRegex = /^[a-zA-Z0-9]*$/;
-
-export const NicknameValidation = {
-  required: true,
-  pattern: nicknameRegex,
-  minLength: {
-    value: 2,
-    message: '닉네임은 2자 이상 작성해주세요.',
-  },
 };
