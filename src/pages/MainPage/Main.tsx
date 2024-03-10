@@ -44,7 +44,6 @@ const Main = () => {
             links={snsList}
           />
         ) : (
-          // TODO: 배너 꾸미기
           <Banner
             onClick={() => window.open('https://kiwing.shop/', '_blank')}
           />
