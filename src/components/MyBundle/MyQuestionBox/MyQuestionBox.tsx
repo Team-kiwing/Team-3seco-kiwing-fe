@@ -22,7 +22,7 @@ const MyQuestionBox = ({
       queryKey: [QUERYKEY.BUNDLE_DETAIL],
     });
     setIsShared(answerShareType === 'PUBLIC');
-  }, [answerShareType, queryClient]);
+  }, [answerShareType]);
 
   const { isMobileSize } = useResize();
 

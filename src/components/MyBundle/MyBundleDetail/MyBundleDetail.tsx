@@ -58,7 +58,7 @@ const MyBundleDetail = ({
     : orderedQuestions.filter((question) => question.originId === null);
 
   useEffect(() => {
-    if (bundleId) {
+    if (bundleId && orderedQuestions.length !== 0) {
       reorder({
         bundleId,
         questionIds: orderedQuestions.map((question) => question.id),
