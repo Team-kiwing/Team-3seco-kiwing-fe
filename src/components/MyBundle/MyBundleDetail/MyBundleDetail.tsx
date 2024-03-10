@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import {
   DragDropContext,
@@ -9,6 +10,8 @@ import {
 import BorderBox from '@/components/common/BorderBox';
 import Button from '@/components/common/Button';
 import Selector from '@/components/common/Selector';
+import { QUERYKEY } from '@/constants/queryKeys';
+import { getBundleDetail } from '@/services/bundles';
 import { Question } from '@/types';
 
 import MyQuestionBox from '../MyQuestionBox';
@@ -28,21 +31,36 @@ import { MyBundleDetailProps } from './MyBundleDetail.type';
 const MyBundleDetail = ({
   isBundleSelected,
   isMyBundlesEmpty,
-  questions,
+  bundleId,
 }: MyBundleDetailProps) => {
-  const [isAll, setIsAll] = useState(true);
-  const [orderedQuestions, setOrderedQuestions] =
-    useState<Question[]>(questions);
+  const { data: bundle, refetch: bundleDetailRefetch } = useQuery({
+    queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
+    queryFn: async () => {
+      if (!bundleId) return null;
+      const data = await getBundleDetail({ bundleId });
+      return data;
+    },
+  });
 
-  const { handleAddBundleClick } = useMyQuestionModal();
+  const handler = () => {
+    console.log(`리페치 동작!!!!!!!`);
+    bundleDetailRefetch();
+  };
+
+  const [isAll, setIsAll] = useState(true);
+  const [orderedQuestions, setOrderedQuestions] = useState<Question[]>([]);
+
+  const { handleAddBundleClick } = useMyQuestionModal(bundleId ?? 0);
 
   const filteredQuestions = isAll
     ? orderedQuestions
     : orderedQuestions.filter((question) => question.id === question.originId);
 
   useEffect(() => {
-    setOrderedQuestions(questions);
-  }, [questions]);
+    if (bundle) {
+      setOrderedQuestions(bundle.questions);
+    }
+  }, [bundle]);
 
   // --- Draggable이 Droppable로 드래그 되었을 때 실행되는 이벤트
   const onDragEnd = ({ source, destination }: DropResult) => {
@@ -77,7 +95,7 @@ const MyBundleDetail = ({
   }
   // --- requestAnimationFrame 초기화 END
 
-  if (!isBundleSelected) {
+  if (!isBundleSelected || !bundle) {
     return (
       <Container $isBundleSelected={isBundleSelected}>
         <BorderBox
@@ -89,6 +107,7 @@ const MyBundleDetail = ({
             gap: '1rem',
             justifyContent: 'center',
             alignItems: 'center',
+            boxSizing: 'border-box',
           }}
         >
           <img
@@ -164,9 +183,9 @@ const MyBundleDetail = ({
             <Button
               width="100%"
               text="+ 새 질문 추가하기"
-              onClick={handleAddBundleClick}
+              onClick={() => handleAddBundleClick(handler)}
             />
-            <CountText>{questions.length}/100</CountText>
+            <CountText>{bundle.questions.length}/100</CountText>
           </Footer>
         </InnerContainer>
       </BorderBox>

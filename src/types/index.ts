@@ -98,6 +98,7 @@ export interface QuestionDeleteRequest {
 }
 
 export interface QuestionUpdateRequest {
+  questionId: number;
   content: string;
   answer: string;
   answerShareType: SharedType;

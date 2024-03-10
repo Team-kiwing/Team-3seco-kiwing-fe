@@ -8,11 +8,34 @@ import Toggle from '@/components/common/Toggle';
 import { PATH } from '@/constants/router';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
+import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
 import { Item, Options, Text } from './MyBundleMenu.style';
 import { MyBundleMenuProps } from './MyBundleMenu.type';
 
 const MyBundleMenu = ({ bundle }: MyBundleMenuProps) => {
-  const [isShared, setIsShared] = useState(false);
+  const [isShared, setIsShared] = useState(
+    bundle ? bundle.shareType === 'PUBLIC' : false
+  );
+  const { handleEditBundleClick } = useMyBundleModal();
+
+  // useEffect(() => {
+  //   if (selectedBundle) {
+  //     queryClient.refetchQueries({
+  //       queryKey: [QUERYKEY.BUNDLE_DETAIL],
+  //     });
+  //   }
+  // }, [selectedBundle, queryClient]);
+
+  // console.log(bundle);
+  // useEffect(() => {
+  //   if (bundle) {
+  //     queryClient.refetchQueries({
+  //       queryKey: [QUERYKEY.BUNDLE_DETAIL],
+  //     });
+  //     setIsShared(bundle.shareType === 'PUBLIC');
+  //     console.log('변경');
+  //   }
+  // }, [bundle, queryClient]);
 
   if (!bundle) {
     return <div>로딩중</div>;
@@ -30,8 +53,12 @@ const MyBundleMenu = ({ bundle }: MyBundleMenuProps) => {
   };
 
   const handleEditBundle = () => {
-    console.log(`id ${bundle.id} 꾸러미 편집`);
-    // @TODO 추후에 꾸러미 편집을 할 수 있는 모달을 띄웁니다.
+    handleEditBundleClick({
+      bundleId: bundle.id,
+      bundleNameField: bundle.name,
+      isSharedField: bundle.shareType === 'PUBLIC',
+      selectedTagsField: bundle.tags,
+    });
   };
 
   const options = [

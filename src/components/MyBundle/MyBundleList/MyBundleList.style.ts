@@ -18,6 +18,7 @@ export const Container = styled.section`
   min-width: 20%;
 
   @media screen and (max-width: ${MOBILE}px) {
+    min-height: 100%;
     width: 100%;
     height: 100%;
     padding-left: 0;

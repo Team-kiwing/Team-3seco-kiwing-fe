@@ -12,18 +12,16 @@ import { Direction } from '@/types/dropdown';
 import MyBundleDetail from '../MyBundleDetail';
 import MyBundleDropDown from '../MyBundleDropDown';
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
-import { useFetchBundleDetail } from './MyBundleItem.hook';
 import { BodyWrapper, RightItem, Title } from './MyBundleItem.style';
 import { MyBundleItem } from './MyBundleItem.type';
 
 const MyBundleItem = ({
-  selectedBundle,
-  setSelectedBundle,
-  bundleId,
+  selectedBundleId,
+  setSelectedBundleId,
+  bundle,
 }: MyBundleItem) => {
   const { isDarkMode } = themeStore();
   const { isMobileSize } = useResize();
-  const { data: bundle } = useFetchBundleDetail(bundleId);
 
   const {
     parentRef,
@@ -34,9 +32,15 @@ const MyBundleItem = ({
   } = useAccordion();
 
   const { triggerId, isShow, setIsShow, closeDropDown, toggleDropDown } =
-    useDropDown(`my-bundle-right-btn-${bundleId}`);
+    useDropDown(`my-bundle-right-btn-${bundle.id}`);
 
   const [direction, setDirection] = useState<Direction>('bottom-left');
+
+  const [isShared, setIsShared] = useState(bundle.shareType === 'PUBLIC');
+
+  useEffect(() => {
+    setIsShared(bundle.shareType === 'PUBLIC');
+  }, [bundle]);
 
   const { handleEditBundleClick } = useMyBundleModal();
 
@@ -45,13 +49,8 @@ const MyBundleItem = ({
     setIsActive(false);
   }, [setIsActive]);
 
-  // @TODO 스켈레톤 만들기
-  if (!bundle) {
-    return <div>로딩 중</div>;
-  }
-
   const handleWebClick = () => {
-    setSelectedBundle(bundle);
+    setSelectedBundleId(bundle.id);
   };
 
   const handleOpenDropdown = (e: React.MouseEvent) => {
@@ -70,8 +69,8 @@ const MyBundleItem = ({
     if (isMobileSize) {
       return isActive;
     } else {
-      if (selectedBundle == null) return false;
-      if (selectedBundle.id === bundle.id) {
+      if (selectedBundleId == null) return false;
+      if (selectedBundleId === bundle.id) {
         return true;
       } else {
         return false;
@@ -109,6 +108,8 @@ const MyBundleItem = ({
               }}
             >
               <MyBundleDropDown
+                isShared={isShared}
+                setIsShared={setIsShared}
                 isDropDownShow={isShow}
                 setIsDropDownShow={setIsShow}
                 closeDropDown={closeDropDown}
@@ -137,7 +138,7 @@ const MyBundleItem = ({
             <MyBundleDetail
               isBundleSelected={true}
               isMyBundlesEmpty={false}
-              questions={bundle.questions}
+              bundleId={bundle.id}
             />
           </div>
         </BodyWrapper>

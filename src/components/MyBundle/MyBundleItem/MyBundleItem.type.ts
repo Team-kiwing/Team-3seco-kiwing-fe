@@ -1,7 +1,7 @@
-import { Bundle } from '@/types';
+import { BundlesBasic } from '@/types';
 
 export interface MyBundleItem {
-  selectedBundle: Bundle | null;
-  setSelectedBundle: (state: Bundle) => void;
-  bundleId: number;
+  selectedBundleId: number | null;
+  setSelectedBundleId: (state: number) => void;
+  bundle: BundlesBasic;
 }
