@@ -9,4 +9,5 @@ export interface MyQuestionDropDownProps {
   question: Question;
   closeDropDown: (e: Event) => void;
   direction: Direction;
+  bundleId: number;
 }

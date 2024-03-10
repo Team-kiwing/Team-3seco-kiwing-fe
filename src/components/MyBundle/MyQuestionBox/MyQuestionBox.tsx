@@ -27,7 +27,12 @@ const MyQuestionBox = ({
   const { isMobileSize } = useResize();
 
   const rightItem = isMobileSize ? (
-    <MobileRightItem />
+    <MobileRightItem
+      question={question}
+      bundleId={bundleId}
+      isShared={isShared}
+      setIsShared={setIsShared}
+    />
   ) : (
     <PcRightItem
       bundleId={bundleId}

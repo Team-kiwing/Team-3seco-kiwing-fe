@@ -1,11 +1,18 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { FiEdit3 } from 'react-icons/fi';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 
 import DropDown from '@/components/common/DropDown';
 import IconWrapper from '@/components/common/IconWrapper';
 import Toggle from '@/components/common/Toggle';
+import { QUERYKEY } from '@/constants/queryKeys';
 import useResize from '@/hooks/useResize';
 
+import { useDeleteQuestion } from '../MyQuestionBox/MyQuestionBox.hook';
+import {
+  useMyQuestionModal,
+  useUpdateQuestion,
+} from '../MyQuestionModal/MyQuestionModal.hook';
 import { MyQuestionDropDownProps } from './MyQuestionDropDown.type';
 
 const MyQuestionDropDown = ({
@@ -16,17 +23,45 @@ const MyQuestionDropDown = ({
   question,
   closeDropDown,
   direction,
+  bundleId,
 }: MyQuestionDropDownProps) => {
+  const queryClient = useQueryClient();
   const { isMobileSize } = useResize();
+  const { mutate: updateQuestion } = useUpdateQuestion();
+  const { mutate: deleteQuestion } = useDeleteQuestion(bundleId);
+  const { handleEditQuestionClick } = useMyQuestionModal(bundleId);
+
+  const handleToggle = () => {
+    setIsShared(!isShared);
+    // @TODO 추후에 꾸러미 공개/비공개를 결정하는 api 로직을 연동합니다.
+    updateQuestion({
+      questionId: question.id,
+      content: question.content,
+      answer: question.answer,
+      answerShareType: !isShared ? 'PUBLIC' : 'PRIVATE',
+      tagIds: question.tags.map((tag) => tag.id),
+    });
+
+    queryClient.invalidateQueries({
+      queryKey: [QUERYKEY.BUNDLE_DETAIL],
+    });
+  };
 
   const handleDeleteQuestion = () => {
-    confirm(`id ${question.id} 질문을 삭제하시겠습니까?`);
-    // @TODO 추후에 질문 삭제 API 함수를 호출합니다.
+    if (confirm(`질문을 삭제하시겠습니까?`)) {
+      deleteQuestion(question.id);
+    }
   };
 
   const handleEditQuestion = () => {
-    console.log(`id ${question.id} 질문 편집`);
-    // @TODO 추후에 질문 편집을 할 수 있는 모달을 띄웁니다.
+    handleEditQuestionClick({
+      bundleId: bundleId,
+      questionId: question.id,
+      questionNameField: question.content,
+      questionAnswerField: question.answer,
+      isSharedField: question.answerShareType === 'PUBLIC',
+      selectedTagsField: question.tags,
+    });
   };
 
   const options = [
@@ -40,8 +75,7 @@ const MyQuestionDropDown = ({
         />
       ),
       handler: () => {
-        setIsShared(!isShared);
-        // @TODO 추후에 답변 공개/비공개를 결정하는 api 로직을 연동합니다.
+        handleToggle();
       },
     },
     {

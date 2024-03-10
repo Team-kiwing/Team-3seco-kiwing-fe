@@ -1,21 +1,61 @@
+import { useState } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
 import IconWrapper from '@/components/common/IconWrapper';
+import useDropDown from '@/hooks/useDropDown';
+import { Question } from '@/types';
+import { Direction } from '@/types/dropdown';
 
-const MobileRightItem = () => {
-  const handleClick = () => {
+import MyQuestionDropDown from '../../MyQuestionDropDown';
+
+const MobileRightItem = ({
+  isShared,
+  setIsShared,
+  question,
+  bundleId,
+}: {
+  isShared: boolean;
+  setIsShared: (state: boolean) => void;
+  question: Question;
+  bundleId: number;
+}) => {
+  const { triggerId, isShow, setIsShow, closeDropDown, toggleDropDown } =
+    useDropDown(`my-question-right-btn-${question.id}`);
+  const [direction, setDirection] = useState<Direction>('bottom-left');
+
+  const handleClick = (e: React.MouseEvent) => {
     // @TODO DropDown컴포넌트 만든 후 열리는 로직 추가
-    console.log('드롭다운');
+    if ((e.target as Element).id === triggerId) {
+      if (e.clientY > window.innerHeight / 2) {
+        setDirection('top-left');
+      } else {
+        setDirection('bottom-left');
+      }
+    }
+    toggleDropDown(e);
   };
 
   return (
     <IconWrapper
-      id="my-question-dropdown-btn"
+      id={triggerId}
       $size={'s'}
       $isBackground={true}
       onClick={handleClick}
+      style={{
+        position: 'relative',
+      }}
     >
-      <RxHamburgerMenu />
+      <MyQuestionDropDown
+        isShared={isShared}
+        setIsShared={setIsShared}
+        isShow={isShow}
+        setIsShow={setIsShow}
+        closeDropDown={closeDropDown}
+        question={question}
+        direction={direction}
+        bundleId={bundleId}
+      />
+      <RxHamburgerMenu id={triggerId} />
     </IconWrapper>
   );
 };
