@@ -1,7 +1,6 @@
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
 import { notify } from '@/hooks/toast';
-import { useModal } from '@/hooks/useModal';
 
 import Button from '../Button';
 import Textarea from '../Textarea';
@@ -9,9 +8,10 @@ import {
   QuestionCardConstants,
   QuestionCardModalValidation,
 } from './QuestionCard.const';
+import { useReportQuestion } from './QuestionCard.hook';
 
 export const QuestionCardModal = ({ questionId }: { questionId: number }) => {
-  const { setModalCompleteClose } = useModal();
+  const { mutate } = useReportQuestion();
   const {
     register,
     handleSubmit,
@@ -22,16 +22,7 @@ export const QuestionCardModal = ({ questionId }: { questionId: number }) => {
   });
 
   const onValid: SubmitHandler<{ reportField: string }> = ({ reportField }) => {
-    // todo 신고 제출 API 연동
-    // API fail 에러는 현재 로직에서 처리함
-    console.log(questionId, reportField);
-
-    // 성공시
-    notify({
-      type: 'default',
-      text: '신고를 완료하였습니다. 불편을 드려 죄송합니다.',
-    });
-    setModalCompleteClose();
+    mutate({ id: questionId, reason: reportField });
   };
 
   const onInValid: SubmitErrorHandler<{ reportField: string }> = () => {

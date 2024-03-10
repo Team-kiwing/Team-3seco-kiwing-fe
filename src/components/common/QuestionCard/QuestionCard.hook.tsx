@@ -3,6 +3,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { notify } from '@/hooks/toast';
 import { useModal } from '@/hooks/useModal';
 import { createQuestionsToBundle, getMyBundles } from '@/services/bundles';
+import { reportQuestion } from '@/services/questions';
 
 import { QuestionCardConstants } from './QuestionCard.const';
 import { QuestionCardModal } from './QuestionCard.Modal';
@@ -44,14 +45,14 @@ export const useGetMyBundles = (sortingType: string) => {
   return query;
 };
 
-interface Props {
+interface CreateQuestionProps {
   ids: number[];
   checkedBundles: number[];
 }
 
 export const useCreateQuestionsToBundle = () => {
   const mutation = useMutation({
-    mutationFn: ({ ids, checkedBundles }: Props) =>
+    mutationFn: ({ ids, checkedBundles }: CreateQuestionProps) =>
       createQuestionsToBundle({ questionIds: ids, bundleIds: checkedBundles }),
     onError: () => {
       notify({ type: 'error', text: '에러가 발생했어요.' });
@@ -62,6 +63,37 @@ export const useCreateQuestionsToBundle = () => {
       } else {
         notify({ type: 'error', text: '에러가 발생했어요.' });
       }
+    },
+  });
+
+  return mutation;
+};
+
+interface ReportQuestionProps {
+  id: number;
+  reason: string;
+}
+
+export const useReportQuestion = () => {
+  const { setModalCompleteClose } = useModal();
+  const mutation = useMutation({
+    mutationFn: ({ id, reason }: ReportQuestionProps) =>
+      reportQuestion({ id, reason }),
+    onError: () => {
+      notify({ type: 'error', text: '에러가 발생했어요.' });
+    },
+    onSuccess: (res) => {
+      if (res) {
+        notify({
+          type: 'default',
+          text: '신고를 완료하였습니다. 불편을 드려 죄송합니다.',
+        });
+      } else {
+        notify({ type: 'error', text: '에러가 발생했어요.' });
+      }
+    },
+    onSettled: () => {
+      setModalCompleteClose();
     },
   });
 
