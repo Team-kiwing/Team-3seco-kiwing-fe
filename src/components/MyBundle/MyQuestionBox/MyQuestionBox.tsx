@@ -7,7 +7,7 @@ import MobileRightItem from './MobileRightItem';
 import { MyQuestionBoxProps } from './MyQuestionBox.type';
 import PcRightItem from './PcRightItem';
 
-const MyQuestionBox = ({ question, answer }: MyQuestionBoxProps) => {
+const MyQuestionBox = ({ bundleId, question }: MyQuestionBoxProps) => {
   const [isShared, setIsShared] = useState(false);
   const { isMobileSize } = useResize();
 
@@ -15,6 +15,8 @@ const MyQuestionBox = ({ question, answer }: MyQuestionBoxProps) => {
     <MobileRightItem />
   ) : (
     <PcRightItem
+      bundleId={bundleId}
+      question={question}
       isShared={isShared}
       setIsShared={setIsShared}
     />
@@ -22,8 +24,8 @@ const MyQuestionBox = ({ question, answer }: MyQuestionBoxProps) => {
 
   return (
     <QuestionBox
-      question={question}
-      answer={answer}
+      question={question.content}
+      answer={question.answer}
       rightItem={rightItem}
     />
   );

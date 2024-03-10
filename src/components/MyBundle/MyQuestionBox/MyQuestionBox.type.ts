@@ -1,4 +1,6 @@
+import { Question } from '@/types';
+
 export interface MyQuestionBoxProps {
-  question: string;
-  answer: string;
+  question: Question;
+  bundleId: number;
 }

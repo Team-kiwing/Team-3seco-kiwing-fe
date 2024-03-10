@@ -73,14 +73,14 @@ export const useUpdateQuestion = () => {
 export const useMyQuestionModal = (bundleId: number) => {
   const { setModalOpen } = useModal();
 
-  const handleAddBundleClick = () => {
+  const handleAddQuestionClick = () => {
     setModalOpen({
       title: MODAL.TITLE,
       content: <MyQuestionModal bundleId={bundleId} />,
     });
   };
 
-  const handleEditBundleClick = ({
+  const handleEditQuestionClick = ({
     questionNameField,
     questionAnswerField,
     selectedTagsField,
@@ -104,5 +104,5 @@ export const useMyQuestionModal = (bundleId: number) => {
     });
   };
 
-  return { handleAddBundleClick, handleEditBundleClick };
+  return { handleAddQuestionClick, handleEditQuestionClick };
 };

@@ -3,10 +3,29 @@ import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 import IconWrapper from '@/components/common/IconWrapper';
 import Toggle from '@/components/common/Toggle';
 
+import { useMyQuestionModal } from '../../MyQuestionModal/MyQuestionModal.hook';
 import { Container, IconContainer } from './PcRightItem.style';
 import { RightItemProps } from './PcRightItem.type';
 
-const PcRightItem = ({ isShared, setIsShared }: RightItemProps) => {
+const PcRightItem = ({
+  question,
+  bundleId,
+  isShared,
+  setIsShared,
+}: RightItemProps) => {
+  const { handleEditQuestionClick } = useMyQuestionModal(bundleId);
+
+  const handleEditQuestion = () => {
+    handleEditQuestionClick({
+      bundleId: bundleId,
+      questionId: question.id,
+      questionNameField: question.content,
+      questionAnswerField: question.answer,
+      isSharedField: question.answerShareType === 'PUBLIC',
+      selectedTagsField: question.tags,
+    });
+  };
+
   return (
     <Container>
       <Toggle
@@ -23,6 +42,7 @@ const PcRightItem = ({ isShared, setIsShared }: RightItemProps) => {
         <IconWrapper
           $size={3.5}
           $isBackground={true}
+          onClick={handleEditQuestion}
         >
           <FiEdit3 />
         </IconWrapper>

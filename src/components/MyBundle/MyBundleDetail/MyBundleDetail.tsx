@@ -51,7 +51,7 @@ const MyBundleDetail = ({
   const [isAll, setIsAll] = useState(true);
   const [orderedQuestions, setOrderedQuestions] = useState<Question[]>([]);
 
-  const { handleAddBundleClick } = useMyQuestionModal(bundleId ?? 0);
+  const { handleAddQuestionClick } = useMyQuestionModal(bundleId ?? 0);
 
   const filteredQuestions = isAll
     ? orderedQuestions
@@ -177,8 +177,8 @@ const MyBundleDetail = ({
                           >
                             <MyQuestionBox
                               key={question.id}
-                              question={question.content}
-                              answer={question.answer}
+                              question={question}
+                              bundleId={bundle.id}
                             />
                           </QuestionWrapper>
                         )}
@@ -194,7 +194,7 @@ const MyBundleDetail = ({
             <Button
               width="100%"
               text="+ 새 질문 추가하기"
-              onClick={() => handleAddBundleClick()}
+              onClick={() => handleAddQuestionClick()}
             />
             <CountText>{bundle.questions.length}/100</CountText>
           </Footer>

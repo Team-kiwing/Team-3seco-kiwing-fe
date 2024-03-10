@@ -24,5 +24,5 @@ export interface EditProps {
   isSharedField: boolean;
   bundleId: number;
   questionId?: number;
-  bundleDetailRefetch: () => void;
+  bundleDetailRefetch?: () => void;
 }
