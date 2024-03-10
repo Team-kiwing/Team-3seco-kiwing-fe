@@ -58,7 +58,7 @@ export const patchMyInfo = async ({
         text: '닉네임이 중복됐습니다.',
       });
     }
-    return null;
+    return message;
   }
 };
 
