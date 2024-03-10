@@ -54,23 +54,6 @@ const UserInfoCard = ({
 }: UserInfoCardProps) => {
   const theme = useTheme();
 
-  // const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  // let timer = null;
-
-  // useEffect(() => {
-  //   const resizeViewportWidth = () => {
-  //     clearTimeout(timer!);
-  //     timer = setTimeout(() => {
-  //       setViewportWidth(window.innerWidth);
-  //     }, 200);
-  //   };
-
-  //   window.addEventListener('resize', resizeViewportWidth);
-
-  //   return () => {
-  //     window.removeEventListener('resize', resizeViewportWidth);
-  //   };
-  // }, []);
   const { isMobileSize } = useResize();
 
   return (
