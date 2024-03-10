@@ -2,12 +2,11 @@ import Avatar from '@components/common/Avatar/Avatar';
 import Badge from '@components/common/Badge/Badge';
 import IconWrapper from '@components/common/IconWrapper/IconWrapper';
 import ShadowBox from '@components/common/ShadowBox/ShadowBox';
-import { useEffect, useState } from 'react';
 import { IoIosLink } from 'react-icons/io';
 import { PiNotePencil, PiSignOut } from 'react-icons/pi';
 import { useTheme } from 'styled-components';
 
-import { MOBILE } from '@/constants';
+import useResize from '@/hooks/useResize';
 
 import {
   NoLinks,
@@ -55,33 +54,34 @@ const UserInfoCard = ({
 }: UserInfoCardProps) => {
   const theme = useTheme();
 
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  let timer = null;
+  // const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  // let timer = null;
 
-  useEffect(() => {
-    const resizeViewportWidth = () => {
-      clearTimeout(timer!);
-      timer = setTimeout(() => {
-        setViewportWidth(window.innerWidth);
-      }, 200);
-    };
+  // useEffect(() => {
+  //   const resizeViewportWidth = () => {
+  //     clearTimeout(timer!);
+  //     timer = setTimeout(() => {
+  //       setViewportWidth(window.innerWidth);
+  //     }, 200);
+  //   };
 
-    window.addEventListener('resize', resizeViewportWidth);
+  //   window.addEventListener('resize', resizeViewportWidth);
 
-    return () => {
-      window.removeEventListener('resize', resizeViewportWidth);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', resizeViewportWidth);
+  //   };
+  // }, []);
+  const { isMobileSize } = useResize();
 
   return (
     <ShadowBox
-      width={viewportWidth <= MOBILE ? '90%' : '100%'}
+      width={isMobileSize ? '90%' : '100%'}
       height={'100%'}
       style={{ minWidth: '260px', margin: '0 auto' }}
     >
       <UserInfoWrapper>
         <Avatar
-          $size={viewportWidth <= MOBILE ? 'mobile' : 'pc'}
+          $size={isMobileSize ? 'mobile' : 'pc'}
           $src={userImage}
         />
         <UserInfoContentsWrapper>
@@ -92,7 +92,7 @@ const UserInfoCard = ({
                 tags.map((tag, index) => (
                   <Badge
                     $state={'basic'}
-                    $size={viewportWidth <= MOBILE ? 'xxs' : 'xs'}
+                    $size={isMobileSize ? 'xxs' : 'xs'}
                     $text={tag.name}
                     style={{
                       backgroundColor: `${theme.symbol_secondary_color}`,
@@ -109,7 +109,7 @@ const UserInfoCard = ({
             {links.length !== 0 ? (
               links.map((link, index) => (
                 <UserInfoLink key={index}>
-                  <IconWrapper $size={viewportWidth <= MOBILE ? 'xss' : 'xs'}>
+                  <IconWrapper $size={isMobileSize ? 'xss' : 'xs'}>
                     <IoIosLink />
                   </IconWrapper>
                   <a
@@ -128,13 +128,13 @@ const UserInfoCard = ({
         {rightButtonOn && (
           <UserInfoIconWrapper>
             <IconWrapper
-              $size={viewportWidth <= MOBILE ? 'xs' : 's'}
+              $size={isMobileSize ? 'xs' : 's'}
               onClick={() => alert('회원 정보 수정 모달 띄우는 작업 해야함 !')}
             >
               <PiNotePencil />
             </IconWrapper>
             <IconWrapper
-              $size={viewportWidth <= MOBILE ? 'xs' : 's'}
+              $size={isMobileSize ? 'xs' : 's'}
               onClick={() => alert('로그아웃 작업 해야함 !')}
             >
               <PiSignOut />
