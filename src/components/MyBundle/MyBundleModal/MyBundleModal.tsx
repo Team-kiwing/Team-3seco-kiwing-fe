@@ -85,8 +85,6 @@ const MyBundleModal = ({
       setIsToggleShared(isSharedField);
     }
 
-    // bundlesRefetch();
-    //queryClient.invalidateQueries({ queryKey: [QUERYKEY.MY_BUNDLES] });
     setModalCompleteClose();
   };
 

@@ -48,6 +48,7 @@ const PcRightItem = ({
       questionAnswerField: question.answer,
       isSharedField: question.answerShareType === 'PUBLIC',
       selectedTagsField: question.tags,
+      setIsToggleShared: setIsShared,
     });
   };
 

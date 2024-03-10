@@ -87,6 +87,7 @@ export const useMyQuestionModal = (bundleId: number) => {
     isSharedField,
     bundleId,
     questionId,
+    setIsToggleShared,
   }: EditProps) => {
     setModalOpen({
       title: MODAL.TITLE,
@@ -99,6 +100,7 @@ export const useMyQuestionModal = (bundleId: number) => {
           isSharedField={isSharedField}
           bundleId={bundleId}
           questionId={questionId}
+          setIsToggleShared={setIsToggleShared}
         />
       ),
     });

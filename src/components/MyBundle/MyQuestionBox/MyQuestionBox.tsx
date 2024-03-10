@@ -1,8 +1,6 @@
-import { useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import QuestionBox from '@/components/common/QuestionBox';
-import { QUERYKEY } from '@/constants/queryKeys';
 import useResize from '@/hooks/useResize';
 
 import MobileRightItem from './MobileRightItem';
@@ -14,15 +12,7 @@ const MyQuestionBox = ({
   answerShareType,
   question,
 }: MyQuestionBoxProps) => {
-  const queryClient = useQueryClient();
   const [isShared, setIsShared] = useState(answerShareType === 'PUBLIC');
-
-  useEffect(() => {
-    queryClient.refetchQueries({
-      queryKey: [QUERYKEY.BUNDLE_DETAIL],
-    });
-    setIsShared(answerShareType === 'PUBLIC');
-  }, [answerShareType]);
 
   const { isMobileSize } = useResize();
 

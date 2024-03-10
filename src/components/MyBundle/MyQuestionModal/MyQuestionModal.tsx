@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
@@ -6,7 +5,6 @@ import Button from '@/components/common/Button';
 import TagFilter from '@/components/common/TagFilter';
 import Textarea from '@/components/common/Textarea';
 import Toggle from '@/components/common/Toggle';
-import { QUERYKEY } from '@/constants/queryKeys';
 import { notify } from '@/hooks/toast';
 import { useFetchTags } from '@/hooks/useFetchTags';
 import { useModal } from '@/hooks/useModal';
@@ -30,8 +28,8 @@ const MyQuestionModal = ({
   isSharedField = false,
   bundleId,
   questionId,
+  setIsToggleShared,
 }: MyQuestionModalProps) => {
-  const queryClient = useQueryClient();
   const { data: tags, isLoading } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>(selectedTagsField);
   const [isShared, setIsShared] = useState(isSharedField);
@@ -92,10 +90,9 @@ const MyQuestionModal = ({
       });
     }
 
-    queryClient.refetchQueries({
-      queryKey: [QUERYKEY.BUNDLE_DETAIL],
-    });
-
+    if (modalMode === 'edit' && setIsToggleShared) {
+      setIsToggleShared(isSharedField);
+    }
     setModalCompleteClose();
   };
 

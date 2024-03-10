@@ -8,6 +8,7 @@ export interface MyQuestionModalProps {
   isSharedField?: boolean;
   bundleId: number;
   questionId?: number;
+  setIsToggleShared?: (state: boolean) => void;
 }
 
 export interface FormField {
@@ -24,5 +25,5 @@ export interface EditProps {
   isSharedField: boolean;
   bundleId: number;
   questionId?: number;
-  bundleDetailRefetch?: () => void;
+  setIsToggleShared?: (state: boolean) => void;
 }
