@@ -21,6 +21,7 @@ export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
   box-sizing: border-box;
   width: 20rem;
   height: 100%;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;

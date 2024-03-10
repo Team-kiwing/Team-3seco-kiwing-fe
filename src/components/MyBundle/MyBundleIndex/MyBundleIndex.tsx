@@ -15,6 +15,9 @@ const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
     <BorderBox
       width="100%"
       height="100%"
+      style={{
+        maxHeight: '35rem',
+      }}
     >
       <Container>
         {bundle.questions.map((question, index) => (
