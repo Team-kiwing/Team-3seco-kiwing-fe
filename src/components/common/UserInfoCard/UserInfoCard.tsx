@@ -6,7 +6,9 @@ import { IoIosLink } from 'react-icons/io';
 import { PiNotePencil, PiSignOut } from 'react-icons/pi';
 import { useTheme } from 'styled-components';
 
+import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
+import { getItem, removeItem } from '@/utils/localStorage';
 
 import {
   NoLinks,
@@ -55,6 +57,20 @@ const UserInfoCard = ({
   const theme = useTheme();
 
   const { isMobileSize } = useResize();
+
+  const handleLogOut = () => {
+    if (getItem('refresh-token', null)) {
+      removeItem('refresh-token');
+      notify({ type: 'success', text: '로그아웃 됐습니다.' });
+    } else {
+      notify({
+        type: 'warning',
+        text: '로그아웃 과정에서 문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
+      });
+    }
+
+    window.location.href = '/';
+  };
 
   return (
     <ShadowBox
@@ -118,7 +134,7 @@ const UserInfoCard = ({
             </IconWrapper>
             <IconWrapper
               $size={isMobileSize ? 'xs' : 's'}
-              onClick={() => alert('로그아웃 작업 해야함 !')}
+              onClick={handleLogOut}
             >
               <PiSignOut />
             </IconWrapper>
