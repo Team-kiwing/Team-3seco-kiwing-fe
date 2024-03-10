@@ -10,8 +10,8 @@ export const lightTheme: object = {
 
   hotBadge_background_color: ' #f7cece',
   hotBadge_color: '#f84c4c',
-  subscribed_background_color: '#FFE500',
-  subscribed_color: '#E3A400',
+  subscribed_background_color: '#ffd73e',
+  subscribed_color: '#954200',
   basic_badge_background_color: '#CBCBCB',
   basic_badge_text_color: '#fefefe',
 
@@ -42,8 +42,8 @@ export const darkTheme: object = {
 
   hotBadge_background_color: ' #f7cece',
   hotBadge_color: '#f84c4c',
-  subscribed_background_color: '#FFE500',
-  subscribed_color: '#E3A400',
+  subscribed_background_color: '#ffd73e',
+  subscribed_color: '#954200',
   basic_badge_background_color: '#565656',
   basic_badge_text_color: '#e6e6e9',
 
