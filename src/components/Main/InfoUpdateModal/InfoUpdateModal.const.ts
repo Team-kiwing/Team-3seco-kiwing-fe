@@ -6,6 +6,10 @@ export const MODAL = {
   GITHUB_LABEL: 'GitHub',
   BLOG_LABEL: '블로그',
   ETC_LABEL: '기타',
+  NICKNAME_PLACEHOLDER: '닉네임을 입력해주세요.',
+  GITHUB_PLACEHOLDER: 'GitHub 링크를 입력해주세요.',
+  BLOG_PLACEHOLDER: '블로그 링크를 입력해주세요.',
+  ETC_PLACEHOLDER: '기타',
 
   SUBMIT_BUTTON_TEXT: '정보 수정하기',
 
