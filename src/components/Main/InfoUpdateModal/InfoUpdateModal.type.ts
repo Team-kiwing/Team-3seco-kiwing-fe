@@ -2,11 +2,12 @@ import { SnsList, Tag } from '@/types';
 
 export interface InfoUpdateModalProps {
   originalNickname: string;
-  selectedTags?: Tag[];
+  originalTags?: Tag[];
   snsLinks?: SnsList[];
+  profileImage?: string;
 }
 
-export interface InfoUpdateForm {
+export interface InfoUpdateModalForm {
   updateNickname: string;
   updateGithub: string;
   updateBlog: string;
