@@ -38,10 +38,11 @@ const Main = () => {
       <MainPageWrapper>
         {accessToken ? (
           <UserInfoCard
-            userName={nickname}
+            userName={nickname.split('@')[1]}
             userImage={profileImage}
             tags={memberTags}
             links={snsList}
+            rightButtonOn={true}
           />
         ) : (
           <Banner
