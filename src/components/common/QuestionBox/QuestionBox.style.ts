@@ -8,13 +8,12 @@ import {
   MOBILE_FONT_SIZE,
   WEB_FONT_SIZE,
 } from '@/constants';
+import { Row } from '@/styles/globalStyles';
 
 export const Container = styled.div`
   width: 100%;
   position: relative;
-  flex-direction: column;
   border-radius: ${BORDER_WEB}rem;
-  justify-content: center;
   border: 0.1rem solid ${(props) => props.theme.border_color};
 
   @media screen and (max-width: ${MOBILE}px) {
@@ -22,8 +21,7 @@ export const Container = styled.div`
   }
 `;
 
-export const TitleWrapper = styled.div<{ $isActive: boolean }>`
-  display: flex;
+export const TitleWrapper = styled(Row)<{ $isActive: boolean }>`
   transition: background-color 0.35s ease;
   border-radius: ${BORDER_WEB}rem ${BORDER_WEB}rem 0 0;
 
@@ -55,8 +53,7 @@ export const Header = styled.h1`
   }
 `;
 
-export const RightItem = styled.div`
-  display: flex;
+export const RightItem = styled(Row)`
   justify-content: center;
   align-items: center;
   padding: 1rem;
@@ -83,6 +80,8 @@ export const BodyWrapper = styled.div`
 
 export const Body = styled.div<{ $isEmpty: boolean }>`
   padding: 2rem;
+  line-height: normal;
+  word-break: break-all;
   font-size: calc(${WEB_FONT_SIZE}rem - 0.2rem);
   color: ${(props) =>
     props.$isEmpty ? props.theme.gray_300 : props.theme.primary_color};

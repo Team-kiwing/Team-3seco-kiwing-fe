@@ -54,6 +54,7 @@ axiosInstance.interceptors.response.use(
         window.alert('토큰이 만료되어 자동으로 로그아웃 되었습니다.');
       }
     } else if (status == 400 || status == 404 || status == 409) {
+      removeItem('refresh-token');
       window.alert(msg);
     }
     return Promise.reject(error);

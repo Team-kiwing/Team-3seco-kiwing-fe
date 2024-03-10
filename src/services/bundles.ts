@@ -2,6 +2,7 @@ import axiosErrorHandler from '@/apis/axiosErrorHandler';
 import { axiosInstance } from '@/apis/axiosInstance';
 import { DOMAIN } from '@/constants/api';
 import {
+  AddQuestionsToBundlesRequest,
   Bundle,
   BundleDetailRequest,
   BundleReorderRequest,
@@ -53,12 +54,13 @@ export const scrapeBundle = async (bundleId: number) => {
  * @return 성공 여부를 boolean값으로 반환합니다.
  */
 
-export const createQuestionsToBundle = async (
-  bundleId: number,
-  questionIds: number[]
-) => {
+export const createQuestionsToBundle = async ({
+  bundleIds,
+  questionIds,
+}: AddQuestionsToBundlesRequest) => {
   try {
-    await axiosInstance.post(DOMAIN.ADD_QUESTIONS_TO_BUNDLE(bundleId), {
+    await axiosInstance.post(DOMAIN.ADD_QUESTIONS_TO_BUNDLE, {
+      bundleIds,
       questionIds,
     });
     return true;

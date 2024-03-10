@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { FONT_MEDIUM, MOBILE_FONT_SIZE, WEB_FONT_SIZE } from '@/constants';
 import { MOBILE, MOBILE_MIN } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
@@ -7,11 +8,11 @@ export const AllCheckWrapper = styled(Row)`
   width: 90%;
   margin: 2rem auto 1rem;
   justify-content: end;
-  padding: 1rem 1.2rem 1rem 0rem;
+  padding: 1rem 0.9rem 1rem 0rem;
   box-sizing: border-box;
   gap: 1rem;
   @media screen and (max-width: ${MOBILE}px) {
-    padding: 0.5rem 1.2rem 0rem 0rem;
+    padding: 0.5rem 0.9rem 0rem 0rem;
   }
 `;
 export const SharedBundleBoxWrapper = styled(Col)`
@@ -22,20 +23,21 @@ export const SharedBundleBoxWrapper = styled(Col)`
   gap: 2rem;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 30rem;
+  height: 35rem;
   @media screen and (max-width: ${MOBILE}px) {
     gap: 1rem;
-    height: 20rem;
+    height: 100%;
   }
   @media screen and (max-width: ${MOBILE_MIN}px) {
     gap: 1rem;
-    height: 16rem;
+    height: 100%;
   }
 `;
 
 export const SharedBundleBoxFooter = styled(Row)`
   width: 90%;
   margin: 2rem auto;
+  position: relative;
   justify-content: space-between;
   @media screen and (max-width: ${MOBILE}px) {
     margin: 1rem auto;
@@ -48,9 +50,19 @@ export const CountText = styled(Row)`
   color: ${({ theme }) => theme.gray_200};
 `;
 
-export const DropDownWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 20rem;
+export const EmptyContent = styled.span`
+  font-size: ${WEB_FONT_SIZE}rem;
+  font-weight: ${FONT_MEDIUM};
+  text-align: center;
+  padding: 25rem 0;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: ${MOBILE_FONT_SIZE}rem;
+    padding: 14rem 0;
+  }
+
+  @media screen and (max-width: ${MOBILE_MIN}px) {
+    font-size: ${MOBILE_FONT_SIZE}rem;
+    padding: 10rem 0;
+  }
 `;
