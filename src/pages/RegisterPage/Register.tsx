@@ -6,6 +6,7 @@ import { useTheme } from 'styled-components';
 import Input from '@/components/common/Input';
 import Skeleton from '@/components/common/Skeleton';
 import TagFilter from '@/components/common/TagFilter';
+import { usePolicyModal } from '@/components/Register/PolicyModal/PolicyModal.hook';
 import { notify } from '@/hooks/toast';
 import { useFetchTags } from '@/hooks/useFetchTags';
 import useResize from '@/hooks/useResize';
@@ -51,6 +52,7 @@ const Register = () => {
   const { isDarkMode } = themeStore();
   const theme = useTheme();
   const { mutate } = useUpdateMyInfo();
+  const { handlePolicyClick } = usePolicyModal();
 
   const { data: tags, isLoading: tagsLoading } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
@@ -72,7 +74,7 @@ const Register = () => {
     } else if (isChecked && getValues('nickname') === '') {
       notify({
         type: 'error',
-        text: '닉네임은 필수입니다.',
+        text: '사용자 ID는 필수입니다.',
       });
     } else {
       notify({
@@ -145,15 +147,15 @@ const Register = () => {
           <RegisterItemWrapper>
             <Input
               fontSize={1.8}
-              label={'닉네임'}
+              label={'사용자 ID'}
               width="100%"
               errorMessage={
                 errors?.nickname?.type === 'required'
-                  ? '닉네임을 입력해주세요.'
+                  ? '사용자 ID를 입력해주세요.'
                   : errors?.nickname?.type === 'pattern'
-                    ? '닉네임은 영어와 숫자 조합으로 작성해주세요.'
+                    ? '사용자 ID는 영어와 숫자 조합으로 작성해주세요.'
                     : errors?.nickname?.type === 'minLength'
-                      ? '닉네임은 2자 이상 작성해주세요.'
+                      ? '사용자 ID는 2자 이상 작성해주세요.'
                       : ''
               }
               placeholder="영어와 숫자 조합으로 적어주세요."
@@ -189,8 +191,7 @@ const Register = () => {
             onChange={() => setIsChecked((idx) => !idx)}
           />
           <div>
-            <span onClick={() => navigate('/policy')}>이용약관</span>에
-            동의합니다.
+            <span onClick={handlePolicyClick}>이용약관</span>에 동의합니다.
           </div>
         </RegisterCheckboxWrapper>
         <RegisterSubmitButton onClick={handleRegisterSubmit}>
