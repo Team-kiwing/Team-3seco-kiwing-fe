@@ -5,29 +5,37 @@ import { Row } from '@/styles/globalStyles';
 
 import { WebNavBarItemProps } from './WebNavBar.type';
 
-export const WebNavBarWrapper = styled.nav`
-  display: flex;
+export const WebNavBarBackground = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
-  align-items: center;
-  justify-content: space-between;
   margin: 0 auto;
-  padding: 3rem 2rem 0.5rem 2rem;
   z-index: ${NAVIGATER};
 
-  max-width: 1140px;
-  font-size: 2rem;
-  font-weight: ${FONT_MEDIUM};
-  background-color: ${({ theme }) => theme.background_color};
-  color: ${(props) => props.theme.primary_color};
-  user-select: none;
+  max-width: 98%;
+  background-color: ${({ theme }) => theme.background_color}90;
+  backdrop-filter: blur(20px);
 
   @media screen and (max-width: ${MOBILE}px) {
     display: none;
   }
+`;
+
+export const WebNavBarWrapper = styled.div`
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 2rem 2rem 0.5rem 2rem;
+
+  max-width: 1140px;
+  font-size: 2rem;
+  font-weight: ${FONT_MEDIUM};
+  color: ${(props) => props.theme.primary_color};
+  user-select: none;
 `;
 
 export const WebNavBarRouter = styled(Row)`
@@ -37,6 +45,7 @@ export const WebNavBarRouter = styled(Row)`
 
 export const WebNavBarMyPage = styled(Row)`
   gap: 2rem;
+  align-items: center;
 `;
 
 export const WebNavBarLogo = styled(Row)`
@@ -58,10 +67,18 @@ export const WebNavBarLogoImage = styled.div`
 `;
 
 export const WebNavItem = styled.div<WebNavBarItemProps>`
+  display: flex;
+  align-items: center;
   cursor: pointer;
   white-space: nowrap;
   color: ${(props) =>
     props.$isLocated ? props.theme.symbol_color : 'inherit'};
+  gap: 1rem;
+
+  & > div {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
 `;
 
 export const WebNavBarDivideLine = styled.div`
