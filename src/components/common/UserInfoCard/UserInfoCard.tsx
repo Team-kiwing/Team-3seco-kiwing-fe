@@ -10,6 +10,7 @@ import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
 import { getItem, removeItem } from '@/utils/localStorage';
 
+import { useInfoUpdateModal } from './UserInfoCard.hook';
 import {
   NoLinks,
   NoTags,
@@ -57,6 +58,7 @@ const UserInfoCard = ({
   const theme = useTheme();
 
   const { isMobileSize } = useResize();
+  const { handleInfoUpdateClick } = useInfoUpdateModal();
 
   const handleLogOut = () => {
     if (getItem('refresh-token', null)) {
@@ -128,7 +130,7 @@ const UserInfoCard = ({
           <UserInfoIconWrapper>
             <IconWrapper
               $size={isMobileSize ? 'xs' : 's'}
-              onClick={() => alert('회원 정보 수정 모달 띄우는 작업 해야함 !')}
+              onClick={handleInfoUpdateClick}
             >
               <PiNotePencil />
             </IconWrapper>
