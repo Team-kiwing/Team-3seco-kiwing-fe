@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { MOBILE, MOBILE_FONT_SIZE } from '@/constants';
+import { MOBILE, MOBILE_FONT_SIZE, WEB_FONT_SIZE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 export const SharedWrapper = styled(Col)`
@@ -60,9 +60,15 @@ export const Section2 = styled.div`
   row-gap: 2rem;
 `;
 
-export const SharedSearchNone = styled.div`
-  font-size: 1.6rem;
+export const SharedSearchNone = styled(Row)`
+  align-items: center;
+  justify-content: center;
+  font-size: ${WEB_FONT_SIZE}rem;
   color: ${({ theme }) => theme.primary_color};
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: ${MOBILE_FONT_SIZE}rem;
+  }
 `;
 
 export const SharedFooterWrapper = styled(Col)`

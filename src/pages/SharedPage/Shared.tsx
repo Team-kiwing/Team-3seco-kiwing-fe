@@ -105,13 +105,6 @@ const Shared = () => {
                     )
                 );
               })}
-            {!isFetching &&
-              !isFetchingNextPage &&
-              infinityData?.pages[0]?.content.length === 0 && (
-                <SharedSearchNone>
-                  {SharedTextConstants.SHARED_SEARCH_NONE}
-                </SharedSearchNone>
-              )}
           </Section1>
           <Section2>
             {infinityData &&
@@ -131,16 +124,15 @@ const Shared = () => {
                     )
                 );
               })}
-            {!isFetching &&
-              !isFetchingNextPage &&
-              infinityData?.pages[0]?.content.length === 0 && (
-                <SharedSearchNone>
-                  {SharedTextConstants.SHARED_SEARCH_NONE}
-                </SharedSearchNone>
-              )}
           </Section2>
         </CardWrapper>
-
+        {!isFetching &&
+          !isFetchingNextPage &&
+          infinityData?.pages[0]?.content.length === 0 && (
+            <SharedSearchNone>
+              {SharedTextConstants.SHARED_SEARCH_NONE}
+            </SharedSearchNone>
+          )}
         <SharedFooterWrapper>
           {hasNextPage && !isFetchingNextPage && (
             <Button
