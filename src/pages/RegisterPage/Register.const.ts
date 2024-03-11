@@ -5,6 +5,6 @@ export const RegisterNicknameValidation = {
   pattern: nicknameRegex,
   minLength: {
     value: 2,
-    message: '닉네임은 2자 이상 작성해주세요.',
+    message: '사용자 ID는 2자 이상 작성해주세요.',
   },
 };
