@@ -102,12 +102,16 @@ export const searchQuestion = async ({
   keyword,
   page,
   size,
+  sortingType = 'LATEST',
+  tagIds,
 }: QuestionSearchRequest) => {
   try {
     const res = await axiosInstance.get<QuestionSearchResponse>(
       DOMAIN.SEARCH_QUESTION,
       {
         params: {
+          sortingType,
+          tagIds,
           keyword,
           page,
           size,
