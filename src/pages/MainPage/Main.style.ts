@@ -17,7 +17,7 @@ export const Banner = styled.div`
   width: 100%;
   height: 20rem;
   border-radius: ${BORDER_WEB}rem;
-  background-image: url('/public/mainBanner.png');
+  background-image: url('/mainBanner.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
