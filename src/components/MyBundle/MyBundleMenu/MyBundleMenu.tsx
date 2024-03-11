@@ -104,7 +104,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
           tagIds: bundle.tags.map((tag) => tag.id),
         });
 
-        queryClient.invalidateQueries({
+        queryClient.refetchQueries({
           queryKey: [QUERYKEY.BUNDLE_DETAIL],
         });
       },
@@ -165,6 +165,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        flexGrow: '0',
       }}
     >
       <Options>

@@ -15,7 +15,8 @@ const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
       width="100%"
       height="100%"
       style={{
-        maxHeight: '35rem',
+        flexGrow: '1',
+        overflowY: 'scroll',
       }}
     >
       <Container>

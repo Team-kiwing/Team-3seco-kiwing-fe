@@ -6,10 +6,11 @@ export const Container = styled(Col)`
   padding: 1rem;
   gap: 1rem;
   word-break: break-all;
-  overflow-x: hidden;
   width: 100%;
-  max-height: 45rem;
-  overflow-y: auto;
+
+  div:last-child {
+    padding-bottom: 1.5rem;
+  }
 `;
 export const Text = styled.div`
   flex-shrink: 0;
