@@ -7,6 +7,7 @@ import Input from '@/components/common/Input';
 import Skeleton from '@/components/common/Skeleton';
 import TagFilter from '@/components/common/TagFilter';
 import { usePolicyModal } from '@/components/Register/PolicyModal/PolicyModal.hook';
+import { PATH } from '@/constants/router';
 import { notify } from '@/hooks/toast';
 import { useFetchTags } from '@/hooks/useFetchTags';
 import useResize from '@/hooks/useResize';
@@ -98,7 +99,7 @@ const Register = () => {
       if (accessToken && refreshToken) {
         setAccessToken(accessToken);
         setItem('refresh-token', refreshToken);
-        navigate('/register');
+        navigate(PATH.REGISTER);
       }
     }
   }, [navigate, nickname, accessToken, setAccessToken, refreshToken]);
