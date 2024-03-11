@@ -30,6 +30,10 @@ const MyBundleList = ({
   const { mutate: reorder } = useReorderBundle();
   const [orderedBundles, setOrderedBundles] = useState<BundlesBasic[]>(bundles);
 
+  useEffect(() => {
+    setOrderedBundles(bundles);
+  }, [bundles]);
+
   // --- Draggable이 Droppable로 드래그 되었을 때 실행되는 이벤트
   const onDragEnd = ({ source, destination }: DropResult) => {
     if (!destination) return;
