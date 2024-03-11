@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { FiEdit3 } from 'react-icons/fi';
 import { RiDeleteBin5Line, RiFileCopyLine } from 'react-icons/ri';
@@ -8,8 +8,8 @@ import IconWrapper from '@/components/common/IconWrapper';
 import Toggle from '@/components/common/Toggle';
 import { QUERYKEY } from '@/constants/queryKeys';
 import { PATH } from '@/constants/router';
+import { useFetchBundleDetail } from '@/hooks/api';
 import { notify } from '@/hooks/toast';
-import { getBundleDetail } from '@/services/bundles';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
 import { useDeleteBundle } from '../MyBundleDropDown/MyBundleDropDown.hook';
@@ -23,15 +23,7 @@ import { MyBundleMenuProps } from './MyBundleMenu.type';
 const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
   const queryClient = useQueryClient();
 
-  const { data: bundle } = useQuery({
-    queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
-    queryFn: async () => {
-      if (!bundleId) return null;
-      const data = await getBundleDetail({ bundleId });
-      return data;
-    },
-    enabled: !!bundleId,
-  });
+  const { data: bundle } = useFetchBundleDetail(bundleId);
 
   const [isShared, setIsShared] = useState(
     bundle ? bundle.shareType === 'PUBLIC' : false
@@ -43,15 +35,11 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
   useEffect(() => {
     if (bundle) {
       queryClient.refetchQueries({
-        queryKey: [QUERYKEY.BUNDLE_DETAIL],
+        queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
       });
       setIsShared(bundle.shareType === 'PUBLIC');
     }
-  }, [bundle, queryClient]);
-
-  if (!bundle) {
-    return <div>로딩중</div>;
-  }
+  }, [bundle, queryClient, bundleId]);
 
   if (!bundle) {
     return <div>로딩중</div>;
@@ -97,15 +85,12 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
       handler: () => {
         setIsShared(!isShared);
         // @TODO 추후에 꾸러미 공개/비공개를 결정하는 api 로직을 연동합니다.
+
         updateBundle({
           bundleId: bundle.id,
           name: bundle.name,
           shareType: !isShared ? 'PUBLIC' : 'PRIVATE',
           tagIds: bundle.tags.map((tag) => tag.id),
-        });
-
-        queryClient.refetchQueries({
-          queryKey: [QUERYKEY.BUNDLE_DETAIL],
         });
       },
     },
