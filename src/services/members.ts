@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 import axiosErrorHandler from '@/apis/axiosErrorHandler';
 import { axiosInstance } from '@/apis/axiosInstance';
 import { DOMAIN } from '@/constants/api';
@@ -13,9 +15,17 @@ import {
  */
 export const updateProfileImage = async ({ file }: ImageRequest) => {
   try {
-    const res = await axiosInstance.patch<ImageResponse>(DOMAIN.PROFILE_IMAGE, {
-      file,
-    });
+    const res = await axiosInstance.patch<ImageResponse>(
+      DOMAIN.PROFILE_IMAGE,
+      {
+        file,
+      },
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
     return res.data;
   } catch (e) {
     axiosErrorHandler(e);
@@ -39,8 +49,9 @@ export const patchMyInfo = async ({
     });
     return res.data;
   } catch (e) {
-    axiosErrorHandler(e);
-    return null;
+    const { message } = e as AxiosError;
+
+    return message;
   }
 };
 
