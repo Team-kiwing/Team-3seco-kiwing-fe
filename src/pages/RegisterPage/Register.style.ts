@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { FONT_BOLD, MOBILE } from '@/constants';
+import { BORDER_WEB, FONT_BOLD, MOBILE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 export const RegisterPageWrapper = styled.div`
@@ -8,7 +8,6 @@ export const RegisterPageWrapper = styled.div`
   flex-direction: row;
   width: 80%;
   margin: 6rem auto 0 auto;
-  align-items: center;
 
   @media screen and (max-width: ${MOBILE}px) {
     flex-direction: column;
@@ -18,33 +17,40 @@ export const RegisterPageWrapper = styled.div`
 
 export const RegisterIntro = styled(Col)`
   width: 40%;
-  align-items: center;
+  height: 100%;
+  align-items: flex-start;
+  gap: 4rem;
+
   & > img {
     width: 100%;
-    max-width: 20rem;
+    max-width: 40rem;
+    border-radius: ${BORDER_WEB}rem;
+    margin: 1rem 0;
   }
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
-    align-items: flex-start;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
   }
 `;
 
 export const RegisterHeader = styled.div`
-  font-size: 5rem;
+  font-size: 4.5rem;
   font-weight: ${FONT_BOLD};
   margin-bottom: 3rem;
   word-break: break-all;
   color: ${({ theme }) => theme.primary_color};
 
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: 2.8rem;
+    font-size: 2.3rem;
+    margin: 0;
   }
 `;
 
 export const RegisterFormWrapper = styled(Col)`
   width: 60%;
-  padding: 0 5rem;
   margin-bottom: 3rem;
 
   @media screen and (max-width: ${MOBILE}px) {

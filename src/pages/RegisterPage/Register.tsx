@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
+import Avatar from '@/components/common/Avatar';
 import Input from '@/components/common/Input';
 import Skeleton from '@/components/common/Skeleton';
 import TagFilter from '@/components/common/TagFilter';
@@ -106,6 +107,18 @@ const Register = () => {
   return (
     <RegisterPageWrapper>
       <RegisterIntro>
+        {!isMobileSize ? (
+          <img
+            src="/kiwing_circle_green.png"
+            alt="kiwing logo"
+          />
+        ) : (
+          <Avatar
+            style={{ flexShrink: '0' }}
+            $size={'mobile'}
+            $src="/kiwing_circle_green.png"
+          />
+        )}
         <RegisterHeader>
           안녕하세요. <br /> 저희는&nbsp;
           <span
@@ -119,12 +132,6 @@ const Register = () => {
           </span>
           이에요.
         </RegisterHeader>
-        {!isMobileSize && (
-          <img
-            src="./kiwing_circle_green.png"
-            alt="kiwing logo"
-          />
-        )}
       </RegisterIntro>
       <RegisterFormWrapper>
         <RegisterItemWrapper>
