@@ -1,7 +1,7 @@
 export { default as AuthPage } from './AuthPage';
 export { default as HubPage } from './HubPage';
 export { default as MainPage } from './MainPage';
-export { default as MyListPage } from './MyListPage';
+export { default as MyBundlePage } from './MyBundlePage';
 export { default as NotFoundPage } from './NotFoundPage';
 export { default as PolicyPage } from './PolicyPage';
 export { default as RegisterPage } from './RegisterPage';
