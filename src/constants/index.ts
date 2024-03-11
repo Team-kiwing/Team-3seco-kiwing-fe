@@ -8,11 +8,11 @@ export const MOBILE_MIN = 280; // 280px
 // ------------------------------------------ SCREEN //
 
 // Zindex //
-export const NAVIGATER = 9;
+export const NAVIGATER = 4;
 export const DROP_DOWN = 3;
-export const MODAL_BACKGROUND = 4;
-export const MODAL_LAYOUT = 5;
-export const LOADING_BAR = 6;
+export const MODAL_BACKGROUND = 5;
+export const MODAL_LAYOUT = 6;
+export const LOADING_BAR = 7;
 
 // BORDER / 단위 rem //
 export const BORDER_WEB = 1;
