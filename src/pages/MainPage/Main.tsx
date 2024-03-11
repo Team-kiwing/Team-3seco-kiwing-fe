@@ -42,14 +42,16 @@ const Main = () => {
       <MainPageWrapper>
         {accessToken ? (
           <UserInfoCard
-            userName={nickname}
+            userName={nickname.split('@')[1]}
             userImage={profileImage}
             tags={memberTags}
             links={snsList}
+            rightButtonOn={true}
           />
         ) : (
-          // TODO: 배너 꾸미기
-          <Banner>배너</Banner>
+          <Banner
+            onClick={() => window.open('https://kiwing.shop/', '_blank')}
+          />
         )}
         <MainListWrapper>
           <MainItemWrapper>
