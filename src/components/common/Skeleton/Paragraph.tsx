@@ -7,9 +7,6 @@ export const Paragraph = ({
   $height,
   $marginBottom = 10,
 }: PropsParagraphSkeleton) => {
-  const matchResult = $width.match(/\d+/);
-  const widthUnit = $width.match(/[a-zA-Z%]+/);
-  const widthNumber = matchResult ? parseInt(matchResult[0]) : 0;
   return (
     <div>
       {Array.from(Array($line), (_, index) => {
@@ -20,10 +17,7 @@ export const Paragraph = ({
             $height={$height}
             style={{
               marginBottom: `${$marginBottom}px`,
-              width:
-                index === $line - 1
-                  ? `${widthNumber * 0.65}${widthUnit}`
-                  : $width,
+              width: index === $line - 1 ? `calc(${$width} * 0.65)` : $width,
             }}
           />
         );

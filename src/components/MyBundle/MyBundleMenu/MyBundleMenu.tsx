@@ -14,6 +14,10 @@ import { MyBundleMenuProps } from './MyBundleMenu.type';
 const MyBundleMenu = ({ bundle }: MyBundleMenuProps) => {
   const [isShared, setIsShared] = useState(false);
 
+  if (!bundle) {
+    return <div>로딩중</div>;
+  }
+
   const handleItemClick = (handler: (() => void) | undefined) => {
     if (handler) {
       handler();

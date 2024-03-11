@@ -9,11 +9,12 @@ import {
 import Layout from '@/components/Layout';
 import { PATH } from '@/constants/router';
 import Toast from '@/hooks/toast';
+import useResize from '@/hooks/useResize';
 import {
   AuthPage,
   HubPage,
   MainPage,
-  MyListPage,
+  MyBundlePage,
   NotFoundPage,
   PolicyPage,
   RegisterPage,
@@ -26,10 +27,11 @@ import {
 import AuthRoute from './AuthRoute';
 
 const Router = () => {
+  const { isMobileSize } = useResize();
   return (
     <>
-      <WebNavBar />
-      <MobileTopNavBar />
+      {!isMobileSize && <WebNavBar />}
+      {isMobileSize && <MobileTopNavBar />}
       <Layout>
         <Routes>
           {/* 프레이머 모션 용 */}
@@ -60,7 +62,7 @@ const Router = () => {
             />
             <Route
               path={PATH.MY} // 내 질문 리스트, 이메일 주소로 개인 페이지
-              element={<AuthRoute element={<MyListPage />} />}
+              element={<AuthRoute element={<MyBundlePage />} />}
             />
             <Route
               path={PATH.REPORT} // 신고, 건의 페이지
@@ -81,7 +83,7 @@ const Router = () => {
           </Route>
         </Routes>
       </Layout>
-      <MobileBottomNavBar />
+      {isMobileSize && <MobileBottomNavBar />}
       <ModalLayout />
       <Toast />
     </>

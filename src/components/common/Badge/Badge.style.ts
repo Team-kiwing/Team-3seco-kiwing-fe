@@ -25,11 +25,15 @@ const stateStyles = {
     font-weight: ${FONT_SEMI_BOLD};
     background-color: ${({ theme }) => theme.hotBadge_background_color};
     color: ${({ theme }) => theme.hotBadge_color};
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1.3rem;
   `,
   hashTag: css`
     background-color: transparent;
     color: ${({ theme }) => theme.gray_300};
     cursor: default;
+    padding: 0 0.5rem 0 0;
   `,
   subscribedTag: css`
     display: flex;
@@ -39,6 +43,7 @@ const stateStyles = {
     background-color: ${({ theme }) => theme.subscribed_background_color};
     color: ${({ theme }) => theme.subscribed_color};
     cursor: default;
+    padding: 0.5rem 1.3rem;
   `,
 };
 

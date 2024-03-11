@@ -2,7 +2,8 @@ export const ReportPageConstants = {
   SUBMIT_CONFIRM_MESSAGE: '제출하시겠습니까?',
 
   NOTIFY_REPORT_SUCCESS_MESSAGE:
-    '신고를 완료하였습니다. 불편을 드려 죄송합니다.',
+    '문의를 완료하였습니다. 최대한 빠르게 반영할게요!',
+  NOTIFY_REPORT_ERROR_MESSAGE: '에러가 발생했어요.',
 
   REPORT_TITLE: '📄문의하기 페이지입니다.',
 
