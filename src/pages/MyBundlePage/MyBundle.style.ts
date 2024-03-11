@@ -14,6 +14,7 @@ export const Container = styled.article`
 
   @media screen and (max-width: ${MOBILE}px) {
     height: auto;
+    padding: 0;
   }
 `;
 export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
