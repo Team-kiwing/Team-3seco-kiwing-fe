@@ -110,6 +110,8 @@ export interface QuestionSearchRequest {
   keyword: string;
   page: number;
   size: number;
+  sortingType: SortingType;
+  tagIds: number[] | string;
 }
 
 export interface QuestionSearchResponse {

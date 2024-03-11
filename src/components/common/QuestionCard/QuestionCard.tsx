@@ -1,12 +1,18 @@
+import { useEffect } from 'react';
+
 import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
 
 import Badge from '../Badge';
+import BorderBox from '../BorderBox';
 import CircleButton from '../CircleButton';
 import DropDown from '../DropDown';
-import ShadowBox from '../ShadowBox';
-import { DUMMY, QuestionCardConstants } from './QuestionCard.const';
-import { useReportModal } from './QuestionCard.hook';
+import { QuestionCardConstants } from './QuestionCard.const';
+import {
+  useCreateQuestionsToBundle,
+  useGetMyBundles,
+  useReportModal,
+} from './QuestionCard.hook';
 import {
   QuestionCardAddButton,
   QuestionCardBadgeWrapper,
@@ -31,40 +37,67 @@ import { QuestionCardProps } from './QuestionCard.type';
                 />
  * @description QuestionCard컴포넌트입니다. 모든 props가 필수요소입니다.
  * @param id: number
- * @param question: string;
+ * @param content: string;
  * @param tags: tagProps[ id: number; tagName: string; ];
- * @param subscribed: number;
+ * @param shareCount: number;
  * @param isHot: boolean;
  * @param isLogin: boolean;
  * @returns
  */
+interface BundleParsed {
+  id: number;
+  name: string;
+}
+
+interface BundleResult {
+  id: number;
+  name: string;
+}
+
 const QuestionCard = ({
   id,
-  question,
+  content,
   tags,
-  subscribedCount,
+  shareCount,
   isHot,
   isLogin,
 }: QuestionCardProps) => {
   const { isMobileSize } = useResize();
-  const { handleReportClick } = useReportModal();
+  const { handleReportClick } = useReportModal({ questionId: id });
   const { isShow, setIsShow, openDropDown, triggerId, closeDropDown } =
     useDropDown(String(id));
 
+  const transType = (data: BundleParsed[]) => {
+    return data.map((item: BundleResult) => {
+      return {
+        id: item.id,
+        title: item.name,
+      };
+    });
+  };
+
+  const { data: userBundles, refetch: getMyBundlesRefetch } =
+    useGetMyBundles('LATEST');
+  const { mutate } = useCreateQuestionsToBundle();
+
+  useEffect(() => {
+    isLogin && getMyBundlesRefetch();
+  }, [getMyBundlesRefetch, isLogin]);
+
   const handleAdd = (checkedItems: number[]) => {
-    //todo 내 리스트에 추가하기 API 연동
-    console.log(checkedItems);
+    mutate({ ids: [id], checkedBundles: checkedItems });
   };
 
   return (
     <>
-      <ShadowBox
+      <BorderBox
         style={{
           position: 'relative',
           maxWidth: `${QuestionCardConstants.MAX_WIDTH}px`,
           boxSizing: 'border-box',
           cursor: 'auto',
         }}
+        isHoverActive
         isCard={true}
         width="100%"
         height="fit-content"
@@ -77,23 +110,25 @@ const QuestionCard = ({
               id={triggerId}
               onClick={openDropDown}
             />
-            <DropDown
-              width={20}
-              // todo API 사전 호출으로 인한 캐싱동작 추가 예정
-              options={DUMMY}
-              isShow={isShow}
-              setIsShow={setIsShow}
-              mode="checkbox"
-              onAdd={handleAdd}
-              closeDropDown={closeDropDown}
-              direction="left"
-            />
+            {userBundles && (
+              <DropDown
+                width={20}
+                height={15}
+                options={transType(userBundles)}
+                isShow={isShow}
+                setIsShow={setIsShow}
+                mode="checkbox"
+                onAdd={handleAdd}
+                closeDropDown={closeDropDown}
+                direction="left"
+              />
+            )}
           </QuestionCardAddButton>
         )}
 
         <QuestionCardContainer id={String(id)}>
           <QuestionCardBodyWrapper>
-            <QuestionCardText>{question}</QuestionCardText>
+            <QuestionCardText>{content}</QuestionCardText>
             <QuestionCardHashTags>
               {tags.map((item) => (
                 <Badge
@@ -121,7 +156,7 @@ const QuestionCard = ({
                 style={{ cursor: 'default', padding: '0.5rem 1.3rem' }}
                 $size={isMobileSize ? 1.2 : 's'}
                 $state="subscribedTag"
-                $subscribedCount={subscribedCount}
+                $subscribedCount={shareCount}
               />
             </QuestionCardInfoBadges>
             {isLogin && (
@@ -137,7 +172,7 @@ const QuestionCard = ({
             )}
           </QuestionCardBadgeWrapper>
         </QuestionCardContainer>
-      </ShadowBox>
+      </BorderBox>
     </>
   );
 };

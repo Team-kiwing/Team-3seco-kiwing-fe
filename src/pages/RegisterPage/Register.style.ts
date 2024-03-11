@@ -1,59 +1,93 @@
 import styled from 'styled-components';
 
-import { FONT_BOLD } from '@/constants';
+import { BORDER_WEB, FONT_BOLD, MOBILE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
-import { RegisterPageStyleProps } from './Register.type';
-
-export const RegisterPageWrapper = styled(Row)`
+export const RegisterPageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
   width: 80%;
   margin: 6rem auto 0 auto;
-  align-items: center;
-`;
 
-export const RegisterLogo = styled.div`
-  width: 40%;
-
-  & > img {
-    width: 100%;
-    max-width: 30rem;
+  @media screen and (max-width: ${MOBILE}px) {
+    flex-direction: column;
+    font-size: 2.8rem;
   }
 `;
 
-export const RegisterHeader = styled.div<RegisterPageStyleProps>`
-  font-size: ${({ $isMobile }) => ($isMobile ? '3rem' : '5rem')};
+export const RegisterIntro = styled(Col)`
+  width: 40%;
+  height: 100%;
+  align-items: flex-start;
+  gap: 4rem;
+
+  & > img {
+    width: 100%;
+    max-width: 40rem;
+    border-radius: ${BORDER_WEB}rem;
+    margin: 1rem 0;
+  }
+
+  @media screen and (max-width: ${MOBILE}px) {
+    width: 100%;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+  }
+`;
+
+export const RegisterHeader = styled.div`
+  font-size: 4.5rem;
   font-weight: ${FONT_BOLD};
-  margin-bottom: 5rem;
-  word-break: keep-all;
-  color: ${({ theme }) => theme.primary_color};
-`;
-
-export const RegisterFormWrapper = styled(Col)<RegisterPageStyleProps>`
-  width: ${(props) => (props.$isMobile ? '100%' : '60%')};
-  padding: ${({ $isMobile }) => ($isMobile ? '' : '0 5rem')};
   margin-bottom: 3rem;
+  word-break: break-all;
+  color: ${({ theme }) => theme.primary_color};
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: 2.3rem;
+    margin: 0;
+  }
 `;
 
-export const RegisterLabel = styled.label<RegisterPageStyleProps>`
+export const RegisterFormWrapper = styled(Col)`
+  width: 60%;
+  margin-bottom: 3rem;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    width: 100%;
+    padding: 0;
+  }
+`;
+
+export const RegisterLabel = styled.label`
   display: inline-block;
-  font-size: ${({ $isMobile }) => ($isMobile ? '1.6rem' : '1.8rem')};
+  font-size: 1.8rem;
   margin-bottom: 1.5rem;
   color: ${({ theme }) => theme.primary_color};
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: 1.6rem;
+  }
 `;
 
 export const RegisterItemWrapper = styled.div`
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 `;
 
-export const RegisterCheckboxWrapper = styled(Row)<RegisterPageStyleProps>`
+export const RegisterCheckboxWrapper = styled(Row)`
   align-items: center;
   margin-bottom: 3rem;
 
   & > div {
     color: ${({ theme }) => theme.primary_color};
-    font-size: ${(props) => (props.$isMobile ? '1.6rem' : '1.8rem')};
+    font-size: 1.8rem;
 
-    & > a {
+    @media screen and (max-width: ${MOBILE}px) {
+      font-size: 1.6rem;
+    }
+
+    & > span {
+      cursor: pointer;
       color: ${({ theme }) => theme.symbol_secondary_color};
     }
   }
@@ -114,13 +148,18 @@ export const RegisterCheckbox = styled.input`
   }
 `;
 
-export const RegisterSubmitButton = styled.button<RegisterPageStyleProps>`
+export const RegisterSubmitButton = styled.button`
   width: 10rem;
-  padding: ${({ $isMobile }) => ($isMobile ? '1.2rem' : '1.4rem')};
+  padding: 1.4rem;
   border-radius: 10rem;
-  font-size: ${({ $isMobile }) => ($isMobile ? '1.5rem' : '1.7rem')};
+  font-size: 1.7rem;
   color: ${({ theme }) => theme.primary_white_text_color};
   background-color: ${({ theme }) => theme.symbol_color};
+
+  @media screen and (max-width: ${MOBILE}px) {
+    padding: 1.2rem;
+    font-size: 1.5rem;
+  }
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {

@@ -7,4 +7,5 @@ export const Circle = styled(Base)<PropsCircleSkeleton>`
   width: ${({ $size }) => `${$size}`};
   height: ${({ $size }) => `${$size}`};
   border-radius: 50%;
+  flex-shrink: 0;
 `;

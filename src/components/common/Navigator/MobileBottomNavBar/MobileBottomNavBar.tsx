@@ -8,6 +8,7 @@ import {
 } from 'react-icons/pi';
 
 import { PATH } from '@/constants/router';
+import { userDataStore } from '@/stores';
 
 import { NavigatorText } from '../Navigator.const';
 import { useNavigatorMenu } from '../Navigator.hook';
@@ -17,8 +18,8 @@ import {
 } from './MobileBottomNavBar.style';
 
 const MobileBottomNavBar = () => {
+  const { isLogin } = userDataStore();
   const {
-    isLogin,
     location,
     handleLogo,
     handleHub,

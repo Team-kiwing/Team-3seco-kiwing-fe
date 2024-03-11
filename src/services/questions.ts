@@ -44,9 +44,7 @@ export const reportQuestion = async ({ id, reason }: QuestionReportRequest) => {
     const res = await axiosInstance.post<QuestionReportResponse>(
       DOMAIN.REPORT_QUESTION(id),
       {
-        params: {
-          reason,
-        },
+        reason,
       }
     );
     return res.data;
@@ -105,12 +103,16 @@ export const searchQuestion = async ({
   keyword,
   page,
   size,
+  sortingType = 'LATEST',
+  tagIds,
 }: QuestionSearchRequest) => {
   try {
     const res = await axiosInstance.get<QuestionSearchResponse>(
       DOMAIN.SEARCH_QUESTION,
       {
         params: {
+          sortingType,
+          tagIds,
           keyword,
           page,
           size,

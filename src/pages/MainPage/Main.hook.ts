@@ -18,7 +18,14 @@ export const useFetchQuestions = ({
 }: QuestionSearchRequest) => {
   const query = useQuery<QuestionSearchResponse | null>({
     queryKey: [MAIN.QUESTIONS],
-    queryFn: () => searchQuestion({ keyword, page, size }),
+    queryFn: () =>
+      searchQuestion({
+        keyword,
+        page,
+        size,
+        sortingType: 'LATEST',
+        tagIds: [],
+      }),
   });
 
   return query;
@@ -31,7 +38,8 @@ export const useFetchBundles = ({
 }: BundleSearchRequest) => {
   const query = useQuery<BundleSearchResponse | null>({
     queryKey: [MAIN.BUNDLES],
-    queryFn: () => searchBundles({ page, size, sortingType }),
+    queryFn: () =>
+      searchBundles({ page, size, sortingType, keyword: '', tagIds: [] }),
   });
 
   return query;

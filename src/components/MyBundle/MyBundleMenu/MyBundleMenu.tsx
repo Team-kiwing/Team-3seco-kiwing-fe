@@ -53,6 +53,10 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
     return <div>로딩중</div>;
   }
 
+  if (!bundle) {
+    return <div>로딩중</div>;
+  }
+
   const handleItemClick = (handler: (() => void) | undefined) => {
     if (handler) {
       handler();

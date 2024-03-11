@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Router from '@/routes';
 
@@ -10,6 +11,7 @@ import { getItem } from './utils/localStorage';
 const App = () => {
   const { accessToken, setAccessToken, setUserData, setIsLogin } =
     userDataStore();
+  const navigator = useNavigate();
 
   const Auth = async () => {
     const refreshToken = getItem('refresh-token', null);
@@ -19,6 +21,10 @@ const App = () => {
         setAccessToken(res.accessToken);
         const userData = await getMyInfo();
         if (userData) {
+          if (userData.nickname === null) {
+            navigator('/register');
+            return;
+          }
           setIsLogin(true);
           setUserData(userData);
         } else {

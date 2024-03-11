@@ -26,11 +26,15 @@ const Main = () => {
     keyword: '',
     page: 1,
     size: 4,
+    sortingType: 'LATEST',
+    tagIds: [],
   });
   const { data: threeBundles } = useFetchBundles({
     page: 1,
     size: 3,
     sortingType: 'LATEST',
+    keyword: '',
+    tagIds: [],
   });
 
   return (
@@ -38,14 +42,16 @@ const Main = () => {
       <MainPageWrapper>
         {accessToken ? (
           <UserInfoCard
-            userName={nickname}
+            userName={nickname.split('@')[1]}
             userImage={profileImage}
             tags={memberTags}
             links={snsList}
+            rightButtonOn={true}
           />
         ) : (
-          // TODO: 배너 꾸미기
-          <Banner>배너</Banner>
+          <Banner
+            onClick={() => window.open('https://kiwing.shop/', '_blank')}
+          />
         )}
         <MainListWrapper>
           <MainItemWrapper>
@@ -55,8 +61,8 @@ const Main = () => {
                 <QuestionCard
                   tags={question.tags}
                   id={question.id}
-                  question={question.content}
-                  subscribedCount={question.shareCount}
+                  content={question.content}
+                  shareCount={question.shareCount}
                   isHot={question.isHot}
                   isLogin={isLogin}
                 />
