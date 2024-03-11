@@ -2,10 +2,10 @@ import { styled } from 'styled-components';
 
 import { MOBILE } from '@/constants';
 
-const Layout = styled.div`
+const Layout = styled.main`
   width: 100%;
   height: 100%;
-  padding-top: 7.525rem;
+  padding-top: 6.525rem;
   box-sizing: border-box;
   overflow-y: scroll;
 
