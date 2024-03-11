@@ -41,7 +41,7 @@ const MyBundleModal = ({
     setValue,
     formState: { errors },
   } = useForm<FormField>({
-    mode: 'onBlur',
+    mode: 'onSubmit',
     defaultValues: {
       bundleNameField,
       selectedTagsField,

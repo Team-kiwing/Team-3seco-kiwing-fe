@@ -45,7 +45,7 @@ const MyQuestionModal = ({
     setValue,
     formState: { errors },
   } = useForm<FormField>({
-    mode: 'onBlur',
+    mode: 'onSubmit',
     defaultValues: {
       questionNameField,
       questionAnswerField,
