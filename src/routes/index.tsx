@@ -14,7 +14,7 @@ import {
   AuthPage,
   HubPage,
   MainPage,
-  MyListPage,
+  MyBundlePage,
   NotFoundPage,
   PolicyPage,
   RegisterPage,
@@ -62,7 +62,7 @@ const Router = () => {
             />
             <Route
               path={PATH.MY} // 내 질문 리스트, 이메일 주소로 개인 페이지
-              element={<AuthRoute element={<MyListPage />} />}
+              element={<AuthRoute element={<MyBundlePage />} />}
             />
             <Route
               path={PATH.REPORT} // 신고, 건의 페이지

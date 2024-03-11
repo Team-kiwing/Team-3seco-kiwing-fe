@@ -1,19 +1,27 @@
 import Button from '@/components/common/Button';
-import useResize from '@/hooks/useResize';
 
 import MyBundleItem from '../MyBundleItem';
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
 import { BundleWrapper, ButtonWrapper, Container } from './MyBundleList.style';
 import { MyBundleListProps } from './MyBundleList.type';
+import BundleListSkeleton from './Skeletion';
 
 const MyBundleList = ({
   bundles,
   selectedBundle,
   setSelectedBundle,
 }: MyBundleListProps) => {
-  const { isMobileSize } = useResize();
-
   const { handleAddBundleClick } = useMyBundleModal();
+
+  if (!bundles) {
+    return (
+      <Container>
+        <BundleWrapper>
+          <BundleListSkeleton />
+        </BundleWrapper>
+      </Container>
+    );
+  }
 
   return (
     <Container>
@@ -21,10 +29,9 @@ const MyBundleList = ({
         {bundles.map((bundle) => (
           <MyBundleItem
             key={bundle.id}
+            bundleId={bundle.id}
             selectedBundle={selectedBundle}
             setSelectedBundle={setSelectedBundle}
-            bundle={bundle}
-            isMobileSize={isMobileSize}
           />
         ))}
       </BundleWrapper>

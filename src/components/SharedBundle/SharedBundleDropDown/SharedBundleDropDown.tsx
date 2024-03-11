@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 
 import DropDown from '@/components/common/DropDown';
 import IconWrapper from '@/components/common/IconWrapper';
-import { notify } from '@/hooks/toast';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
 import { SharedBundleDropDownProps } from './SharedBundleDropDown.type';
@@ -39,13 +38,6 @@ const SharedBundleDropDown = ({
   const SERVICE_URL = window.location.host;
   const CURRENT_URL = location.pathname;
 
-  const toastClipBoard = () => {
-    notify({
-      type: 'success',
-      text: '클립보드에 링크가 복사되었습니다.',
-    });
-  };
-
   const OPTIONS = [
     {
       id: 1,
@@ -70,7 +62,6 @@ const SharedBundleDropDown = ({
       ),
       handler: () => {
         handleCopyClipBoard(SERVICE_URL, CURRENT_URL);
-        toastClipBoard();
         setIsShow(false);
       },
     },
