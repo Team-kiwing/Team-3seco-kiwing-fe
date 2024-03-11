@@ -48,6 +48,9 @@ export const useUpdateBundle = () => {
       queryClient.refetchQueries({
         queryKey: [QUERYKEY.MY_BUNDLES],
       });
+      queryClient.refetchQueries({
+        queryKey: [QUERYKEY.BUNDLE_DETAIL],
+      });
     },
     onError: () => {
       notify({
