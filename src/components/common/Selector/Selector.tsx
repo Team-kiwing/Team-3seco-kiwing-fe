@@ -30,7 +30,6 @@ const Selector = ({
   const handleSelected = (item: boolean) => {
     if (item == !isState) {
       setIsState(item);
-      console.log(item);
     }
   };
   return (
