@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://api-dev.kiwing.kr/api/v1/:path*"
+      "destination": "https://api.kiwing.kr/api/v1/:path*"
     },
     {
       "source": "/api/:path*/",
-      "destination": "https://api-dev.kiwing.kr/api/v1/:path*/"
+      "destination": "https://api.kiwing.kr/api/v1/:path*/"
     },
     { "source": "/(.*)", "destination": "/" }
   ]
