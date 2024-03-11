@@ -26,11 +26,15 @@ const Main = () => {
     keyword: '',
     page: 1,
     size: 4,
+    sortingType: 'LATEST',
+    tagIds: [],
   });
   const { data: threeBundles } = useFetchBundles({
     page: 1,
     size: 3,
     sortingType: 'LATEST',
+    keyword: '',
+    tagIds: [],
   });
 
   return (
@@ -55,8 +59,8 @@ const Main = () => {
                 <QuestionCard
                   tags={question.tags}
                   id={question.id}
-                  question={question.content}
-                  subscribedCount={question.shareCount}
+                  content={question.content}
+                  shareCount={question.shareCount}
                   isHot={question.isHot}
                   isLogin={isLogin}
                 />
