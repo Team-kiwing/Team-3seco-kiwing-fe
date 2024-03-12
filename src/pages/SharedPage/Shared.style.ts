@@ -4,23 +4,27 @@ import { MOBILE, MOBILE_FONT_SIZE, WEB_FONT_SIZE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 export const SharedWrapper = styled(Col)`
-  width: 70%;
+  width: 80%;
+  max-width: 120rem;
   margin: 0 auto;
+  padding: 3rem 0;
   gap: 3rem;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
     gap: 1.5rem;
+    margin: 0 auto;
+    padding: 2rem 0;
   }
 `;
 
 export const TagFilterWrapper = styled(Row)`
   width: 100%;
-  margin: 5rem auto;
+  margin-bottom: 5rem;
   justify-content: center;
 
   @media screen and (max-width: ${MOBILE}px) {
-    margin: 2rem auto;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -34,7 +38,6 @@ export const SearchWrapper = styled(Row)`
 `;
 
 export const SelectorWrapper = styled(Row)`
-  margin: 1rem 0;
   justify-content: end;
 `;
 
