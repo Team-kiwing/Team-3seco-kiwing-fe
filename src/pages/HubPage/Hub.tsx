@@ -29,7 +29,7 @@ import {
 const Hub = () => {
   const theme = useTheme();
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
-  const [isRecent, setIsRecent] = useState<SortingType>('LATEST');
+  const [isRecent, setIsRecent] = useState<SortingType>('POPULAR');
   const [searchParams, setSearchParams] = useState('');
   const { data: tags } = useFetchTags();
   const { isLogin } = userDataStore();
