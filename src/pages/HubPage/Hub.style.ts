@@ -4,20 +4,21 @@ import { MOBILE, MOBILE_FONT_SIZE } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
 export const HubLayout = styled(Col)`
-  width: 70%;
-  max-width: 1140px;
+  width: 80%;
+  max-width: 1200px;
   align-items: center;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 3rem 0;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
+    padding: 2rem 0;
   }
 `;
 
 export const HubTagFilterContainer = styled.div`
   width: 100%;
-  max-width: 1140px;
+  max-width: 1200px;
 `;
 
 export const HubSearchBarContainer = styled.div`
@@ -60,8 +61,11 @@ export const HubSpinnerContainer = styled.div`
 export const HubFooterContainer = styled(Col)`
   width: 70%;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 0rem 1rem;
   box-sizing: border-box;
+  @media screen and (max-width: ${MOBILE}px) {
+    padding: 2rem 1rem 1rem 1rem;
+  }
 `;
 
 export const HubInfiniteMessage = styled(Col)`
