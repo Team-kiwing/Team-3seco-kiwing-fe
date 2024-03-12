@@ -62,7 +62,6 @@ const Hub = () => {
       <HubLayout>
         <HubTagFilterContainer>
           <TagFilter
-            style={{ marginTop: '2rem' }}
             selectedTags={selectedTags}
             setSelectedTags={setSelectedTags}
             tagList={tags ?? []}
