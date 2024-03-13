@@ -61,17 +61,18 @@ const UserInfoCard = ({
   const { handleInfoUpdateClick } = useInfoUpdateModal();
 
   const handleLogOut = () => {
-    if (getItem('refresh-token', null)) {
-      removeItem('refresh-token');
-      notify({ type: 'success', text: '로그아웃 됐습니다.' });
-    } else {
-      notify({
-        type: 'warning',
-        text: '로그아웃 과정에서 문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
-      });
+    if (confirm('로그아웃 하시겠습니까?')) {
+      if (getItem('refresh-token', null)) {
+        removeItem('refresh-token');
+        notify({ type: 'success', text: '로그아웃 됐습니다.' });
+      } else {
+        notify({
+          type: 'warning',
+          text: '로그아웃 과정에서 문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
+        });
+      }
+      window.location.href = '/';
     }
-
-    window.location.href = '/';
   };
 
   return (
