@@ -18,7 +18,7 @@ export const MODAL = {
   SUCCESS_NOTIFY: '정보 수정에 성공했습니다.',
   FETCH_FAIL_NOTIFY: '태그 정보를 불러오는데 실패했습니다',
 
-  URL_ERROR: 'https:// 형태로 입력해주세요!',
+  URL_ERROR_MESSAGE: 'https:// 형태로 입력해주세요.',
 };
 
 export const MODAL_LINK_VALIDATION = {

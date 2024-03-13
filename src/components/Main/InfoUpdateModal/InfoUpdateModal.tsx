@@ -144,7 +144,7 @@ const InfoUpdateModal = ({
             placeholder={MODAL.GITHUB_PLACEHOLDER}
             errorMessage={
               errors?.updateGithub?.type === 'pattern'
-                ? `${MODAL.URL_ERROR}`
+                ? `${MODAL.URL_ERROR_MESSAGE}`
                 : ''
             }
           />
@@ -156,7 +156,9 @@ const InfoUpdateModal = ({
             label={MODAL.BLOG_LABEL}
             placeholder={MODAL.BLOG_PLACEHOLDER}
             errorMessage={
-              errors?.updateBlog?.type === 'pattern' ? `${MODAL.URL_ERROR}` : ''
+              errors?.updateBlog?.type === 'pattern'
+                ? `${MODAL.URL_ERROR_MESSAGE}`
+                : ''
             }
           />
         </div>
@@ -167,7 +169,9 @@ const InfoUpdateModal = ({
             label={MODAL.ETC_LABEL}
             placeholder={MODAL.ETC_PLACEHOLDER}
             errorMessage={
-              errors?.updateEtc?.type === 'pattern' ? `${MODAL.URL_ERROR}` : ''
+              errors?.updateEtc?.type === 'pattern'
+                ? `${MODAL.URL_ERROR_MESSAGE}`
+                : ''
             }
           />
         </div>

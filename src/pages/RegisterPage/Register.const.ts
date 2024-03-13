@@ -13,4 +13,4 @@ export const REGISTER_LINK_VALIDATION = {
   pattern: URLREGEX,
 };
 
-export const URL_ERROR_MESSAGE = 'https:// 형태로 입력해주세요!';
+export const URL_ERROR_MESSAGE = 'https:// 형태로 입력해주세요.';
