@@ -46,6 +46,7 @@ export const CardWrapper = styled.div`
 
   @media screen and (max-width: 1000px) {
     grid-template-columns: repeat(1, 1fr);
+    row-gap: 2rem;
   }
 `;
 
