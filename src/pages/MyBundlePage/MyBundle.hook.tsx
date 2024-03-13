@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { QUERYKEY } from '@/constants/queryKeys';
 import { notify } from '@/hooks/toast';
 import { getMyBundles } from '@/services/bundles';
 
 export const useFetchMyBundles = () => {
   return useQuery({
-    queryKey: ['myBundles'],
+    queryKey: [QUERYKEY.MY_BUNDLES],
     queryFn: async () => {
       const data = await getMyBundles('CUSTOM');
       if (!data) {

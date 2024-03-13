@@ -1,13 +1,15 @@
-import { Bundle } from '@/types';
+import { BundlesBasic } from '@/types';
 import { Direction } from '@/types/dropdown';
 
-import { FormField } from '../MyBundleModal/MyBundleModal.type';
+import { EditProps } from '../MyBundleModal/MyBundleModal.type';
 
 export interface MyBundleDropDownProps {
   isDropDownShow: boolean;
   setIsDropDownShow: (state: boolean) => void;
-  bundle: Bundle;
+  bundle: BundlesBasic;
   closeDropDown: (e: Event) => void;
   direction: Direction;
-  handleEditBundleClick: (state: FormField) => void;
+  handleEditBundleClick: (state: EditProps) => void;
+  isShared: boolean;
+  setIsShared: (state: boolean) => void;
 }

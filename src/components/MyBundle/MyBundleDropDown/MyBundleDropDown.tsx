@@ -1,19 +1,24 @@
-import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { FiEdit3 } from 'react-icons/fi';
 import { RiDeleteBin5Line, RiFileCopyLine } from 'react-icons/ri';
 
 import DropDown from '@/components/common/DropDown';
 import IconWrapper from '@/components/common/IconWrapper';
 import Toggle from '@/components/common/Toggle';
+import { QUERYKEY } from '@/constants/queryKeys';
 import { PATH } from '@/constants/router';
 import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
 import { handleCopyClipBoard } from '@/utils/copyClip';
 
+import { useUpdateBundle } from '../MyBundleModal/MyBundleModal.hook';
 import { COPY_WARN_NOTIFY } from './MyBundleDropDown.const';
+import { useDeleteBundle } from './MyBundleDropDown.hook';
 import { MyBundleDropDownProps } from './MyBundleDropDown.type';
 
 const MyBundleDropDown = ({
+  isShared,
+  setIsShared,
   isDropDownShow,
   setIsDropDownShow,
   closeDropDown,
@@ -21,18 +26,24 @@ const MyBundleDropDown = ({
   direction,
   handleEditBundleClick,
 }: MyBundleDropDownProps) => {
+  const queryClient = useQueryClient();
   const { isMobileSize } = useResize();
-  const [isShared, setIsShared] = useState(bundle.shareType === 'PUBLIC');
+  const { mutate: updateBundle } = useUpdateBundle();
+  const { mutate: deleteBundle } = useDeleteBundle();
+
   const handleDeleteBundle = () => {
-    confirm(`id ${bundle.id} 꾸러미를 삭제하시겠습니까?`);
-    // @TODO 추후에 꾸러미 삭제 API 함수를 호출합니다.
+    if (confirm(`[${bundle.name}] 꾸러미를 삭제하시겠습니까?`)) {
+      deleteBundle(bundle.id);
+    }
   };
 
   const handleEditBundle = () => {
     handleEditBundleClick({
+      bundleId: bundle.id,
       bundleNameField: bundle.name,
-      isSharedField: bundle.shareType === 'PUBLIC',
+      isSharedField: isShared,
       selectedTagsField: bundle.tags,
+      setIsToggleShared: setIsShared,
     });
   };
 
@@ -50,6 +61,16 @@ const MyBundleDropDown = ({
       handler: () => {
         setIsShared(!isShared);
         // @TODO 추후에 꾸러미 공개/비공개를 결정하는 api 로직을 연동합니다.
+        updateBundle({
+          bundleId: bundle.id,
+          name: bundle.name,
+          shareType: !isShared ? 'PUBLIC' : 'PRIVATE',
+          tagIds: bundle.tags.map((tag) => tag.id),
+        });
+
+        queryClient.invalidateQueries({
+          queryKey: [QUERYKEY.MY_BUNDLES, QUERYKEY.BUNDLE_DETAIL],
+        });
       },
     },
 

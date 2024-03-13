@@ -22,6 +22,10 @@ export const InnerContainer = styled(Col)`
   padding: 2rem;
   box-sizing: border-box;
   transition: width 0.2s ease;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    padding: 1rem;
+  }
 `;
 export const Header = styled.div`
   width: 100%;
@@ -34,6 +38,7 @@ export const Body = styled(Col)`
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  scroll-behavior: smooth;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 

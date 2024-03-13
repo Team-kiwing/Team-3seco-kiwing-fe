@@ -1,42 +1,59 @@
 import { useState } from 'react';
 
 import MyBundleDetail from '@/components/MyBundle/MyBundleDetail';
+import MyBundleDetailSkeleton from '@/components/MyBundle/MyBundleDetail/MyBundleDetail.skeleton';
 import MyBundleIndex from '@/components/MyBundle/MyBundleIndex';
 import MyBundleList from '@/components/MyBundle/MyBundleList';
+import BundleListSkeleton from '@/components/MyBundle/MyBundleList/Skeletion';
 import MyBundleMenu from '@/components/MyBundle/MyBundleMenu';
 import useResize from '@/hooks/useResize';
-import { Bundle } from '@/types';
 
 import { useFetchMyBundles } from './MyBundle.hook';
 import { Container, StyledWrapper } from './MyBundle.style';
 
 const MyBundle = () => {
+  // const queryClient = useQueryClient();
   const { isMobileSize } = useResize();
 
+  // 내 꾸러미 목록 전체 조회
   const { data: bundles } = useFetchMyBundles();
-  const [selectedBundle, setSelectedBundle] = useState<Bundle | null>(null);
+
+  // 웹에서 사용
+  const [selectedBundleId, setSelectedBundleId] = useState<null | number>(null);
+
+  if (!bundles) {
+    return (
+      <Container>
+        <BundleListSkeleton />
+        {!isMobileSize && <MyBundleDetailSkeleton />}
+      </Container>
+    );
+  }
 
   return (
     <>
       <Container>
         <MyBundleList
           bundles={bundles}
-          selectedBundle={selectedBundle}
-          setSelectedBundle={setSelectedBundle}
+          selectedBundleId={selectedBundleId}
+          setSelectedBundleId={setSelectedBundleId}
         />
 
         {!isMobileSize && (
           <MyBundleDetail
-            isBundleSelected={selectedBundle !== null}
-            isMyBundlesEmpty={bundles?.length === 0}
-            questions={selectedBundle?.questions || []}
+            isBundleSelected={selectedBundleId != null}
+            isMyBundlesEmpty={bundles.length === 0}
+            bundleId={selectedBundleId}
           />
         )}
 
         {!isMobileSize && (
-          <StyledWrapper $isSelected={selectedBundle != null}>
-            <MyBundleMenu bundle={selectedBundle} />
-            <MyBundleIndex questions={selectedBundle?.questions} />
+          <StyledWrapper $isSelected={selectedBundleId != null}>
+            <MyBundleMenu
+              bundleId={selectedBundleId}
+              setSelectedBundleId={setSelectedBundleId}
+            />
+            <MyBundleIndex bundleId={selectedBundleId} />
           </StyledWrapper>
         )}
       </Container>

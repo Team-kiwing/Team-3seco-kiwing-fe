@@ -18,6 +18,7 @@ export const Container = styled.section`
   min-width: 20%;
 
   @media screen and (max-width: ${MOBILE}px) {
+    min-height: 100%;
     width: 100%;
     height: 100%;
     padding-left: 0;
@@ -41,10 +42,20 @@ export const BundleWrapper = styled.div`
   overflow-y: auto;
 
   @media screen and (max-width: ${MOBILE}px) {
+    min-height: calc(100vh - 23rem);
     margin-bottom: 6rem;
     gap: 1rem;
     overflow-y: visible;
   }
+`;
+
+export const BundleInnerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const BundleItemWrapper = styled.div`
+  margin-bottom: 1.5rem;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -62,6 +73,6 @@ export const ButtonWrapper = styled.div`
     padding-right: 1rem;
 
     bottom: 4rem;
-    width: 100%;
+    width: 97.5%;
   }
 `;

@@ -14,14 +14,17 @@ import useResize from '@/hooks/useResize';
 import { Tag } from '@/types';
 
 import { MODAL, MyBundleModalValidation } from './MyBundleModal.const';
+import { useCreateBundle, useUpdateBundle } from './MyBundleModal.hook';
 import { ButtonContainer, ModalContainer } from './MyBundleModal.style';
 import { AddBundleModalProps, FormField } from './MyBundleModal.type';
 
 const MyBundleModal = ({
-  mode = 'add',
+  modalMode = 'add',
+  bundleId,
   bundleNameField = '',
   selectedTagsField = [],
   isSharedField = false,
+  setIsToggleShared,
 }: AddBundleModalProps) => {
   const { data: tags } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>(selectedTagsField);
@@ -29,6 +32,8 @@ const MyBundleModal = ({
 
   const { isMobileSize } = useResize();
   const { setModalCompleteClose } = useModal();
+  const { mutate: createBundle } = useCreateBundle();
+  const { mutate: updateBundle } = useUpdateBundle();
 
   const {
     register,
@@ -36,7 +41,7 @@ const MyBundleModal = ({
     setValue,
     formState: { errors },
   } = useForm<FormField>({
-    mode: 'onBlur',
+    mode: 'onSubmit',
     defaultValues: {
       bundleNameField,
       selectedTagsField,
@@ -58,13 +63,27 @@ const MyBundleModal = ({
     selectedTagsField,
     isSharedField,
   }) => {
-    // @TODO 꾸러미 생성 API 호출
-    console.log(bundleNameField, selectedTagsField, isSharedField);
+    if (modalMode === 'add') {
+      createBundle({
+        name: bundleNameField,
+        shareType: isSharedField ? 'PUBLIC' : 'PRIVATE',
+        tagIds: selectedTagsField.map((tag) => tag.id),
+      });
+    } else {
+      if (!bundleId) {
+        return;
+      }
+      updateBundle({
+        bundleId: bundleId,
+        name: bundleNameField,
+        shareType: isSharedField ? 'PUBLIC' : 'PRIVATE',
+        tagIds: selectedTagsField.map((tag) => tag.id),
+      });
+    }
 
-    notify({
-      type: 'default',
-      text: MODAL.SUCCESS_NOTIFY(mode),
-    });
+    if (modalMode === 'edit' && setIsToggleShared) {
+      setIsToggleShared(isSharedField);
+    }
 
     setModalCompleteClose();
   };
@@ -119,7 +138,7 @@ const MyBundleModal = ({
           />
           <Button
             style={{ marginTop: '1rem' }}
-            text={MODAL.SUBMIT_BUTTON_TEXT(mode)}
+            text={MODAL.SUBMIT_BUTTON_TEXT(modalMode)}
             width="100%"
             type="submit"
             height={isMobileSize ? '3.5rem' : '4.4rem'}

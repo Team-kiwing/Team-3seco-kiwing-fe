@@ -14,6 +14,7 @@ export const Container = styled.article`
 
   @media screen and (max-width: ${MOBILE}px) {
     height: auto;
+    padding: 0;
   }
 `;
 export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
@@ -21,6 +22,7 @@ export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
   box-sizing: border-box;
   width: 20rem;
   height: 100%;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;

@@ -91,4 +91,6 @@ export const Body = styled.div<{ $isEmpty: boolean }>`
     font-size: calc(${MOBILE_FONT_SIZE}rem - 0.2rem);
     margin-bottom: 0.5rem;
   }
+
+  cursor: auto;
 `;

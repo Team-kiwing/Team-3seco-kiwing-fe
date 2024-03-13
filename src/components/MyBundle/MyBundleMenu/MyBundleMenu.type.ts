@@ -1,5 +1,4 @@
-import { Bundle } from '@/types';
-
 export interface MyBundleMenuProps {
-  bundle: Bundle | null;
+  bundleId: number | null;
+  setSelectedBundleId: (state: number | null) => void;
 }
