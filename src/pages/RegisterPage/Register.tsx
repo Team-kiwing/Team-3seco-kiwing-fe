@@ -6,6 +6,7 @@ import { useTheme } from 'styled-components';
 import Avatar from '@/components/common/Avatar';
 import Input from '@/components/common/Input';
 import Skeleton from '@/components/common/Skeleton';
+import Spinner from '@/components/common/Spinner';
 import TagFilter from '@/components/common/TagFilter';
 import { usePolicyModal } from '@/components/Register/PolicyModal/PolicyModal.hook';
 import { PATH } from '@/constants/router';
@@ -94,7 +95,10 @@ const Register = () => {
   );
 
   useEffect(() => {
-    if (getItem('refresh-token', null) && nickname) {
+    if (
+      (getItem('refresh-token', null) && nickname) ||
+      !getItem('refresh-token', null)
+    ) {
       navigate('/');
     } else {
       if (accessToken && refreshToken) {
@@ -106,107 +110,114 @@ const Register = () => {
   }, [navigate, nickname, accessToken, setAccessToken, refreshToken]);
 
   return (
-    <RegisterPageWrapper>
-      <RegisterIntro>
-        {!isMobileSize ? (
-          <img
-            src="/kiwing_circle_green.png"
-            alt="kiwing logo"
-          />
-        ) : (
-          <Avatar
-            style={{ flexShrink: '0' }}
-            $size={'mobile'}
-            $src="/kiwing_circle_green.png"
-          />
-        )}
-        <RegisterHeader>
-          안녕하세요. <br /> 저희는&nbsp;
-          <span
-            style={{
-              color: isDarkMode
-                ? `${theme.symbol_secondary_color}`
-                : `${theme.symbol_color}`,
-            }}
-          >
-            kiwing
-          </span>
-          이에요.
-        </RegisterHeader>
-      </RegisterIntro>
-      <RegisterFormWrapper>
-        <RegisterItemWrapper>
-          <RegisterLabel>관심 분야</RegisterLabel>
-          {tagsLoading ? (
-            <Skeleton.Box
-              $width={'100%'}
-              $height={'20rem'}
-            />
-          ) : (
-            <TagFilter
-              selectedTags={selectedTags}
-              setSelectedTags={setSelectedTags}
-              tagList={tags ?? []}
-              isLimit={true}
-            />
-          )}
-        </RegisterItemWrapper>
-        <form onSubmit={handleSubmit(handleRegisterSubmit)}>
-          <RegisterItemWrapper>
-            <Input
-              fontSize={1.8}
-              label={'사용자 ID'}
-              width="100%"
-              errorMessage={
-                errors?.nickname?.type === 'required'
-                  ? '사용자 ID를 입력해주세요.'
-                  : errors?.nickname?.type === 'pattern'
-                    ? '사용자 ID는 영어와 숫자 조합으로 작성해주세요.'
-                    : errors?.nickname?.type === 'minLength'
-                      ? '사용자 ID는 2자 이상 작성해주세요.'
-                      : ''
-              }
-              placeholder="영어와 숫자 조합으로 적어주세요."
-              {...register('nickname', RegisterNicknameValidation)}
-            />
-          </RegisterItemWrapper>
-          <RegisterItemWrapper>
-            <Input
-              fontSize={1.8}
-              label={'링크'}
-              width="100%"
-              placeholder="GitHub"
-              {...register('github')}
-            />
-            <Input
-              fontSize={1.8}
-              width="100%"
-              placeholder="블로그"
-              {...register('blog')}
-            />
-            <Input
-              fontSize={1.8}
-              width="100%"
-              placeholder="기타"
-              {...register('etc')}
-            />
-          </RegisterItemWrapper>
-        </form>
-        <RegisterCheckboxWrapper>
-          <RegisterCheckbox
-            type="checkbox"
-            checked={isChecked}
-            onChange={() => setIsChecked((idx) => !idx)}
-          />
-          <div>
-            <span onClick={handlePolicyClick}>이용약관</span>에 동의합니다.
-          </div>
-        </RegisterCheckboxWrapper>
-        <RegisterSubmitButton onClick={handleRegisterSubmit}>
-          가입
-        </RegisterSubmitButton>
-      </RegisterFormWrapper>
-    </RegisterPageWrapper>
+    <>
+      {!getItem('refresh-token', null) ||
+      (getItem('refresh-token', null) && nickname) ? (
+        <Spinner />
+      ) : (
+        <RegisterPageWrapper>
+          <RegisterIntro>
+            {!isMobileSize ? (
+              <img
+                src="/kiwing_circle_green.png"
+                alt="kiwing logo"
+              />
+            ) : (
+              <Avatar
+                style={{ flexShrink: '0' }}
+                $size={'mobile'}
+                $src="/kiwing_circle_green.png"
+              />
+            )}
+            <RegisterHeader>
+              안녕하세요. <br /> 저희는&nbsp;
+              <span
+                style={{
+                  color: isDarkMode
+                    ? `${theme.symbol_secondary_color}`
+                    : `${theme.symbol_color}`,
+                }}
+              >
+                kiwing
+              </span>
+              이에요.
+            </RegisterHeader>
+          </RegisterIntro>
+          <RegisterFormWrapper>
+            <RegisterItemWrapper>
+              <RegisterLabel>관심 분야</RegisterLabel>
+              {tagsLoading ? (
+                <Skeleton.Box
+                  $width={'100%'}
+                  $height={'20rem'}
+                />
+              ) : (
+                <TagFilter
+                  selectedTags={selectedTags}
+                  setSelectedTags={setSelectedTags}
+                  tagList={tags ?? []}
+                  isLimit={true}
+                />
+              )}
+            </RegisterItemWrapper>
+            <form onSubmit={handleSubmit(handleRegisterSubmit)}>
+              <RegisterItemWrapper>
+                <Input
+                  fontSize={1.8}
+                  label={'사용자 ID'}
+                  width="100%"
+                  errorMessage={
+                    errors?.nickname?.type === 'required'
+                      ? '사용자 ID를 입력해주세요.'
+                      : errors?.nickname?.type === 'pattern'
+                        ? '사용자 ID는 영어와 숫자 조합으로 작성해주세요.'
+                        : errors?.nickname?.type === 'minLength'
+                          ? '사용자 ID는 2자 이상 작성해주세요.'
+                          : ''
+                  }
+                  placeholder="영어와 숫자 조합으로 적어주세요."
+                  {...register('nickname', RegisterNicknameValidation)}
+                />
+              </RegisterItemWrapper>
+              <RegisterItemWrapper>
+                <Input
+                  fontSize={1.8}
+                  label={'링크'}
+                  width="100%"
+                  placeholder="GitHub"
+                  {...register('github')}
+                />
+                <Input
+                  fontSize={1.8}
+                  width="100%"
+                  placeholder="블로그"
+                  {...register('blog')}
+                />
+                <Input
+                  fontSize={1.8}
+                  width="100%"
+                  placeholder="기타"
+                  {...register('etc')}
+                />
+              </RegisterItemWrapper>
+            </form>
+            <RegisterCheckboxWrapper>
+              <RegisterCheckbox
+                type="checkbox"
+                checked={isChecked}
+                onChange={() => setIsChecked((idx) => !idx)}
+              />
+              <div>
+                <span onClick={handlePolicyClick}>이용약관</span>에 동의합니다.
+              </div>
+            </RegisterCheckboxWrapper>
+            <RegisterSubmitButton onClick={handleRegisterSubmit}>
+              가입
+            </RegisterSubmitButton>
+          </RegisterFormWrapper>
+        </RegisterPageWrapper>
+      )}
+    </>
   );
 };
 
