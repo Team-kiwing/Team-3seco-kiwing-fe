@@ -1,27 +1,29 @@
 import { styled } from 'styled-components';
 
 import { MOBILE, MOBILE_FONT_SIZE } from '@/constants';
-import { Col } from '@/styles/globalStyles';
+import { Col, Row } from '@/styles/globalStyles';
 
 export const HubLayout = styled(Col)`
   width: 80%;
   max-width: 1200px;
-  align-items: center;
   margin: 0 auto;
   padding: 3rem 0;
+  gap: 2rem;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
+    gap: 1.5rem;
     padding: 2rem 0;
   }
 `;
 
 export const HubTagFilterContainer = styled.div`
   width: 100%;
-  max-width: 1200px;
+  margin-bottom: 2rem;
+  justify-content: center;
 `;
 
-export const HubSearchBarContainer = styled.div`
+export const HubSearchBarContainer = styled(Row)`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -39,7 +41,7 @@ export const HubQuestionCardContainer = styled(Col)`
   gap: 2rem;
 
   @media screen and (max-width: ${MOBILE}px) {
-    width: 90%;
+    width: 95%;
   }
 `;
 

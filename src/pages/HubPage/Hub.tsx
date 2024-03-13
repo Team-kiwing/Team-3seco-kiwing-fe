@@ -30,7 +30,6 @@ import {
 } from './Hub.style';
 
 const Hub = () => {
-  console.log(`허브 렌더링`);
   const theme = useTheme();
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [isRecent, setIsRecent] = useState<SortingType>('POPULAR');
