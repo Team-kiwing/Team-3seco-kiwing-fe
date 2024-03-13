@@ -7,11 +7,16 @@ import Textarea from '@/components/common/Textarea';
 import Toggle from '@/components/common/Toggle';
 import { notify } from '@/hooks/toast';
 import { useFetchTags } from '@/hooks/useFetchTags';
+import { useModal } from '@/hooks/useModal';
 import useResize from '@/hooks/useResize';
-import { modalStore } from '@/stores';
 import { Tag } from '@/types';
 
-import { MODAL, MyQuestionModalValidation } from './MyQuestionModal.const';
+import {
+  AnswerValidation,
+  MODAL,
+  QuestionValidation,
+} from './MyQuestionModal.const';
+import { useCreateQuestion, useUpdateQuestion } from './MyQuestionModal.hook';
 import { ButtonContainer, ModalContainer } from './MyQuestionModal.style';
 import { FormField, MyQuestionModalProps } from './MyQuestionModal.type';
 
@@ -21,14 +26,18 @@ const MyQuestionModal = ({
   questionAnswerField = '',
   selectedTagsField = [],
   isSharedField = false,
+  bundleId,
+  questionId,
+  setIsToggleShared,
 }: MyQuestionModalProps) => {
+  const { data: tags, isLoading } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>(selectedTagsField);
   const [isShared, setIsShared] = useState(isSharedField);
 
   const { isMobileSize } = useResize();
-  const { closeModal } = modalStore();
-
-  const { data: tags, isLoading } = useFetchTags();
+  const { setModalCompleteClose } = useModal();
+  const { mutate: createQuestion } = useCreateQuestion();
+  const { mutate: updateQuestion } = useUpdateQuestion();
 
   const {
     register,
@@ -36,7 +45,7 @@ const MyQuestionModal = ({
     setValue,
     formState: { errors },
   } = useForm<FormField>({
-    mode: 'onBlur',
+    mode: 'onSubmit',
     defaultValues: {
       questionNameField,
       questionAnswerField,
@@ -60,20 +69,31 @@ const MyQuestionModal = ({
     selectedTagsField,
     isSharedField,
   }) => {
-    // @TODO 꾸러미 생성 API 호출
-    console.log(
-      questionNameField,
-      questionAnswerField,
-      selectedTagsField,
-      isSharedField
-    );
+    if (modalMode === 'add') {
+      createQuestion({
+        content: questionNameField,
+        answer: questionAnswerField,
+        answerShareType: isSharedField ? 'PUBLIC' : 'PRIVATE',
+        tagIds: selectedTagsField.map((tag) => tag.id),
+        bundleId,
+      });
+    } else {
+      if (!questionId) {
+        return;
+      }
+      updateQuestion({
+        content: questionNameField,
+        answer: questionAnswerField,
+        answerShareType: isSharedField ? 'PUBLIC' : 'PRIVATE',
+        tagIds: selectedTagsField.map((tag) => tag.id),
+        questionId,
+      });
+    }
 
-    notify({
-      type: 'default',
-      text: MODAL.SUCCESS_NOTIFY,
-    });
-
-    closeModal();
+    if (modalMode === 'edit' && setIsToggleShared) {
+      setIsToggleShared(isSharedField);
+    }
+    setModalCompleteClose();
   };
 
   const onInValid: SubmitErrorHandler<{ bundleNameField: string }> = () => {
@@ -95,11 +115,12 @@ const MyQuestionModal = ({
         tagList={tags}
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
+        isLimit={true}
       />
       <form onSubmit={handleSubmit(onValid, onInValid)}>
         <Textarea
           height="10rem"
-          {...register('questionNameField', MyQuestionModalValidation)}
+          {...register('questionNameField', QuestionValidation)}
           width="100%"
           label={MODAL.QUESTION_NAME_LABEL}
           placeholder={MODAL.QUESTION_NAME_PLACEHOLDER}
@@ -107,7 +128,7 @@ const MyQuestionModal = ({
         />
         <Textarea
           height="30rem"
-          {...register('questionAnswerField', MyQuestionModalValidation)}
+          {...register('questionAnswerField', AnswerValidation)}
           width="100%"
           label={MODAL.QUESTION_ANSWER_LABEL}
           placeholder={MODAL.QUESTION_ANSWER_PLACEHOLDER}

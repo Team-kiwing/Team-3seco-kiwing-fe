@@ -33,7 +33,8 @@ export const DOMAIN = {
   GET_BUNDLE: (bundleId: number) => `/bundles/${bundleId}`,
   DELETE_BUNDLE: (bundleId: number) => `/bundles/${bundleId}`,
   UPDATE_BUNDLE: (bundleId: number) => `/bundles/${bundleId}`,
-  REORDER_BUNDLE: (bundleId: number) => `/bundles/${bundleId}/question-order`,
+  REORDER_QUESTION: (bundleId: number) => `/bundles/${bundleId}/question-order`,
+  REORDER_BUNDLE: `/bundles/bundle-order`,
   SEARCH_BUNDLE: '/bundles/search',
   MY_BUNDLE: '/bundles/my',
 

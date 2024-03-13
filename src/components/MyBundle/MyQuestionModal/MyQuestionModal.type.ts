@@ -6,6 +6,9 @@ export interface MyQuestionModalProps {
   questionAnswerField?: string;
   selectedTagsField?: Tag[];
   isSharedField?: boolean;
+  bundleId: number;
+  questionId?: number;
+  setIsToggleShared?: (state: boolean) => void;
 }
 
 export interface FormField {
@@ -13,4 +16,14 @@ export interface FormField {
   questionAnswerField: string;
   selectedTagsField: Tag[];
   isSharedField: boolean;
+}
+
+export interface EditProps {
+  questionNameField: string;
+  questionAnswerField: string;
+  selectedTagsField: Tag[];
+  isSharedField: boolean;
+  bundleId: number;
+  questionId?: number;
+  setIsToggleShared?: (state: boolean) => void;
 }

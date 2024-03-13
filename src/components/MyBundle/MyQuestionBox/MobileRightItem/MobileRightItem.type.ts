@@ -1,8 +1,8 @@
 import { Question } from '@/types';
 
-export interface RightItemProps {
-  question: Question;
-  bundleId: number;
+export interface MobileRightItemProps {
   isShared: boolean;
   setIsShared: (state: boolean) => void;
+  question: Question;
+  bundleId: number;
 }

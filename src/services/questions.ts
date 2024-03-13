@@ -72,13 +72,16 @@ export const deleteQuestion = async (id: number) => {
  * @brief 질문을 수정합니다.
  * @todo 추후에 params에 대해 백엔드 분들과 논의가 필요합니다.
  */
-export const updateQuestion = async (
-  id: number,
-  { content, answer, answerShareType, tagIds }: QuestionUpdateRequest
-) => {
+export const updateQuestion = async ({
+  questionId,
+  content,
+  answer,
+  answerShareType,
+  tagIds,
+}: QuestionUpdateRequest) => {
   try {
     const res = await axiosInstance.patch<Question>(
-      DOMAIN.UPDATE_QUESTION(id),
+      DOMAIN.UPDATE_QUESTION(questionId),
       {
         content,
         answer,

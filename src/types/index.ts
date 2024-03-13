@@ -99,6 +99,7 @@ export interface QuestionDeleteRequest {
 }
 
 export interface QuestionUpdateRequest {
+  questionId: number;
   content: string;
   answer: string;
   answerShareType: SharedType;
@@ -138,7 +139,9 @@ export interface BundlesCreateRequest {
   tagIds: number[];
 }
 
-export interface BundlesUpdateRequest extends BundlesCreateRequest {}
+export interface BundlesUpdateRequest extends BundlesCreateRequest {
+  bundleId: number;
+}
 
 export interface AddQuestionsToBundlesRequest {
   bundleIds: number[];
@@ -148,7 +151,7 @@ export interface AddQuestionsToBundlesRequest {
 export interface BundlesBasic {
   id: number;
   name: string;
-  shareType: string;
+  shareType: SharedType;
   scrapeCount: number;
   tags: Tag[];
   isHot: boolean;
@@ -159,7 +162,7 @@ export interface BundlesBasic {
 export interface Bundle {
   id: number;
   name: string;
-  shareType: string;
+  shareType: SharedType;
   scrapeCount: number;
   tags: Tag[];
   isHot: boolean;
@@ -196,7 +199,11 @@ export interface BundleDetailRequest {
   showOnlyMyQuestions?: boolean;
 }
 
-export interface BundleReorderRequest {
+export interface QuestionReorderRequest {
   bundleId: number;
   questionIds: number[];
+}
+
+export interface BundleReorderRequest {
+  bundleIds: number[];
 }

@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import {
   DragDropContext,
@@ -9,9 +10,13 @@ import {
 import BorderBox from '@/components/common/BorderBox';
 import Button from '@/components/common/Button';
 import Selector from '@/components/common/Selector';
+import { QUERYKEY } from '@/constants/queryKeys';
+import { getBundleDetail } from '@/services/bundles';
 import { Question } from '@/types';
 
 import MyQuestionBox from '../MyQuestionBox';
+import { useMyQuestionModal } from '../MyQuestionModal/MyQuestionModal.hook';
+import { useReorderQuestion } from './MyBundleDetail.hook';
 import {
   Body,
   BodyInnerWrapper,
@@ -27,20 +32,35 @@ import { MyBundleDetailProps } from './MyBundleDetail.type';
 const MyBundleDetail = ({
   isBundleSelected,
   isMyBundlesEmpty,
-  questions,
+  bundleId,
 }: MyBundleDetailProps) => {
-  const [isAll, setIsAll] = useState(true);
+  const { data: bundle } = useQuery({
+    queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
+    queryFn: async () => {
+      if (!bundleId) return null;
+      const data = await getBundleDetail({
+        bundleId,
+      });
+      return data;
+    },
+    enabled: !!bundleId,
+  });
+  const { mutate: reorder } = useReorderQuestion();
 
-  const [orderedQuestions, setOrderedQuestions] =
-    useState<Question[]>(questions);
+  const [isAll, setIsAll] = useState(true);
+  const [orderedQuestions, setOrderedQuestions] = useState<Question[]>([]);
+
+  const { handleAddQuestionClick } = useMyQuestionModal(bundleId ?? 0);
 
   const filteredQuestions = isAll
     ? orderedQuestions
-    : orderedQuestions.filter((question) => question.id === question.originId);
+    : orderedQuestions.filter((question) => question.originId === null);
 
   useEffect(() => {
-    setOrderedQuestions(questions);
-  }, [questions]);
+    if (bundle) {
+      setOrderedQuestions(bundle.questions);
+    }
+  }, [bundle]);
 
   // --- Draggable이 Droppable로 드래그 되었을 때 실행되는 이벤트
   const onDragEnd = ({ source, destination }: DropResult) => {
@@ -56,6 +76,13 @@ const MyBundleDetail = ({
     _items.splice(destination.index, 0, targetItem);
     // 상태 변경
     setOrderedQuestions(_items);
+
+    if (bundleId) {
+      reorder({
+        bundleId,
+        questionIds: _items.map((question) => question.id),
+      });
+    }
   };
 
   // --- requestAnimationFrame 초기화
@@ -75,7 +102,7 @@ const MyBundleDetail = ({
   }
   // --- requestAnimationFrame 초기화 END
 
-  if (!isBundleSelected) {
+  if (!isBundleSelected || !bundle) {
     return (
       <Container $isBundleSelected={isBundleSelected}>
         <BorderBox
@@ -87,10 +114,11 @@ const MyBundleDetail = ({
             gap: '1rem',
             justifyContent: 'center',
             alignItems: 'center',
+            boxSizing: 'border-box',
           }}
         >
           <img
-            src="./kiwing_circle_transparent.png"
+            src="/kiwing_circle_transparent.png"
             alt="kiwing logo"
             style={{
               width: '30%',
@@ -139,14 +167,16 @@ const MyBundleDetail = ({
                       >
                         {(provided) => (
                           <QuestionWrapper
+                            id={String(question.id)}
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
                             <MyQuestionBox
                               key={question.id}
-                              question={question.content}
-                              answer={question.answer}
+                              question={question}
+                              bundleId={bundle.id}
+                              answerShareType={question.answerShareType}
                             />
                           </QuestionWrapper>
                         )}
@@ -162,8 +192,9 @@ const MyBundleDetail = ({
             <Button
               width="100%"
               text="+ 새 질문 추가하기"
+              onClick={() => handleAddQuestionClick()}
             />
-            <CountText>{questions.length}/100</CountText>
+            <CountText>{bundle.questions.length}/100</CountText>
           </Footer>
         </InnerContainer>
       </BorderBox>

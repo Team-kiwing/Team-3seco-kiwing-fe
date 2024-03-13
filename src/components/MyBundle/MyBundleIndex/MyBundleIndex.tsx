@@ -1,10 +1,12 @@
 import BorderBox from '@/components/common/BorderBox';
+import { useFetchBundleDetail } from '@/hooks/api';
 
 import { Container, Text } from './MyBundleIndex.style';
 import { MyBundleIndexProps } from './MyBundleIndex.type';
 
-const MyBundleIndex = ({ questions }: MyBundleIndexProps) => {
-  if (!questions) {
+const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
+  const { data: bundle } = useFetchBundleDetail(bundleId);
+  if (!bundle?.questions) {
     return;
   }
 
@@ -12,14 +14,13 @@ const MyBundleIndex = ({ questions }: MyBundleIndexProps) => {
     <BorderBox
       width="100%"
       height="100%"
-      style={
-        {
-          //maxHeight: '45rem',
-        }
-      }
+      style={{
+        flexGrow: '1',
+        overflowY: 'scroll',
+      }}
     >
       <Container>
-        {questions.map((question, index) => (
+        {bundle.questions.map((question, index) => (
           <Text key={question.id}>
             <a href={`#${question.id}`}>
               <span>

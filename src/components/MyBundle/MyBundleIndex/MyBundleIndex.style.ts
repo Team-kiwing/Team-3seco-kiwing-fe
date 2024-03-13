@@ -6,10 +6,14 @@ export const Container = styled(Col)`
   padding: 1rem;
   gap: 1rem;
   word-break: break-all;
-  overflow-x: hidden;
-  overflow-y: auto;
+  width: 100%;
+
+  div:last-child {
+    padding-bottom: 1.5rem;
+  }
 `;
 export const Text = styled.div`
+  flex-shrink: 0;
   > a {
     color: ${({ theme }) => theme.gray_300};
     font-size: 1.2rem;

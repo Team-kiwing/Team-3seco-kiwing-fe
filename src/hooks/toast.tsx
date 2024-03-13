@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import 'react-toastify/dist/ReactToastify.css';
 
 import { toast, ToastContainer } from 'react-toastify';
