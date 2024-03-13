@@ -20,11 +20,9 @@ export const Container = styled.section`
   @media screen and (max-width: ${MOBILE}px) {
     min-height: 100%;
     width: 100%;
-    height: 100%;
+    height: auto;
     padding-left: 0;
     padding-right: 0;
-
-    overflow-y: auto;
   }
 `;
 
@@ -34,14 +32,17 @@ export const BundleWrapper = styled.div`
   width: 100%;
   height: 100%;
   gap: 2rem;
-  margin-bottom: 1.5rem;
+
   padding: 1.5rem;
   padding-top: 1rem;
+  padding-bottom: 0rem;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
 
   @media screen and (max-width: ${MOBILE}px) {
+    padding: 0;
+    padding-top: 1rem;
     min-height: calc(100vh - 23rem);
     margin-bottom: 6rem;
     gap: 1rem;
