@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BORDER_CARD_WEB, FONT_BOLD, FONT_REGULAR, MOBILE } from '@/constants';
+import { FONT_BOLD, FONT_REGULAR, MOBILE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 export const UserInfoWrapper = styled(Row)`
@@ -13,7 +13,6 @@ export const UserInfoWrapper = styled(Row)`
   padding: 2rem;
   box-sizing: border-box;
   align-items: center;
-  /* border-radius: ${BORDER_CARD_WEB}rem; */
   border-radius: 0.8rem;
 
   & > :nth-child(1),
