@@ -7,9 +7,14 @@ export const RegisterPageWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 80%;
-  margin: 6rem auto 0 auto;
+  max-width: 1200px;
+  margin: 3rem auto;
+  gap: 10rem;
 
   @media screen and (max-width: ${MOBILE}px) {
+    width: 80%;
+    margin: 2rem auto;
+    gap: 3rem;
     flex-direction: column;
     font-size: 2.8rem;
   }
@@ -51,11 +56,9 @@ export const RegisterHeader = styled.div`
 
 export const RegisterFormWrapper = styled(Col)`
   width: 60%;
-  margin-bottom: 3rem;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
-    padding: 0;
   }
 `;
 
