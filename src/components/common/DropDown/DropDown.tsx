@@ -52,6 +52,7 @@ const DropDown = ({
   setIsShow,
   closeDropDown,
   direction,
+  emptyText,
 }: DropDownProps) => {
   const ref = useClickAway((e: Event) => {
     closeDropDown(e);
@@ -117,9 +118,7 @@ const DropDown = ({
           $isEmpty={options.length === 0}
           $height={optionHeight}
         >
-          {options.length === 0 && (
-            <EmptyText>아직 내 꾸러미가 없어요!</EmptyText>
-          )}
+          {options.length === 0 && <EmptyText>{emptyText}</EmptyText>}
           {options.map((option) => (
             <Item
               key={option.id}
