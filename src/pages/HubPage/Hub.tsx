@@ -12,6 +12,11 @@ import { useFetchTags } from '@/hooks/useFetchTags';
 import { userDataStore } from '@/stores';
 import { Question, SortingType, Tag } from '@/types';
 
+import {
+  SearchWrapper,
+  SelectorWrapper,
+  TagFilterWrapper,
+} from '../SharedPage/Shared.style';
 import { HubHookConstants, HubTextConstants } from './Hub.const';
 import { useSearchQuestionsInfinite } from './Hub.hook';
 import {
@@ -19,14 +24,13 @@ import {
   HubInfiniteMessage,
   HubLayout,
   HubQuestionCardContainer,
-  HubSearchBarContainer,
   HubSearchError,
   HubSearchNone,
   HubSpinnerContainer,
-  HubTagFilterContainer,
 } from './Hub.style';
 
 const Hub = () => {
+  console.log(`허브 렌더링`);
   const theme = useTheme();
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [isRecent, setIsRecent] = useState<SortingType>('POPULAR');
@@ -60,21 +64,23 @@ const Hub = () => {
   return (
     <>
       <HubLayout>
-        <HubTagFilterContainer>
+        <TagFilterWrapper>
           <TagFilter
             selectedTags={selectedTags}
             setSelectedTags={setSelectedTags}
             tagList={tags ?? []}
           />
-        </HubTagFilterContainer>
-        <HubSearchBarContainer>
+        </TagFilterWrapper>
+        <SearchWrapper>
           <FormProvider {...methods}>
             <SearchBar
+              fontSize={1.8}
               handleSearchSubmit={onSubmit}
-              maxWidth={'500px'}
               REGISTER={HubHookConstants.HUB_SEARCH_REGISTER}
             />
           </FormProvider>
+        </SearchWrapper>
+        <SelectorWrapper>
           <Selector
             isState={isRecent === 'LATEST'}
             content={HubHookConstants.HUB_SELECTOR_CONTENT}
@@ -82,7 +88,7 @@ const Hub = () => {
               setIsRecent(item ? 'LATEST' : 'POPULAR')
             }
           />
-        </HubSearchBarContainer>
+        </SelectorWrapper>
 
         {isFetching && (
           <HubSpinnerContainer>
