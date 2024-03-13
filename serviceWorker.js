@@ -1,5 +1,5 @@
 // 캐시 이름
-const CACHE_NAME = 'kiwing-cache-v1.0.0';
+const CACHE_NAME = 'kiwing-cache-v1.0.2';
 
 // 캐싱할 파일
 const FILES_TO_CACHE = ['/offline.html', '/favicon.ico'];
