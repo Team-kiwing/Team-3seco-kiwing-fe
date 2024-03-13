@@ -12,7 +12,7 @@ export const AuthPageWrapper = styled(Row)`
   align-items: center;
 
   @media screen and (max-width: ${MOBILE}px) {
-    width: 80%;
+    width: 90%;
     margin: 2rem auto;
   }
 `;

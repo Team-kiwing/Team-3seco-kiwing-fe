@@ -12,7 +12,7 @@ export const RegisterPageWrapper = styled.div`
   gap: 10rem;
 
   @media screen and (max-width: ${MOBILE}px) {
-    width: 80%;
+    width: 90%;
     margin: 2rem auto;
     gap: 3rem;
     flex-direction: column;
