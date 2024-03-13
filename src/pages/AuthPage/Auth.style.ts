@@ -7,8 +7,14 @@ import { AuthPageStyleProps } from './Auth.type';
 
 export const AuthPageWrapper = styled(Row)`
   width: 80%;
-  margin: 6rem auto 0 auto;
+  max-width: 1200px;
+  margin: 3rem auto;
   align-items: center;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    width: 80%;
+    margin: 2rem auto;
+  }
 `;
 
 export const AuthLogo = styled(Row)`
@@ -22,12 +28,9 @@ export const AuthLogo = styled(Row)`
 
 export const AuthContentWrapper = styled(Col)`
   width: 60%;
-  padding: 0 5rem;
-  margin-bottom: 3rem;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
-    padding: 0;
   }
 `;
 
