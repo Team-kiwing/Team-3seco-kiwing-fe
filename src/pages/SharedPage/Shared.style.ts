@@ -8,7 +8,7 @@ export const SharedWrapper = styled(Col)`
   max-width: 120rem;
   margin: 0 auto;
   padding: 3rem 0;
-  gap: 3rem;
+  gap: 2rem;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
@@ -20,12 +20,8 @@ export const SharedWrapper = styled(Col)`
 
 export const TagFilterWrapper = styled(Row)`
   width: 100%;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   justify-content: center;
-
-  @media screen and (max-width: ${MOBILE}px) {
-    margin-bottom: 2rem;
-  }
 `;
 
 export const SearchWrapper = styled(Row)`
