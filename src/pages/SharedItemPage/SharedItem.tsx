@@ -49,7 +49,7 @@ const SharedItem = () => {
         <UserInfoWrapper>
           <UserInfoCard
             userImage={user.profileImage}
-            userName={user.email}
+            userName={user.nickname}
             tags={user.memberTags}
             links={user.snsList}
           />
