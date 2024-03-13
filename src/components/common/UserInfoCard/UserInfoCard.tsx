@@ -97,6 +97,7 @@ const UserInfoCard = ({
                     $text={tag.name}
                     style={{
                       backgroundColor: `${theme.symbol_secondary_color}`,
+                      cursor: 'default',
                     }}
                     key={index}
                   />
