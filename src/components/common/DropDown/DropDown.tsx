@@ -45,7 +45,7 @@ const DropDown = ({
   options,
   mode = 'normal',
   width = 12,
-  optionHeight = mode === 'normal' ? 4 : 5,
+  optionHeight = mode === 'normal' ? 4 : 6,
   height = mode === 'checkbox'
     ? optionHeight * options.length * 1.2
     : optionHeight * options.length,
@@ -102,7 +102,7 @@ const DropDown = ({
       $width={`${width}rem`}
       $height={
         options.length === 0
-          ? `${optionHeight * 3}rem`
+          ? `${optionHeight * (mode === 'checkbox' ? 3 : 2)}rem`
           : `${Math.min(optionHeight * (options.length + 1), height)}rem`
       }
     >
