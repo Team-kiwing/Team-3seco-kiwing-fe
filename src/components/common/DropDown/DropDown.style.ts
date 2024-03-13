@@ -178,6 +178,11 @@ export const Content = styled(Col)`
 export const Title = styled.span`
   font-size: 1.4rem;
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1.2rem;
   }
