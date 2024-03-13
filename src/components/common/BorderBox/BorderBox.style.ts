@@ -32,7 +32,7 @@ export const Container = styled.div<ContainerProps>`
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      scale: ${(props) => (props.$isHoverActive ? 1.01 : undefined)};
+      scale: ${(props) => (props.$isScaleActive ? 1.01 : undefined)};
       ${(props) => {
         if (props.$isHoverActive) {
           return css`
