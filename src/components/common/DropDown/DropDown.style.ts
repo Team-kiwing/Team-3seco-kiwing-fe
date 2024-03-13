@@ -101,20 +101,29 @@ export const Wrapper = styled.div<{
   position: absolute;
   z-index: ${DROP_DOWN};
 
-  z-index: ${DROP_DOWN};
-
   ${({ $direction, $width, $height }) =>
     positionByDirection($direction, $width, $height)}
 `;
 
 export const Options = styled.div<{
   $mode: 'normal' | 'checkbox';
+  $isEmpty: boolean;
+  $height: number;
 }>`
-  height: ${({ $mode }) => ($mode === 'normal' ? '100%' : '80%')};
-
-  overflow: auto;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
+  ${({ $isEmpty, $height }) => {
+    if ($isEmpty) {
+      return css`
+        justify-content: center;
+        height: ${$height * 2}rem;
+        padding: 1rem;
+        box-sizing: border-box;
+      `;
+    }
+  }}
+
   cursor: auto;
 `;
 
@@ -171,6 +180,10 @@ export const Item = styled.div<{ $mode: string; $height: number }>`
   }
 `;
 
+export const EmptyText = styled.span`
+  color: ${({ theme }) => theme.gray_300};
+`;
+
 export const Content = styled(Col)`
   text-align: left;
 `;
@@ -195,7 +208,6 @@ export const Body = styled.span`
 `;
 
 export const Footer = styled.div`
-  height: 20%;
   display: flex;
   justify-content: center;
   align-items: center;

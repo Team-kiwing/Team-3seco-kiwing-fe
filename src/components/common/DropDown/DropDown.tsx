@@ -10,6 +10,7 @@ import {
   Body,
   CheckBoxInput,
   Content,
+  EmptyText,
   Footer,
   Item,
   Options,
@@ -96,17 +97,29 @@ const DropDown = ({
       $isShow={isShow}
       $direction={direction}
       $width={`${width}rem`}
-      $height={`${height}rem`}
+      $height={
+        options.length === 0
+          ? `${optionHeight * 3}rem`
+          : `${Math.min(optionHeight * (options.length + 1), height)}rem`
+      }
     >
       <ShadowBox
         width={`${width}rem`}
-        height={`${height}rem`}
+        height="fit-content"
         style={{
           display: 'flex',
           flexDirection: 'column',
+          maxHeight: `${height}rem`,
         }}
       >
-        <Options $mode={mode}>
+        <Options
+          $mode={mode}
+          $isEmpty={options.length === 0}
+          $height={optionHeight}
+        >
+          {options.length === 0 && (
+            <EmptyText>아직 내 꾸러미가 없어요!</EmptyText>
+          )}
           {options.map((option) => (
             <Item
               key={option.id}
