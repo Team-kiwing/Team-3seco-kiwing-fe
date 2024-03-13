@@ -23,6 +23,10 @@
     />
 
     <link
+      rel="apple-touch-icon-precomposed"
+      href="/favicon.ico"
+    />
+    <link
       rel="apple-touch-icon"
       href="/icons/maskable_icon_x192.png"
     />
@@ -36,7 +40,7 @@
     />
     <meta
       name="apple-mobile-web-app-title"
-      content="앱 이름"
+      content="kiwing"
     />
 
     <!-- HTML Meta Tags -->
@@ -109,18 +113,9 @@
     ></script>
     <script>
       if ('serviceWorker' in navigator) {
-        // Register a service worker hosted at the root of the
-        // site using the default scope.
-        navigator.serviceWorker
-          .register('/serviceWorker.js')
-          .then((registration) => {
-            console.log('Service worker registration succeeded:', registration);
-          })
-          .catch((err) => {
-            console.log('Service worker registration failed:', error);
-          });
-      } else {
-        console.log('Service workers are not supported.');
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/serviceWorker.js');
+        });
       }
     </script>
   </body>
