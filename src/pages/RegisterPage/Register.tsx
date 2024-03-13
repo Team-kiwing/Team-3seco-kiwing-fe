@@ -17,7 +17,11 @@ import { themeStore, userDataStore } from '@/stores';
 import { Tag } from '@/types';
 import { getItem, setItem } from '@/utils/localStorage';
 
-import { RegisterNicknameValidation } from './Register.const';
+import {
+  REGISTER_LINK_VALIDATION,
+  REGISTER_NICKNAME_VALIDATION,
+  URL_ERROR_MESSAGE,
+} from './Register.const';
 import { useUpdateMyInfo } from './Register.hook';
 import {
   RegisterCheckbox,
@@ -176,7 +180,7 @@ const Register = () => {
                           : ''
                   }
                   placeholder="영어와 숫자 조합으로 적어주세요."
-                  {...register('nickname', RegisterNicknameValidation)}
+                  {...register('nickname', REGISTER_NICKNAME_VALIDATION)}
                 />
               </RegisterItemWrapper>
               <RegisterItemWrapper>
@@ -185,19 +189,34 @@ const Register = () => {
                   label={'링크'}
                   width="100%"
                   placeholder="GitHub"
-                  {...register('github')}
+                  errorMessage={
+                    errors?.github?.type === 'pattern'
+                      ? `${URL_ERROR_MESSAGE}`
+                      : ''
+                  }
+                  {...register('github', REGISTER_LINK_VALIDATION)}
                 />
                 <Input
                   fontSize={1.8}
                   width="100%"
                   placeholder="블로그"
-                  {...register('blog')}
+                  errorMessage={
+                    errors?.blog?.type === 'pattern'
+                      ? `${URL_ERROR_MESSAGE}`
+                      : ''
+                  }
+                  {...register('blog', REGISTER_LINK_VALIDATION)}
                 />
                 <Input
                   fontSize={1.8}
                   width="100%"
                   placeholder="기타"
-                  {...register('etc')}
+                  errorMessage={
+                    errors?.etc?.type === 'pattern'
+                      ? `${URL_ERROR_MESSAGE}`
+                      : ''
+                  }
+                  {...register('etc', REGISTER_LINK_VALIDATION)}
                 />
               </RegisterItemWrapper>
             </form>
