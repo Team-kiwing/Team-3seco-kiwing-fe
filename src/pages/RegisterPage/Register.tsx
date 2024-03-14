@@ -99,10 +99,7 @@ const Register = () => {
   );
 
   useEffect(() => {
-    if (
-      (getItem('refresh-token', null) && nickname) ||
-      !getItem('refresh-token', null)
-    ) {
+    if ((getItem('refresh-token', null) && nickname) || nickname !== '') {
       navigate('/');
     } else {
       if (accessToken && refreshToken) {
@@ -115,8 +112,7 @@ const Register = () => {
 
   return (
     <>
-      {!getItem('refresh-token', null) ||
-      (getItem('refresh-token', null) && nickname) ? (
+      {nickname !== '' || (getItem('refresh-token', null) && nickname) ? (
         <Spinner />
       ) : (
         <RegisterPageWrapper>
