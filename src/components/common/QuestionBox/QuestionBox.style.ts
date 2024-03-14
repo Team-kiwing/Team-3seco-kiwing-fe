@@ -91,3 +91,10 @@ export const Body = styled.div<{ $isEmpty: boolean }>`
 
   cursor: auto;
 `;
+
+export const EditBody = styled.div`
+  width: 100%;
+  max-height: 20rem;
+  overflow-y: auto;
+  outline: none;
+`;

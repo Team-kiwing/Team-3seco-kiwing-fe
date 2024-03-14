@@ -37,6 +37,8 @@ const MyQuestionBox = ({
       question={question.content}
       answer={question.answer}
       rightItem={rightItem}
+      isEditMode={true}
+      questionObj={question}
     />
   );
 };
