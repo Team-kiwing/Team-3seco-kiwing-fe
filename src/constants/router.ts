@@ -5,7 +5,7 @@ export const PATH = {
   HUB: '/hub',
   SHARED: '/shared',
   SHARED_ITEM: '/shared/:id',
-  MY: '/:userid',
+  MY: '/user/:userid',
   REPORT: '/report',
   POLICY: '/policy',
   NOTFOUND: '*',
