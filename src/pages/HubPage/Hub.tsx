@@ -4,6 +4,11 @@ import { SyncLoader } from 'react-spinners';
 import { useTheme } from 'styled-components';
 
 import Button from '@/components/common/Button';
+import NoSearchResults from '@/components/common/NoSearchResults';
+import {
+  NO_SEARCH_RESULTS_ALT_IMAGE,
+  NO_SEARCH_RESULTS_IMAGE,
+} from '@/components/common/NoSearchResults/NoSearchResults.const';
 import QuestionCard from '@/components/common/QuestionCard';
 import SearchBar from '@/components/common/SearchBar';
 import Selector from '@/components/common/Selector';
@@ -25,7 +30,6 @@ import {
   HubLayout,
   HubQuestionCardContainer,
   HubSearchError,
-  HubSearchNone,
   HubSpinnerContainer,
 } from './Hub.style';
 
@@ -116,7 +120,12 @@ const Hub = () => {
             !isFetchingNextPage &&
             infinityData?.pages[0] &&
             infinityData?.pages[0].questionResponses.length === 0 && (
-              <HubSearchNone>{HubTextConstants.HUB_SEARCH_NONE}</HubSearchNone>
+              <NoSearchResults
+                text1="앗"
+                text2="검색된 결과가 없습니다."
+                alt={NO_SEARCH_RESULTS_ALT_IMAGE}
+                src={NO_SEARCH_RESULTS_IMAGE}
+              />
             )}
         </HubQuestionCardContainer>
 
