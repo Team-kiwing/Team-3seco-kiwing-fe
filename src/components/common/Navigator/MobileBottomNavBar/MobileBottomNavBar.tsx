@@ -61,7 +61,7 @@ const MobileBottomNavBar = () => {
         </BottomNavBarItem>
         {isLogin ? (
           <BottomNavBarItem
-            $color={location.pathname.includes(PATH.MY)}
+            $color={location.pathname.includes('user/')}
             onClick={handleMyBundle}
           >
             <IconWrapper $size={'s'}>

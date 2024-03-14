@@ -74,7 +74,7 @@ const WebNavBar = () => {
           )}
           {isLogin ? (
             <WebNavItem
-              $isLocated={location.pathname.includes(PATH.MY)}
+              $isLocated={location.pathname.includes('user/')}
               onClick={handleMyBundle}
             >
               <Avatar
