@@ -2,7 +2,7 @@ import { InternalAxiosRequestConfig } from 'axios';
 
 import { userDataStore } from '@/stores';
 
-export const setAuthorization = (config: InternalAxiosRequestConfig) => {
+export const setRequestAuthorization = (config: InternalAxiosRequestConfig) => {
   if (!config.useAuth) {
     return config;
   }

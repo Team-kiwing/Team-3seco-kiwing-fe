@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-import { DOMAIN, NETWORK } from '@/constants/api';
+import { NETWORK } from '@/constants/api';
+import { notify } from '@/hooks/toast';
+import { getAccessToken } from '@/services/auth';
 import { userDataStore } from '@/stores';
 import { getItem, removeItem } from '@/utils/localStorage';
 
-import { setAuthorization } from './axiosInterceptors';
+import { setRequestAuthorization } from './axiosInterceptors';
 
 const axiosRequestConfig = {
   baseURL: `/api`,
@@ -14,7 +16,7 @@ const axiosRequestConfig = {
 
 export const axiosInstance = axios.create(axiosRequestConfig);
 
-axiosInstance.interceptors.request.use(setAuthorization, (error) => {
+axiosInstance.interceptors.request.use(setRequestAuthorization, (error) => {
   console.error(error);
   return Promise.reject(error);
 });
@@ -26,36 +28,36 @@ axiosInstance.interceptors.response.use(
   async function (error) {
     const setAccessToken = userDataStore.getState().setAccessToken;
     const originalConfig = error.config;
-    const msg = error.response.data.message;
+    const msg = error.response.data.code;
     const status = error.response.status;
+    const storedToken = getItem('refresh-token', null);
 
-    if (status == 401) {
-      if (msg == 'access token expired') {
-        await axios({
-          url: DOMAIN.TOKEN,
-          method: 'GET',
-          headers: { refreshToken: getItem('refresh-token', null) },
-        })
-          .then((res) => {
-            setAccessToken(res.data.accessToken);
+    if (status === 401) {
+      if (msg === 'ACCESS_TOKEN_EXPIRED') {
+        try {
+          const res = await getAccessToken({ refreshToken: storedToken });
+          if (res) {
+            setAccessToken(res.accessToken);
 
             originalConfig.headers['Authorization'] =
-              'Bearer ' + res.data.accessToken;
+              'Bearer ' + res.accessToken;
 
             return axiosInstance(originalConfig);
-          })
-          .then(() => {
-            window.location.reload();
-          });
-      } else if (
-        msg == '리프레시 토큰이 만료되었습니다. 다시 로그인 해주세요.'
-      ) {
+          } else {
+            throw new Error('응답값이 없어요!');
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
         removeItem('refresh-token');
-        window.alert('토큰이 만료되어 자동으로 로그아웃 되었습니다.');
+        notify({
+          text: '자동으로 로그아웃 되었습니다. 다시 로그인 해주세요.',
+          type: 'error',
+        });
       }
-    } else if (status == 400 || status == 404 || status == 409) {
-      removeItem('refresh-token');
-      window.alert(msg);
+    } else if (status === 400 || status === 404 || status === 409) {
+      console.error(msg);
     }
     return Promise.reject(error);
   }
