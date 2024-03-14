@@ -20,7 +20,7 @@ import {
 
 const WebNavBar = () => {
   const { isDarkMode, updateTheme } = themeStore();
-  const { isLogin, profileImage } = userDataStore();
+  const { isLogin, nickname, profileImage } = userDataStore();
   const {
     location,
     handleLogo,
@@ -74,7 +74,7 @@ const WebNavBar = () => {
           )}
           {isLogin ? (
             <WebNavItem
-              $isLocated={location.pathname.includes('user/')}
+              $isLocated={location.pathname.includes(`/user/${nickname}`)}
               onClick={handleMyBundle}
             >
               <Avatar
