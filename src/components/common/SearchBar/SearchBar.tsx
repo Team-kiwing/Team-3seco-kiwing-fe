@@ -77,7 +77,7 @@ const SearchBar = ({
         />
       </form>
       <IconWrapper
-        $size="m"
+        $size="s"
         onClick={SearchSubmit}
       >
         <MdSearch />
