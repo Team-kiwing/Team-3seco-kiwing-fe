@@ -20,7 +20,7 @@ export const useModal = () => {
   );
 
   const setModalClose = useCallback(() => {
-    if (window.confirm('작성을 종료하시겠습니까?')) {
+    if (window.confirm('창을 닫으시겠습니까?')) {
       disableScrollLock();
       closeModal();
       return;

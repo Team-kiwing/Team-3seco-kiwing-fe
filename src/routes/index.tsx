@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import ModalLayout from '@/components/common/ModalLayout';
 import {
@@ -21,17 +21,18 @@ import {
   ReportPage,
   SharedItemPage,
   SharedPage,
-  TestPage,
 } from '@/pages';
 
 import AuthRoute from './AuthRoute';
 
 const Router = () => {
   const { isMobileSize } = useResize();
+  const location = useLocation();
+  const isRegisterPage = location.pathname.includes('register');
   return (
     <>
-      {!isMobileSize && <WebNavBar />}
-      {isMobileSize && <MobileTopNavBar />}
+      {!isMobileSize && !isRegisterPage && <WebNavBar />}
+      {isMobileSize && !isRegisterPage && <MobileTopNavBar />}
       <Layout>
         <Routes>
           {/* 프레이머 모션 용 */}
@@ -73,17 +74,13 @@ const Router = () => {
               element={<PolicyPage />}
             />
             <Route
-              path={PATH.TEST} // test 페이지
-              element={<TestPage />}
-            />
-            <Route
               path={PATH.NOTFOUND} // 404 페이지
               element={<NotFoundPage />}
             />
           </Route>
         </Routes>
       </Layout>
-      {isMobileSize && <MobileBottomNavBar />}
+      {isMobileSize && !isRegisterPage && <MobileBottomNavBar />}
       <ModalLayout />
       <Toast />
     </>

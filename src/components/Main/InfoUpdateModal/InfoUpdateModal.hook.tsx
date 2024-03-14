@@ -2,15 +2,17 @@ import { useMutation } from '@tanstack/react-query';
 
 import { notify } from '@/hooks/toast';
 import { useModal } from '@/hooks/useModal';
-import { patchMyInfo, updateProfileImage } from '@/services/members';
+import { getMyInfo, patchMyInfo, updateProfileImage } from '@/services/members';
+import { userDataStore } from '@/stores';
 import { ImageRequest, UserInfoRequest, UserInfoResponse } from '@/types';
 
 export const useUpdateMyInfo = () => {
   const { setModalCompleteClose } = useModal();
+  const { setUserData } = userDataStore();
   return useMutation({
     mutationFn: ({ nickname, snsRequests, tagIds }: UserInfoRequest) =>
       patchMyInfo({ nickname, snsRequests, tagIds }),
-    onSuccess: (res: UserInfoResponse | string) => {
+    onSuccess: async (res: UserInfoResponse | string) => {
       if (typeof res === 'string') {
         if (res.includes('400')) {
           notify({
@@ -24,7 +26,10 @@ export const useUpdateMyInfo = () => {
           text: '회원 정보가 수정됐습니다.',
         });
         setModalCompleteClose();
-        window.location.reload();
+        const userData = await getMyInfo();
+        if (userData) {
+          setUserData(userData);
+        }
       }
     },
   });

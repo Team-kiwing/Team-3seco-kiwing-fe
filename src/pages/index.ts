@@ -8,4 +8,3 @@ export { default as RegisterPage } from './RegisterPage';
 export { default as ReportPage } from './ReportPage';
 export { default as SharedItemPage } from './SharedItemPage';
 export { default as SharedPage } from './SharedPage';
-export { default as TestPage } from './TestPage';

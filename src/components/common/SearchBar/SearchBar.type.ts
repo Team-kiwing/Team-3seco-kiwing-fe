@@ -6,6 +6,7 @@ export interface SearchBarProps extends React.HTMLAttributes<HTMLInputElement> {
   maxWidth?: string;
   REGISTER: string;
   VALIDATE?: RegisterOptions;
+  isOnlyBorderBottom?: boolean;
 }
 
 export interface SearchBarStyleProps {

@@ -19,6 +19,7 @@ const BorderBox = forwardRef(
       height,
       isActive = false,
       isHoverActive = false,
+      isScaleActive = false,
       isCard = false,
       children,
       ...props
@@ -36,6 +37,7 @@ const BorderBox = forwardRef(
           $height={height}
           $color={isActive ? theme.symbol_color : theme.background_color}
           $isHoverActive={isHoverActive}
+          $isScaleActive={isScaleActive}
           $isActive={isActive}
           $isDarkMode={isDarkMode}
           $isCard={isCard}

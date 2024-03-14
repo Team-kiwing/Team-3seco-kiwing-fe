@@ -19,7 +19,7 @@ export const Container = styled.div<ContainerProps>`
   background-color: ${(props) => props.$color};
   box-shadow: 0.2rem 0.2rem 2rem 0.5rem
     ${(props) =>
-      props.$isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};
+      props.$isDarkMode ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.05)'};
   border-radius: ${(props) =>
     props.$isCard ? `${BORDER_CARD_WEB}rem` : `${BORDER_WEB}rem`};
   transition: all 0.2s ease;
@@ -31,7 +31,7 @@ export const Container = styled.div<ContainerProps>`
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      scale: ${(props) => (props.$isHoverActive ? 1.05 : undefined)};
+      scale: ${(props) => (props.$isHoverActive ? 1.01 : undefined)};
     }
   }
 

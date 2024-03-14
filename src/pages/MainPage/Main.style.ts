@@ -5,11 +5,12 @@ import { Col } from '@/styles/globalStyles';
 
 export const MainPageWrapper = styled(Col)`
   width: 80%;
-  margin: 4rem auto;
+  max-width: 1200px;
+  margin: 3rem auto;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
-    margin: 3rem auto 0 auto;
+    margin: 2rem auto;
   }
 `;
 
@@ -47,7 +48,6 @@ export const MainItemWrapper = styled(Col)`
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
-    margin-bottom: 1.5rem;
     gap: 2rem;
     align-items: center;
   }
@@ -91,5 +91,5 @@ export const HorizontalDivider = styled.hr`
   display: block;
   width: 100%;
   height: 0.1rem;
-  margin: 2rem 0;
+  margin: 4rem 0;
 `;

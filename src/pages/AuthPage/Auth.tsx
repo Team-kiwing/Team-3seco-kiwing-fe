@@ -7,7 +7,6 @@ import useResize from '@/hooks/useResize';
 import { themeStore, userDataStore } from '@/stores';
 import { getItem, setItem } from '@/utils/localStorage';
 
-import { SignInUrl } from './Auth.const';
 import {
   AuthContentWrapper,
   AuthDescription,
@@ -35,7 +34,7 @@ const Auth = () => {
   );
 
   const goGoogleLogin = () => {
-    window.location.href = SignInUrl;
+    window.location.href = import.meta.env.VITE_GOOGLE_URL;
   };
 
   useEffect(() => {

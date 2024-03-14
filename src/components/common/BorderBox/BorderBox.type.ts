@@ -5,6 +5,7 @@ export interface BorderBoxProps extends HTMLAttributes<HTMLDivElement> {
   height: string;
   isActive?: boolean;
   isHoverActive?: boolean;
+  isScaleActive?: boolean;
   isCard?: boolean;
 }
 
@@ -14,6 +15,7 @@ export interface ContainerProps {
   $color: string;
   $isActive: boolean;
   $isHoverActive: boolean;
+  $isScaleActive: boolean;
   $isDarkMode: boolean;
   $isCard: boolean;
 }

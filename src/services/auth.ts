@@ -25,10 +25,8 @@ export const getAccessToken = async ({ refreshToken }: TokenRequest) => {
  */
 export const logout = async ({ refreshToken }: TokenRequest) => {
   try {
-    await axiosInstance.get(DOMAIN.LOGOUT, {
-      params: {
-        refreshToken,
-      },
+    await axiosInstance.post(DOMAIN.LOGOUT, {
+      refreshToken,
     });
     return true;
   } catch (e) {

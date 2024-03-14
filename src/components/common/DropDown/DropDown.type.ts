@@ -21,4 +21,5 @@ export interface DropDownProps {
   setIsShow: (state: boolean) => void;
   closeDropDown: (e: Event) => void;
   direction: Direction;
+  emptyText?: ReactNode;
 }

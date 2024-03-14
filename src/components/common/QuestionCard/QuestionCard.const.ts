@@ -3,7 +3,7 @@ export const QuestionCardConstants = {
   REPORT_BADGE: '신고',
   MODAL_BUTTON_TEXT: '신고하기',
   MODAL_TEXTAREA_PLACEHOLDER: '신고 내용을 작성해주세요.',
-  MAX_WIDTH: '1140',
+  MAX_WIDTH: '1200',
 };
 
 export const QuestionCardModalValidation = {

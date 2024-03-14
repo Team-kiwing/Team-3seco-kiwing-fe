@@ -21,7 +21,7 @@ const App = () => {
         setAccessToken(res.accessToken);
         const userData = await getMyInfo();
         if (userData) {
-          if (userData.nickname === null) {
+          if (!userData.nickname) {
             navigator('/register');
             return;
           }
