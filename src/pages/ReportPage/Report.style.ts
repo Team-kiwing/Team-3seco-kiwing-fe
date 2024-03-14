@@ -10,18 +10,19 @@ import {
 import { Col } from '@/styles/globalStyles';
 
 export const ReportPageLayout = styled(Col)`
-  width: 50%;
+  width: 80%;
+  max-width: 1200px;
   margin: 0 auto;
   height: 100%;
   align-items: center;
-  justify-content: center;
+  padding: 3rem 0;
 
   color: ${({ theme }) => theme.primary_color};
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
     height: auto;
-    padding-bottom: 1rem;
+    padding: 2rem 0;
   }
 `;
 
@@ -31,6 +32,7 @@ export const ReportGuideContainer = styled(Col)`
 
 export const ReportPageTitle = styled.h2`
   font-size: 3rem;
+  margin-top: 0;
 
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 2rem;

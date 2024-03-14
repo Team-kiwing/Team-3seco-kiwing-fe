@@ -21,9 +21,11 @@ import {
 
 const Main = () => {
   const { isMobileSize } = useResize();
+  const storedRefreshToken = getItem('refresh-token', null);
 
-  const { nickname, profileImage, accessToken, memberTags, snsList, isLogin } =
+  const { nickname, profileImage, memberTags, snsList, isLogin } =
     userDataStore();
+
   const { data: threeQuestions } = useFetchQuestions({
     keyword: '',
     page: 1,
@@ -41,7 +43,7 @@ const Main = () => {
 
   return (
     <>
-      {getItem('refresh-token', null) && !nickname ? (
+      {storedRefreshToken && !nickname ? (
         <Spinner />
       ) : (
         <MainPageWrapper>

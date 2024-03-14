@@ -25,9 +25,11 @@ console.log(
   `%c어떤 일인지 잘 모르신다면 개발자 도구를 바로 닫아주시면 좋을 것 같아요. 단축키는 F12입니다.%c어떤 일이 일어나고 있는지 정확히 알고 계신다면 저희 팀에 합류하시는 건 어때요?
 문의 : https://kiwing.kr/report
 팀 깃허브 : https://github.com/Team-kiwing
+공식 이메일 : %cofficial.kiwing@gmail.com
 `,
   'font-size: 1rem; color:#48DA79',
-  'font-size: 1rem; font-weight: 600; color:#009c4d'
+  'font-size: 1rem; font-weight: 600; color:#009c4d',
+  'font-size: 1rem; font-weight: 600; color: inherit'
 );
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);

@@ -39,6 +39,7 @@ const SearchBar = ({
   maxWidth,
   REGISTER,
   VALIDATE,
+  isOnlyBorderBottom = false,
 }: SearchBarProps) => {
   const {
     register,
@@ -68,14 +69,14 @@ const SearchBar = ({
           fontSize={fontSize}
           placeholder={'검색어를 입력해주세요.'}
           style={{
-            padding: '1rem 5rem 1rem 1rem',
+            padding: '2rem 5rem 2rem 1.5rem',
             height: isMobileSize ? '3rem' : '4rem',
           }}
           {...register(REGISTER, VALIDATE)}
           errorMessage={
             errors[REGISTER] ? errors[REGISTER]?.message?.toString() : ''
           }
-          isOnlyBorderBottom={false}
+          isOnlyBorderBottom={isOnlyBorderBottom}
         />
       </form>
       <IconWrapper

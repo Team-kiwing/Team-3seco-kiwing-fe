@@ -13,8 +13,7 @@ export const UserInfoWrapper = styled(Row)`
   padding: 2rem;
   box-sizing: border-box;
   align-items: center;
-  /* TODO: constans의 card_border로 수정 */
-  border-radius: 1.5rem;
+  border-radius: 0.8rem;
 
   & > :nth-child(1),
   & > :nth-child(3) {
@@ -63,7 +62,7 @@ export const UserInfoBadgeWrapper = styled.div`
 `;
 
 export const UserInfoLinkWrapper = styled(Col)`
-  width: 100%;
+  width: fit-content;
   margin-top: 1rem;
   gap: 1rem;
 `;
@@ -73,11 +72,12 @@ export const UserInfoLink = styled(Row)`
     font-size: 1rem;
   }
 
-  width: 100%;
+  width: fit-content;
   color: ${({ theme }) => theme.primary_color};
   font-size: 1.2rem;
   gap: 0.5rem;
   align-items: center;
+  cursor: pointer;
   & > a {
     width: 100%;
     color: ${({ theme }) => theme.gray_400};

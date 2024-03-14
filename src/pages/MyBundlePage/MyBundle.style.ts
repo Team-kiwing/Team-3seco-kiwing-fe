@@ -2,14 +2,28 @@ import { css, styled } from 'styled-components';
 
 import { MOBILE } from '@/constants';
 
-export const Container = styled.article`
+export const Wrapper = styled.div`
   display: flex;
-  gap: 2rem;
-  padding: 4rem;
-  padding-top: 2rem;
+  justify-content: center;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  @media screen and (max-width: ${MOBILE}px) {
+    height: auto;
+    overflow-y: auto;
+  }
+`;
+
+export const Container = styled.article`
+  display: flex;
+  gap: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 90%;
+  max-width: 150rem;
+  height: 100%;
+  box-sizing: border-box;
+  justify-content: center;
   overflow-x: hidden;
 
   @media screen and (max-width: ${MOBILE}px) {
@@ -17,6 +31,7 @@ export const Container = styled.article`
     padding: 0;
   }
 `;
+
 export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
   padding-top: 1rem;
   box-sizing: border-box;
@@ -27,9 +42,9 @@ export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
   flex-direction: column;
   gap: 2rem;
   transition:
-    transform 1s ease-in-out,
-    opacity 1s ease-in-out,
-    width 1s ease-in-out;
+    transform 0.8s ease-in-out,
+    opacity 0.8s ease-in-out,
+    width 0.8s ease-in-out;
 
   ${({ $isSelected }) => {
     if (!$isSelected) {

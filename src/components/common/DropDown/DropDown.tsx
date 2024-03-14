@@ -10,6 +10,7 @@ import {
   Body,
   CheckBoxInput,
   Content,
+  EmptyText,
   Footer,
   Item,
   Options,
@@ -37,12 +38,14 @@ import { DropDownProps } from './DropDown.type';
  * @param triggerId 드롭다운 컴포넌트가 isShow=true가 되도록 해주는 HTMLElement의 id
  * 사용 예시) <Button id='drowdown-btn' ... /> // 클릭 시 setIsShow(true) 해주는 버튼에 id 부여
  * <DropDown triggerId='dropdown-btn' ... /> // 위에서 부여한 id 값 전달
+ * @param direction 드롭다운이 부모 컴포넌트의 어느 방향에 위치할 지 지정합니다. 총 12개 방향을 지원합니다.
+ * @param emptyText options가 비어있을 경우 출력할 메세지입니다.
  */
 const DropDown = ({
   options,
   mode = 'normal',
   width = 12,
-  optionHeight = mode === 'normal' ? 4 : 5,
+  optionHeight = mode === 'normal' ? 4 : 6,
   height = mode === 'checkbox'
     ? optionHeight * options.length * 1.2
     : optionHeight * options.length,
@@ -51,6 +54,7 @@ const DropDown = ({
   setIsShow,
   closeDropDown,
   direction,
+  emptyText,
 }: DropDownProps) => {
   const ref = useClickAway((e: Event) => {
     closeDropDown(e);
@@ -96,17 +100,27 @@ const DropDown = ({
       $isShow={isShow}
       $direction={direction}
       $width={`${width}rem`}
-      $height={`${height}rem`}
+      $height={
+        options.length === 0
+          ? `${optionHeight * (mode === 'checkbox' ? 3 : 2)}rem`
+          : `${Math.min(optionHeight * (options.length + 1), height)}rem`
+      }
     >
       <ShadowBox
         width={`${width}rem`}
-        height={`${height}rem`}
+        height="fit-content"
         style={{
           display: 'flex',
           flexDirection: 'column',
+          maxHeight: `${height}rem`,
         }}
       >
-        <Options $mode={mode}>
+        <Options
+          $mode={mode}
+          $isEmpty={options.length === 0}
+          $height={optionHeight}
+        >
+          {options.length === 0 && <EmptyText>{emptyText}</EmptyText>}
           {options.map((option) => (
             <Item
               key={option.id}

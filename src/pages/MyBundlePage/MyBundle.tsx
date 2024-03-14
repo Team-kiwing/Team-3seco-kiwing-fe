@@ -9,7 +9,7 @@ import MyBundleMenu from '@/components/MyBundle/MyBundleMenu';
 import useResize from '@/hooks/useResize';
 
 import { useFetchMyBundles } from './MyBundle.hook';
-import { Container, StyledWrapper } from './MyBundle.style';
+import { Container, StyledWrapper, Wrapper } from './MyBundle.style';
 
 const MyBundle = () => {
   // const queryClient = useQueryClient();
@@ -31,7 +31,7 @@ const MyBundle = () => {
   }
 
   return (
-    <>
+    <Wrapper>
       <Container>
         <MyBundleList
           bundles={bundles}
@@ -57,7 +57,7 @@ const MyBundle = () => {
           </StyledWrapper>
         )}
       </Container>
-    </>
+    </Wrapper>
   );
 };
 
