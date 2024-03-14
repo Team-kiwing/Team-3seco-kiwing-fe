@@ -6,11 +6,10 @@ import { IoIosLink } from 'react-icons/io';
 import { PiNotePencil, PiSignOut } from 'react-icons/pi';
 import { useTheme } from 'styled-components';
 
-import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
-import { getItem, removeItem } from '@/utils/localStorage';
+import { getItem } from '@/utils/localStorage';
 
-import { useInfoUpdateModal } from './UserInfoCard.hook';
+import { useInfoUpdateModal, useLogout } from './UserInfoCard.hook';
 import {
   NoLinks,
   NoTags,
@@ -59,19 +58,15 @@ const UserInfoCard = ({
 
   const { isMobileSize } = useResize();
   const { handleInfoUpdateClick } = useInfoUpdateModal();
+  const { mutate: logout } = useLogout();
+  const storedRefreshToken = getItem('refresh-token', null);
 
   const handleLogOut = () => {
-    if (getItem('refresh-token', null)) {
-      removeItem('refresh-token');
-      notify({ type: 'success', text: '로그아웃 됐습니다.' });
-    } else {
-      notify({
-        type: 'warning',
-        text: '로그아웃 과정에서 문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
-      });
+    if (confirm('로그아웃 하시겠습니까?')) {
+      if (storedRefreshToken !== null) {
+        logout({ refreshToken: storedRefreshToken });
+      }
     }
-
-    window.location.href = '/';
   };
 
   return (
