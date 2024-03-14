@@ -98,20 +98,23 @@ const Register = () => {
   );
 
   useEffect(() => {
-    if ((getItem('refresh-token', null) && nickname) || nickname !== '') {
+    if (accessToken && refreshToken) {
+      setAccessToken(accessToken);
+      setItem('refresh-token', refreshToken);
+      navigate(PATH.REGISTER);
+    }
+
+    if (
+      (getItem('refresh-token', null) && nickname) ||
+      (!getItem('refresh-token', null) && !nickname)
+    ) {
       navigate('/');
-    } else {
-      if (accessToken && refreshToken) {
-        setAccessToken(accessToken);
-        setItem('refresh-token', refreshToken);
-        navigate(PATH.REGISTER);
-      }
     }
   }, [navigate, nickname, accessToken, setAccessToken, refreshToken]);
 
   return (
     <>
-      {nickname !== '' || (getItem('refresh-token', null) && nickname) ? (
+      {getItem('refresh-token', null) && nickname ? (
         <Spinner />
       ) : (
         <RegisterPageWrapper>
