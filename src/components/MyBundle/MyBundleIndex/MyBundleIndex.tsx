@@ -17,6 +17,7 @@ const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
       style={{
         flexGrow: '1',
         overflowY: 'scroll',
+        boxSizing: 'border-box',
       }}
     >
       <Container>

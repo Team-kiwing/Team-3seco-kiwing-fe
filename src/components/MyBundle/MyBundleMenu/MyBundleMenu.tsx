@@ -151,6 +151,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
         flexDirection: 'column',
         justifyContent: 'center',
         flexGrow: '0',
+        boxSizing: 'border-box',
       }}
     >
       <Options>
