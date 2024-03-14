@@ -46,7 +46,6 @@ import { UserInfoCardProps } from './UserInfoCard.type';
  * @returns
  */
 
-// TODO: API 명세서 나오면 데이터 형식에 맞게 props 설정하기
 const UserInfoCard = ({
   userImage,
   userName,
