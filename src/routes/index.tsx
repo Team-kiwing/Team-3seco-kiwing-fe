@@ -21,7 +21,6 @@ import {
   ReportPage,
   SharedItemPage,
   SharedPage,
-  TestPage,
 } from '@/pages';
 
 import AuthRoute from './AuthRoute';
@@ -71,10 +70,6 @@ const Router = () => {
             <Route
               path={PATH.POLICY} // Policy 페이지
               element={<PolicyPage />}
-            />
-            <Route
-              path={PATH.TEST} // test 페이지
-              element={<TestPage />}
             />
             <Route
               path={PATH.NOTFOUND} // 404 페이지

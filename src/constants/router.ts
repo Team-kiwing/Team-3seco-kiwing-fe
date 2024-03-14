@@ -8,6 +8,5 @@ export const PATH = {
   MY: '/:userid',
   REPORT: '/report',
   POLICY: '/policy',
-  TEST: '/test',
   NOTFOUND: '*',
 };
