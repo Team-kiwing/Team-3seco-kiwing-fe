@@ -39,7 +39,10 @@ const Report = () => {
         <ReportForm onSubmit={handleSubmit(onValid, onInValid)}>
           <Textarea
             {...register('createReport', ReportContentValidation)}
-            style={{ height: `${isMobileSize ? '15rem' : '30rem'}` }}
+            style={{
+              marginTop: `${isMobileSize ? '2rem' : '3rem'}`,
+              height: `${isMobileSize ? '15rem' : '30rem'}`,
+            }}
             width="100%"
             height="100%"
             placeholder={ReportPageConstants.TEXTAREA_PLACEHOLDER}

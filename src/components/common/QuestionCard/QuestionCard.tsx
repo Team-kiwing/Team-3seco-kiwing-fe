@@ -4,9 +4,9 @@ import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
 
 import Badge from '../Badge';
-import BorderBox from '../BorderBox';
 import CircleButton from '../CircleButton';
 import DropDown from '../DropDown';
+import ShadowBox from '../ShadowBox';
 import { QuestionCardConstants } from './QuestionCard.const';
 import {
   useCreateQuestionsToBundle,
@@ -90,7 +90,7 @@ const QuestionCard = ({
 
   return (
     <>
-      <BorderBox
+      <ShadowBox
         style={{
           position: 'relative',
           maxWidth: `${QuestionCardConstants.MAX_WIDTH}px`,
@@ -172,7 +172,7 @@ const QuestionCard = ({
             )}
           </QuestionCardBadgeWrapper>
         </QuestionCardContainer>
-      </BorderBox>
+      </ShadowBox>
     </>
   );
 };

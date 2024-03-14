@@ -16,7 +16,6 @@ export const useSearchQuestionsInfinite = (
     filterdTags,
     isRecent
   );
-  console.log(filterdTags, dynamicQueryKey);
   const query = useInfiniteQuery({
     queryKey: [dynamicQueryKey],
     queryFn: ({ pageParam }) =>

@@ -97,7 +97,7 @@ export const QuestionCardReportBadge = styled(Row)`
   }
 
   @media screen and (max-width: ${MOBILE}px) {
-    padding: 0.5rem 0.5rem 1rem 2rem;
+    padding: 0.5rem 1.5rem 1rem 2rem;
 
     & > span {
       font-size: 1.1rem;
