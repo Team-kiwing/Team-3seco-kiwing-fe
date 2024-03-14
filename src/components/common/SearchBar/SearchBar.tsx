@@ -73,14 +73,11 @@ const SearchBar = ({
             height: isMobileSize ? '3rem' : '4rem',
           }}
           {...register(REGISTER, VALIDATE)}
-          errorMessage={
-            errors[REGISTER] ? errors[REGISTER]?.message?.toString() : ''
-          }
           isOnlyBorderBottom={isOnlyBorderBottom}
         />
       </form>
       <IconWrapper
-        $size={isMobileSize ? 's' : 'm'}
+        $size="m"
         onClick={SearchSubmit}
       >
         <MdSearch />
