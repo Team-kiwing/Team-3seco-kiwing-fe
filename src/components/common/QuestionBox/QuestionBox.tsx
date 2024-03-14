@@ -56,9 +56,9 @@ const QuestionBox = ({
       parentRef.current.style.height = `${target.scrollHeight + 43}px`;
     }
 
-    const { textContent } = e.currentTarget;
-    if (textContent !== null) {
-      setValue('answerField', `${textContent}`);
+    const { innerText } = e.currentTarget;
+    if (innerText !== null) {
+      setValue('answerField', `${innerText}`);
     }
   };
 

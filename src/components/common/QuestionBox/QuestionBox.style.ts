@@ -83,6 +83,7 @@ export const Body = styled.div<{ $isEmpty: boolean }>`
   color: ${(props) =>
     props.$isEmpty ? props.theme.gray_300 : props.theme.primary_color};
 
+  white-space: pre-line;
   @media screen and (max-width: ${MOBILE}px) {
     padding: 1rem;
     font-size: calc(${MOBILE_FONT_SIZE}rem - 0.2rem);
