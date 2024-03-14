@@ -3,18 +3,16 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { PATH } from '@/constants/router';
+import { userDataStore } from '@/stores';
 
 export const useNavigatorMenu = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const location = useLocation();
   const navigator = useNavigate();
+  const { nickname } = userDataStore();
 
   useEffect(() => {
-    // Todo 로그인 여부
-    // const id = getId();
-    // if (id) setIsLogin(true);
     setIsLogin(false);
-    // setIsLogin(true);
   }, []);
 
   const handleNavigate = (path: string): void => {
@@ -30,7 +28,7 @@ export const useNavigatorMenu = () => {
   const handleSharedBundle = () => handleNavigate(PATH.SHARED_ITEM);
   const handleShared = () => handleNavigate(PATH.SHARED);
   const handleLogin = () => handleNavigate(PATH.AUTH);
-  const handleMyBundle = () => handleNavigate(PATH.MY);
+  const handleMyBundle = () => handleNavigate(`user/${nickname}`);
 
   return {
     isLogin,
