@@ -114,7 +114,8 @@ const Register = () => {
 
   return (
     <>
-      {getItem('refresh-token', null) && nickname ? (
+      {(getItem('refresh-token', null) && nickname) ||
+      (!getItem('refresh-token', null) && !nickname) ? (
         <Spinner />
       ) : (
         <RegisterPageWrapper>
