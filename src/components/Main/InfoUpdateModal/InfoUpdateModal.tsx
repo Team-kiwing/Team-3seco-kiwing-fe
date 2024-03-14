@@ -13,7 +13,7 @@ import useResize from '@/hooks/useResize';
 import { Row } from '@/styles/globalStyles';
 import { Tag } from '@/types';
 
-import { MODAL } from './InfoUpdateModal.const';
+import { MODAL, MODAL_LINK_VALIDATION } from './InfoUpdateModal.const';
 import { useUpdateImage, useUpdateMyInfo } from './InfoUpdateModal.hook';
 import {
   ButtonContainer,
@@ -39,7 +39,12 @@ const InfoUpdateModal = ({
   const { isMobileSize } = useResize();
 
   // react-hook-form 관련 (닉네임, 링크)
-  const { register, handleSubmit, getValues } = useForm<InfoUpdateModalForm>({
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm<InfoUpdateModalForm>({
     mode: 'onBlur',
     defaultValues: {
       updateNickname: originalNickname.split('@')[1],
@@ -133,26 +138,41 @@ const InfoUpdateModal = ({
         </div>
         <div style={{ marginBottom: '1.8rem' }}>
           <Input
-            {...register('updateGithub')}
+            {...register('updateGithub', MODAL_LINK_VALIDATION)}
             width="100%"
             label={MODAL.GITHUB_LABEL}
             placeholder={MODAL.GITHUB_PLACEHOLDER}
+            errorMessage={
+              errors?.updateGithub?.type === 'pattern'
+                ? `${MODAL.URL_ERROR_MESSAGE}`
+                : ''
+            }
           />
         </div>
         <div style={{ marginBottom: '1.8rem' }}>
           <Input
-            {...register('updateBlog')}
+            {...register('updateBlog', MODAL_LINK_VALIDATION)}
             width="100%"
             label={MODAL.BLOG_LABEL}
             placeholder={MODAL.BLOG_PLACEHOLDER}
+            errorMessage={
+              errors?.updateBlog?.type === 'pattern'
+                ? `${MODAL.URL_ERROR_MESSAGE}`
+                : ''
+            }
           />
         </div>
         <div style={{ marginBottom: '1.8rem' }}>
           <Input
-            {...register('updateEtc')}
+            {...register('updateEtc', MODAL_LINK_VALIDATION)}
             width="100%"
             label={MODAL.ETC_LABEL}
             placeholder={MODAL.ETC_PLACEHOLDER}
+            errorMessage={
+              errors?.updateEtc?.type === 'pattern'
+                ? `${MODAL.URL_ERROR_MESSAGE}`
+                : ''
+            }
           />
         </div>
         <ButtonContainer>

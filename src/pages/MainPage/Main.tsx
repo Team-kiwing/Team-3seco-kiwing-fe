@@ -43,11 +43,11 @@ const Main = () => {
 
   return (
     <>
-      {storedRefreshToken && !isLogin ? (
+      {storedRefreshToken && !nickname ? (
         <Spinner />
       ) : (
         <MainPageWrapper>
-          {isLogin ? (
+          {accessToken ? (
             <UserInfoCard
               userName={nickname.split('@')[1]}
               userImage={profileImage}
