@@ -47,7 +47,7 @@ const Main = () => {
         <Spinner />
       ) : (
         <MainPageWrapper>
-          {accessToken ? (
+          {isLogin ? (
             <UserInfoCard
               userName={nickname.split('@')[1]}
               userImage={profileImage}
