@@ -97,6 +97,7 @@ const UserInfoCard = ({
                     $text={tag.name}
                     style={{
                       backgroundColor: `${theme.symbol_secondary_color}`,
+                      cursor: 'default',
                     }}
                     key={index}
                   />
@@ -110,7 +111,10 @@ const UserInfoCard = ({
             {links.length !== 0 ? (
               links.map((link, index) => (
                 <UserInfoLink key={index}>
-                  <IconWrapper $size={isMobileSize ? 'xss' : 'xs'}>
+                  <IconWrapper
+                    $size={isMobileSize ? 'xss' : 'xs'}
+                    style={{ cursor: 'default' }}
+                  >
                     <IoIosLink />
                   </IconWrapper>
                   <a
