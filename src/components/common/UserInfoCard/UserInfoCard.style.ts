@@ -72,12 +72,12 @@ export const UserInfoLink = styled(Row)`
     font-size: 1rem;
   }
 
-  width: fit-content;
   color: ${({ theme }) => theme.primary_color};
   font-size: 1.2rem;
   gap: 0.5rem;
   align-items: center;
   cursor: pointer;
+
   & > a {
     width: 100%;
     color: ${({ theme }) => theme.gray_400};
