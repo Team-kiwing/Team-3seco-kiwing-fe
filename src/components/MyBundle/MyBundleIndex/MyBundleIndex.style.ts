@@ -17,6 +17,7 @@ export const Text = styled.div`
   > a {
     color: ${({ theme }) => theme.gray_300};
     font-size: 1.2rem;
+    text-decoration-line: none;
 
     &:hover {
       color: ${({ theme }) => theme.symbol_secondary_color};
