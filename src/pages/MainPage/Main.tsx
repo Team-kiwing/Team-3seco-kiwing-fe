@@ -16,6 +16,7 @@ import {
   MainListWrapper,
   MainPageWrapper,
   MainQuestionsBox,
+  MainUserInfoCardBox,
   VerticalDivider,
 } from './Main.style';
 
@@ -46,53 +47,57 @@ const Main = () => {
       {storedRefreshToken && !nickname ? (
         <Spinner />
       ) : (
-        <MainPageWrapper>
+        <div>
           {isLogin ? (
-            <UserInfoCard
-              userName={nickname.split('@')[1]}
-              userImage={profileImage}
-              tags={memberTags}
-              links={snsList}
-              rightButtonOn={true}
-            />
+            <MainUserInfoCardBox>
+              <UserInfoCard
+                userName={nickname.split('@')[1]}
+                userImage={profileImage}
+                tags={memberTags}
+                links={snsList}
+                rightButtonOn={true}
+              />
+            </MainUserInfoCardBox>
           ) : (
             <Banner
               onClick={() => window.open('https://kiwing.shop/', '_blank')}
             />
           )}
-          <MainListWrapper>
-            <MainItemWrapper>
-              <MainListHeader>최근 등록된 질문</MainListHeader>
-              {threeQuestions?.questionResponses?.map((question) => (
-                <MainQuestionsBox key={question.id}>
-                  <QuestionCard
-                    tags={question.tags}
-                    id={question.id}
-                    content={question.content}
-                    shareCount={question.shareCount}
-                    isHot={question.isHot}
-                    isLogin={isLogin}
-                  />
-                </MainQuestionsBox>
-              ))}
-            </MainItemWrapper>
-            {isMobileSize ? <HorizontalDivider /> : <VerticalDivider />}
-            <MainItemWrapper>
-              <MainListHeader>최근 등록된 꾸러미</MainListHeader>
-              {threeBundles?.content?.map((bundle) => (
-                <MainBundlesBox key={bundle.id}>
-                  <BundleCard
-                    id={bundle.id}
-                    bundleName={bundle.name}
-                    hashTags={bundle.tags}
-                    subscribedCount={bundle.scrapeCount}
-                    isHot={bundle.isHot}
-                  />
-                </MainBundlesBox>
-              ))}
-            </MainItemWrapper>
-          </MainListWrapper>
-        </MainPageWrapper>
+          <MainPageWrapper>
+            <MainListWrapper>
+              <MainItemWrapper>
+                <MainListHeader>최근 등록된 질문</MainListHeader>
+                {threeQuestions?.questionResponses?.map((question) => (
+                  <MainQuestionsBox key={question.id}>
+                    <QuestionCard
+                      tags={question.tags}
+                      id={question.id}
+                      content={question.content}
+                      shareCount={question.shareCount}
+                      isHot={question.isHot}
+                      isLogin={isLogin}
+                    />
+                  </MainQuestionsBox>
+                ))}
+              </MainItemWrapper>
+              {isMobileSize ? <HorizontalDivider /> : <VerticalDivider />}
+              <MainItemWrapper>
+                <MainListHeader>최근 등록된 꾸러미</MainListHeader>
+                {threeBundles?.content?.map((bundle) => (
+                  <MainBundlesBox key={bundle.id}>
+                    <BundleCard
+                      id={bundle.id}
+                      bundleName={bundle.name}
+                      hashTags={bundle.tags}
+                      subscribedCount={bundle.scrapeCount}
+                      isHot={bundle.isHot}
+                    />
+                  </MainBundlesBox>
+                ))}
+              </MainItemWrapper>
+            </MainListWrapper>
+          </MainPageWrapper>
+        </div>
       )}
     </>
   );
