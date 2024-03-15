@@ -18,11 +18,13 @@ export const ToggleSwitch = styled.div<ToggleSwitchProps>`
   width: 100%;
   height: 100%;
 
-  border: 0.2rem solid
-    ${(props) => (props.$isBorderShow ? props.theme.gray_500 : 'transparent')};
+  border: 0.2rem solid transparent;
 
   border-radius: ${({ $height }) => $height};
-  background-color: ${(props) => props.theme.container_color};
+  background-color: ${(props) =>
+    props.$isBackgroundGray
+      ? props.theme.gray_300
+      : props.theme.container_color};
   transition: all 0.2s ease;
   position: relative;
   color: ${(props) => props.theme.gray_600};
