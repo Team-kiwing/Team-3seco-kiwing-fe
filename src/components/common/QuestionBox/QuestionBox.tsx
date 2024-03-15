@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import { useUpdateQuestion } from '@/components/MyBundle/MyQuestionModal/MyQuestionModal.hook';
 import useAccordion from '@/hooks/useAccordion';
+import useResize from '@/hooks/useResize';
 
 import {
   Body,
@@ -22,6 +23,7 @@ const QuestionBox = ({
   isEditMode = false,
   questionObj,
 }: QuestionBoxProps) => {
+  const { isMobileSize } = useResize();
   const { parentRef, childRef, isActive, handleClick } = useAccordion();
 
   const [isEditable, setIsEditable] = useState(false);
@@ -53,7 +55,7 @@ const QuestionBox = ({
     const target = e.target as HTMLDivElement;
     target.style.height = 'auto';
     if (parentRef && parentRef.current) {
-      parentRef.current.style.height = `${target.scrollHeight + 43}px`;
+      parentRef.current.style.height = `${target.scrollHeight + (isMobileSize ? 23 : 43)}px`;
     }
 
     const { innerText } = e.currentTarget;
@@ -99,7 +101,7 @@ const QuestionBox = ({
             {!isEditable &&
               (answer !== null && answer.length === 0
                 ? '작성된 답변이 없습니다.'
-                : answer)}
+                : getValues('answerField'))}
           </Body>
         </BodyWrapper>
       </Container>
