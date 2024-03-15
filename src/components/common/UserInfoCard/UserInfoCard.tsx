@@ -103,22 +103,25 @@ const UserInfoCard = ({
           </UserInfoNicknameBadgeWrapper>
           <UserInfoLinkWrapper>
             {links.length !== 0 ? (
-              links.map((link, index) => (
-                <UserInfoLink key={index}>
-                  <IconWrapper
-                    $size={isMobileSize ? 'xss' : 'xs'}
-                    style={{ cursor: 'default' }}
-                  >
-                    <IoIosLink />
-                  </IconWrapper>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                  >
-                    {link.url}
-                  </a>
-                </UserInfoLink>
-              ))
+              links.map(
+                (link, index) =>
+                  link.url && (
+                    <UserInfoLink key={index}>
+                      <IconWrapper
+                        $size={isMobileSize ? 'xss' : 'xs'}
+                        style={{ cursor: 'default' }}
+                      >
+                        <IoIosLink />
+                      </IconWrapper>
+                      <a
+                        href={link.url}
+                        target="_blank"
+                      >
+                        {link.url}
+                      </a>
+                    </UserInfoLink>
+                  )
+              )
             ) : (
               <NoLinks>등록된 링크가 없습니다.</NoLinks>
             )}

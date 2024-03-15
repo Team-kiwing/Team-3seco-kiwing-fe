@@ -76,6 +76,7 @@ export const UserInfoLink = styled(Row)`
     font-size: 1.2rem;
   }
 
+  width: fit-content;
   color: ${({ theme }) => theme.primary_color};
   font-size: 1.4rem;
   gap: 0.5rem;
