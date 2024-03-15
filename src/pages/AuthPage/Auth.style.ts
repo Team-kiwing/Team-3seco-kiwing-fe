@@ -10,6 +10,7 @@ export const AuthPageWrapper = styled(Row)`
   max-width: 1200px;
   margin: 3rem auto;
   align-items: center;
+  gap: 10rem;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
