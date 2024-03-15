@@ -27,10 +27,6 @@ export const TagFilterWrapper = styled(Row)`
 export const SearchWrapper = styled(Row)`
   width: 100%;
   height: 4rem;
-
-  @media screen and (max-width: ${MOBILE}px) {
-    height: 3rem;
-  }
 `;
 
 export const SelectorWrapper = styled(Row)`
