@@ -33,8 +33,6 @@ const App = () => {
       } else {
         throw new Error(`토큰값이 없어요!`);
       }
-    } else {
-      console.log(`저장된 토큰 없음`);
     }
   };
 
