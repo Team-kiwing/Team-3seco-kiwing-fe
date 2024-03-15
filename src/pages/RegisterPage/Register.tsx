@@ -36,7 +36,6 @@ import {
 } from './Register.style';
 import { RegisterForm } from './Register.type';
 
-// TODO: 닉네임 중복 처리 로직 추가
 const Register = () => {
   const { nickname, setAccessToken } = userDataStore();
   const {
@@ -99,24 +98,24 @@ const Register = () => {
   );
 
   useEffect(() => {
+    if (accessToken && refreshToken) {
+      setAccessToken(accessToken);
+      setItem('refresh-token', refreshToken);
+      navigate(PATH.REGISTER);
+    }
+
     if (
       (getItem('refresh-token', null) && nickname) ||
-      !getItem('refresh-token', null)
+      (!getItem('refresh-token', null) && !nickname)
     ) {
       navigate('/');
-    } else {
-      if (accessToken && refreshToken) {
-        setAccessToken(accessToken);
-        setItem('refresh-token', refreshToken);
-        navigate(PATH.REGISTER);
-      }
     }
   }, [navigate, nickname, accessToken, setAccessToken, refreshToken]);
 
   return (
     <>
-      {!getItem('refresh-token', null) ||
-      (getItem('refresh-token', null) && nickname) ? (
+      {(getItem('refresh-token', null) && nickname) ||
+      (!getItem('refresh-token', null) && !nickname) ? (
         <Spinner />
       ) : (
         <RegisterPageWrapper>
