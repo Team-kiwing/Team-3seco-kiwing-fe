@@ -98,4 +98,5 @@ export const EditBody = styled.div`
   max-height: 20rem;
   overflow-y: auto;
   outline: none;
+  color: ${(props) => props.theme.primary_color};
 `;
