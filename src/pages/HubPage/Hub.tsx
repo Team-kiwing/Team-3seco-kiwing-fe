@@ -77,6 +77,7 @@ const Hub = () => {
         <SearchWrapper>
           <FormProvider {...methods}>
             <SearchBar
+              isOnlyBorderBottom={true}
               fontSize={1.8}
               handleSearchSubmit={onSubmit}
               REGISTER={HubHookConstants.HUB_SEARCH_REGISTER}
