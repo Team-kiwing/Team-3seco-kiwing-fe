@@ -17,9 +17,10 @@ export const Wrapper = styled.div`
 export const Container = styled.article`
   display: flex;
   gap: 2rem;
+  padding: 2rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  width: 90%;
+  width: 95%;
   max-width: 150rem;
   height: 100%;
   box-sizing: border-box;
@@ -33,7 +34,9 @@ export const Container = styled.article`
 `;
 
 export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
+  padding: 1.5rem;
   padding-top: 1rem;
+  padding-bottom: 0;
   box-sizing: border-box;
   width: 20rem;
   height: 100%;

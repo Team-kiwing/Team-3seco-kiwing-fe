@@ -1,4 +1,4 @@
-import BorderBox from '@/components/common/BorderBox';
+import ShadowBox from '@/components/common/ShadowBox';
 import { useFetchBundleDetail } from '@/hooks/api';
 
 import { Container, Text } from './MyBundleIndex.style';
@@ -11,7 +11,7 @@ const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
   }
 
   return (
-    <BorderBox
+    <ShadowBox
       width="100%"
       height="100%"
       style={{
@@ -31,7 +31,7 @@ const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
           </Text>
         ))}
       </Container>
-    </BorderBox>
+    </ShadowBox>
   );
 };
 

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
-import BorderBox from '@/components/common/BorderBox';
 import IconWrapper from '@/components/common/IconWrapper';
+import ShadowBox from '@/components/common/ShadowBox';
 import useAccordion from '@/hooks/useAccordion';
 import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
@@ -80,7 +80,7 @@ const MyBundleItem = ({
 
   return (
     <>
-      <BorderBox
+      <ShadowBox
         width="100%"
         height="fit-content"
         isActive={isActiveItem()}
@@ -121,7 +121,7 @@ const MyBundleItem = ({
             </IconWrapper>
           </RightItem>
         )}
-      </BorderBox>
+      </ShadowBox>
       {isMobileSize && (
         <BodyWrapper
           $isDarkMode={isDarkMode}

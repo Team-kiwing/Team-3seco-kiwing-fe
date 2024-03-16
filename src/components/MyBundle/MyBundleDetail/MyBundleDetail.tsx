@@ -7,9 +7,9 @@ import {
   DropResult,
 } from 'react-beautiful-dnd';
 
-import BorderBox from '@/components/common/BorderBox';
 import Button from '@/components/common/Button';
 import Selector from '@/components/common/Selector';
+import ShadowBox from '@/components/common/ShadowBox';
 import { QUERYKEY } from '@/constants/queryKeys';
 import useResize from '@/hooks/useResize';
 import { getBundleDetail } from '@/services/bundles';
@@ -107,7 +107,7 @@ const MyBundleDetail = ({
   if (!isBundleSelected || !bundle) {
     return (
       <Container $isBundleSelected={isBundleSelected}>
-        <BorderBox
+        <ShadowBox
           width="100%"
           height="100%"
           style={{
@@ -131,14 +131,14 @@ const MyBundleDetail = ({
           ) : (
             <span>나만의 꾸러미를 선택해보세요!</span>
           )}
-        </BorderBox>
+        </ShadowBox>
       </Container>
     );
   }
 
   return (
     <Container $isBundleSelected={isBundleSelected}>
-      <BorderBox
+      <ShadowBox
         width="100%"
         height="100%"
         style={{
@@ -214,7 +214,7 @@ const MyBundleDetail = ({
             <CountText>{bundle.questions.length}/100</CountText>
           </Footer>
         </InnerContainer>
-      </BorderBox>
+      </ShadowBox>
     </Container>
   );
 };

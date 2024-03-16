@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { FiEdit3 } from 'react-icons/fi';
 import { RiDeleteBin5Line, RiFileCopyLine } from 'react-icons/ri';
 
-import BorderBox from '@/components/common/BorderBox';
 import IconWrapper from '@/components/common/IconWrapper';
+import ShadowBox from '@/components/common/ShadowBox';
 import Toggle from '@/components/common/Toggle';
 import { QUERYKEY } from '@/constants/queryKeys';
 import { PATH } from '@/constants/router';
@@ -143,7 +143,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
     },
   ];
   return (
-    <BorderBox
+    <ShadowBox
       width="100%"
       height="fit-content"
       style={{
@@ -165,7 +165,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
           </Item>
         ))}
       </Options>
-    </BorderBox>
+    </ShadowBox>
   );
 };
 
