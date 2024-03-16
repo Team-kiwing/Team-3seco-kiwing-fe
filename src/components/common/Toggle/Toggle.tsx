@@ -15,7 +15,7 @@ const Toggle = ({
   onChange,
   isColorReverse = false,
   isContentShow = false,
-  isBorderShow = false,
+  isBackgroundGray = false,
   fontSize = '1.2rem',
   ...props
 }: ToggleProps) => {
@@ -36,7 +36,7 @@ const Toggle = ({
         $on={on}
         $isColorReverse={isColorReverse}
         $isContentShow={isContentShow}
-        $isBorderShow={isBorderShow}
+        $isBackgroundGray={isBackgroundGray}
         $fontSize={fontSize}
       />
     </ToggleContainer>

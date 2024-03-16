@@ -6,7 +6,7 @@ export interface ToggleProps
   width?: string;
   height?: string;
   isContentShow?: boolean;
-  isBorderShow?: boolean;
+  isBackgroundGray?: boolean;
   fontSize?: string;
 }
 
@@ -19,6 +19,6 @@ export interface ToggleSwitchProps extends ToggleContainerProps {
   $isColorReverse: boolean;
   $on?: boolean;
   $isContentShow: boolean;
-  $isBorderShow: boolean;
+  $isBackgroundGray: boolean;
   $fontSize: string;
 }

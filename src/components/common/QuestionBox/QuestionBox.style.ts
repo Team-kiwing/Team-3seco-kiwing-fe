@@ -26,12 +26,9 @@ export const TitleWrapper = styled(Row)<{ $isActive: boolean }>`
   border-radius: ${BORDER_WEB}rem ${BORDER_WEB}rem 0 0;
 
   background-color: ${(props) =>
-    props.$isActive ? props.theme.symbol_color : 'transparent'};
+    props.$isActive ? props.theme.border_color : 'transparent'};
   font-size: ${WEB_FONT_SIZE}rem;
-  color: ${(props) =>
-    props.$isActive
-      ? props.theme.primary_white_text_color
-      : props.theme.primary_color};
+  color: ${(props) => props.theme.primary_color};
   @media screen and (max-width: ${MOBILE}px) {
     font-size: ${MOBILE_FONT_SIZE}rem;
     border-radius: ${BORDER_MOBILE}rem ${BORDER_MOBILE}rem 0 0;
@@ -86,6 +83,7 @@ export const Body = styled.div<{ $isEmpty: boolean }>`
   color: ${(props) =>
     props.$isEmpty ? props.theme.gray_300 : props.theme.primary_color};
 
+  white-space: pre-line;
   @media screen and (max-width: ${MOBILE}px) {
     padding: 1rem;
     font-size: calc(${MOBILE_FONT_SIZE}rem - 0.2rem);
@@ -93,4 +91,12 @@ export const Body = styled.div<{ $isEmpty: boolean }>`
   }
 
   cursor: auto;
+`;
+
+export const EditBody = styled.div`
+  width: 100%;
+  max-height: 20rem;
+  overflow-y: auto;
+  outline: none;
+  color: ${(props) => props.theme.primary_color};
 `;

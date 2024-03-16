@@ -11,6 +11,7 @@ import BorderBox from '@/components/common/BorderBox';
 import Button from '@/components/common/Button';
 import Selector from '@/components/common/Selector';
 import { QUERYKEY } from '@/constants/queryKeys';
+import useResize from '@/hooks/useResize';
 import { getBundleDetail } from '@/services/bundles';
 import { Question } from '@/types';
 
@@ -34,6 +35,7 @@ const MyBundleDetail = ({
   isMyBundlesEmpty,
   bundleId,
 }: MyBundleDetailProps) => {
+  const { isMobileSize } = useResize();
   const { data: bundle } = useQuery({
     queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
     queryFn: async () => {
@@ -152,41 +154,57 @@ const MyBundleDetail = ({
             />
           </Header>
           <Body>
-            <DragDropContext onDragEnd={onDragEnd}>
-              <Droppable droppableId="droppable">
-                {(provided) => (
-                  <BodyInnerWrapper
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                  >
-                    {filteredQuestions.map((question, index) => (
-                      <Draggable
-                        key={String(question.id)}
-                        draggableId={String(question.id)}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <QuestionWrapper
-                            id={String(question.id)}
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <MyQuestionBox
-                              key={question.id}
-                              question={question}
-                              bundleId={bundle.id}
-                              answerShareType={question.answerShareType}
-                            />
-                          </QuestionWrapper>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </BodyInnerWrapper>
-                )}
-              </Droppable>
-            </DragDropContext>
+            {isMobileSize ? (
+              filteredQuestions.map((question) => (
+                <QuestionWrapper
+                  id={String(question.id)}
+                  key={question.id}
+                >
+                  <MyQuestionBox
+                    key={question.id}
+                    question={question}
+                    bundleId={bundle.id}
+                    answerShareType={question.answerShareType}
+                  />
+                </QuestionWrapper>
+              ))
+            ) : (
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="droppable">
+                  {(provided) => (
+                    <BodyInnerWrapper
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                    >
+                      {filteredQuestions.map((question, index) => (
+                        <Draggable
+                          key={String(question.id)}
+                          draggableId={String(question.id)}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <QuestionWrapper
+                              id={String(question.id)}
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <MyQuestionBox
+                                key={question.id}
+                                question={question}
+                                bundleId={bundle.id}
+                                answerShareType={question.answerShareType}
+                              />
+                            </QuestionWrapper>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </BodyInnerWrapper>
+                  )}
+                </Droppable>
+              </DragDropContext>
+            )}
           </Body>
           <Footer>
             <Button

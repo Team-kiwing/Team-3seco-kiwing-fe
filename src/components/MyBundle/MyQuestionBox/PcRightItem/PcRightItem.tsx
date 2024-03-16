@@ -63,7 +63,7 @@ const PcRightItem = ({
       <Toggle
         on={isShared}
         onChange={handleToggle}
-        isBorderShow={true}
+        isBackgroundGray={true}
         isContentShow={true}
         width="7rem"
         height="2.5rem"
