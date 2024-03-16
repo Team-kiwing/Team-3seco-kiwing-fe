@@ -40,7 +40,7 @@ export const useCreateQuestion = () => {
   });
 };
 
-export const useUpdateQuestion = () => {
+export const useUpdateQuestion = (bundleId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -57,8 +57,9 @@ export const useUpdateQuestion = () => {
         type: 'success',
         text: MODAL.SUCCESS_NOTIFY('edit'),
       });
+      console.log(bundleId);
       queryClient.invalidateQueries({
-        queryKey: [QUERYKEY.BUNDLE_DETAIL],
+        queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
       });
     },
     onError: () => {

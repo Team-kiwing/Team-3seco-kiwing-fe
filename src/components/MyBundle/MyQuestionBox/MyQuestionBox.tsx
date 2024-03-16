@@ -39,6 +39,7 @@ const MyQuestionBox = ({
       rightItem={rightItem}
       isEditMode={true}
       questionObj={question}
+      bundleId={bundleId}
     />
   );
 };

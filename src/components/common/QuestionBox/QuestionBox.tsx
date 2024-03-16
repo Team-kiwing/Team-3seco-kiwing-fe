@@ -22,12 +22,13 @@ const QuestionBox = ({
   rightItem,
   isEditMode = false,
   questionObj,
+  bundleId,
 }: QuestionBoxProps) => {
   const { isMobileSize } = useResize();
   const { parentRef, childRef, isActive, handleClick } = useAccordion();
 
   const [isEditable, setIsEditable] = useState(false);
-  const { mutate: updateQuestion } = useUpdateQuestion();
+  const { mutate: updateQuestion } = useUpdateQuestion(String(bundleId));
 
   const { register, getValues, handleSubmit, setValue } = useForm<{
     answerField: string;

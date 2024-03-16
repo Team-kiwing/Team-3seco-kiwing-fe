@@ -23,7 +23,7 @@ const PcRightItem = ({
   const { handleEditQuestionClick } = useMyQuestionModal(bundleId);
   const { mutate: deleteQuestion } = useDeleteQuestion(bundleId);
 
-  const { mutate: updateQuestion } = useUpdateQuestion();
+  const { mutate: updateQuestion } = useUpdateQuestion(String(bundleId));
   const handleToggle = () => {
     setIsShared(!isShared);
     // @TODO 추후에 꾸러미 공개/비공개를 결정하는 api 로직을 연동합니다.

@@ -30,6 +30,7 @@ const MyQuestionModal = ({
   questionId,
   setIsToggleShared,
 }: MyQuestionModalProps) => {
+  console.log(bundleId);
   const { data: tags, isLoading } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>(selectedTagsField);
   const [isShared, setIsShared] = useState(isSharedField);
@@ -37,7 +38,7 @@ const MyQuestionModal = ({
   const { isMobileSize } = useResize();
   const { setModalCompleteClose } = useModal();
   const { mutate: createQuestion } = useCreateQuestion();
-  const { mutate: updateQuestion } = useUpdateQuestion();
+  const { mutate: updateQuestion } = useUpdateQuestion(String(bundleId));
 
   const {
     register,
