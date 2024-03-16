@@ -57,7 +57,7 @@ export const useUpdateQuestion = (bundleId: string) => {
         type: 'success',
         text: MODAL.SUCCESS_NOTIFY('edit'),
       });
-      console.log(bundleId);
+
       queryClient.invalidateQueries({
         queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
       });

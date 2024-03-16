@@ -30,7 +30,6 @@ const MyQuestionModal = ({
   questionId,
   setIsToggleShared,
 }: MyQuestionModalProps) => {
-  console.log(bundleId);
   const { data: tags, isLoading } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>(selectedTagsField);
   const [isShared, setIsShared] = useState(isSharedField);
