@@ -195,6 +195,9 @@ const MyBundleDetail = ({
                   <IconWrapper
                     $size={'l'}
                     $fillColor={theme.gray_300}
+                    style={{
+                      cursor: 'auto',
+                    }}
                   >
                     <MdOutlineKeyboardDoubleArrowDown />
                   </IconWrapper>
