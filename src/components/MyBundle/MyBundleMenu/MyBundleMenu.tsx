@@ -5,6 +5,7 @@ import { RiDeleteBin5Line, RiFileCopyLine } from 'react-icons/ri';
 
 import IconWrapper from '@/components/common/IconWrapper';
 import ShadowBox from '@/components/common/ShadowBox';
+import Skeleton from '@/components/common/Skeleton';
 import Toggle from '@/components/common/Toggle';
 import { QUERYKEY } from '@/constants/queryKeys';
 import { PATH } from '@/constants/router';
@@ -42,7 +43,25 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
   }, [bundle, queryClient, bundleId]);
 
   if (!bundle) {
-    return <div>로딩중</div>;
+    return (
+      <ShadowBox
+        width="100%"
+        height="fit-content"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          flexGrow: '0',
+          boxSizing: 'border-box',
+        }}
+      >
+        <Skeleton.Paragraph
+          $width="80%"
+          $height="2rem"
+          $line={4}
+        />
+      </ShadowBox>
+    );
   }
 
   const handleItemClick = (handler: (() => void) | undefined) => {
