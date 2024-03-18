@@ -31,9 +31,11 @@ import {
   Footer,
   Header,
   HubText,
+  IconAnimation,
   InnerContainer,
   QuestionWrapper,
   SmallText,
+  TextContainer,
 } from './MyBundleDetail.style';
 import { MyBundleDetailProps } from './MyBundleDetail.type';
 
@@ -173,23 +175,28 @@ const MyBundleDetail = ({
                     width: '30%',
                   }}
                 />
-                <span>아직 질문이 없어요~ 질문을 새로 추가해보세요!</span>
-                <div>
-                  <SmallText>
-                    혹시 다른 사람의 질문을 가져오고 싶다면?
-                  </SmallText>
-                  <HubText onClick={() => navigator(PATH.HUB)}>
-                    질문 허브
-                  </HubText>
-                  <SmallText>로 이동하기</SmallText>
-                </div>
 
-                <IconWrapper
-                  $size={'l'}
-                  $fillColor="#999999"
-                >
-                  <MdOutlineKeyboardDoubleArrowDown />
-                </IconWrapper>
+                <TextContainer>
+                  <span>아직 질문이 없어요😢 질문을 새로 추가해보세요!</span>
+                  <div>
+                    <SmallText>
+                      만약 다른 사람의 질문을 가져오고 싶다면?{` `}
+                    </SmallText>
+                    <HubText onClick={() => navigator(PATH.HUB)}>
+                      질문 허브
+                    </HubText>
+                    <SmallText>로 이동하기</SmallText>
+                  </div>
+                </TextContainer>
+
+                <IconAnimation>
+                  <IconWrapper
+                    $size={'l'}
+                    $fillColor="#999999"
+                  >
+                    <MdOutlineKeyboardDoubleArrowDown />
+                  </IconWrapper>
+                </IconAnimation>
               </EmptyBody>
             )}
             {filteredQuestions.length !== 0 && isMobileSize ? (
