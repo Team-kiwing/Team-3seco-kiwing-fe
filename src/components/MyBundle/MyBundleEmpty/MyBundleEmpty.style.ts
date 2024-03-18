@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 
 import { MOBILE, WEB_FONT_SIZE } from '@/constants';
+import { Col } from '@/styles/globalStyles';
 
 export const Container = styled.section`
   display: flex;
@@ -25,8 +26,46 @@ export const Container = styled.section`
   }
 `;
 
+export const TextContainer = styled(Col)`
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+`;
+
 export const Text = styled.span`
   font-size: ${WEB_FONT_SIZE}rem;
+`;
+
+export const SmallText = styled.span`
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.border_color};
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: 1rem;
+  }
+`;
+
+export const SharedText = styled.span`
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.symbol_color};
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: ${({ theme }) => theme.symbol_secondary_color};
+      cursor: pointer;
+    }
+  }
+
+  &:active {
+    color: ${({ theme }) => theme.symbol_secondary_color};
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: 1rem;
+  }
+
+  transition: all 0.2s ease;
 `;
 
 export const IconAnimation = styled.div`

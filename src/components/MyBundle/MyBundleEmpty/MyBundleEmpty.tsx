@@ -1,16 +1,27 @@
 import { MdOutlineKeyboardDoubleArrowDown } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
 import Button from '@/components/common/Button';
 import IconWrapper from '@/components/common/IconWrapper';
+import { PATH } from '@/constants/router';
 import useResize from '@/hooks/useResize';
 
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
-import { Container, IconAnimation, Text } from './MyBundleEmpty.style';
+import {
+  Container,
+  IconAnimation,
+  SharedText,
+  SmallText,
+  Text,
+  TextContainer,
+} from './MyBundleEmpty.style';
 
 const MyBundleEmpty = () => {
   const theme = useTheme();
+  const navigator = useNavigate();
   const { isMobileSize } = useResize();
+
   const { handleAddBundleClick } = useMyBundleModal();
 
   return (
@@ -22,7 +33,19 @@ const MyBundleEmpty = () => {
           width: '30%',
         }}
       />
-      <Text>나만의 꾸러미를 생성해보세요!</Text>
+
+      <TextContainer>
+        <Text>아직 꾸러미가 하나도 없어요😢</Text>
+        <Text>면접을 대비하기 위한 나만의 꾸러미를 생성해보세요!</Text>
+        <div>
+          <SmallText>만약 다른 사람의 꾸러미를 가져오고 싶다면?{` `}</SmallText>
+          <SharedText onClick={() => navigator(PATH.SHARED)}>
+            공유된 꾸러미
+          </SharedText>
+          <SmallText>로 이동하기</SmallText>
+        </div>
+      </TextContainer>
+
       <IconAnimation>
         <IconWrapper
           $size={'l'}

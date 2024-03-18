@@ -14,6 +14,7 @@ export const EmptyBody = styled(Col)`
 export const TextContainer = styled(Col)`
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
 `;
 
 export const SmallText = styled.span`

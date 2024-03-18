@@ -28,7 +28,8 @@ const MyQuestionEmpty = () => {
       />
 
       <TextContainer>
-        <span>아직 질문이 없어요😢 질문을 새로 추가해보세요!</span>
+        <span>아직 꾸러미 안에 질문이 하나도 없어요😢</span>
+        <span>면접을 대비하기 위한 나만의 질문을 새로 추가해보세요!</span>
         <div>
           <SmallText>만약 다른 사람의 질문을 가져오고 싶다면?{` `}</SmallText>
           <HubText onClick={() => navigator(PATH.HUB)}>질문 허브</HubText>
