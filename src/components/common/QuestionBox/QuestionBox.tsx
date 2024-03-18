@@ -23,6 +23,7 @@ const QuestionBox = ({
   isEditMode = false,
   questionObj,
   bundleId,
+  dragHandleProps,
 }: QuestionBoxProps) => {
   const { isMobileSize } = useResize();
   const { parentRef, childRef, isActive, handleClick } = useAccordion();
@@ -68,7 +69,10 @@ const QuestionBox = ({
   return (
     <>
       <Container>
-        <TitleWrapper $isActive={isActive}>
+        <TitleWrapper
+          $isActive={isActive}
+          {...dragHandleProps}
+        >
           <Header onClick={(e) => handleClick(e)}>{question}</Header>
           <RightItem>{rightItem}</RightItem>
         </TitleWrapper>

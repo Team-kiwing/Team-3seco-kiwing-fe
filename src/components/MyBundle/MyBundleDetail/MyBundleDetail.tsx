@@ -185,13 +185,13 @@ const MyBundleDetail = ({
                               id={String(question.id)}
                               ref={provided.innerRef}
                               {...provided.draggableProps}
-                              {...provided.dragHandleProps}
                             >
                               <MyQuestionBox
                                 key={question.id}
                                 question={question}
                                 bundleId={bundle.id}
                                 answerShareType={question.answerShareType}
+                                dragHandleProps={provided.dragHandleProps}
                               />
                             </QuestionWrapper>
                           )}

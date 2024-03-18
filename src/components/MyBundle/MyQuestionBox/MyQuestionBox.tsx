@@ -11,6 +11,7 @@ const MyQuestionBox = ({
   bundleId,
   answerShareType,
   question,
+  dragHandleProps,
 }: MyQuestionBoxProps) => {
   const [isShared, setIsShared] = useState(answerShareType === 'PUBLIC');
 
@@ -40,6 +41,7 @@ const MyQuestionBox = ({
       isEditMode={true}
       questionObj={question}
       bundleId={bundleId}
+      dragHandleProps={dragHandleProps}
     />
   );
 };
