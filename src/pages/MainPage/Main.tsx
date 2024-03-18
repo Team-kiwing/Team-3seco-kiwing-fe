@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
+
 import BundleCard from '@/components/common/BundleCard';
 import QuestionCard from '@/components/common/QuestionCard';
+import { useGetMyBundles } from '@/components/common/QuestionCard/QuestionCard.hook';
 import Spinner from '@/components/common/Spinner';
 import UserInfoCard from '@/components/common/UserInfoCard';
 import useResize from '@/hooks/useResize';
@@ -42,6 +45,13 @@ const Main = () => {
     tagIds: [],
   });
 
+  const { data: userBundles, refetch: getMyBundlesRefetch } =
+    useGetMyBundles('LATEST');
+
+  useEffect(() => {
+    isLogin && getMyBundlesRefetch();
+  }, [getMyBundlesRefetch, isLogin]);
+
   return (
     <>
       {storedRefreshToken && !nickname ? (
@@ -76,6 +86,7 @@ const Main = () => {
                       shareCount={question.shareCount}
                       isHot={question.isHot}
                       isLogin={isLogin}
+                      Bundle={userBundles ? userBundles : []}
                     />
                   </MainQuestionsBox>
                 ))}
