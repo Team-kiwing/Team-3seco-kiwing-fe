@@ -1,17 +1,26 @@
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
+import Spinner from '@/components/common/Spinner';
 import MyBundleDetail from '@/components/MyBundle/MyBundleDetail';
-import MyBundleDetailSkeleton from '@/components/MyBundle/MyBundleDetail/MyBundleDetail.skeleton';
 import MyBundleIndex from '@/components/MyBundle/MyBundleIndex';
 import MyBundleList from '@/components/MyBundle/MyBundleList';
-import BundleListSkeleton from '@/components/MyBundle/MyBundleList/Skeletion';
 import MyBundleMenu from '@/components/MyBundle/MyBundleMenu';
 import useResize from '@/hooks/useResize';
+import { userDataStore } from '@/stores';
 
 import { useFetchMyBundles } from './MyBundle.hook';
 import { Container, StyledWrapper, Wrapper } from './MyBundle.style';
 
 const MyBundle = () => {
+  const { nickname } = userDataStore();
+  const navigator = useNavigate();
+  const { userid } = useParams();
+  if (userid && nickname && userid !== nickname) {
+    navigator(`/user/${nickname}`);
+    const urlString = location.href;
+    window.location.replace(urlString.replace(userid, nickname));
+  }
   // const queryClient = useQueryClient();
   const { isMobileSize } = useResize();
 
@@ -22,12 +31,7 @@ const MyBundle = () => {
   const [selectedBundleId, setSelectedBundleId] = useState<null | number>(null);
 
   if (!bundles) {
-    return (
-      <Container>
-        <BundleListSkeleton />
-        {!isMobileSize && <MyBundleDetailSkeleton />}
-      </Container>
-    );
+    return <Spinner />;
   }
 
   return (
