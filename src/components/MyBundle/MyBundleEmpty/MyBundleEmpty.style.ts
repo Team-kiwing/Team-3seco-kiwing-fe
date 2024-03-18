@@ -1,8 +1,14 @@
 import { styled } from 'styled-components';
 
-import { MOBILE } from '@/constants';
+import { MOBILE, WEB_FONT_SIZE } from '@/constants';
 
 export const Container = styled.section`
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   width: 80%;
   height: 100%;
   padding-top: 1.5rem;
@@ -13,9 +19,14 @@ export const Container = styled.section`
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
+    height: calc(100vh - 11rem);
     padding-top: 2.5rem;
     padding-bottom: 1.5rem;
   }
+`;
+
+export const Text = styled.span`
+  font-size: ${WEB_FONT_SIZE}rem;
 `;
 
 export const IconAnimation = styled.div`

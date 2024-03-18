@@ -3,55 +3,47 @@ import { useTheme } from 'styled-components';
 
 import Button from '@/components/common/Button';
 import IconWrapper from '@/components/common/IconWrapper';
-import ShadowBox from '@/components/common/ShadowBox';
+import useResize from '@/hooks/useResize';
 
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
-import { Container, IconAnimation } from './MyBundleEmpty.style';
+import { Container, IconAnimation, Text } from './MyBundleEmpty.style';
 
 const MyBundleEmpty = () => {
   const theme = useTheme();
+  const { isMobileSize } = useResize();
   const { handleAddBundleClick } = useMyBundleModal();
 
   return (
     <Container>
-      <ShadowBox
-        width="100%"
-        height="100%"
+      <img
+        src="/kiwing_circle_transparent.png"
+        alt="kiwing logo"
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
-          justifyContent: 'center',
-          alignItems: 'center',
-          boxSizing: 'border-box',
+          width: '30%',
         }}
-      >
-        <img
-          src="/kiwing_circle_transparent.png"
-          alt="kiwing logo"
+      />
+      <Text>나만의 꾸러미를 생성해보세요!</Text>
+      <IconAnimation>
+        <IconWrapper
+          $size={'l'}
+          $fillColor={theme.gray_300}
           style={{
-            width: '30%',
+            cursor: 'auto',
           }}
-        />
-        <span>나만의 꾸러미를 생성해보세요!</span>
-        <IconAnimation>
-          <IconWrapper
-            $size={'l'}
-            $fillColor={theme.gray_300}
-            style={{
-              cursor: 'auto',
-            }}
-          >
-            <MdOutlineKeyboardDoubleArrowDown />
-          </IconWrapper>
-        </IconAnimation>
-        <Button
-          width="80%"
-          height="5rem"
-          text="+ 새 질문 꾸러미 추가하기"
-          onClick={handleAddBundleClick}
-        />
-      </ShadowBox>
+        >
+          <MdOutlineKeyboardDoubleArrowDown />
+        </IconWrapper>
+      </IconAnimation>
+      <Button
+        width="80%"
+        height="5rem"
+        text="+ 새 질문 꾸러미 추가하기"
+        onClick={handleAddBundleClick}
+        style={{
+          position: isMobileSize ? 'absolute' : 'inherit',
+          bottom: '11rem',
+        }}
+      />
     </Container>
   );
 };
