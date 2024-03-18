@@ -40,7 +40,7 @@ export const useCreateQuestion = () => {
   });
 };
 
-export const useUpdateQuestion = (bundleId: string) => {
+export const useUpdateQuestion = (bundleId: number) => {
   const queryClient = useQueryClient();
 
   return useMutation({

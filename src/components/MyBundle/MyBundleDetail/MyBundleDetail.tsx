@@ -37,7 +37,7 @@ const MyBundleDetail = ({
 }: MyBundleDetailProps) => {
   const { isMobileSize } = useResize();
   const { data: bundle } = useQuery({
-    queryKey: [QUERYKEY.BUNDLE_DETAIL, String(bundleId)],
+    queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
     queryFn: async () => {
       if (!bundleId) return null;
       const data = await getBundleDetail({

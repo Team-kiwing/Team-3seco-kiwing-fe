@@ -29,7 +29,7 @@ const QuestionBox = ({
   const { parentRef, childRef, isActive, handleClick } = useAccordion();
 
   const [isEditable, setIsEditable] = useState(false);
-  const { mutate: updateQuestion } = useUpdateQuestion(String(bundleId));
+  const { mutate: updateQuestion } = useUpdateQuestion(bundleId);
 
   const { register, getValues, handleSubmit, setValue } = useForm<{
     answerField: string;
