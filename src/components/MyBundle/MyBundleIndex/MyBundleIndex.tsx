@@ -1,7 +1,12 @@
 import ShadowBox from '@/components/common/ShadowBox';
 import { useFetchBundleDetail } from '@/hooks/api';
 
-import { Container, Text } from './MyBundleIndex.style';
+import {
+  Container,
+  EmptyText,
+  Text,
+  TextContainer,
+} from './MyBundleIndex.style';
 import { MyBundleIndexProps } from './MyBundleIndex.type';
 
 const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
@@ -21,6 +26,12 @@ const MyBundleIndex = ({ bundleId }: MyBundleIndexProps) => {
       }}
     >
       <Container>
+        <TextContainer>
+          <EmptyText>📌</EmptyText>
+        </TextContainer>
+        {bundle.questions.length === 0 && (
+          <EmptyText>질문이 추가되면 여기에 목차가 생겨요!</EmptyText>
+        )}
         {bundle.questions.map((question, index) => (
           <Text key={question.id}>
             <a href={`#${question.id}`}>
