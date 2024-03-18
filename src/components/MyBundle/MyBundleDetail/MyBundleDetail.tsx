@@ -6,21 +6,17 @@ import {
   Droppable,
   DropResult,
 } from 'react-beautiful-dnd';
-import { MdOutlineKeyboardDoubleArrowDown } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
-import { useTheme } from 'styled-components';
 
 import Button from '@/components/common/Button';
-import IconWrapper from '@/components/common/IconWrapper';
 import Selector from '@/components/common/Selector';
 import ShadowBox from '@/components/common/ShadowBox';
 import { QUERYKEY } from '@/constants/queryKeys';
-import { PATH } from '@/constants/router';
 import useResize from '@/hooks/useResize';
 import { getBundleDetail } from '@/services/bundles';
 import { Question } from '@/types';
 
 import MyQuestionBox from '../MyQuestionBox';
+import MyQuestionEmpty from '../MyQuestionEmpty';
 import { useMyQuestionModal } from '../MyQuestionModal/MyQuestionModal.hook';
 import { useReorderQuestion } from './MyBundleDetail.hook';
 import {
@@ -28,15 +24,10 @@ import {
   BodyInnerWrapper,
   Container,
   CountText,
-  EmptyBody,
   Footer,
   Header,
-  HubText,
-  IconAnimation,
   InnerContainer,
   QuestionWrapper,
-  SmallText,
-  TextContainer,
 } from './MyBundleDetail.style';
 import { MyBundleDetailProps } from './MyBundleDetail.type';
 
@@ -44,8 +35,6 @@ const MyBundleDetail = ({
   isBundleSelected,
   bundleId,
 }: MyBundleDetailProps) => {
-  const navigator = useNavigate();
-  const theme = useTheme();
   const { isMobileSize } = useResize();
   const { data: bundle } = useQuery({
     queryKey: [QUERYKEY.BUNDLE_DETAIL, String(bundleId)],
@@ -163,42 +152,7 @@ const MyBundleDetail = ({
             />
           </Header>
           <Body>
-            {filteredQuestions.length === 0 && (
-              <EmptyBody>
-                <img
-                  src="/kiwing_circle_transparent.png"
-                  alt="kiwing logo"
-                  style={{
-                    width: '30%',
-                  }}
-                />
-
-                <TextContainer>
-                  <span>아직 질문이 없어요😢 질문을 새로 추가해보세요!</span>
-                  <div>
-                    <SmallText>
-                      만약 다른 사람의 질문을 가져오고 싶다면?{` `}
-                    </SmallText>
-                    <HubText onClick={() => navigator(PATH.HUB)}>
-                      질문 허브
-                    </HubText>
-                    <SmallText>로 이동하기</SmallText>
-                  </div>
-                </TextContainer>
-
-                <IconAnimation>
-                  <IconWrapper
-                    $size={'l'}
-                    $fillColor={theme.gray_300}
-                    style={{
-                      cursor: 'auto',
-                    }}
-                  >
-                    <MdOutlineKeyboardDoubleArrowDown />
-                  </IconWrapper>
-                </IconAnimation>
-              </EmptyBody>
-            )}
+            {filteredQuestions.length === 0 && <MyQuestionEmpty />}
             {filteredQuestions.length !== 0 && isMobileSize ? (
               filteredQuestions.map((question) => (
                 <QuestionWrapper
