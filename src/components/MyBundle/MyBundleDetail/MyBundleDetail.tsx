@@ -152,7 +152,7 @@ const MyBundleDetail = ({
             />
           </Header>
           <Body>
-            {filteredQuestions.length === 0 && <MyQuestionEmpty />}
+            {bundle.questions.length === 0 && <MyQuestionEmpty />}
             {filteredQuestions.length !== 0 && isMobileSize ? (
               filteredQuestions.map((question) => (
                 <QuestionWrapper
