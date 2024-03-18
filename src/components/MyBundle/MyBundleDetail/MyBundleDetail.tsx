@@ -8,6 +8,7 @@ import {
 } from 'react-beautiful-dnd';
 import { MdOutlineKeyboardDoubleArrowDown } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from 'styled-components';
 
 import Button from '@/components/common/Button';
 import IconWrapper from '@/components/common/IconWrapper';
@@ -45,6 +46,7 @@ const MyBundleDetail = ({
   bundleId,
 }: MyBundleDetailProps) => {
   const navigator = useNavigate();
+  const theme = useTheme();
   const { isMobileSize } = useResize();
   const { data: bundle } = useQuery({
     queryKey: [QUERYKEY.BUNDLE_DETAIL, String(bundleId)],
@@ -192,7 +194,7 @@ const MyBundleDetail = ({
                 <IconAnimation>
                   <IconWrapper
                     $size={'l'}
-                    $fillColor="#999999"
+                    $fillColor={theme.gray_300}
                   >
                     <MdOutlineKeyboardDoubleArrowDown />
                   </IconWrapper>
