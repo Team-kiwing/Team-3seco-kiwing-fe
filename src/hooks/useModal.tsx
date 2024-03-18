@@ -19,16 +19,6 @@ export const useModal = () => {
     [openModal]
   );
 
-  const setModalClose = useCallback(() => {
-    if (window.confirm('창을 닫으시겠습니까?')) {
-      disableScrollLock();
-      closeModal();
-      return;
-    } else {
-      return;
-    }
-  }, [closeModal]);
-
   const setModalCompleteClose = useCallback(() => {
     disableScrollLock();
     closeModal();
@@ -38,7 +28,6 @@ export const useModal = () => {
     isOpen,
     modalState: { title, content, callBack },
     setModalOpen,
-    setModalClose,
     setModalCompleteClose,
   };
 };

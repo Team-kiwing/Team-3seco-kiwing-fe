@@ -13,7 +13,7 @@ import {
 } from './ModalLayout.style';
 
 const ModalLayout = () => {
-  const { isOpen, modalState, setModalClose } = useModal();
+  const { isOpen, modalState, setModalCompleteClose } = useModal();
   const { isMobileSize } = useResize();
 
   return (
@@ -24,7 +24,7 @@ const ModalLayout = () => {
             <ModalTitle>{modalState.title}</ModalTitle>
             <ModalContents>{modalState.content}</ModalContents>
             {isMobileSize ? (
-              <MobileModalCloseArea onClick={setModalClose}>
+              <MobileModalCloseArea onClick={setModalCompleteClose}>
                 <span>닫기</span>
               </MobileModalCloseArea>
             ) : (
@@ -35,7 +35,7 @@ const ModalLayout = () => {
                 }}
                 $isBackground
                 $size={'m'}
-                onClick={setModalClose}
+                onClick={setModalCompleteClose}
               >
                 <MdClose />
               </IconWrapper>
