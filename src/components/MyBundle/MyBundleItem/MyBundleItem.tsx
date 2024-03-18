@@ -149,7 +149,6 @@ const MyBundleItem = ({
           >
             <MyBundleDetail
               isBundleSelected={true}
-              isMyBundlesEmpty={false}
               bundleId={bundle.id}
             />
           </div>

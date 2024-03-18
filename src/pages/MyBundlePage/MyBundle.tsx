@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import Spinner from '@/components/common/Spinner';
 import MyBundleDetail from '@/components/MyBundle/MyBundleDetail';
+import MyBundleEmpty from '@/components/MyBundle/MyBundleEmpty';
 import MyBundleIndex from '@/components/MyBundle/MyBundleIndex';
 import MyBundleList from '@/components/MyBundle/MyBundleList';
 import MyBundleMenu from '@/components/MyBundle/MyBundleMenu';
@@ -37,16 +38,18 @@ const MyBundle = () => {
   return (
     <Wrapper>
       <Container>
-        <MyBundleList
-          bundles={bundles}
-          selectedBundleId={selectedBundleId}
-          setSelectedBundleId={setSelectedBundleId}
-        />
+        {bundles.length === 0 && <MyBundleEmpty />}
+        {bundles.length !== 0 && (
+          <MyBundleList
+            bundles={bundles}
+            selectedBundleId={selectedBundleId}
+            setSelectedBundleId={setSelectedBundleId}
+          />
+        )}
 
-        {!isMobileSize && (
+        {!isMobileSize && bundles.length !== 0 && (
           <MyBundleDetail
             isBundleSelected={selectedBundleId != null}
-            isMyBundlesEmpty={bundles.length === 0}
             bundleId={selectedBundleId}
           />
         )}

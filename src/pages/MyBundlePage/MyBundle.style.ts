@@ -54,6 +54,7 @@ export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
   ${({ $isSelected }) => {
     if (!$isSelected) {
       return css`
+        padding: 0rem;
         display: fixed;
         transform: translateX(150%);
         opacity: 0;

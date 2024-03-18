@@ -42,7 +42,6 @@ import { MyBundleDetailProps } from './MyBundleDetail.type';
 
 const MyBundleDetail = ({
   isBundleSelected,
-  isMyBundlesEmpty,
   bundleId,
 }: MyBundleDetailProps) => {
   const navigator = useNavigate();
@@ -138,11 +137,7 @@ const MyBundleDetail = ({
               width: '30%',
             }}
           />
-          {isMyBundlesEmpty ? (
-            <span>나만의 꾸러미를 생성해보세요!</span>
-          ) : (
-            <span>나만의 꾸러미를 선택해보세요!</span>
-          )}
+          <span>나만의 꾸러미를 선택해보세요!</span>
         </ShadowBox>
       </Container>
     );
