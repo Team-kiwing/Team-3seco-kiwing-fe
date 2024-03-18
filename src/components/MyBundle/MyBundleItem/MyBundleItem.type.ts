@@ -4,7 +4,7 @@ import { BundlesBasic } from '@/types';
 
 export interface MyBundleItem {
   selectedBundleId: number | null;
-  setSelectedBundleId: (state: number) => void;
+  setSelectedBundleId: (state: number | null) => void;
   bundle: BundlesBasic;
   dragHandleProps?: DraggableProvidedDragHandleProps | null | undefined;
 }

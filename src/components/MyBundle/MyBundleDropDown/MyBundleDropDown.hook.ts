@@ -4,7 +4,11 @@ import { QUERYKEY } from '@/constants/queryKeys';
 import { notify } from '@/hooks/toast';
 import { deleteBundle } from '@/services/bundles';
 
-export const useDeleteBundle = () => {
+export const useDeleteBundle = ({
+  setSelectedBundleId,
+}: {
+  setSelectedBundleId: (state: null | number) => void;
+}) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -17,6 +21,7 @@ export const useDeleteBundle = () => {
       queryClient.refetchQueries({
         queryKey: [QUERYKEY.MY_BUNDLES],
       });
+      setSelectedBundleId(null);
     },
     onError: () => {
       notify({

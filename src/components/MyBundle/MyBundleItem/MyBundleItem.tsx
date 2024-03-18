@@ -132,6 +132,7 @@ const MyBundleItem = ({
                 bundle={bundle}
                 direction={direction}
                 handleEditBundleClick={handleEditBundleClick}
+                setSelectedBundleId={setSelectedBundleId}
               />
               <RxHamburgerMenu id={triggerId} />
             </IconWrapper>

@@ -30,7 +30,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
   );
   const { handleEditBundleClick } = useMyBundleModal();
   const { mutate: updateBundle } = useUpdateBundle();
-  const { mutate: deleteBundle } = useDeleteBundle();
+  const { mutate: deleteBundle } = useDeleteBundle({ setSelectedBundleId });
 
   useEffect(() => {
     if (bundle) {
