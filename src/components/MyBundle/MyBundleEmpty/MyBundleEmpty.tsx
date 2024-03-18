@@ -30,7 +30,7 @@ const MyBundleEmpty = () => {
         src="/kiwing_circle_transparent.png"
         alt="kiwing logo"
         style={{
-          width: '30%',
+          height: '35%',
         }}
       />
 
