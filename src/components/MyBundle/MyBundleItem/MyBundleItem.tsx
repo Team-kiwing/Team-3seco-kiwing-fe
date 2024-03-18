@@ -12,7 +12,12 @@ import { Direction } from '@/types/dropdown';
 import MyBundleDetail from '../MyBundleDetail';
 import MyBundleDropDown from '../MyBundleDropDown';
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
-import { BodyWrapper, RightItem, Title } from './MyBundleItem.style';
+import {
+  BodyWrapper,
+  BundleItemWrapper,
+  RightItem,
+  Title,
+} from './MyBundleItem.style';
 import { MyBundleItem } from './MyBundleItem.type';
 
 const MyBundleItem = ({
@@ -79,7 +84,11 @@ const MyBundleItem = ({
   };
 
   return (
-    <>
+    <BundleItemWrapper
+      key={bundle.id}
+      id={String(bundle.id)}
+      $isActive={isActiveItem()}
+    >
       <ShadowBox
         width="100%"
         height="fit-content"
@@ -91,6 +100,9 @@ const MyBundleItem = ({
           alignItems: 'center',
           cursor: 'pointer',
           boxSizing: 'border-box',
+          width: isMobileSize ? '90%' : 'inherit',
+          marginLeft: isMobileSize ? '5%' : 'inherit',
+          marginRight: isMobileSize ? '5%' : 'inherit',
         }}
       >
         <Title onClick={isMobileSize ? handleMobileClick : handleWebClick}>
@@ -143,7 +155,7 @@ const MyBundleItem = ({
           </div>
         </BodyWrapper>
       )}
-    </>
+    </BundleItemWrapper>
   );
 };
 

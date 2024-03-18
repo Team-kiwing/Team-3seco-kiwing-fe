@@ -78,17 +78,12 @@ const MyBundleList = ({
       <BundleWrapper>
         {isMobileSize ? (
           orderedBundles.map((bundle) => (
-            <BundleItemWrapper
+            <MyBundleItem
               key={bundle.id}
-              id={String(bundle.id)}
-            >
-              <MyBundleItem
-                key={bundle.id}
-                bundle={bundle}
-                selectedBundleId={selectedBundleId}
-                setSelectedBundleId={setSelectedBundleId}
-              />
-            </BundleItemWrapper>
+              bundle={bundle}
+              selectedBundleId={selectedBundleId}
+              setSelectedBundleId={setSelectedBundleId}
+            />
           ))
         ) : (
           <DragDropContext onDragEnd={onDragEnd}>

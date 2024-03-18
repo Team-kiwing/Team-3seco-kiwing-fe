@@ -139,10 +139,12 @@ const MyBundleDetail = ({
   return (
     <Container $isBundleSelected={isBundleSelected}>
       <ShadowBox
-        width="100%"
+        width={isMobileSize ? '90%' : '100%'}
         height="100%"
         style={{
           boxSizing: 'border-box',
+          marginLeft: isMobileSize ? '5%' : 'inherit',
+          marginRight: isMobileSize ? '5%' : 'inherit',
         }}
       >
         <InnerContainer>
