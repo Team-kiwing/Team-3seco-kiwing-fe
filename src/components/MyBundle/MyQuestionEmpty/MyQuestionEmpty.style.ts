@@ -19,7 +19,7 @@ export const TextContainer = styled(Col)`
 
 export const SmallText = styled.span`
   font-size: 1.2rem;
-  color: ${({ theme }) => theme.border_color};
+  color: ${({ theme }) => theme.gray_300};
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1rem;
   }
