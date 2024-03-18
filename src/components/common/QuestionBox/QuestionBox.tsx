@@ -106,7 +106,7 @@ const QuestionBox = ({
             {!isEditable &&
               (answer !== null && answer.length === 0
                 ? '작성된 답변이 없습니다.'
-                : getValues('answerField'))}
+                : answer)}
           </Body>
         </BodyWrapper>
       </Container>
