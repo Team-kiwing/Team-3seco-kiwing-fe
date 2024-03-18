@@ -7,7 +7,6 @@ import {
 } from 'react-beautiful-dnd';
 
 import Button from '@/components/common/Button';
-import useResize from '@/hooks/useResize';
 import { BundlesBasic } from '@/types';
 
 import MyBundleItem from '../MyBundleItem';
@@ -31,7 +30,6 @@ const MyBundleList = ({
   const { mutate: reorder } = useReorderBundle();
   const [orderedBundles, setOrderedBundles] = useState<BundlesBasic[]>(bundles);
 
-  const { isMobileSize } = useResize();
   useEffect(() => {
     setOrderedBundles(bundles);
   }, [bundles]);
@@ -76,52 +74,41 @@ const MyBundleList = ({
   return (
     <Container>
       <BundleWrapper>
-        {isMobileSize ? (
-          orderedBundles.map((bundle) => (
-            <MyBundleItem
-              key={bundle.id}
-              bundle={bundle}
-              selectedBundleId={selectedBundleId}
-              setSelectedBundleId={setSelectedBundleId}
-            />
-          ))
-        ) : (
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="droppable">
-              {(provided) => (
-                <BundleInnerWrapper
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  {orderedBundles.map((bundle, index) => (
-                    <Draggable
-                      key={String(bundle.id)}
-                      draggableId={String(bundle.id)}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <BundleItemWrapper
-                          id={String(bundle.id)}
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <MyBundleItem
-                            key={bundle.id}
-                            bundle={bundle}
-                            selectedBundleId={selectedBundleId}
-                            setSelectedBundleId={setSelectedBundleId}
-                          />
-                        </BundleItemWrapper>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </BundleInnerWrapper>
-              )}
-            </Droppable>
-          </DragDropContext>
-        )}
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable">
+            {(provided) => (
+              <BundleInnerWrapper
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {orderedBundles.map((bundle, index) => (
+                  <Draggable
+                    key={String(bundle.id)}
+                    draggableId={String(bundle.id)}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <BundleItemWrapper
+                        id={String(bundle.id)}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                      >
+                        <MyBundleItem
+                          key={bundle.id}
+                          bundle={bundle}
+                          selectedBundleId={selectedBundleId}
+                          setSelectedBundleId={setSelectedBundleId}
+                          dragHandleProps={provided.dragHandleProps}
+                        />
+                      </BundleItemWrapper>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </BundleInnerWrapper>
+            )}
+          </Droppable>
+        </DragDropContext>
       </BundleWrapper>
       <ButtonWrapper>
         <Button

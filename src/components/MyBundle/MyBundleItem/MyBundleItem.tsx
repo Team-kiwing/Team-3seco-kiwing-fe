@@ -24,6 +24,7 @@ const MyBundleItem = ({
   selectedBundleId,
   setSelectedBundleId,
   bundle,
+  dragHandleProps,
 }: MyBundleItem) => {
   const { isDarkMode } = themeStore();
   const { isMobileSize } = useResize();
@@ -105,7 +106,10 @@ const MyBundleItem = ({
           marginRight: isMobileSize ? '5%' : 'inherit',
         }}
       >
-        <Title onClick={isMobileSize ? handleMobileClick : handleWebClick}>
+        <Title
+          onClick={isMobileSize ? handleMobileClick : handleWebClick}
+          {...dragHandleProps}
+        >
           {bundle.name}
         </Title>
         {isMobileSize && (

@@ -152,20 +152,8 @@ const MyBundleDetail = ({
             />
           </Header>
           <Body>
-            {bundle.questions.length === 0 && <MyQuestionEmpty />}
-            {filteredQuestions.length !== 0 && isMobileSize ? (
-              filteredQuestions.map((question) => (
-                <QuestionWrapper
-                  id={String(question.id)}
-                  key={question.id}
-                >
-                  <MyQuestionBox
-                    question={question}
-                    bundleId={bundle.id}
-                    answerShareType={question.answerShareType}
-                  />
-                </QuestionWrapper>
-              ))
+            {bundle.questions.length === 0 ? (
+              <MyQuestionEmpty />
             ) : (
               <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="droppable">
