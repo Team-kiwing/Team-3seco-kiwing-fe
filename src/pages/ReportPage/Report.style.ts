@@ -26,7 +26,9 @@ export const ReportPageLayout = styled(Col)`
   }
 `;
 
-export const ReportGuideContainer = styled(Col)`
+export const ReportGuideContainer = styled.article`
+  display: flex;
+  flex-direction: column;
   width: 100%;
 `;
 
