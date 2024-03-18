@@ -57,6 +57,37 @@ export const QuestionWrapper = styled.div`
   margin-bottom: 1rem;
 `;
 
+export const EmptyBody = styled(Col)`
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+export const SmallText = styled.span`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.border_color};
+`;
+
+export const HubText = styled.span`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.symbol_color};
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: ${({ theme }) => theme.symbol_secondary_color};
+      cursor: pointer;
+    }
+  }
+
+  &:active {
+    color: ${({ theme }) => theme.symbol_secondary_color};
+    cursor: pointer;
+  }
+
+  transition: all 0.2s ease;
+`;
+
 export const Footer = styled(Col)`
   width: 100%;
   height: 10rem;

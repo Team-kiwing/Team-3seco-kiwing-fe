@@ -6,11 +6,15 @@ import {
   Droppable,
   DropResult,
 } from 'react-beautiful-dnd';
+import { MdOutlineKeyboardDoubleArrowDown } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '@/components/common/Button';
+import IconWrapper from '@/components/common/IconWrapper';
 import Selector from '@/components/common/Selector';
 import ShadowBox from '@/components/common/ShadowBox';
 import { QUERYKEY } from '@/constants/queryKeys';
+import { PATH } from '@/constants/router';
 import useResize from '@/hooks/useResize';
 import { getBundleDetail } from '@/services/bundles';
 import { Question } from '@/types';
@@ -23,10 +27,13 @@ import {
   BodyInnerWrapper,
   Container,
   CountText,
+  EmptyBody,
   Footer,
   Header,
+  HubText,
   InnerContainer,
   QuestionWrapper,
+  SmallText,
 } from './MyBundleDetail.style';
 import { MyBundleDetailProps } from './MyBundleDetail.type';
 
@@ -35,6 +42,7 @@ const MyBundleDetail = ({
   isMyBundlesEmpty,
   bundleId,
 }: MyBundleDetailProps) => {
+  const navigator = useNavigate();
   const { isMobileSize } = useResize();
   const { data: bundle } = useQuery({
     queryKey: [QUERYKEY.BUNDLE_DETAIL, String(bundleId)],
@@ -156,7 +164,35 @@ const MyBundleDetail = ({
             />
           </Header>
           <Body>
-            {isMobileSize ? (
+            {filteredQuestions.length === 0 && (
+              <EmptyBody>
+                <img
+                  src="/kiwing_circle_transparent.png"
+                  alt="kiwing logo"
+                  style={{
+                    width: '30%',
+                  }}
+                />
+                <span>아직 질문이 없어요~ 질문을 새로 추가해보세요!</span>
+                <div>
+                  <SmallText>
+                    혹시 다른 사람의 질문을 가져오고 싶다면?
+                  </SmallText>
+                  <HubText onClick={() => navigator(PATH.HUB)}>
+                    질문 허브
+                  </HubText>
+                  <SmallText>로 이동하기</SmallText>
+                </div>
+
+                <IconWrapper
+                  $size={'l'}
+                  $fillColor="#999999"
+                >
+                  <MdOutlineKeyboardDoubleArrowDown />
+                </IconWrapper>
+              </EmptyBody>
+            )}
+            {filteredQuestions.length !== 0 && isMobileSize ? (
               filteredQuestions.map((question) => (
                 <QuestionWrapper
                   id={String(question.id)}
