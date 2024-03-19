@@ -11,10 +11,17 @@ export const useReorderBundle = () => {
   return useMutation({
     mutationFn: ({ bundleIds }: BundleReorderRequest) =>
       reorderBundle({ bundleIds }),
-    onSuccess: () => {
-      queryClient.refetchQueries({
-        queryKey: [QUERYKEY.MY_BUNDLES],
-      });
+    onSuccess: (res) => {
+      if (res) {
+        queryClient.refetchQueries({
+          queryKey: [QUERYKEY.MY_BUNDLES],
+        });
+      } else {
+        notify({
+          type: 'error',
+          text: '꾸러미 순서를 변경하는데에 문제가 생겼습니다. 다시 시도해주세요.',
+        });
+      }
     },
     onError: () => {
       notify({

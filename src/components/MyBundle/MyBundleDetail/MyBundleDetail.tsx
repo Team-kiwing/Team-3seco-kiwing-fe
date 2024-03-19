@@ -47,7 +47,7 @@ const MyBundleDetail = ({
     },
     enabled: !!bundleId,
   });
-  const { mutate: reorder } = useReorderQuestion();
+  const { mutate: reorder } = useReorderQuestion(bundleId);
 
   const [isAll, setIsAll] = useState(true);
   const [orderedQuestions, setOrderedQuestions] = useState<Question[]>([]);

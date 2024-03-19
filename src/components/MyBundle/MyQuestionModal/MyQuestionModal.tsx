@@ -45,7 +45,7 @@ const MyQuestionModal = ({
 
   const { isMobileSize } = useResize();
   const { setModalCompleteClose } = useModal();
-  const { mutate: createQuestion } = useCreateQuestion();
+  const { mutate: createQuestion } = useCreateQuestion(bundleId);
   const { mutate: updateQuestion } = useUpdateQuestion(bundleId);
 
   const {
