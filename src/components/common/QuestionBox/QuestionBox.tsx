@@ -62,7 +62,6 @@ const QuestionBox = ({
       childRef &&
       childRef.current
     ) {
-      console.log(childRef.current.clientHeight);
       parentRef.current.style.height = `${childRef.current.clientHeight + 3}px`;
     }
   }, [watch('answerField'), parentRef, childRef, isActive]);
