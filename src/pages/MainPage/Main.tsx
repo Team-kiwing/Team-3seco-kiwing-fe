@@ -88,7 +88,7 @@ const Main = () => {
       ) : (
         <Banner>
           <img
-            src="/mainBanner.svg"
+            src="/mainBanner.png"
             alt="서비스 소개 배너"
             onClick={() => window.open('https://kiwing.shop/', '_blank')}
           />
