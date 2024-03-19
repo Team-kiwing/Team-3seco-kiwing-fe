@@ -16,8 +16,12 @@ export const MODAL = {
 };
 
 export const MyBundleModalValidation = {
+  required: '꾸러미 이름을 작성해야 생성 가능합니다.',
+
   maxLength: {
     value: 100,
     message: '꾸러미 이름은 최대 100자까지 작성 가능합니다.',
   },
+  validate: (value: string) =>
+    value.trim().length >= 1 || '꾸러미 이름을 작성해야 생성 가능합니다.',
 };
