@@ -1,4 +1,8 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import {
+  InfiniteQueryObserverResult,
+  useInfiniteQuery,
+} from '@tanstack/react-query';
+import { useEffect, useRef } from 'react';
 
 import { searchBundles } from '@/services/bundles';
 import { SortingType } from '@/types';
@@ -38,4 +42,38 @@ export const useSearchBundlesInfinite = (
   });
 
   return query;
+};
+
+export const useIntersectionObserver = ({
+  threshold = 0.5,
+  hasNextPage,
+  fetchNextPage,
+}: {
+  threshold?: number;
+  hasNextPage: boolean;
+  fetchNextPage: () => Promise<InfiniteQueryObserverResult>;
+}) => {
+  const targetRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold,
+    });
+
+    const target = targetRef.current;
+    if (target) {
+      observer.observe(target);
+      return () => observer.unobserve(target);
+    }
+  }, [threshold, hasNextPage, fetchNextPage]);
+
+  return { targetRef };
 };
