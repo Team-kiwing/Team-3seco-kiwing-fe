@@ -19,10 +19,13 @@ export const MODAL = {
 };
 
 export const QuestionValidation = {
+  required: '질문 이름을 작성해야 생성 가능합니다.',
   maxLength: {
     value: 300,
     message: '질문은 최대 300자까지 작성 가능합니다.',
   },
+  validate: (value: string) =>
+    value.trim().length >= 1 || '질문 이름을 작성해야 생성 가능합니다.',
 };
 
 export const AnswerValidation = {
