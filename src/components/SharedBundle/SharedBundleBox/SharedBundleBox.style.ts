@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { FONT_MEDIUM, MOBILE_FONT_SIZE, WEB_FONT_SIZE } from '@/constants';
 import { MOBILE, MOBILE_MIN } from '@/constants';
-import { Col, Row } from '@/styles/globalStyles';
+import { Row } from '@/styles/globalStyles';
 
 export const AllCheckWrapper = styled(Row)`
   width: 90%;
@@ -15,7 +15,9 @@ export const AllCheckWrapper = styled(Row)`
     padding: 0.5rem 0.9rem 0rem 0rem;
   }
 `;
-export const SharedBundleBoxWrapper = styled(Col)`
+export const SharedBundleBoxWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
   width: 90%;
   height: 100%;
   padding: 1rem;
