@@ -69,9 +69,6 @@ export const BodyWrapper = styled.div`
   transition:
     height 0.3s ease,
     opacity 0.3s ease;
-  @media screen and (max-width: ${MOBILE}px) {
-    font-size: calc(${MOBILE_FONT_SIZE}rem - 0.2rem);
-  }
 `;
 
 export const Body = styled.div<{ $isEmpty: boolean }>`
