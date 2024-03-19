@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useUpdateQuestion } from '@/components/MyBundle/MyQuestionModal/MyQuestionModal.hook';
@@ -31,7 +31,7 @@ const QuestionBox = ({
   const [isEditable, setIsEditable] = useState(false);
   const { mutate: updateQuestion } = useUpdateQuestion(bundleId);
 
-  const { register, getValues, handleSubmit, setValue } = useForm<{
+  const { register, getValues, handleSubmit, setValue, watch } = useForm<{
     answerField: string;
   }>({
     mode: 'onSubmit',
@@ -65,6 +65,10 @@ const QuestionBox = ({
       setValue('answerField', `${innerText}`);
     }
   };
+
+  useEffect(() => {
+    setValue('answerField', answer ?? '');
+  }, [answer, setValue]);
 
   return (
     <>
@@ -106,7 +110,7 @@ const QuestionBox = ({
             {!isEditable &&
               (answer !== null && answer.length === 0
                 ? '작성된 답변이 없습니다.'
-                : answer)}
+                : watch('answerField'))}
           </Body>
         </BodyWrapper>
       </Container>
