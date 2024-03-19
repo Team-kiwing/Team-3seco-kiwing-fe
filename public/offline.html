@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="/favicon.ico"
+      rel="icon"
+    />
+    <link
+      rel="manifest"
+      href="/manifest.json"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/icons/maskable_icon_x192.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="/favicon.ico"
+    />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        background: none;
+        border: none;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100vh;
+      }
+      body {
+        display: flex;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 1rem 0;
+        font-size: 2rem;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        html {
+          background: #121212;
+          color: #f1f1f1;
+        }
+      }
+    </style>
+    <title>오프라인 페이지</title>
+  </head>
+  <body>
+    <h1>
+      <span style="color: #48da79">키윙</span> 사이트에 연결할 수 없어요!!
+    </h1>
+    <div>네트워크 연결을 확인해주세요.</div>
+    <div>
+      <span data-ko="현재 내 네트워크 상태 :">현재 내 네트워크 상태 :</span
+      ><span id="network-status"></span>
+    </div>
+    <div style="margin: 1rem 0">
+      <span>문의 메일 : </span>
+      <a
+        style="text-decoration: none; color: #aaa"
+        href="mailto:official.kiwing@gmail.com"
+        >official.kiwing@gmail.com</a
+      >
+    </div>
+    <script>
+      const prefersKorean = navigator.language === 'ko-KR';
+
+      if (prefersKorean) {
+        document.title = '연결되지 않음';
+        document.querySelectorAll('[data-ko]').forEach((element) => {
+          element.innerText = element.dataset.ko;
+        });
+      }
+
+      document.getElementById('network-status').innerText = `${
+        prefersKorean
+          ? navigator.onLine
+            ? ' 온라인'
+            : ' 오프라인'
+          : navigator.onLine
+            ? ' online'
+            : ' offline'
+      }`;
+    </script>
+  </body>
+</html>

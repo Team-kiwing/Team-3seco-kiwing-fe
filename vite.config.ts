@@ -20,6 +20,15 @@ export default defineConfig({
   },
   plugins: [react()],
   build: {
-    sourcemap: false,
+    sourcemap: 'hidden',
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://api-dev.kiwing.kr/api/v1',
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        changeOrigin: true,
+      },
+    },
   },
 });

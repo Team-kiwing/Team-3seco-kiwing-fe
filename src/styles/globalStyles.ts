@@ -1,18 +1,22 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
+import { MOBILE } from '@/constants';
+
 export const GlobalStyle = createGlobalStyle`
     ${normalize}
 
-    * {
+    @media not all and (max-width: ${MOBILE}px) {
+      * {
         &::-webkit-scrollbar {
           width: 0.4rem;
         }
         &::-webkit-scrollbar-thumb {
-          background-color: hsla(0, 0%, 42%, 0.29);
+          background-color: ${(props) => props.theme.border_color};
           border-radius: 100px;
-        }   
-    }   
+        }
+      }
+    }
 
     html,   
     body {
@@ -21,6 +25,21 @@ export const GlobalStyle = createGlobalStyle`
       height: 100%;
       font-size: 62.5%;
       box-sizing: border-box;
+      
+      input:not([type=color]):not([type=checkbox]):not([type=text]), button, textarea, select {
+        border-radius: 0;
+      }
+
+      button, input[type=button], input[type=submit], input[type=reset] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #root {
+      height: 100%;
     }
 
     button {
