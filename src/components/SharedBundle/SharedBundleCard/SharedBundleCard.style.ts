@@ -15,6 +15,7 @@ export const BundleTitle = styled.section`
   width: 70%;
   text-align: center;
   color: ${({ theme }) => theme.primary_white_text_color};
+  word-break: break-all;
 
   @media screen and (max-width: ${MOBILE}px) {
     font-size: ${WEB_FONT_SIZE}rem;
