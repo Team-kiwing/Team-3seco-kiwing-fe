@@ -31,18 +31,21 @@ export const Banner = styled.section`
   align-items: center;
   width: 100%;
   border-radius: ${BORDER_WEB}rem;
+  margin-top: 3rem;
+  user-select: none;
 
   @media screen and (max-width: ${MOBILE}px) {
     border-radius: ${BORDER_MOBILE}rem;
   }
 
   & > img {
-    width: 65%;
+    width: 40%;
     height: 100%;
+    max-width: 1200px;
     cursor: pointer;
 
     @media screen and (max-width: ${MOBILE}px) {
-      width: 87%;
+      width: 90%;
     }
   }
 `;
