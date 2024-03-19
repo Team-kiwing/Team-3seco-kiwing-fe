@@ -40,7 +40,7 @@ export const useCreateQuestion = () => {
   });
 };
 
-export const useUpdateQuestion = (bundleId: number) => {
+export const useUpdateQuestion = (bundleId: number | null | undefined) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -58,9 +58,15 @@ export const useUpdateQuestion = (bundleId: number) => {
         text: MODAL.SUCCESS_NOTIFY('edit'),
       });
 
-      queryClient.invalidateQueries({
-        queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
-      });
+      if (bundleId) {
+        queryClient.invalidateQueries({
+          queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
+        });
+      } else {
+        queryClient.invalidateQueries({
+          queryKey: [QUERYKEY.BUNDLE_DETAIL],
+        });
+      }
     },
     onError: () => {
       notify({

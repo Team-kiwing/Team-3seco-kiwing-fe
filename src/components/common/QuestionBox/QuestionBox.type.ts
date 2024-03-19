@@ -9,6 +9,6 @@ export interface QuestionBoxProps {
   rightItem: ReactNode;
   isEditMode?: boolean;
   questionObj?: Question;
-  bundleId: number;
+  bundleId?: number;
   dragHandleProps?: DraggableProvidedDragHandleProps | null | undefined;
 }
