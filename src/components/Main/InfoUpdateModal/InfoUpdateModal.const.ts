@@ -32,4 +32,8 @@ export const NICKNAME_VALIDATION = {
     value: 2,
     message: '사용자 ID는 2자 이상 작성해주세요.',
   },
+  maxLength: {
+    value: 50,
+    message: '사용자 ID는 50자까지 작성 가능합니다.',
+  },
 };

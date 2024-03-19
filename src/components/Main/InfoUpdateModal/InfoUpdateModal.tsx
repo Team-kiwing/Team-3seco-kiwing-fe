@@ -144,7 +144,9 @@ const InfoUpdateModal = ({
                   ? '사용자 ID는 영어와 숫자 조합으로 작성해주세요.'
                   : errors?.updateNickname?.type === 'minLength'
                     ? '사용자 ID는 2자 이상 작성해주세요.'
-                    : ''
+                    : errors?.updateNickname?.type === 'maxLength'
+                      ? '사용자 ID는 50자까지 작성 가능합니다.'
+                      : ''
             }
           />
         </div>
