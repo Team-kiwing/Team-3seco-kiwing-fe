@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
 
@@ -10,7 +8,6 @@ import ShadowBox from '../ShadowBox';
 import { QuestionCardConstants } from './QuestionCard.const';
 import {
   useCreateQuestionsToBundle,
-  useGetMyBundles,
   useReportModal,
 } from './QuestionCard.hook';
 import {
@@ -23,7 +20,11 @@ import {
   QuestionCardReportBadge,
   QuestionCardText,
 } from './QuestionCard.style';
-import { QuestionCardProps } from './QuestionCard.type';
+import {
+  BundleParsed,
+  BundleResult,
+  QuestionCardProps,
+} from './QuestionCard.type';
 
 /**
  * @summary 사용법                 
@@ -44,15 +45,6 @@ import { QuestionCardProps } from './QuestionCard.type';
  * @param isLogin: boolean;
  * @returns
  */
-interface BundleParsed {
-  id: number;
-  name: string;
-}
-
-interface BundleResult {
-  id: number;
-  name: string;
-}
 
 const QuestionCard = ({
   id,
@@ -61,6 +53,7 @@ const QuestionCard = ({
   shareCount,
   isHot,
   isLogin,
+  Bundle,
 }: QuestionCardProps) => {
   const { isMobileSize } = useResize();
   const { handleReportClick } = useReportModal({ questionId: id });
@@ -76,13 +69,7 @@ const QuestionCard = ({
     });
   };
 
-  const { data: userBundles, refetch: getMyBundlesRefetch } =
-    useGetMyBundles('LATEST');
   const { mutate } = useCreateQuestionsToBundle();
-
-  useEffect(() => {
-    isLogin && getMyBundlesRefetch();
-  }, [getMyBundlesRefetch, isLogin]);
 
   const handleAdd = (checkedItems: number[]) => {
     mutate({ ids: [id], checkedBundles: checkedItems });
@@ -110,11 +97,11 @@ const QuestionCard = ({
               id={triggerId}
               onClick={openDropDown}
             />
-            {userBundles && (
+            {Bundle && (
               <DropDown
                 width={20}
                 height={15}
-                options={transType(userBundles)}
+                options={transType(Bundle)}
                 isShow={isShow}
                 setIsShow={setIsShow}
                 mode="checkbox"

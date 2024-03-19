@@ -17,7 +17,7 @@ export const HubLayout = styled(Col)`
   }
 `;
 
-export const HubTagFilterContainer = styled.div`
+export const HubTagFilterContainer = styled.section`
   width: 100%;
   margin-bottom: 2rem;
   justify-content: center;
@@ -36,12 +36,14 @@ export const HubSearchBarContainer = styled(Row)`
   }
 `;
 
-export const HubQuestionCardContainer = styled(Col)`
+export const HubQuestionCardContainer = styled.section<{ $isLogin: boolean }>`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   gap: 2rem;
 
   @media screen and (max-width: ${MOBILE}px) {
-    width: 95%;
+    width: ${({ $isLogin }) => ($isLogin ? '95%' : '100%')};
   }
 `;
 

@@ -10,19 +10,13 @@ export const Container = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   overflow-x: hidden;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-
   min-width: 20%;
 
   @media screen and (max-width: ${MOBILE}px) {
     min-height: 100%;
     width: 100%;
     height: auto;
-    padding-left: 0;
-    padding-right: 0;
   }
 `;
 
@@ -33,12 +27,14 @@ export const BundleWrapper = styled.div`
   height: 100%;
   gap: 2rem;
 
-  padding: 1.5rem;
-  padding-top: 1rem;
+  padding: 2rem;
+  padding-top: 1.5rem;
   padding-bottom: 0rem;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
+
+  word-break: break-all;
 
   @media screen and (max-width: ${MOBILE}px) {
     padding: 0;
@@ -56,13 +52,15 @@ export const BundleInnerWrapper = styled.div`
 `;
 
 export const BundleItemWrapper = styled.div`
-  margin-bottom: 1.5rem;
+  @media screen and (max-width: ${MOBILE}px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
   width: 100%;
   font-weight: ${FONT_MEDIUM};
-  padding-right: 0.4rem;
+
   box-sizing: border-box;
 
   background-color: ${({ theme }) => theme.background_color};
@@ -74,6 +72,5 @@ export const ButtonWrapper = styled.div`
     padding-right: 1rem;
 
     bottom: 4rem;
-    width: 97.5%;
   }
 `;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { SyncLoader } from 'react-spinners';
 import { useTheme } from 'styled-components';
@@ -10,6 +10,7 @@ import {
   NO_SEARCH_RESULTS_IMAGE,
 } from '@/components/common/NoSearchResults/NoSearchResults.const';
 import QuestionCard from '@/components/common/QuestionCard';
+import { useGetMyBundles } from '@/components/common/QuestionCard/QuestionCard.hook';
 import SearchBar from '@/components/common/SearchBar';
 import Selector from '@/components/common/Selector';
 import TagFilter from '@/components/common/TagFilter';
@@ -64,6 +65,13 @@ const Hub = () => {
     }
   };
 
+  const { data: userBundles, refetch: getMyBundlesRefetch } =
+    useGetMyBundles('LATEST');
+
+  useEffect(() => {
+    isLogin && getMyBundlesRefetch();
+  }, [getMyBundlesRefetch, isLogin]);
+
   return (
     <>
       <HubLayout>
@@ -100,7 +108,7 @@ const Hub = () => {
           </HubSpinnerContainer>
         )}
 
-        <HubQuestionCardContainer>
+        <HubQuestionCardContainer $isLogin={isLogin}>
           {infinityData &&
             infinityData.pages.map((pageList) => {
               return pageList?.questionResponses.map(
@@ -113,6 +121,7 @@ const Hub = () => {
                     shareCount={questionItem.shareCount}
                     isHot={questionItem.isHot}
                     isLogin={isLogin}
+                    Bundle={userBundles ? userBundles : []}
                   />
                 )
               );

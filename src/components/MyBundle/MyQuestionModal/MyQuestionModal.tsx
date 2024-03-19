@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { Tooltip } from 'react-tooltip';
+import { useTheme } from 'styled-components';
 
 import Button from '@/components/common/Button';
 import TagFilter from '@/components/common/TagFilter';
@@ -17,7 +19,13 @@ import {
   QuestionValidation,
 } from './MyQuestionModal.const';
 import { useCreateQuestion, useUpdateQuestion } from './MyQuestionModal.hook';
-import { ButtonContainer, ModalContainer } from './MyQuestionModal.style';
+import {
+  ButtonContainer,
+  ModalContainer,
+  TagFilterContainer,
+  Text,
+  TooltipContainer,
+} from './MyQuestionModal.style';
 import { FormField, MyQuestionModalProps } from './MyQuestionModal.type';
 
 const MyQuestionModal = ({
@@ -30,14 +38,15 @@ const MyQuestionModal = ({
   questionId,
   setIsToggleShared,
 }: MyQuestionModalProps) => {
-  const { data: tags, isLoading } = useFetchTags();
+  const theme = useTheme();
+  const { data: tags } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>(selectedTagsField);
   const [isShared, setIsShared] = useState(isSharedField);
 
   const { isMobileSize } = useResize();
   const { setModalCompleteClose } = useModal();
-  const { mutate: createQuestion } = useCreateQuestion();
-  const { mutate: updateQuestion } = useUpdateQuestion();
+  const { mutate: createQuestion } = useCreateQuestion(bundleId);
+  const { mutate: updateQuestion } = useUpdateQuestion(bundleId);
 
   const {
     register,
@@ -104,19 +113,22 @@ const MyQuestionModal = ({
     }
   };
 
-  if (!tags || isLoading) {
+  if (!tags) {
     //@TODO 추후에 스켈레톤 적용
     return null;
   }
 
   return (
     <ModalContainer>
-      <TagFilter
-        tagList={tags}
-        selectedTags={selectedTags}
-        setSelectedTags={setSelectedTags}
-        isLimit={true}
-      />
+      <TagFilterContainer>
+        <Text>질문 주제와 어울리는 태그를 선택해보세요!</Text>
+        <TagFilter
+          tagList={tags}
+          selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
+          isLimit={true}
+        />
+      </TagFilterContainer>
       <form onSubmit={handleSubmit(onValid, onInValid)}>
         <Textarea
           height="10rem"
@@ -135,17 +147,33 @@ const MyQuestionModal = ({
           errorMessage={errors.questionAnswerField?.message}
         />
         <ButtonContainer>
-          <Toggle
-            on={isShared}
-            onChange={() => setIsShared(!isShared)}
-            height={isMobileSize ? '3.1rem' : '4rem'}
-            width="15rem"
-            isContentShow={true}
-            fontSize="1.6rem"
-            style={{
-              paddingTop: '1rem',
-            }}
-          />
+          <TooltipContainer>
+            <div
+              data-tooltip-id="my-question-modal-toggle-tooltip"
+              data-tooltip-content={
+                isShared ? '답변을 공개합니다.' : '답변을 비공개합니다.'
+              }
+              data-tooltip-delay-show={100}
+            >
+              <Toggle
+                on={isShared}
+                onChange={() => setIsShared(!isShared)}
+                height={isMobileSize ? '3.1rem' : '4rem'}
+                width="15rem"
+                isContentShow={true}
+                fontSize="1.6rem"
+                style={{
+                  paddingTop: '1rem',
+                }}
+              />
+            </div>
+            <Tooltip
+              id="my-question-modal-toggle-tooltip"
+              style={{
+                backgroundColor: theme.symbol_secondary_color,
+              }}
+            />
+          </TooltipContainer>
           <Button
             style={{ marginTop: '1rem' }}
             text={MODAL.SUBMIT_BUTTON_TEXT(modalMode)}

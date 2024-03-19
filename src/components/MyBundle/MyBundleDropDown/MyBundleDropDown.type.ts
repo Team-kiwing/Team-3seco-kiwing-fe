@@ -12,4 +12,5 @@ export interface MyBundleDropDownProps {
   handleEditBundleClick: (state: EditProps) => void;
   isShared: boolean;
   setIsShared: (state: boolean) => void;
+  setSelectedBundleId: (state: number | null) => void;
 }
