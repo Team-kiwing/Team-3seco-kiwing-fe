@@ -90,7 +90,7 @@ const SharedBundleCard = ({
           <BundleTitle>{bundleName}</BundleTitle>
           {!isMobileSize ? (
             <ClickContent>
-              <a
+              <div
                 data-tooltip-id="add-bundle"
                 data-tooltip-content="현재 보고 계신 꾸러미를 내 꾸러미로 추가합니다!"
               >
@@ -106,8 +106,8 @@ const SharedBundleCard = ({
                     borderRadius: `${BORDER_WEB}rem`,
                   }}
                 />
-              </a>
-              <a
+              </div>
+              <div
                 data-tooltip-id="copy-bundle"
                 data-tooltip-content="현재 보고있는 꾸러미의 URL 주소를 복사합니다!"
               >
@@ -129,7 +129,7 @@ const SharedBundleCard = ({
                     borderRadius: `${BORDER_WEB}rem`,
                   }}
                 />
-              </a>
+              </div>
             </ClickContent>
           ) : (
             <ClickContent>
