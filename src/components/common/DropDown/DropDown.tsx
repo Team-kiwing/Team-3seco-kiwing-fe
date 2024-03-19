@@ -148,7 +148,7 @@ const DropDown = ({
             </Item>
           ))}
         </Options>
-        {mode === 'checkbox' && (
+        {mode === 'checkbox' && options.length !== 0 && (
           <Footer>
             <Button
               height="fit-content"
