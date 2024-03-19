@@ -14,23 +14,29 @@ export const MainPageWrapper = styled(Col)`
   }
 `;
 
-export const Banner = styled.div`
+export const Banner = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 20rem;
   border-radius: ${BORDER_WEB}rem;
-  background-image: url('/mainBanner.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  cursor: pointer;
 
   @media screen and (max-width: ${MOBILE}px) {
-    height: 10rem;
     border-radius: ${BORDER_MOBILE}rem;
+  }
+
+  & > img {
+    width: 65%;
+    height: 100%;
+    cursor: pointer;
+
+    @media screen and (max-width: ${MOBILE}px) {
+      width: 87%;
+    }
   }
 `;
 
-export const MainListWrapper = styled.div`
+export const MainListWrapper = styled.section`
   display: flex;
   width: 100%;
   justify-content: space-between;
