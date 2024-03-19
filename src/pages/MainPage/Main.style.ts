@@ -3,6 +3,17 @@ import styled from 'styled-components';
 import { BORDER_MOBILE, BORDER_WEB, MOBILE } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
+export const MainPageWrapper = styled(Col)`
+  width: 80%;
+  max-width: 1200px;
+  margin: 3rem auto;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    width: 90%;
+    margin: 2rem auto;
+  }
+`;
+
 export const MainUserInfoCardBox = styled.section`
   width: 80%;
   max-width: 1200px;
@@ -36,16 +47,13 @@ export const Banner = styled.section`
   }
 `;
 
-
 export const MainListWrapper = styled.section`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-top: 5rem;
 
   @media screen and (max-width: ${MOBILE}px) {
     flex-direction: column;
-    margin-top: 3rem;
   }
 `;
 
