@@ -44,6 +44,9 @@ export const CardWrapper = styled.div`
     grid-template-columns: repeat(1, 1fr);
     row-gap: 2rem;
   }
+  @media screen and (max-width: ${MOBILE}px) {
+    row-gap: 0rem;
+  }
 `;
 
 export const Section1 = styled.div`
@@ -95,4 +98,16 @@ export const SharedSearchError = styled(SharedSearchNone)`
   display: flex;
   width: 100%;
   justify-content: center;
+`;
+
+export const SharedNextPageNone = styled.div`
+  text-align: center;
+  margin: 2rem auto;
+  font-size: 1.8rem;
+  color: ${({ theme }) => theme.primary_color};
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: ${MOBILE_FONT_SIZE}rem;
+    margin: 1rem auto;
+  }
 `;
