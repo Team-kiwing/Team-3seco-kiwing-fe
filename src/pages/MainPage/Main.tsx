@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import BundleCard from '@/components/common/BundleCard';
 import QuestionCard from '@/components/common/QuestionCard';
+import { useGetMyBundles } from '@/components/common/QuestionCard/QuestionCard.hook';
 import Skeleton from '@/components/common/Skeleton';
 import UserInfoCard from '@/components/common/UserInfoCard';
 import { useInfoUpdateModal } from '@/components/common/UserInfoCard/UserInfoCard.hook';
@@ -51,12 +52,19 @@ const Main = () => {
     tagIds: [],
   });
 
+  const { data: userBundles, refetch: getMyBundlesRefetch } =
+    useGetMyBundles('LATEST');
+
   useEffect(() => {
     if (isFirstLogin) {
       handleInfoUpdateModal();
       setIsFirstLogin(false);
     }
   }, [isFirstLogin, handleInfoUpdateModal, setIsFirstLogin]);
+
+  useEffect(() => {
+    isLogin && getMyBundlesRefetch();
+  }, [getMyBundlesRefetch, isLogin]);
 
   return (
     <>
@@ -93,6 +101,7 @@ const Main = () => {
                   shareCount={question.shareCount}
                   isHot={question.isHot}
                   isLogin={isLogin}
+                  Bundle={userBundles ? userBundles : []}
                 />
               </MainQuestionsBox>
             ))}
