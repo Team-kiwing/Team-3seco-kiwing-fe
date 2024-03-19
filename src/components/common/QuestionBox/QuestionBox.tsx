@@ -53,6 +53,13 @@ const QuestionBox = ({
     setIsEditable(false);
   };
 
+  useEffect(() => {
+    if (parentRef && parentRef.current && childRef && childRef.current) {
+      console.log(childRef.current.clientHeight);
+      parentRef.current.style.height = `${childRef.current.clientHeight + 3}px`;
+    }
+  }, [watch('answerField'), parentRef, childRef]);
+
   const handleInput = (e: FormEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
     target.style.height = 'auto';

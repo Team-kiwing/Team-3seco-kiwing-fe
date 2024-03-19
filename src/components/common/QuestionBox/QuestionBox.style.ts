@@ -91,7 +91,6 @@ export const Body = styled.div<{ $isEmpty: boolean }>`
 
 export const EditBody = styled.div`
   width: 100%;
-  max-height: 20rem;
   overflow-y: auto;
   outline: none;
   color: ${(props) => props.theme.primary_color};
