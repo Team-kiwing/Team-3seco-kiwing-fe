@@ -145,7 +145,7 @@ const MyBundleModal = ({
                   ? '꾸러미를 공개 상태로 생성합니다.'
                   : '꾸러미를 비공개 상태로 생성합니다.'
               }
-              data-tooltip-delay-show={500}
+              data-tooltip-delay-show={100}
             >
               <Toggle
                 on={isShared}

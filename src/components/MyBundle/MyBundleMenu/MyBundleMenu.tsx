@@ -189,7 +189,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
               <div
                 data-tooltip-id="my-bundle-menu-tooltip"
                 data-tooltip-content={option.tooltip}
-                data-tooltip-delay-show={500}
+                data-tooltip-delay-show={100}
               >
                 <Item onClick={() => handleItemClick(option.handler)}>
                   <Text>{option.title}</Text>
@@ -201,6 +201,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
                 style={{
                   backgroundColor: theme.symbol_secondary_color,
                 }}
+                place="left"
               />
             </TooltipContainer>
           ) : (

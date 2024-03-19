@@ -75,7 +75,7 @@ const PcRightItem = ({
               ? '현재 답변이 공개된 상태입니다.'
               : '현재 답변이 비공개된 상태입니다.'
           }
-          data-tooltip-delay-show={500}
+          data-tooltip-delay-show={100}
         >
           <Toggle
             on={isShared}

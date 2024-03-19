@@ -153,7 +153,7 @@ const MyQuestionModal = ({
               data-tooltip-content={
                 isShared ? '답변을 공개합니다.' : '답변을 비공개합니다.'
               }
-              data-tooltip-delay-show={500}
+              data-tooltip-delay-show={100}
             >
               <Toggle
                 on={isShared}
