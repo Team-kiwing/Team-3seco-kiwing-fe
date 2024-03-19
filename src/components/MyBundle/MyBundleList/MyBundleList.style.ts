@@ -34,6 +34,8 @@ export const BundleWrapper = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
 
+  word-break: break-all;
+
   @media screen and (max-width: ${MOBILE}px) {
     padding: 0;
     padding-top: 2rem;
