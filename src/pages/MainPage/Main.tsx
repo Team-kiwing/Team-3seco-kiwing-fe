@@ -99,7 +99,10 @@ const Main = () => {
           <MainItemWrapper>
             <MainListHeader>최근 등록된 질문</MainListHeader>
             {MainQuestions?.questionResponses?.map((question) => (
-              <MainQuestionsBox key={question.id}>
+              <MainQuestionsBox
+                key={question.id}
+                $isLogin={isLogin}
+              >
                 <QuestionCard
                   tags={question.tags}
                   id={question.id}

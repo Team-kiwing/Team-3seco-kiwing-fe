@@ -79,11 +79,11 @@ export const MainListHeader = styled.h1`
   }
 `;
 
-export const MainQuestionsBox = styled.div`
+export const MainQuestionsBox = styled.div<{ $isLogin: boolean }>`
   width: 100%;
 
   @media screen and (max-width: ${MOBILE}px) {
-    width: 95%;
+    width: ${({ $isLogin }) => ($isLogin ? '95%' : '100%')};
     margin-bottom: 1rem;
   }
 `;

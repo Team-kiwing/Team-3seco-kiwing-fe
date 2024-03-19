@@ -3,7 +3,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { SyncLoader } from 'react-spinners';
 import { useTheme } from 'styled-components';
 
-import Button from '@/components/common/Button';
 import NoSearchResults from '@/components/common/NoSearchResults';
 import {
   NO_SEARCH_RESULTS_ALT_IMAGE,
@@ -18,16 +17,16 @@ import { useFetchTags } from '@/hooks/useFetchTags';
 import { userDataStore } from '@/stores';
 import { Question, SortingType, Tag } from '@/types';
 
+import { useIntersectionObserver } from '../SharedPage/Shared.hook';
 import {
   SearchWrapper,
   SelectorWrapper,
+  SharedNextPageNone,
   TagFilterWrapper,
 } from '../SharedPage/Shared.style';
 import { HubHookConstants, HubTextConstants } from './Hub.const';
 import { useSearchQuestionsInfinite } from './Hub.hook';
 import {
-  HubFooterContainer,
-  HubInfiniteMessage,
   HubLayout,
   HubQuestionCardContainer,
   HubSearchError,
@@ -53,6 +52,11 @@ const Hub = () => {
     hasNextPage,
     fetchNextPage,
   } = useSearchQuestionsInfinite(searchParams, isRecent, tagsId);
+
+  const { targetRef } = useIntersectionObserver({
+    hasNextPage,
+    fetchNextPage,
+  });
 
   const onSubmit = () => {
     const searchValues = methods
@@ -137,9 +141,16 @@ const Hub = () => {
                 src={NO_SEARCH_RESULTS_IMAGE}
               />
             )}
+
+          <div ref={targetRef} />
         </HubQuestionCardContainer>
 
-        <HubFooterContainer>
+        {infinityData?.pages[0]?.questionResponses.length &&
+        !hasNextPage &&
+        !isFetchingNextPage ? (
+          <SharedNextPageNone>마지막 질문이에요!</SharedNextPageNone>
+        ) : null}
+        {/* <HubFooterContainer>
           {hasNextPage && !isFetchingNextPage && (
             <Button
               width="100%"
@@ -163,7 +174,7 @@ const Hub = () => {
               {HubTextConstants.HUB_INFINITY_LOADING}
             </HubInfiniteMessage>
           )}
-        </HubFooterContainer>
+        </HubFooterContainer> */}
         {isError && (
           <HubSearchError>{HubTextConstants.HUB_ERROR_MESSAGE}</HubSearchError>
         )}

@@ -33,13 +33,15 @@ export const QuestionCardBodyWrapper = styled(Col)`
 
 export const QuestionCardText = styled.div`
   max-width: 90%;
-  word-break: keep-all;
+  word-break: break-all;
+  font-size: 2rem;
 
   font-weight: ${FONT_MEDIUM};
   line-height: normal;
 
   @media screen and (max-width: ${MOBILE}px) {
     word-break: break-all;
+    font-size: 1.6rem;
   }
 `;
 
@@ -59,7 +61,6 @@ export const QuestionCardBadgeWrapper = styled(Col)`
 `;
 
 export const QuestionCardInfoBadges = styled(Row)<{ $isLogin: boolean }>`
-  transform: scale(0.9);
   display: flex;
   gap: 1rem;
   height: fit-content;

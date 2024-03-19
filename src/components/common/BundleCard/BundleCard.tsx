@@ -76,7 +76,7 @@ const BundleCard = ({
                 <Badge
                   key={item.id}
                   style={{ padding: '0 0.5rem 0 0' }}
-                  $size={isMobileSize ? 's' : 1.5}
+                  $size={isMobileSize ? 'xs' : 's'}
                   $state="hashTag"
                   $text={item.name}
                 />

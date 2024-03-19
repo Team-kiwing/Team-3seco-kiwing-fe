@@ -1,5 +1,8 @@
+import { Link } from 'react-router-dom';
+
 import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
+import { userDataStore } from '@/stores';
 
 import Badge from '../Badge';
 import CircleButton from '../CircleButton';
@@ -59,6 +62,7 @@ const QuestionCard = ({
   const { handleReportClick } = useReportModal({ questionId: id });
   const { isShow, setIsShow, openDropDown, triggerId, closeDropDown } =
     useDropDown(String(id));
+  const { nickname } = userDataStore();
 
   const transType = (data: BundleParsed[]) => {
     return data.map((item: BundleResult) => {
@@ -84,7 +88,6 @@ const QuestionCard = ({
           boxSizing: 'border-box',
           cursor: 'auto',
         }}
-        isHoverActive
         isCard={true}
         width="100%"
         height="fit-content"
@@ -99,8 +102,8 @@ const QuestionCard = ({
             />
             {Bundle && (
               <DropDown
-                width={20}
-                height={15}
+                width={Bundle.length === 0 ? 25 : 20}
+                height={Bundle.length === 0 ? 15 : 20}
                 options={transType(Bundle)}
                 isShow={isShow}
                 setIsShow={setIsShow}
@@ -108,6 +111,39 @@ const QuestionCard = ({
                 onAdd={handleAdd}
                 closeDropDown={closeDropDown}
                 direction="left"
+                emptyText={
+                  <>
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '2rem',
+                      }}
+                    >
+                      <p
+                        style={{
+                          margin: 0,
+                          fontSize: isMobileSize ? '1.2rem' : '1.6rem',
+                        }}
+                      >
+                        아직 꾸러미가 하나도 없어요😢
+                      </p>
+                      <Link
+                        style={{
+                          textDecoration: 'none',
+                          color: 'white',
+                          fontSize: isMobileSize ? '1.2rem' : '1.6rem',
+                        }}
+                        to={`/user/${nickname}`}
+                      >
+                        꾸러미 만들러 가기👆
+                      </Link>
+                    </div>
+                  </>
+                }
               />
             )}
           </QuestionCardAddButton>
@@ -134,14 +170,14 @@ const QuestionCard = ({
               {isHot && (
                 <Badge
                   style={{ cursor: 'default', padding: '0.5rem 1.3rem' }}
-                  $size={isMobileSize ? 1.2 : 's'}
+                  $size={isMobileSize ? 'xs' : 's'}
                   $state="hot"
                   $text="HOT"
                 />
               )}
               <Badge
                 style={{ cursor: 'default', padding: '0.5rem 1.3rem' }}
-                $size={isMobileSize ? 1.2 : 's'}
+                $size={isMobileSize ? 'xs' : 's'}
                 $state="subscribedTag"
                 $subscribedCount={shareCount}
               />

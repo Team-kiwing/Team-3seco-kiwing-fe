@@ -113,6 +113,7 @@ export const Options = styled.div<{
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  word-break: break-all;
   ${({ $isEmpty, $height }) => {
     if ($isEmpty) {
       return css`
