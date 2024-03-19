@@ -54,7 +54,13 @@ const QuestionBox = ({
   };
 
   useEffect(() => {
-    if (parentRef && parentRef.current && childRef && childRef.current) {
+    if (
+      isActive &&
+      parentRef &&
+      parentRef.current &&
+      childRef &&
+      childRef.current
+    ) {
       console.log(childRef.current.clientHeight);
       parentRef.current.style.height = `${childRef.current.clientHeight + 3}px`;
     }
