@@ -35,6 +35,7 @@ export const TextContainer = styled(Col)`
 
 export const Text = styled.span`
   font-size: ${WEB_FONT_SIZE}rem;
+  color: ${({ theme }) => theme.primary_color};
 `;
 
 export const SmallText = styled.span`
