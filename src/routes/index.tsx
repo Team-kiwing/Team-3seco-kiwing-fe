@@ -17,7 +17,6 @@ import {
   MyBundlePage,
   NotFoundPage,
   PolicyPage,
-  RegisterPage,
   ReportPage,
   SharedItemPage,
   SharedPage,
@@ -44,10 +43,6 @@ const Router = () => {
             <Route
               path={PATH.AUTH} // 로그인, 회원가입 페이지
               element={<AuthPage />}
-            />
-            <Route
-              path={PATH.REGISTER} // 회원가입 후 등록 페이지
-              element={<RegisterPage />}
             />
             <Route
               path={PATH.HUB} // 질문 허브 페이지(검색)

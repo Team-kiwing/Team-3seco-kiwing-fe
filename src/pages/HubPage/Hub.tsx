@@ -108,7 +108,7 @@ const Hub = () => {
           </HubSpinnerContainer>
         )}
 
-        <HubQuestionCardContainer>
+        <HubQuestionCardContainer $isLogin={isLogin}>
           {infinityData &&
             infinityData.pages.map((pageList) => {
               return pageList?.questionResponses.map(
