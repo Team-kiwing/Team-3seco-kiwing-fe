@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { SyncLoader } from 'react-spinners';
 import { useTheme } from 'styled-components';
 
 import Button from '@/components/common/Button';
+import NoSearchResults from '@/components/common/NoSearchResults';
+import {
+  NO_SEARCH_RESULTS_ALT_IMAGE,
+  NO_SEARCH_RESULTS_IMAGE,
+} from '@/components/common/NoSearchResults/NoSearchResults.const';
 import QuestionCard from '@/components/common/QuestionCard';
+import { useGetMyBundles } from '@/components/common/QuestionCard/QuestionCard.hook';
 import SearchBar from '@/components/common/SearchBar';
 import Selector from '@/components/common/Selector';
 import TagFilter from '@/components/common/TagFilter';
@@ -25,7 +31,6 @@ import {
   HubLayout,
   HubQuestionCardContainer,
   HubSearchError,
-  HubSearchNone,
   HubSpinnerContainer,
 } from './Hub.style';
 
@@ -60,6 +65,13 @@ const Hub = () => {
     }
   };
 
+  const { data: userBundles, refetch: getMyBundlesRefetch } =
+    useGetMyBundles('LATEST');
+
+  useEffect(() => {
+    isLogin && getMyBundlesRefetch();
+  }, [getMyBundlesRefetch, isLogin]);
+
   return (
     <>
       <HubLayout>
@@ -73,6 +85,7 @@ const Hub = () => {
         <SearchWrapper>
           <FormProvider {...methods}>
             <SearchBar
+              isOnlyBorderBottom={true}
               fontSize={1.8}
               handleSearchSubmit={onSubmit}
               REGISTER={HubHookConstants.HUB_SEARCH_REGISTER}
@@ -95,7 +108,7 @@ const Hub = () => {
           </HubSpinnerContainer>
         )}
 
-        <HubQuestionCardContainer>
+        <HubQuestionCardContainer $isLogin={isLogin}>
           {infinityData &&
             infinityData.pages.map((pageList) => {
               return pageList?.questionResponses.map(
@@ -108,6 +121,7 @@ const Hub = () => {
                     shareCount={questionItem.shareCount}
                     isHot={questionItem.isHot}
                     isLogin={isLogin}
+                    Bundle={userBundles ? userBundles : []}
                   />
                 )
               );
@@ -116,7 +130,12 @@ const Hub = () => {
             !isFetchingNextPage &&
             infinityData?.pages[0] &&
             infinityData?.pages[0].questionResponses.length === 0 && (
-              <HubSearchNone>{HubTextConstants.HUB_SEARCH_NONE}</HubSearchNone>
+              <NoSearchResults
+                text1="앗"
+                text2="검색된 결과가 없습니다."
+                alt={NO_SEARCH_RESULTS_ALT_IMAGE}
+                src={NO_SEARCH_RESULTS_IMAGE}
+              />
             )}
         </HubQuestionCardContainer>
 

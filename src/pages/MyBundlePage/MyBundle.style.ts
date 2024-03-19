@@ -16,10 +16,12 @@ export const Wrapper = styled.div`
 
 export const Container = styled.article`
   display: flex;
-  gap: 2rem;
-  padding-top: 2rem;
+  gap: 1rem;
+
+  padding-top: 1.5rem;
   padding-bottom: 2rem;
-  width: 90%;
+  width: 100%;
+  padding-left: 2rem;
   max-width: 150rem;
   height: 100%;
   box-sizing: border-box;
@@ -27,13 +29,16 @@ export const Container = styled.article`
   overflow-x: hidden;
 
   @media screen and (max-width: ${MOBILE}px) {
+    width: 100%;
     height: auto;
     padding: 0;
   }
 `;
 
 export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
-  padding-top: 1rem;
+  padding: 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 0;
   box-sizing: border-box;
   width: 20rem;
   height: 100%;
@@ -49,6 +54,7 @@ export const StyledWrapper = styled.section<{ $isSelected: boolean }>`
   ${({ $isSelected }) => {
     if (!$isSelected) {
       return css`
+        padding: 0rem;
         display: fixed;
         transform: translateX(150%);
         opacity: 0;

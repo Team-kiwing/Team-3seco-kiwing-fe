@@ -1,10 +1,13 @@
+import { useEffect } from 'react';
+
 import BundleCard from '@/components/common/BundleCard';
 import QuestionCard from '@/components/common/QuestionCard';
-import Spinner from '@/components/common/Spinner';
+import { useGetMyBundles } from '@/components/common/QuestionCard/QuestionCard.hook';
+import Skeleton from '@/components/common/Skeleton';
 import UserInfoCard from '@/components/common/UserInfoCard';
+import { useInfoUpdateModal } from '@/components/common/UserInfoCard/UserInfoCard.hook';
 import useResize from '@/hooks/useResize';
 import { userDataStore } from '@/stores';
-import { getItem } from '@/utils/localStorage';
 
 import { useFetchBundles, useFetchQuestions } from './Main.hook';
 import {
@@ -16,24 +19,32 @@ import {
   MainListWrapper,
   MainPageWrapper,
   MainQuestionsBox,
+  MainUserInfoCardBox,
   VerticalDivider,
 } from './Main.style';
 
 const Main = () => {
   const { isMobileSize } = useResize();
-  const storedRefreshToken = getItem('refresh-token', null);
+  const { handleInfoUpdateModal } = useInfoUpdateModal();
 
-  const { nickname, profileImage, memberTags, snsList, isLogin } =
-    userDataStore();
+  const {
+    nickname,
+    profileImage,
+    memberTags,
+    snsList,
+    isLogin,
+    isFirstLogin,
+    setIsFirstLogin,
+  } = userDataStore();
 
-  const { data: threeQuestions } = useFetchQuestions({
+  const { data: MainQuestions } = useFetchQuestions({
     keyword: '',
     page: 1,
     size: 4,
     sortingType: 'LATEST',
     tagIds: [],
   });
-  const { data: threeBundles } = useFetchBundles({
+  const { data: MainBundles } = useFetchBundles({
     page: 1,
     size: 3,
     sortingType: 'LATEST',
@@ -41,13 +52,25 @@ const Main = () => {
     tagIds: [],
   });
 
+  const { data: userBundles, refetch: getMyBundlesRefetch } =
+    useGetMyBundles('LATEST');
+
+  useEffect(() => {
+    if (isFirstLogin) {
+      handleInfoUpdateModal();
+      setIsFirstLogin(false);
+    }
+  }, [isFirstLogin, handleInfoUpdateModal, setIsFirstLogin]);
+
+  useEffect(() => {
+    isLogin && getMyBundlesRefetch();
+  }, [getMyBundlesRefetch, isLogin]);
+
   return (
     <>
-      {storedRefreshToken && !nickname ? (
-        <Spinner />
-      ) : (
-        <MainPageWrapper>
-          {isLogin ? (
+      {isLogin ? (
+        <MainUserInfoCardBox>
+          {nickname !== '' ? (
             <UserInfoCard
               userName={nickname.split('@')[1]}
               userImage={profileImage}
@@ -56,48 +79,56 @@ const Main = () => {
               rightButtonOn={true}
             />
           ) : (
-            <Banner>
-              <img
-                src="/mainBanner.svg"
-                alt="서비스 소개 배너"
-                onClick={() => window.open('https://kiwing.shop/', '_blank')}
-              />
-            </Banner>
+            <Skeleton.Box
+              $width="100%"
+              $height="20rem"
+            />
           )}
-          <MainListWrapper>
-            <MainItemWrapper>
-              <MainListHeader>최근 등록된 질문</MainListHeader>
-              {threeQuestions?.questionResponses?.map((question) => (
-                <MainQuestionsBox key={question.id}>
-                  <QuestionCard
-                    tags={question.tags}
-                    id={question.id}
-                    content={question.content}
-                    shareCount={question.shareCount}
-                    isHot={question.isHot}
-                    isLogin={isLogin}
-                  />
-                </MainQuestionsBox>
-              ))}
-            </MainItemWrapper>
-            {isMobileSize ? <HorizontalDivider /> : <VerticalDivider />}
-            <MainItemWrapper>
-              <MainListHeader>최근 등록된 꾸러미</MainListHeader>
-              {threeBundles?.content?.map((bundle) => (
-                <MainBundlesBox key={bundle.id}>
-                  <BundleCard
-                    id={bundle.id}
-                    bundleName={bundle.name}
-                    hashTags={bundle.tags}
-                    subscribedCount={bundle.scrapeCount}
-                    isHot={bundle.isHot}
-                  />
-                </MainBundlesBox>
-              ))}
-            </MainItemWrapper>
-          </MainListWrapper>
-        </MainPageWrapper>
+        </MainUserInfoCardBox>
+      ) : (
+        <Banner>
+          <img
+            src="/mainBanner.svg"
+            alt="서비스 소개 배너"
+            onClick={() => window.open('https://kiwing.shop/', '_blank')}
+          />
+        </Banner>
       )}
+      <MainPageWrapper>
+        <MainListWrapper>
+          <MainItemWrapper>
+            <MainListHeader>최근 등록된 질문</MainListHeader>
+            {MainQuestions?.questionResponses?.map((question) => (
+              <MainQuestionsBox key={question.id}>
+                <QuestionCard
+                  tags={question.tags}
+                  id={question.id}
+                  content={question.content}
+                  shareCount={question.shareCount}
+                  isHot={question.isHot}
+                  isLogin={isLogin}
+                  Bundle={userBundles ? userBundles : []}
+                />
+              </MainQuestionsBox>
+            ))}
+          </MainItemWrapper>
+          {isMobileSize ? <HorizontalDivider /> : <VerticalDivider />}
+          <MainItemWrapper>
+            <MainListHeader>최근 등록된 꾸러미</MainListHeader>
+            {MainBundles?.content?.map((bundle) => (
+              <MainBundlesBox key={bundle.id}>
+                <BundleCard
+                  id={bundle.id}
+                  bundleName={bundle.name}
+                  hashTags={bundle.tags}
+                  subscribedCount={bundle.scrapeCount}
+                  isHot={bundle.isHot}
+                />
+              </MainBundlesBox>
+            ))}
+          </MainItemWrapper>
+        </MainListWrapper>
+      </MainPageWrapper>
     </>
   );
 };

@@ -18,7 +18,7 @@ import {
 } from './MobileBottomNavBar.style';
 
 const MobileBottomNavBar = () => {
-  const { isLogin } = userDataStore();
+  const { isLogin, nickname } = userDataStore();
   const {
     location,
     handleLogo,
@@ -61,7 +61,7 @@ const MobileBottomNavBar = () => {
         </BottomNavBarItem>
         {isLogin ? (
           <BottomNavBarItem
-            $color={location.pathname.includes(PATH.MY)}
+            $color={location.pathname.includes(`/user/${nickname}`)}
             onClick={handleMyBundle}
           >
             <IconWrapper $size={'s'}>

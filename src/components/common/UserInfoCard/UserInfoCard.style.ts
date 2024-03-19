@@ -65,19 +65,24 @@ export const UserInfoLinkWrapper = styled(Col)`
   width: fit-content;
   margin-top: 1rem;
   gap: 1rem;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    gap: 1.3rem;
+  }
 `;
 
 export const UserInfoLink = styled(Row)`
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   width: fit-content;
   color: ${({ theme }) => theme.primary_color};
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   gap: 0.5rem;
   align-items: center;
   cursor: pointer;
+
   & > a {
     width: 100%;
     color: ${({ theme }) => theme.gray_400};

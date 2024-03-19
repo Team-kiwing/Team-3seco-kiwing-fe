@@ -7,14 +7,16 @@ import {
   DropResult,
 } from 'react-beautiful-dnd';
 
-import BorderBox from '@/components/common/BorderBox';
 import Button from '@/components/common/Button';
 import Selector from '@/components/common/Selector';
+import ShadowBox from '@/components/common/ShadowBox';
 import { QUERYKEY } from '@/constants/queryKeys';
+import useResize from '@/hooks/useResize';
 import { getBundleDetail } from '@/services/bundles';
 import { Question } from '@/types';
 
 import MyQuestionBox from '../MyQuestionBox';
+import MyQuestionEmpty from '../MyQuestionEmpty';
 import { useMyQuestionModal } from '../MyQuestionModal/MyQuestionModal.hook';
 import { useReorderQuestion } from './MyBundleDetail.hook';
 import {
@@ -31,9 +33,9 @@ import { MyBundleDetailProps } from './MyBundleDetail.type';
 
 const MyBundleDetail = ({
   isBundleSelected,
-  isMyBundlesEmpty,
   bundleId,
 }: MyBundleDetailProps) => {
+  const { isMobileSize } = useResize();
   const { data: bundle } = useQuery({
     queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
     queryFn: async () => {
@@ -45,7 +47,7 @@ const MyBundleDetail = ({
     },
     enabled: !!bundleId,
   });
-  const { mutate: reorder } = useReorderQuestion();
+  const { mutate: reorder } = useReorderQuestion(bundleId);
 
   const [isAll, setIsAll] = useState(true);
   const [orderedQuestions, setOrderedQuestions] = useState<Question[]>([]);
@@ -105,7 +107,7 @@ const MyBundleDetail = ({
   if (!isBundleSelected || !bundle) {
     return (
       <Container $isBundleSelected={isBundleSelected}>
-        <BorderBox
+        <ShadowBox
           width="100%"
           height="100%"
           style={{
@@ -124,23 +126,21 @@ const MyBundleDetail = ({
               width: '30%',
             }}
           />
-          {isMyBundlesEmpty ? (
-            <span>나만의 꾸러미를 생성해보세요!</span>
-          ) : (
-            <span>나만의 꾸러미를 선택해보세요!</span>
-          )}
-        </BorderBox>
+          <span>나만의 꾸러미를 선택해보세요!</span>
+        </ShadowBox>
       </Container>
     );
   }
 
   return (
     <Container $isBundleSelected={isBundleSelected}>
-      <BorderBox
-        width="100%"
+      <ShadowBox
+        width={isMobileSize ? '90%' : '100%'}
         height="100%"
         style={{
           boxSizing: 'border-box',
+          marginLeft: isMobileSize ? '5%' : 'inherit',
+          marginRight: isMobileSize ? '5%' : 'inherit',
         }}
       >
         <InnerContainer>
@@ -152,41 +152,45 @@ const MyBundleDetail = ({
             />
           </Header>
           <Body>
-            <DragDropContext onDragEnd={onDragEnd}>
-              <Droppable droppableId="droppable">
-                {(provided) => (
-                  <BodyInnerWrapper
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                  >
-                    {filteredQuestions.map((question, index) => (
-                      <Draggable
-                        key={String(question.id)}
-                        draggableId={String(question.id)}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <QuestionWrapper
-                            id={String(question.id)}
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <MyQuestionBox
-                              key={question.id}
-                              question={question}
-                              bundleId={bundle.id}
-                              answerShareType={question.answerShareType}
-                            />
-                          </QuestionWrapper>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </BodyInnerWrapper>
-                )}
-              </Droppable>
-            </DragDropContext>
+            {bundle.questions.length === 0 ? (
+              <MyQuestionEmpty />
+            ) : (
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="droppable">
+                  {(provided) => (
+                    <BodyInnerWrapper
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                    >
+                      {filteredQuestions.map((question, index) => (
+                        <Draggable
+                          key={String(question.id)}
+                          draggableId={String(question.id)}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <QuestionWrapper
+                              id={String(question.id)}
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                            >
+                              <MyQuestionBox
+                                key={question.id}
+                                question={question}
+                                bundleId={bundle.id}
+                                answerShareType={question.answerShareType}
+                                dragHandleProps={provided.dragHandleProps}
+                              />
+                            </QuestionWrapper>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </BodyInnerWrapper>
+                  )}
+                </Droppable>
+              </DragDropContext>
+            )}
           </Body>
           <Footer>
             <Button
@@ -197,7 +201,7 @@ const MyBundleDetail = ({
             <CountText>{bundle.questions.length}/100</CountText>
           </Footer>
         </InnerContainer>
-      </BorderBox>
+      </ShadowBox>
     </Container>
   );
 };

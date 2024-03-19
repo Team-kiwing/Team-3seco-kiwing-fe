@@ -41,7 +41,7 @@ const SharedBundleDropDown = ({
   const OPTIONS = [
     {
       id: 1,
-      title: '꾸러미 추가',
+      title: '내 꾸러미에 추가',
       rightItem: (
         <IconWrapper $size={'xs'}>
           <MdAddCircleOutline />
@@ -72,7 +72,7 @@ const SharedBundleDropDown = ({
       <div>
         <DropDown
           mode="normal"
-          width={12}
+          width={13}
           optionHeight={5}
           height={10}
           closeDropDown={closeDropDown}

@@ -1,4 +1,4 @@
-import { URLREGEX } from '@/constants/validation';
+import { NICKNAMEREGEX, URLREGEX } from '@/constants/validation';
 
 export const MODAL = {
   TITLE: '사용자 정보 수정',
@@ -23,4 +23,17 @@ export const MODAL = {
 
 export const MODAL_LINK_VALIDATION = {
   pattern: URLREGEX,
+};
+
+export const NICKNAME_VALIDATION = {
+  required: true,
+  pattern: NICKNAMEREGEX,
+  minLength: {
+    value: 2,
+    message: '사용자 ID는 2자 이상 작성해주세요.',
+  },
+  maxLength: {
+    value: 50,
+    message: '사용자 ID는 50자까지 작성 가능합니다.',
+  },
 };

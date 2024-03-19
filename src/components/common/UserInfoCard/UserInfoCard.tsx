@@ -46,7 +46,6 @@ import { UserInfoCardProps } from './UserInfoCard.type';
  * @returns
  */
 
-// TODO: API 명세서 나오면 데이터 형식에 맞게 props 설정하기
 const UserInfoCard = ({
   userImage,
   userName,
@@ -57,7 +56,7 @@ const UserInfoCard = ({
   const theme = useTheme();
 
   const { isMobileSize } = useResize();
-  const { handleInfoUpdateClick } = useInfoUpdateModal();
+  const { handleInfoUpdateModal } = useInfoUpdateModal();
   const { mutate: logout } = useLogout();
   const storedRefreshToken = getItem('refresh-token', null);
 
@@ -104,22 +103,25 @@ const UserInfoCard = ({
           </UserInfoNicknameBadgeWrapper>
           <UserInfoLinkWrapper>
             {links.length !== 0 ? (
-              links.map((link, index) => (
-                <UserInfoLink key={index}>
-                  <IconWrapper
-                    $size={isMobileSize ? 'xss' : 'xs'}
-                    style={{ cursor: 'default' }}
-                  >
-                    <IoIosLink />
-                  </IconWrapper>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                  >
-                    {link.url}
-                  </a>
-                </UserInfoLink>
-              ))
+              links.map(
+                (link, index) =>
+                  link.url && (
+                    <UserInfoLink key={index}>
+                      <IconWrapper
+                        $size={isMobileSize ? 'xss' : 'xs'}
+                        style={{ cursor: 'default' }}
+                      >
+                        <IoIosLink />
+                      </IconWrapper>
+                      <a
+                        href={link.url}
+                        target="_blank"
+                      >
+                        {link.url}
+                      </a>
+                    </UserInfoLink>
+                  )
+              )
             ) : (
               <NoLinks>등록된 링크가 없습니다.</NoLinks>
             )}
@@ -129,7 +131,7 @@ const UserInfoCard = ({
           <UserInfoIconWrapper>
             <IconWrapper
               $size={isMobileSize ? 'xs' : 's'}
-              onClick={handleInfoUpdateClick}
+              onClick={handleInfoUpdateModal}
             >
               <PiNotePencil />
             </IconWrapper>

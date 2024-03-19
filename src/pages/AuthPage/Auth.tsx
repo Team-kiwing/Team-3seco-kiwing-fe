@@ -20,7 +20,13 @@ import {
 const Auth = () => {
   const { isMobileSize } = useResize();
   const { isDarkMode } = themeStore();
-  const { accessToken: storedAccessToken, setAccessToken } = userDataStore();
+  const {
+    accessToken: storedAccessToken,
+    setAccessToken,
+    setIsLogin,
+    setIsFirstLogin,
+    setNickname,
+  } = userDataStore();
   const storedRefreshToken = getItem('refresh-token', null);
   const theme = useTheme();
 
@@ -32,6 +38,10 @@ const Auth = () => {
   const refreshToken = new URL(window.location.href).searchParams.get(
     'refresh-token'
   );
+  const isFirstLogin = new URL(window.location.href).searchParams.get(
+    'isFirstLogin'
+  );
+  const nickname = new URL(window.location.href).searchParams.get('nickname');
 
   const goGoogleLogin = () => {
     window.location.href = import.meta.env.VITE_GOOGLE_URL;
@@ -39,9 +49,16 @@ const Auth = () => {
 
   useEffect(() => {
     if (!storedAccessToken && !storedRefreshToken) {
-      if (accessToken && refreshToken) {
+      if (accessToken && refreshToken && isFirstLogin && nickname) {
         setAccessToken(accessToken);
         setItem('refresh-token', refreshToken);
+        {
+          isFirstLogin === 'true'
+            ? setIsFirstLogin(true)
+            : setIsFirstLogin(false);
+        }
+        setNickname(nickname);
+        setIsLogin(true);
         navigate('/');
       }
     } else {
@@ -54,6 +71,11 @@ const Auth = () => {
     refreshToken,
     storedAccessToken,
     storedRefreshToken,
+    isFirstLogin,
+    setIsFirstLogin,
+    nickname,
+    setIsLogin,
+    setNickname,
   ]);
 
   if (storedAccessToken || storedRefreshToken) {
@@ -89,9 +111,8 @@ const Auth = () => {
             </AuthHeader>
             <AuthDescription>
               kiwing은 취업 준비생, 이직생들이 마주한 면접과정을 준비하는 데에
-              도움이 되고자 기획된 장기 프로젝트입니다. <br /> kiwing은
-              사용자들에게 면접을 효율적이고 빠르게 준비할 수 있는 기능들을
-              제공합니다.
+              도움이 되고자 기획된 서비스입니다. <br /> kiwing은 사용자들에게
+              면접을 효율적이고 빠르게 준비할 수 있는 기능들을 제공합니다.
             </AuthDescription>
             <AuthSubHeader>이메일로 로그인 해보세요.</AuthSubHeader>
             <AuthGoogleWrapper

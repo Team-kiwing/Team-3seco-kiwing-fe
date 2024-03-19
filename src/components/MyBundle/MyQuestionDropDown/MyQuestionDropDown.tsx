@@ -27,7 +27,7 @@ const MyQuestionDropDown = ({
 }: MyQuestionDropDownProps) => {
   const queryClient = useQueryClient();
   const { isMobileSize } = useResize();
-  const { mutate: updateQuestion } = useUpdateQuestion();
+  const { mutate: updateQuestion } = useUpdateQuestion(bundleId);
   const { mutate: deleteQuestion } = useDeleteQuestion(bundleId);
   const { handleEditQuestionClick } = useMyQuestionModal(bundleId);
 

@@ -92,13 +92,13 @@ const MyBundleList = ({
                         id={String(bundle.id)}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        {...provided.dragHandleProps}
                       >
                         <MyBundleItem
                           key={bundle.id}
                           bundle={bundle}
                           selectedBundleId={selectedBundleId}
                           setSelectedBundleId={setSelectedBundleId}
+                          dragHandleProps={provided.dragHandleProps}
                         />
                       </BundleItemWrapper>
                     )}

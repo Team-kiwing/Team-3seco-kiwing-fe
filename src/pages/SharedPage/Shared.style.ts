@@ -18,7 +18,7 @@ export const SharedWrapper = styled(Col)`
   }
 `;
 
-export const TagFilterWrapper = styled(Row)`
+export const TagFilterWrapper = styled.section`
   width: 100%;
   margin-bottom: 2rem;
   justify-content: center;
@@ -27,17 +27,13 @@ export const TagFilterWrapper = styled(Row)`
 export const SearchWrapper = styled(Row)`
   width: 100%;
   height: 4rem;
-
-  @media screen and (max-width: ${MOBILE}px) {
-    height: 3rem;
-  }
 `;
 
 export const SelectorWrapper = styled(Row)`
   justify-content: end;
 `;
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.section`
   display: grid;
   -webkit-box-align: start;
   align-items: start;
@@ -47,6 +43,9 @@ export const CardWrapper = styled.div`
   @media screen and (max-width: 1000px) {
     grid-template-columns: repeat(1, 1fr);
     row-gap: 2rem;
+  }
+  @media screen and (max-width: ${MOBILE}px) {
+    row-gap: 0rem;
   }
 `;
 
@@ -99,4 +98,16 @@ export const SharedSearchError = styled(SharedSearchNone)`
   display: flex;
   width: 100%;
   justify-content: center;
+`;
+
+export const SharedNextPageNone = styled.div`
+  text-align: center;
+  margin: 2rem auto;
+  font-size: 1.8rem;
+  color: ${({ theme }) => theme.primary_color};
+
+  @media screen and (max-width: ${MOBILE}px) {
+    font-size: ${MOBILE_FONT_SIZE}rem;
+    margin: 1rem auto;
+  }
 `;
