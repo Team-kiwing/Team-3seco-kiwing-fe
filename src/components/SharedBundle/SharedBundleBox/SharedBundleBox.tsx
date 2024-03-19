@@ -2,6 +2,11 @@ import { useState } from 'react';
 
 import Button from '@/components/common/Button';
 import DropDown from '@/components/common/DropDown';
+import NoSearchResults from '@/components/common/NoSearchResults';
+import {
+  NO_SEARCH_RESULTS_ALT_IMAGE,
+  NO_SEARCH_RESULTS_IMAGE,
+} from '@/components/common/NoSearchResults/NoSearchResults.const';
 import ShadowBox from '@/components/common/ShadowBox';
 import { notify } from '@/hooks/toast';
 import useDropDown from '@/hooks/useDropDown';
@@ -149,7 +154,14 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
             </SharedBundleBoxFooter>
           </>
         ) : (
-          <EmptyContent>추가 된 질문이 없습니다</EmptyContent>
+          <EmptyContent>
+            <NoSearchResults
+              text1="앗"
+              text2="추가된 질문이 없습니다."
+              alt={NO_SEARCH_RESULTS_ALT_IMAGE}
+              src={NO_SEARCH_RESULTS_IMAGE}
+            />
+          </EmptyContent>
         )}
       </ShadowBox>
     </>
