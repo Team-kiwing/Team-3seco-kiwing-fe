@@ -2,6 +2,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { FiEdit3 } from 'react-icons/fi';
 import { RiDeleteBin5Line, RiFileCopyLine } from 'react-icons/ri';
+import { Tooltip } from 'react-tooltip';
+import { useTheme } from 'styled-components';
 
 import IconWrapper from '@/components/common/IconWrapper';
 import ShadowBox from '@/components/common/ShadowBox';
@@ -18,11 +20,12 @@ import {
   useMyBundleModal,
   useUpdateBundle,
 } from '../MyBundleModal/MyBundleModal.hook';
-import { Item, Options, Text } from './MyBundleMenu.style';
+import { Item, Options, Text, TooltipContainer } from './MyBundleMenu.style';
 import { MyBundleMenuProps } from './MyBundleMenu.type';
 
 const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
   const queryClient = useQueryClient();
+  const theme = useTheme();
 
   const { data: bundle } = useFetchBundleDetail(bundleId);
 
@@ -93,7 +96,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
   const options = [
     {
       id: 1,
-      title: '공개 여부',
+      title: '공유 여부',
       rightItem: (
         <Toggle
           on={isShared}
@@ -112,6 +115,10 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
           tagIds: bundle.tags.map((tag) => tag.id),
         });
       },
+
+      tooltip: isShared
+        ? '현재 꾸러미가 공개 상태입니다.'
+        : '현재 꾸러미가 비공개 상태입니다.',
     },
 
     {
@@ -134,6 +141,8 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
           });
         }
       },
+
+      tooltip: '다른 사람에게 링크를 통해 꾸러미를 공유합니다.',
     },
     {
       id: 3,
@@ -174,15 +183,35 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
       }}
     >
       <Options>
-        {options.map((option) => (
-          <Item
-            key={option.id}
-            onClick={() => handleItemClick(option.handler)}
-          >
-            <Text>{option.title}</Text>
-            <Text>{option.rightItem}</Text>
-          </Item>
-        ))}
+        {options.map((option, index) =>
+          index <= 1 ? (
+            <TooltipContainer key={option.id}>
+              <a
+                data-tooltip-id="my-bundle-menu-tooltip"
+                data-tooltip-content={option.tooltip}
+                data-tooltip-delay-show={500}
+              >
+                <Item onClick={() => handleItemClick(option.handler)}>
+                  <Text>{option.title}</Text>
+                  <Text>{option.rightItem}</Text>
+                </Item>
+              </a>
+              <Tooltip
+                id="my-bundle-menu-tooltip"
+                style={{
+                  backgroundColor: theme.symbol_secondary_color,
+                }}
+              />
+            </TooltipContainer>
+          ) : (
+            <TooltipContainer key={option.id}>
+              <Item onClick={() => handleItemClick(option.handler)}>
+                <Text>{option.title}</Text>
+                <Text>{option.rightItem}</Text>
+              </Item>
+            </TooltipContainer>
+          )
+        )}
       </Options>
     </ShadowBox>
   );
