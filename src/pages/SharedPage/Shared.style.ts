@@ -18,7 +18,7 @@ export const SharedWrapper = styled(Col)`
   }
 `;
 
-export const TagFilterWrapper = styled(Row)`
+export const TagFilterWrapper = styled.section`
   width: 100%;
   margin-bottom: 2rem;
   justify-content: center;
@@ -33,7 +33,7 @@ export const SelectorWrapper = styled(Row)`
   justify-content: end;
 `;
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.section`
   display: grid;
   -webkit-box-align: start;
   align-items: start;
