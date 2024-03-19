@@ -170,14 +170,14 @@ const QuestionCard = ({
               {isHot && (
                 <Badge
                   style={{ cursor: 'default', padding: '0.5rem 1.3rem' }}
-                  $size={isMobileSize ? 1.2 : 's'}
+                  $size={isMobileSize ? 'xs' : 's'}
                   $state="hot"
                   $text="HOT"
                 />
               )}
               <Badge
                 style={{ cursor: 'default', padding: '0.5rem 1.3rem' }}
-                $size={isMobileSize ? 1.2 : 's'}
+                $size={isMobileSize ? 'xs' : 's'}
                 $state="subscribedTag"
                 $subscribedCount={shareCount}
               />

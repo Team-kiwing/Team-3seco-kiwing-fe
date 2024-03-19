@@ -28,6 +28,7 @@ export const BundleCardItemName = styled.div`
   font-weight: ${FONT_SEMI_BOLD - 50};
   margin-top: 0.2rem;
   margin-bottom: 1rem;
+  word-break: break-all;
 
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1.6rem;
@@ -49,8 +50,9 @@ export const BundleCardHashTagWrapper = styled.div`
 
 export const BundleCardBadgeWrapper = styled.div`
   display: flex;
-  margin-top: 0.8rem;
+  margin-top: 1rem;
   gap: 1rem;
+
   @media screen and (max-width: ${MOBILE}px) {
     display: flex;
     align-items: flex-end;

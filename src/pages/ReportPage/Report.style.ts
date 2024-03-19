@@ -54,7 +54,7 @@ export const ReportGuideText = styled.p`
   font-size: ${WEB_FONT_SIZE}rem;
   font-weight: ${FONT_MEDIUM};
   line-height: normal;
-  word-break: keep-all;
+  word-break: break-all;
 
   @media screen and (max-width: ${MOBILE}px) {
     word-break: break-all;
