@@ -13,7 +13,11 @@ import useResize from '@/hooks/useResize';
 import { Row } from '@/styles/globalStyles';
 import { Tag } from '@/types';
 
-import { MODAL, MODAL_LINK_VALIDATION } from './InfoUpdateModal.const';
+import {
+  MODAL,
+  MODAL_LINK_VALIDATION,
+  NICKNAME_VALIDATION,
+} from './InfoUpdateModal.const';
 import { useUpdateImage, useUpdateMyInfo } from './InfoUpdateModal.hook';
 import {
   ButtonContainer,
@@ -75,7 +79,7 @@ const InfoUpdateModal = ({
     const tagIds = selectedTags.map((tag) => tag.id);
 
     onUpdateInfo({
-      nickname: originalNickname,
+      nickname: `@${getValues('updateNickname')}`,
       snsRequests: updateSnsRequests,
       tagIds,
     });
@@ -129,11 +133,19 @@ const InfoUpdateModal = ({
       <form onSubmit={handleSubmit(onUpdateInfoForm)}>
         <div style={{ marginBottom: '1.8rem' }}>
           <Input
-            {...register('updateNickname')}
+            {...register('updateNickname', NICKNAME_VALIDATION)}
             width="100%"
             label={MODAL.USER_ID_LABEL}
             placeholder={MODAL.USER_ID_PLACEHOLDER}
-            isDisabled={true}
+            errorMessage={
+              errors?.updateNickname?.type === 'required'
+                ? '사용자 ID를 입력해주세요.'
+                : errors?.updateNickname?.type === 'pattern'
+                  ? '사용자 ID는 영어와 숫자 조합으로 작성해주세요.'
+                  : errors?.updateNickname?.type === 'minLength'
+                    ? '사용자 ID는 2자 이상 작성해주세요.'
+                    : ''
+            }
           />
         </div>
         <div style={{ marginBottom: '1.8rem' }}>
