@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { Tooltip } from 'react-tooltip';
+import { useTheme } from 'styled-components';
 
 import BorderBox from '@/components/common/BorderBox';
 import Button from '@/components/common/Button';
@@ -15,7 +17,13 @@ import { Tag } from '@/types';
 
 import { MODAL, MyBundleModalValidation } from './MyBundleModal.const';
 import { useCreateBundle, useUpdateBundle } from './MyBundleModal.hook';
-import { ButtonContainer, ModalContainer } from './MyBundleModal.style';
+import {
+  ButtonContainer,
+  ModalContainer,
+  TagFilterContainer,
+  Text,
+  TooltipContainer,
+} from './MyBundleModal.style';
 import { AddBundleModalProps, FormField } from './MyBundleModal.type';
 
 const MyBundleModal = ({
@@ -26,6 +34,7 @@ const MyBundleModal = ({
   isSharedField = false,
   setIsToggleShared,
 }: AddBundleModalProps) => {
+  const theme = useTheme();
   const { data: tags } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>(selectedTagsField);
   const [isShared, setIsShared] = useState(isSharedField);
@@ -97,12 +106,15 @@ const MyBundleModal = ({
   return (
     <ModalContainer>
       {tags ? (
-        <TagFilter
-          tagList={tags}
-          selectedTags={selectedTags}
-          setSelectedTags={setSelectedTags}
-          isLimit={true}
-        />
+        <TagFilterContainer>
+          <Text>꾸러미 주제와 어울리는 태그를 선택해보세요!</Text>
+          <TagFilter
+            tagList={tags}
+            selectedTags={selectedTags}
+            setSelectedTags={setSelectedTags}
+            isLimit={true}
+          />
+        </TagFilterContainer>
       ) : (
         <BorderBox
           width="100%"
@@ -125,17 +137,35 @@ const MyBundleModal = ({
           errorMessage={errors.bundleNameField?.message}
         />
         <ButtonContainer>
-          <Toggle
-            on={isShared}
-            onChange={() => setIsShared(!isShared)}
-            height={isMobileSize ? '3.1rem' : '4rem'}
-            width="15rem"
-            isContentShow={true}
-            fontSize="1.6rem"
-            style={{
-              paddingTop: '1rem',
-            }}
-          />
+          <TooltipContainer>
+            <div
+              data-tooltip-id="my-bundle-modal-toggle-tooltip"
+              data-tooltip-content={
+                isShared
+                  ? '꾸러미를 공개 상태로 생성합니다.'
+                  : '꾸러미를 비공개 상태로 생성합니다.'
+              }
+              data-tooltip-delay-show={100}
+            >
+              <Toggle
+                on={isShared}
+                onChange={() => setIsShared(!isShared)}
+                height={isMobileSize ? '3.1rem' : '4rem'}
+                width="15rem"
+                isContentShow={true}
+                fontSize="1.6rem"
+                style={{
+                  paddingTop: '1rem',
+                }}
+              />
+            </div>
+            <Tooltip
+              id="my-bundle-modal-toggle-tooltip"
+              style={{
+                backgroundColor: theme.symbol_secondary_color,
+              }}
+            />
+          </TooltipContainer>
           <Button
             style={{ marginTop: '1rem' }}
             text={MODAL.SUBMIT_BUTTON_TEXT(modalMode)}

@@ -16,14 +16,21 @@ export const useCreateBundle = () => {
   return useMutation({
     mutationFn: ({ name, shareType, tagIds }: BundlesCreateRequest) =>
       createBundle({ name, shareType, tagIds }),
-    onSuccess: () => {
-      notify({
-        type: 'success',
-        text: MODAL.SUCCESS_NOTIFY('add'),
-      });
-      queryClient.refetchQueries({
-        queryKey: [QUERYKEY.MY_BUNDLES],
-      });
+    onSuccess: (res) => {
+      if (res) {
+        notify({
+          type: 'success',
+          text: MODAL.SUCCESS_NOTIFY('add'),
+        });
+        queryClient.refetchQueries({
+          queryKey: [QUERYKEY.MY_BUNDLES],
+        });
+      } else {
+        notify({
+          type: 'error',
+          text: MODAL.ERROR_NOTIFY('add'),
+        });
+      }
     },
     onError: () => {
       notify({
@@ -40,17 +47,25 @@ export const useUpdateBundle = () => {
   return useMutation({
     mutationFn: ({ bundleId, name, shareType, tagIds }: BundlesUpdateRequest) =>
       updateBundle({ bundleId, name, shareType, tagIds }),
-    onSuccess: () => {
-      notify({
-        type: 'success',
-        text: MODAL.SUCCESS_NOTIFY('edit'),
-      });
-      queryClient.refetchQueries({
-        queryKey: [QUERYKEY.MY_BUNDLES],
-      });
-      queryClient.refetchQueries({
-        queryKey: [QUERYKEY.BUNDLE_DETAIL],
-      });
+    onSuccess: (res) => {
+      if (res) {
+        notify({
+          type: 'success',
+          text: MODAL.SUCCESS_NOTIFY('edit'),
+        });
+        queryClient.invalidateQueries({
+          queryKey: [QUERYKEY.MY_BUNDLES],
+        });
+        // @TODO 추후에 리패치 최적화 진행하기. 꾸러미 편집 후 토글 하면 업데이트가 안되는 현상
+        queryClient.invalidateQueries({
+          queryKey: [QUERYKEY.BUNDLE_DETAIL],
+        });
+      } else {
+        notify({
+          type: 'error',
+          text: MODAL.ERROR_NOTIFY('edit'),
+        });
+      }
     },
     onError: () => {
       notify({

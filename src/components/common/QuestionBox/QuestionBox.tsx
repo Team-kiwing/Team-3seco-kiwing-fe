@@ -1,8 +1,9 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useUpdateQuestion } from '@/components/MyBundle/MyQuestionModal/MyQuestionModal.hook';
 import useAccordion from '@/hooks/useAccordion';
+import useResize from '@/hooks/useResize';
 
 import {
   Body,
@@ -21,13 +22,16 @@ const QuestionBox = ({
   rightItem,
   isEditMode = false,
   questionObj,
+  bundleId,
+  dragHandleProps,
 }: QuestionBoxProps) => {
+  const { isMobileSize } = useResize();
   const { parentRef, childRef, isActive, handleClick } = useAccordion();
 
   const [isEditable, setIsEditable] = useState(false);
-  const { mutate: updateQuestion } = useUpdateQuestion();
+  const { mutate: updateQuestion } = useUpdateQuestion(bundleId);
 
-  const { register, getValues, handleSubmit, setValue } = useForm<{
+  const { register, getValues, handleSubmit, setValue, watch } = useForm<{
     answerField: string;
   }>({
     mode: 'onSubmit',
@@ -49,11 +53,24 @@ const QuestionBox = ({
     setIsEditable(false);
   };
 
+  useEffect(() => {
+    if (
+      isActive &&
+      parentRef &&
+      parentRef.current &&
+      childRef &&
+      childRef.current
+    ) {
+      console.log(childRef.current.clientHeight);
+      parentRef.current.style.height = `${childRef.current.clientHeight + 3}px`;
+    }
+  }, [watch('answerField'), parentRef, childRef]);
+
   const handleInput = (e: FormEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
     target.style.height = 'auto';
     if (parentRef && parentRef.current) {
-      parentRef.current.style.height = `${target.scrollHeight + 43}px`;
+      parentRef.current.style.height = `${target.scrollHeight + (isMobileSize ? 23 : 43)}px`;
     }
 
     const { innerText } = e.currentTarget;
@@ -62,10 +79,17 @@ const QuestionBox = ({
     }
   };
 
+  useEffect(() => {
+    setValue('answerField', answer ?? '');
+  }, [answer, setValue]);
+
   return (
     <>
       <Container>
-        <TitleWrapper $isActive={isActive}>
+        <TitleWrapper
+          $isActive={isActive}
+          {...dragHandleProps}
+        >
           <Header onClick={(e) => handleClick(e)}>{question}</Header>
           <RightItem>{rightItem}</RightItem>
         </TitleWrapper>
@@ -99,7 +123,7 @@ const QuestionBox = ({
             {!isEditable &&
               (answer !== null && answer.length === 0
                 ? '작성된 답변이 없습니다.'
-                : answer)}
+                : watch('answerField'))}
           </Body>
         </BodyWrapper>
       </Container>

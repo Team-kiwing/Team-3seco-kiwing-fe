@@ -7,6 +7,13 @@ import {
   WEB_FONT_SIZE,
 } from '@/constants';
 
+export const BundleItemWrapper = styled.div<{ $isActive: boolean }>`
+  margin-bottom: 1.5rem;
+  @media screen and (max-width: ${MOBILE}px) {
+    margin-bottom: ${({ $isActive }) => ($isActive ? '0' : '1.5rem')};
+  }
+`;
+
 export const Title = styled.span`
   width: 100%;
   font-size: ${WEB_FONT_SIZE}rem;

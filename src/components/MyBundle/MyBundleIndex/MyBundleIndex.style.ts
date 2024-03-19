@@ -12,6 +12,17 @@ export const Container = styled(Col)`
     padding-bottom: 1.5rem;
   }
 `;
+
+export const TextContainer = styled(Col)`
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EmptyText = styled.span`
+  color: ${({ theme }) => theme.gray_300};
+  font-size: 1.2rem;
+`;
+
 export const Text = styled.div`
   flex-shrink: 0;
   > a {

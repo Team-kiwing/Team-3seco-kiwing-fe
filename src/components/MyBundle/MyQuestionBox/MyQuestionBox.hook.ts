@@ -9,14 +9,21 @@ export const useDeleteQuestion = (bundleId: number) => {
 
   return useMutation({
     mutationFn: (questionId: number) => deleteQuestion(questionId),
-    onSuccess: () => {
-      notify({
-        type: 'success',
-        text: '질문을 삭제했습니다!',
-      });
-      queryClient.refetchQueries({
-        queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
-      });
+    onSuccess: (res) => {
+      if (res) {
+        notify({
+          type: 'success',
+          text: '질문을 삭제했습니다!',
+        });
+        queryClient.invalidateQueries({
+          queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
+        });
+      } else {
+        notify({
+          type: 'error',
+          text: '질문을 삭제하는데 문제가 생겼습니다. 다시 시도해주세요.',
+        });
+      }
     },
     onError: () => {
       notify({

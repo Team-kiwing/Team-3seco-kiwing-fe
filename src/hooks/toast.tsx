@@ -36,14 +36,13 @@ const Toast = () => {
   const { isMobileSize } = useResize();
   return (
     <ToastContainer
-      position="top-right"
+      position="top-center"
       autoClose={autoClose}
       hideProgressBar={false}
-      newestOnTop
+      stacked={isMobileSize ? false : true}
       closeOnClick
       rtl={false}
       pauseOnFocusLoss
-      draggable
       pauseOnHover={false}
       theme={isDarkMode ? 'dark' : 'light'}
       style={{ fontSize: isMobileSize ? '1.3rem' : '1.6rem' }}

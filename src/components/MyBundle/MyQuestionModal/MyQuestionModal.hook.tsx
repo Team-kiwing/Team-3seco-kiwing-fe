@@ -10,7 +10,7 @@ import MyQuestionModal from '.';
 import { MODAL } from './MyQuestionModal.const';
 import { EditProps } from './MyQuestionModal.type';
 
-export const useCreateQuestion = () => {
+export const useCreateQuestion = (bundleId: number | null | undefined) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -22,14 +22,27 @@ export const useCreateQuestion = () => {
       bundleId,
     }: QuestionCreateRequest) =>
       createQuestion({ content, answer, answerShareType, tagIds, bundleId }),
-    onSuccess: () => {
-      notify({
-        type: 'success',
-        text: MODAL.SUCCESS_NOTIFY('add'),
-      });
-      queryClient.refetchQueries({
-        queryKey: [QUERYKEY.BUNDLE_DETAIL],
-      });
+    onSuccess: (res) => {
+      if (res) {
+        notify({
+          type: 'success',
+          text: MODAL.SUCCESS_NOTIFY('add'),
+        });
+        if (bundleId) {
+          queryClient.invalidateQueries({
+            queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
+          });
+        } else {
+          queryClient.invalidateQueries({
+            queryKey: [QUERYKEY.BUNDLE_DETAIL],
+          });
+        }
+      } else {
+        notify({
+          type: 'error',
+          text: MODAL.ERROR_NOTIFY('add'),
+        });
+      }
     },
     onError: () => {
       notify({
@@ -40,7 +53,7 @@ export const useCreateQuestion = () => {
   });
 };
 
-export const useUpdateQuestion = () => {
+export const useUpdateQuestion = (bundleId: number | null | undefined) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -52,14 +65,28 @@ export const useUpdateQuestion = () => {
       tagIds,
     }: QuestionUpdateRequest) =>
       updateQuestion({ questionId, content, answer, answerShareType, tagIds }),
-    onSuccess: () => {
-      notify({
-        type: 'success',
-        text: MODAL.SUCCESS_NOTIFY('edit'),
-      });
-      queryClient.invalidateQueries({
-        queryKey: [QUERYKEY.BUNDLE_DETAIL],
-      });
+    onSuccess: (res) => {
+      if (res) {
+        notify({
+          type: 'success',
+          text: MODAL.SUCCESS_NOTIFY('edit'),
+        });
+
+        if (bundleId) {
+          queryClient.invalidateQueries({
+            queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
+          });
+        } else {
+          queryClient.invalidateQueries({
+            queryKey: [QUERYKEY.BUNDLE_DETAIL],
+          });
+        }
+      } else {
+        notify({
+          type: 'error',
+          text: MODAL.ERROR_NOTIFY('edit'),
+        });
+      }
     },
     onError: () => {
       notify({
