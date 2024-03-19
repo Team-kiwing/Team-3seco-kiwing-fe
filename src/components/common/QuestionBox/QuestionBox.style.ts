@@ -10,7 +10,7 @@ import {
 } from '@/constants';
 import { Row } from '@/styles/globalStyles';
 
-export const Container = styled.div`
+export const Container = styled.article`
   width: 100%;
   position: relative;
   border-radius: ${BORDER_WEB}rem;

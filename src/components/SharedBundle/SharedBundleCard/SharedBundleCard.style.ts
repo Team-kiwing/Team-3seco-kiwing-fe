@@ -8,7 +8,7 @@ export const SharedBundleCardWrapper = styled.div`
   min-width: 28rem;
 `;
 
-export const BundleTitle = styled.div`
+export const BundleTitle = styled.section`
   font-size: 2rem;
   padding: 2rem;
   font-weight: ${FONT_MEDIUM};
