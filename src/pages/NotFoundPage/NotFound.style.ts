@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 import { FONT_MEDIUM, MOBILE, MOBILE_FONT_SIZE } from '@/constants';
-import { Col, Row } from '@/styles/globalStyles';
+import { Row } from '@/styles/globalStyles';
 
 const slideIn = keyframes`
   from {
@@ -29,7 +29,9 @@ const slideOut = keyframes`
   }
 `;
 
-export const NotFoundLayout = styled(Col)`
+export const NotFoundLayout = styled.section`
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   width: 80%;
   max-width: 1200px;

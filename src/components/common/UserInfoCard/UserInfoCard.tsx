@@ -56,7 +56,7 @@ const UserInfoCard = ({
   const theme = useTheme();
 
   const { isMobileSize } = useResize();
-  const { handleInfoUpdateClick } = useInfoUpdateModal();
+  const { handleInfoUpdateModal } = useInfoUpdateModal();
   const { mutate: logout } = useLogout();
   const storedRefreshToken = getItem('refresh-token', null);
 
@@ -131,7 +131,7 @@ const UserInfoCard = ({
           <UserInfoIconWrapper>
             <IconWrapper
               $size={isMobileSize ? 'xs' : 's'}
-              onClick={handleInfoUpdateClick}
+              onClick={handleInfoUpdateModal}
             >
               <PiNotePencil />
             </IconWrapper>

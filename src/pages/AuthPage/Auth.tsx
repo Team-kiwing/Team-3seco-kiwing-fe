@@ -20,7 +20,13 @@ import {
 const Auth = () => {
   const { isMobileSize } = useResize();
   const { isDarkMode } = themeStore();
-  const { accessToken: storedAccessToken, setAccessToken } = userDataStore();
+  const {
+    accessToken: storedAccessToken,
+    setAccessToken,
+    setIsLogin,
+    setIsFirstLogin,
+    setNickname,
+  } = userDataStore();
   const storedRefreshToken = getItem('refresh-token', null);
   const theme = useTheme();
 
@@ -32,6 +38,10 @@ const Auth = () => {
   const refreshToken = new URL(window.location.href).searchParams.get(
     'refresh-token'
   );
+  const isFirstLogin = new URL(window.location.href).searchParams.get(
+    'isFirstLogin'
+  );
+  const nickname = new URL(window.location.href).searchParams.get('nickname');
 
   const goGoogleLogin = () => {
     window.location.href = import.meta.env.VITE_GOOGLE_URL;
@@ -39,9 +49,16 @@ const Auth = () => {
 
   useEffect(() => {
     if (!storedAccessToken && !storedRefreshToken) {
-      if (accessToken && refreshToken) {
+      if (accessToken && refreshToken && isFirstLogin && nickname) {
         setAccessToken(accessToken);
         setItem('refresh-token', refreshToken);
+        {
+          isFirstLogin === 'true'
+            ? setIsFirstLogin(true)
+            : setIsFirstLogin(false);
+        }
+        setNickname(nickname);
+        setIsLogin(true);
         navigate('/');
       }
     } else {
@@ -54,6 +71,11 @@ const Auth = () => {
     refreshToken,
     storedAccessToken,
     storedRefreshToken,
+    isFirstLogin,
+    setIsFirstLogin,
+    nickname,
+    setIsLogin,
+    setNickname,
   ]);
 
   if (storedAccessToken || storedRefreshToken) {

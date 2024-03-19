@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { RiFileCopyLine, RiShareLine } from 'react-icons/ri';
 import { useLocation } from 'react-router-dom';
+import { Tooltip } from 'react-tooltip';
 import { useTheme } from 'styled-components';
 
 import CircleButton from '@/components/common/CircleButton';
 import IconWrapper from '@/components/common/IconWrapper';
 import ShadowBox from '@/components/common/ShadowBox';
+import { BORDER_WEB } from '@/constants';
 import { notify } from '@/hooks/toast';
 import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
@@ -88,20 +90,48 @@ const SharedBundleCard = ({
           <BundleTitle>{bundleName}</BundleTitle>
           {!isMobileSize ? (
             <ClickContent>
-              <CircleButton
-                isBackgroundWhite={true}
-                onClick={() => handleScrapBundle()}
-              />
-              <IconWrapper
-                $fillColor={theme.primary_white_text_color}
-                $size={'m'}
-                $hoverIconColor={theme.symbol_secondary_color}
-                onClick={() => {
-                  handleCopyClipBoard(SERVICE_URL, CURRENT_URL);
-                }}
+              <div
+                data-tooltip-id="add-bundle"
+                data-tooltip-content="현재 보고 계신 꾸러미를 내 꾸러미로 추가합니다!"
+                data-tooltip-delay-show={100}
               >
-                <RiFileCopyLine id={triggerId} />
-              </IconWrapper>
+                <CircleButton
+                  isBackgroundWhite={true}
+                  onClick={() => handleScrapBundle()}
+                />
+                <Tooltip
+                  id="add-bundle"
+                  place="top"
+                  style={{
+                    backgroundColor: `${theme.symbol_secondary_color}`,
+                    borderRadius: `${BORDER_WEB}rem`,
+                  }}
+                />
+              </div>
+              <div
+                data-tooltip-id="copy-bundle"
+                data-tooltip-content="현재 보고있는 꾸러미의 URL 주소를 복사합니다!"
+                data-tooltip-delay-show={100}
+              >
+                <IconWrapper
+                  $fillColor={theme.primary_white_text_color}
+                  $size={'m'}
+                  $hoverIconColor={theme.symbol_secondary_color}
+                  onClick={() => {
+                    handleCopyClipBoard(SERVICE_URL, CURRENT_URL);
+                  }}
+                >
+                  <RiFileCopyLine id={triggerId} />
+                </IconWrapper>
+                <Tooltip
+                  id="copy-bundle"
+                  place="top"
+                  style={{
+                    backgroundColor: `${theme.symbol_secondary_color}`,
+                    borderRadius: `${BORDER_WEB}rem`,
+                  }}
+                />
+              </div>
             </ClickContent>
           ) : (
             <ClickContent>

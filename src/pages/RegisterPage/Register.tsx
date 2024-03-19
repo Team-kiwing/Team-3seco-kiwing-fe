@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,7 @@ import { useFetchTags } from '@/hooks/useFetchTags';
 import useResize from '@/hooks/useResize';
 import { themeStore, userDataStore } from '@/stores';
 import { Tag } from '@/types';
-import { getItem, setItem } from '@/utils/localStorage';
+import { getItem, removeItem, setItem } from '@/utils/localStorage';
 
 import {
   REGISTER_LINK_VALIDATION,
@@ -42,6 +43,7 @@ const Register = () => {
     register,
     handleSubmit,
     getValues,
+    setFocus,
     formState: { errors },
   } = useForm<RegisterForm>({
     mode: 'onChange',
@@ -97,6 +99,27 @@ const Register = () => {
     'refresh-token'
   );
 
+  const preventGoBack = () => {
+    history.pushState(null, '', location.href);
+    if (
+      confirm(
+        '회원 가입 정보가 저장되지 않았습니다. 해당 페이지를 벗어나시겠습니까?'
+      )
+    ) {
+      removeItem('refresh-token');
+      setAccessToken('');
+      navigate('/');
+    }
+  };
+
+  useEffect(() => {
+    history.pushState(null, '', location.href);
+    window.addEventListener('popstate', preventGoBack);
+    return () => {
+      window.removeEventListener('popstate', preventGoBack);
+    };
+  }, []);
+
   useEffect(() => {
     if (accessToken && refreshToken) {
       setAccessToken(accessToken);
@@ -110,7 +133,9 @@ const Register = () => {
     ) {
       navigate('/');
     }
-  }, [navigate, nickname, accessToken, setAccessToken, refreshToken]);
+
+    setFocus('nickname');
+  }, [navigate, setFocus, nickname, accessToken, setAccessToken, refreshToken]);
 
   return (
     <>
@@ -147,22 +172,6 @@ const Register = () => {
             </RegisterHeader>
           </RegisterIntro>
           <RegisterFormWrapper>
-            <RegisterItemWrapper>
-              <RegisterLabel>관심 분야</RegisterLabel>
-              {tagsLoading ? (
-                <Skeleton.Box
-                  $width={'100%'}
-                  $height={'20rem'}
-                />
-              ) : (
-                <TagFilter
-                  selectedTags={selectedTags}
-                  setSelectedTags={setSelectedTags}
-                  tagList={tags ?? []}
-                  isLimit={true}
-                />
-              )}
-            </RegisterItemWrapper>
             <form onSubmit={handleSubmit(handleRegisterSubmit)}>
               <RegisterItemWrapper>
                 <Input
@@ -219,6 +228,22 @@ const Register = () => {
                 />
               </RegisterItemWrapper>
             </form>
+            <RegisterItemWrapper>
+              <RegisterLabel>관심 분야</RegisterLabel>
+              {tagsLoading ? (
+                <Skeleton.Box
+                  $width={'100%'}
+                  $height={'20rem'}
+                />
+              ) : (
+                <TagFilter
+                  selectedTags={selectedTags}
+                  setSelectedTags={setSelectedTags}
+                  tagList={tags ?? []}
+                  isLimit={true}
+                />
+              )}
+            </RegisterItemWrapper>
             <RegisterCheckboxWrapper>
               <RegisterCheckbox
                 type="checkbox"

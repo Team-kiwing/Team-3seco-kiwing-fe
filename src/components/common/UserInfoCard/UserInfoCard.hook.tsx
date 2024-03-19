@@ -13,7 +13,7 @@ export const useInfoUpdateModal = () => {
   const { nickname, snsList, memberTags, profileImage } = userDataStore();
   const { setModalOpen } = useModal();
 
-  const handleInfoUpdateClick = () => {
+  const handleInfoUpdateModal = () => {
     setModalOpen({
       title: MODAL.TITLE,
       content: (
@@ -27,7 +27,7 @@ export const useInfoUpdateModal = () => {
     });
   };
 
-  return { handleInfoUpdateClick };
+  return { handleInfoUpdateModal };
 };
 
 export const useLogout = () => {

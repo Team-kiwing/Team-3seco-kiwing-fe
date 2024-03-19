@@ -1,10 +1,18 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Button from '@/components/common/Button';
 import DropDown from '@/components/common/DropDown';
+import NoSearchResults from '@/components/common/NoSearchResults';
+import {
+  NO_SEARCH_RESULTS_ALT_IMAGE,
+  NO_SEARCH_RESULTS_IMAGE,
+} from '@/components/common/NoSearchResults/NoSearchResults.const';
 import ShadowBox from '@/components/common/ShadowBox';
 import { notify } from '@/hooks/toast';
 import useDropDown from '@/hooks/useDropDown';
+import useResize from '@/hooks/useResize';
+import { userDataStore } from '@/stores';
 
 import SharedQuestionBox from '../SharedQuestionBox';
 import { CheckBoxInput } from '../SharedQuestionBox/SharedQuestionBox.style';
@@ -32,7 +40,8 @@ import { SharedBundleBoxProps } from './SharedBundleBox.type';
 const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
   const { triggerId, isShow, setIsShow, closeDropDown, toggleDropDown } =
     useDropDown('sharedBundle-dropdown');
-
+  const { nickname } = userDataStore();
+  const { isMobileSize } = useResize();
   const [checkedAllItems, setCheckedAllItems] = useState(false);
   const [checkedQuestionId, setCheckedQuestionId] = useState<number[]>([]);
   const { data: getMyBundles } = useGetMyBundles('LATEST');
@@ -131,13 +140,13 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
               <Button
                 onClick={toggleDropDown}
                 id={triggerId}
-                width="20rem"
+                width={BUNDLE_BOX_OPTIONS.length === 0 ? '25rem' : '20rem'}
                 text="내 꾸러미에 가져가기"
               />
               <DropDown
-                width={20}
+                width={BUNDLE_BOX_OPTIONS.length === 0 ? 25 : 20}
+                height={BUNDLE_BOX_OPTIONS.length === 0 ? 15 : 20}
                 optionHeight={5}
-                height={15}
                 options={BUNDLE_BOX_OPTIONS}
                 isShow={isShow}
                 closeDropDown={closeDropDown}
@@ -145,11 +154,51 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
                 mode="checkbox"
                 onAdd={handleAddQuestion}
                 direction="top-right"
+                emptyText={
+                  <>
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '2rem',
+                      }}
+                    >
+                      <p
+                        style={{
+                          margin: 0,
+                          fontSize: isMobileSize ? '1.2rem' : '1.6rem',
+                        }}
+                      >
+                        아직 꾸러미가 하나도 없어요😢
+                      </p>
+                      <Link
+                        style={{
+                          textDecoration: 'none',
+                          color: 'white',
+                          fontSize: isMobileSize ? '1.2rem' : '1.6rem',
+                        }}
+                        to={`/user/${nickname}`}
+                      >
+                        꾸러미 만들러 가기👆
+                      </Link>
+                    </div>
+                  </>
+                }
               />
             </SharedBundleBoxFooter>
           </>
         ) : (
-          <EmptyContent>추가 된 질문이 없습니다</EmptyContent>
+          <EmptyContent>
+            <NoSearchResults
+              text1="앗"
+              text2="추가된 질문이 없습니다."
+              alt={NO_SEARCH_RESULTS_ALT_IMAGE}
+              src={NO_SEARCH_RESULTS_IMAGE}
+            />
+          </EmptyContent>
         )}
       </ShadowBox>
     </>

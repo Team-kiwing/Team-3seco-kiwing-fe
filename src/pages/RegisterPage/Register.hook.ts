@@ -13,7 +13,7 @@ export const useUpdateMyInfo = () => {
         if (res.includes('400')) {
           notify({
             type: 'warning',
-            text: '사용자 아이디가 중복됐습니다.',
+            text: '사용자 ID가 중복됐습니다.',
           });
         }
       } else {

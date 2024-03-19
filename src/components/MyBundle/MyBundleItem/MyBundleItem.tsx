@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
-import BorderBox from '@/components/common/BorderBox';
 import IconWrapper from '@/components/common/IconWrapper';
+import ShadowBox from '@/components/common/ShadowBox';
 import useAccordion from '@/hooks/useAccordion';
 import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
@@ -12,13 +12,19 @@ import { Direction } from '@/types/dropdown';
 import MyBundleDetail from '../MyBundleDetail';
 import MyBundleDropDown from '../MyBundleDropDown';
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
-import { BodyWrapper, RightItem, Title } from './MyBundleItem.style';
+import {
+  BodyWrapper,
+  BundleItemWrapper,
+  RightItem,
+  Title,
+} from './MyBundleItem.style';
 import { MyBundleItem } from './MyBundleItem.type';
 
 const MyBundleItem = ({
   selectedBundleId,
   setSelectedBundleId,
   bundle,
+  dragHandleProps,
 }: MyBundleItem) => {
   const { isDarkMode } = themeStore();
   const { isMobileSize } = useResize();
@@ -79,8 +85,12 @@ const MyBundleItem = ({
   };
 
   return (
-    <>
-      <BorderBox
+    <BundleItemWrapper
+      key={bundle.id}
+      id={String(bundle.id)}
+      $isActive={isActiveItem()}
+    >
+      <ShadowBox
         width="100%"
         height="fit-content"
         isActive={isActiveItem()}
@@ -91,9 +101,15 @@ const MyBundleItem = ({
           alignItems: 'center',
           cursor: 'pointer',
           boxSizing: 'border-box',
+          width: isMobileSize ? '90%' : 'inherit',
+          marginLeft: isMobileSize ? '5%' : 'inherit',
+          marginRight: isMobileSize ? '5%' : 'inherit',
         }}
       >
-        <Title onClick={isMobileSize ? handleMobileClick : handleWebClick}>
+        <Title
+          onClick={isMobileSize ? handleMobileClick : handleWebClick}
+          {...dragHandleProps}
+        >
           {bundle.name}
         </Title>
         {isMobileSize && (
@@ -116,12 +132,13 @@ const MyBundleItem = ({
                 bundle={bundle}
                 direction={direction}
                 handleEditBundleClick={handleEditBundleClick}
+                setSelectedBundleId={setSelectedBundleId}
               />
               <RxHamburgerMenu id={triggerId} />
             </IconWrapper>
           </RightItem>
         )}
-      </BorderBox>
+      </ShadowBox>
       {isMobileSize && (
         <BodyWrapper
           $isDarkMode={isDarkMode}
@@ -137,13 +154,12 @@ const MyBundleItem = ({
           >
             <MyBundleDetail
               isBundleSelected={true}
-              isMyBundlesEmpty={false}
               bundleId={bundle.id}
             />
           </div>
         </BodyWrapper>
       )}
-    </>
+    </BundleItemWrapper>
   );
 };
 

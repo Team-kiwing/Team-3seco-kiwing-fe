@@ -13,23 +13,18 @@ import {
 } from './ModalLayout.style';
 
 const ModalLayout = () => {
-  const { isOpen, modalState, setModalClose } = useModal();
+  const { isOpen, modalState, setModalCompleteClose } = useModal();
   const { isMobileSize } = useResize();
-
-  const handleDimmerClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.currentTarget !== event.target) return;
-    setModalClose();
-  };
 
   return (
     <>
       {isOpen && (
-        <ModalDimmer onClick={handleDimmerClick}>
+        <ModalDimmer>
           <ModalBody>
             <ModalTitle>{modalState.title}</ModalTitle>
             <ModalContents>{modalState.content}</ModalContents>
             {isMobileSize ? (
-              <MobileModalCloseArea onClick={setModalClose}>
+              <MobileModalCloseArea onClick={setModalCompleteClose}>
                 <span>닫기</span>
               </MobileModalCloseArea>
             ) : (
@@ -40,7 +35,7 @@ const ModalLayout = () => {
                 }}
                 $isBackground
                 $size={'m'}
-                onClick={setModalClose}
+                onClick={setModalCompleteClose}
               >
                 <MdClose />
               </IconWrapper>

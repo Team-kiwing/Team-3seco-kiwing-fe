@@ -57,6 +57,9 @@ interface UserDataStoreType {
   memberTags: MemberTag[];
   accessToken: string;
   isLogin: boolean;
+  isFirstLogin: boolean;
+  setIsFirstLogin: (newIsFirstLogin: boolean) => void;
+  setNickname: (newNickname: string) => void;
   setAccessToken: (newAccessToken: string) => void;
   setIsLogin: (newIsLogin: boolean) => void;
   setUserData: (userData: UserDataSetType) => void;
@@ -78,10 +81,15 @@ export const userDataStore = create<UserDataStoreType>((set) => ({
   memberTags: [],
   accessToken: '',
   isLogin: false,
+  isFirstLogin: false,
+  setNickname: (newNickname: string) => set({ nickname: newNickname }),
   setAccessToken: (newAccessToken: string) =>
     set({ accessToken: newAccessToken }),
   setIsLogin: (newIsLogin: boolean) => {
     set({ isLogin: newIsLogin });
+  },
+  setIsFirstLogin: (newIsFirstLogin: boolean) => {
+    set({ isFirstLogin: newIsFirstLogin });
   },
   setUserData: (userData: UserDataSetType) =>
     set({
