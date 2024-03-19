@@ -2,7 +2,7 @@ export const MODAL = {
   TITLE: '질문 꾸러미',
 
   BUNDLE_NAME_LABEL: '질문 꾸러미 이름',
-  BUNDLE_NAME_PLACEHOLDER: '꾸러미 이름을 입력해주세요',
+  BUNDLE_NAME_PLACEHOLDER: '꾸러미 이름은 최대 100자까지 작성 가능합니다.',
 
   SUBMIT_BUTTON_TEXT: (mode: string) => (mode === 'add' ? '추가' : '수정'),
 

@@ -3,8 +3,9 @@ export const MODAL = {
 
   QUESTION_NAME_LABEL: '질문',
   QUESTION_ANSWER_LABEL: '답변',
-  QUESTION_NAME_PLACEHOLDER: '질문을 입력해주세요',
-  QUESTION_ANSWER_PLACEHOLDER: '답변을 입력해주세요',
+  QUESTION_NAME_PLACEHOLDER:
+    '질문은 최대 300자까지 작성 가능하며, 답변 공개 여부와 상관없이 질문 허브에 등록됩니다.',
+  QUESTION_ANSWER_PLACEHOLDER: '답변은 최대 1500자 까지 작성 가능합니다.',
 
   SUBMIT_BUTTON_TEXT: (mode: string) => (mode === 'add' ? '추가' : '수정'),
 
