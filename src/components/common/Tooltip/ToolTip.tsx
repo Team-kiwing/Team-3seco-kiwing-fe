@@ -1,16 +1,53 @@
 import styled, { css } from 'styled-components';
 
-const TooltipWrapper = styled.div<{
+import { FONT_MEDIUM } from '@/constants';
+
+/**
+* @summary 사용법 
+      <div style={{ position: 'relative' }}>
+        <Tooltip
+          $direction="bottom"
+          $options="hover"
+          $tooltip="툴팁"
+          $size={1.6}
+          $isArrow={false}
+          $textColor="black"
+        >
+        {툴팁으로 감싸는 컴포넌트}
+        </Tooltip>
+      </div>
+* @description 툴팁 컴포넌트입니다. 필수 3개 속성이 존재합니다.
+ * @param $direction: 'left' | 'right' | 'bottom' | 'top';
+ * @param $tooltip: string; // 툴팁 텍스트 내용을 추가합니다.
+ * @param $options: 'focus' | 'hover' | 'all';
+ * @param $size?: number; //툴팁 텍스트 사이즈를 정합니다.
+ * @param $clicked?: boolean; // 계속 툴팁을 띄워주는지 여부를 정합니다.
+ * @param $isArrow?: boolean; // 툴팁에 표시되는 화살표 여부를 결정합니다.
+ * @param $BackgroundColor?: string; // 배경 색상을 정합니다.
+ * @param $textColor?: string; // 글씨색상을
+ * @returns
+ */
+const Tooltip = styled.div<{
   $direction: 'left' | 'right' | 'bottom' | 'top';
   $clicked?: boolean;
   $tooltip: string;
   $options: 'focus' | 'hover' | 'all';
-  key?: string;
-  $x?: number;
-  $y?: number;
   $size?: number;
+  $isArrow?: boolean;
+  $BackgroundColor?: string;
+  $textColor?: string;
 }>`
   z-index: 2;
+
+  ${({ $isArrow }) => {
+    if ($isArrow === false) {
+      return css`
+        &:after {
+          display: none;
+        }
+      `;
+    }
+  }}
 
   &:before,
   &:after {
@@ -37,35 +74,36 @@ const TooltipWrapper = styled.div<{
       }
     }}
     white-space: nowrap;
-    ${(props) => {
-      if (props.$tooltip) {
+    ${({ $tooltip }) => {
+      if ($tooltip) {
         return css`
           transition: all 0.2s ease;
         `;
       }
     }}
-    font-size: "${(props) => (props.$size ? props.$size : 1)}rem";
   }
 
   &:before {
-    color: ${(props) => props.theme.text_primary_color};
-    content: '${(props) => `${props.$tooltip}`}';
+    color: ${({ theme, $textColor }) =>
+      $textColor !== undefined ? $textColor : theme.primary_color};
+    content: '${({ $tooltip }) => `${$tooltip}`}';
     height: auto;
     position: absolute;
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: '${(props) => (props.$size ? props.$size : 1)}rem';
-    font-weight: 550;
+    font-size: ${({ $size }) => ($size ? `${$size}rem` : '1rem')};
+    font-weight: ${FONT_MEDIUM};
     white-space: pre;
-    background: ${(props) => props.theme.symbol_color};
+    background: ${({ theme, $BackgroundColor }) =>
+      $BackgroundColor ? $BackgroundColor : theme.symbol_color};
   }
 
   &:after {
     content: '';
   }
 
-  ${({ $direction }) => {
-    switch ($direction) {
+  ${(props) => {
+    switch (props.$direction) {
       case 'top':
         return css`
           &:before {
@@ -75,7 +113,11 @@ const TooltipWrapper = styled.div<{
             border-left: 10px solid transparent;
             bottom: calc(100% + 4px);
             border-right: 10px solid transparent;
-            border-top: 10px solid ${(props) => props.theme.symbol_color};
+            border-top: 10px solid
+              ${({ theme }) =>
+                props.$BackgroundColor
+                  ? props.$BackgroundColor
+                  : theme.symbol_color};
           }
         `;
       case 'right':
@@ -90,7 +132,11 @@ const TooltipWrapper = styled.div<{
             left: calc(100% + 4px);
             transform: translateY(-50%) rotate(180deg);
             border-top: 10px solid transparent;
-            border-left: 10px solid ${(props) => props.theme.symbol_color};
+            border-left: 10px solid
+              ${({ theme }) =>
+                props.$BackgroundColor
+                  ? props.$BackgroundColor
+                  : theme.symbol_color};
             border-bottom: 10px solid transparent;
           }
         `;
@@ -103,7 +149,11 @@ const TooltipWrapper = styled.div<{
             border-left: 10px solid transparent;
             top: calc(100% + 4px);
             border-right: 10px solid transparent;
-            border-bottom: 10px solid ${(props) => props.theme.symbol_color};
+            border-bottom: 10px solid
+              ${({ theme }) =>
+                props.$BackgroundColor
+                  ? props.$BackgroundColor
+                  : theme.symbol_color};
           }
         `;
       case 'left':
@@ -118,7 +168,11 @@ const TooltipWrapper = styled.div<{
             right: calc(100% + 4px);
             transform: translateY(-50%) rotate(180deg);
             border-top: 10px solid transparent;
-            border-right: 10px solid ${(props) => props.theme.symbol_color};
+            border-right: 10px solid
+              ${({ theme }) =>
+                props.$BackgroundColor
+                  ? props.$BackgroundColor
+                  : theme.symbol_color};
             border-bottom: 10px solid transparent;
           }
         `;
@@ -193,4 +247,4 @@ const TooltipWrapper = styled.div<{
   }}
 `;
 
-export default TooltipWrapper;
+export default Tooltip;
