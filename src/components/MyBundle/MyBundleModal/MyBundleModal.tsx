@@ -138,7 +138,7 @@ const MyBundleModal = ({
         />
         <ButtonContainer>
           <TooltipContainer>
-            <a
+            <div
               data-tooltip-id="my-bundle-modal-toggle-tooltip"
               data-tooltip-content={
                 isShared
@@ -158,7 +158,7 @@ const MyBundleModal = ({
                   paddingTop: '1rem',
                 }}
               />
-            </a>
+            </div>
             <Tooltip
               id="my-bundle-modal-toggle-tooltip"
               style={{

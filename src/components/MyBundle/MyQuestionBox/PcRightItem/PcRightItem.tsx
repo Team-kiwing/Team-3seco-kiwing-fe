@@ -68,7 +68,7 @@ const PcRightItem = ({
   return (
     <Container>
       <TooltipContainer>
-        <a
+        <div
           data-tooltip-id="my-question-toggle-tooltip"
           data-tooltip-content={
             isShared
@@ -87,7 +87,7 @@ const PcRightItem = ({
             fontSize="1.2rem"
             style={{ marginTop: '0.5rem' }}
           />
-        </a>
+        </div>
         <Tooltip
           id="my-question-toggle-tooltip"
           style={{

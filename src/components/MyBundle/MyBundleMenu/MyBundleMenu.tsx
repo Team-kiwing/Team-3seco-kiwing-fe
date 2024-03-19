@@ -186,7 +186,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
         {options.map((option, index) =>
           index <= 1 ? (
             <TooltipContainer key={option.id}>
-              <a
+              <div
                 data-tooltip-id="my-bundle-menu-tooltip"
                 data-tooltip-content={option.tooltip}
                 data-tooltip-delay-show={500}
@@ -195,7 +195,7 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
                   <Text>{option.title}</Text>
                   <Text>{option.rightItem}</Text>
                 </Item>
-              </a>
+              </div>
               <Tooltip
                 id="my-bundle-menu-tooltip"
                 style={{
