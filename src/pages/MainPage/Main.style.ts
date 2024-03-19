@@ -3,6 +3,17 @@ import styled from 'styled-components';
 import { BORDER_MOBILE, BORDER_WEB, MOBILE } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
+export const MainPageWrapper = styled(Col)`
+  width: 80%;
+  max-width: 1200px;
+  margin: 3rem auto;
+
+  @media screen and (max-width: ${MOBILE}px) {
+    width: 90%;
+    margin: 2rem auto;
+  }
+`;
+
 export const MainUserInfoCardBox = styled.section`
   width: 80%;
   max-width: 1200px;
@@ -14,46 +25,35 @@ export const MainUserInfoCardBox = styled.section`
   }
 `;
 
-export const Banner = styled.div`
-  width: 80%;
-  max-width: 1200px;
-  margin: 3rem auto 0 auto;
-  height: 20rem;
+export const Banner = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   border-radius: ${BORDER_WEB}rem;
-  background-image: url('/mainBanner.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  cursor: pointer;
 
   @media screen and (max-width: ${MOBILE}px) {
-    width: 90%;
-    margin: 3rem auto 0 auto;
-    height: 10rem;
     border-radius: ${BORDER_MOBILE}rem;
   }
-`;
 
-export const MainPageWrapper = styled(Col)`
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto 3rem auto;
+  & > img {
+    width: 65%;
+    height: 100%;
+    cursor: pointer;
 
-  @media screen and (max-width: ${MOBILE}px) {
-    width: 90%;
-    margin: 0 auto 2rem auto;
+    @media screen and (max-width: ${MOBILE}px) {
+      width: 87%;
+    }
   }
 `;
 
-export const MainListWrapper = styled.div`
+export const MainListWrapper = styled.section`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-top: 5rem;
 
   @media screen and (max-width: ${MOBILE}px) {
     flex-direction: column;
-    margin-top: 3rem;
   }
 `;
 
