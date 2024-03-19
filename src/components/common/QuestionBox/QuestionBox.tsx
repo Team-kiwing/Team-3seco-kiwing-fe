@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FormEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -64,7 +65,7 @@ const QuestionBox = ({
       console.log(childRef.current.clientHeight);
       parentRef.current.style.height = `${childRef.current.clientHeight + 3}px`;
     }
-  }, [watch('answerField'), parentRef, childRef]);
+  }, [watch('answerField'), parentRef, childRef, isActive]);
 
   const handleInput = (e: FormEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;

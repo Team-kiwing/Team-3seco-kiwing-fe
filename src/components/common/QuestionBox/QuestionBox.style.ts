@@ -10,7 +10,7 @@ import {
 } from '@/constants';
 import { Row } from '@/styles/globalStyles';
 
-export const Container = styled.div`
+export const Container = styled.article`
   width: 100%;
   position: relative;
   border-radius: ${BORDER_WEB}rem;
@@ -67,8 +67,8 @@ export const BodyWrapper = styled.div`
   background-color: transparent;
   overflow: hidden;
   transition:
-    height 0.5s ease,
-    opacity 0.5s ease;
+    height 0.3s ease,
+    opacity 0.3s ease;
 `;
 
 export const Body = styled.div<{ $isEmpty: boolean }>`
