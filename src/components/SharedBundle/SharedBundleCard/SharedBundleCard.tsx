@@ -93,6 +93,7 @@ const SharedBundleCard = ({
               <div
                 data-tooltip-id="add-bundle"
                 data-tooltip-content="현재 보고 계신 꾸러미를 내 꾸러미로 추가합니다!"
+                data-tooltip-delay-show={100}
               >
                 <CircleButton
                   isBackgroundWhite={true}
@@ -110,6 +111,7 @@ const SharedBundleCard = ({
               <div
                 data-tooltip-id="copy-bundle"
                 data-tooltip-content="현재 보고있는 꾸러미의 URL 주소를 복사합니다!"
+                data-tooltip-delay-show={100}
               >
                 <IconWrapper
                   $fillColor={theme.primary_white_text_color}
