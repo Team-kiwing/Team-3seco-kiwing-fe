@@ -15,6 +15,7 @@ export const TextContainer = styled(Col)`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  text-align: center;
 `;
 
 export const SmallText = styled.span`
