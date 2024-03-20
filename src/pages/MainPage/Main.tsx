@@ -72,7 +72,7 @@ const Main = () => {
         <MainUserInfoCardBox>
           {nickname !== '' ? (
             <UserInfoCard
-              userName={nickname.split('@')[1]}
+              userName={nickname}
               userImage={profileImage}
               tags={memberTags}
               links={snsList}
