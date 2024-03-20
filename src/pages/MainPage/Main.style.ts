@@ -75,6 +75,7 @@ export const MainItemWrapper = styled.section`
 export const MainListHeader = styled.h1`
   font-size: 2.5rem;
   color: ${({ theme }) => theme.primary_color};
+  font-weight: 500;
 
   @media screen and (max-width: ${MOBILE}px) {
     text-align: center;
