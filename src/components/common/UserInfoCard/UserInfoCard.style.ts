@@ -109,6 +109,7 @@ export const NoTags = styled.div`
   font-size: 1.2rem;
   font-weight: ${FONT_REGULAR};
   cursor: default;
+  user-select: none;
 `;
 
 export const NoLinks = styled.div`
@@ -120,4 +121,5 @@ export const NoLinks = styled.div`
   font-size: 1.2rem;
   font-weight: ${FONT_REGULAR};
   cursor: default;
+  user-select: none;
 `;
