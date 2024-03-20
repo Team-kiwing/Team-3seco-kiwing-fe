@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { MutableRefObject } from 'react';
 
 import { QUERYKEY } from '@/constants/queryKeys';
 import { notify } from '@/hooks/toast';
@@ -10,7 +11,9 @@ import MyBundleModal from './MyBundleModal';
 import { MODAL } from './MyBundleModal.const';
 import { EditProps } from './MyBundleModal.type';
 
-export const useCreateBundle = () => {
+export const useCreateBundle = (
+  bundlesEndRef: MutableRefObject<HTMLDivElement | null> | undefined
+) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -31,6 +34,14 @@ export const useCreateBundle = () => {
           text: MODAL.ERROR_NOTIFY('add'),
         });
       }
+
+      setTimeout(() => {
+        if (bundlesEndRef && bundlesEndRef.current) {
+          bundlesEndRef.current.scrollIntoView({
+            behavior: 'smooth',
+          });
+        }
+      }, 200);
     },
     onError: () => {
       notify({
@@ -79,10 +90,12 @@ export const useUpdateBundle = () => {
 export const useMyBundleModal = () => {
   const { setModalOpen } = useModal();
 
-  const handleAddBundleClick = () => {
+  const handleAddBundleClick = (
+    bundlesEndRef: MutableRefObject<HTMLDivElement | null>
+  ) => {
     setModalOpen({
       title: MODAL.TITLE,
-      content: <MyBundleModal />,
+      content: <MyBundleModal bundlesEndRef={bundlesEndRef} />,
     });
   };
 

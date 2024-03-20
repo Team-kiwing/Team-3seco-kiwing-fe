@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   DragDropContext,
   Draggable,
@@ -26,6 +26,8 @@ const MyBundleList = ({
   selectedBundleId,
   setSelectedBundleId,
 }: MyBundleListProps) => {
+  const bundlesEndRef = useRef<HTMLDivElement | null>(null);
+
   const { handleAddBundleClick } = useMyBundleModal();
   const { mutate: reorder } = useReorderBundle();
   const [orderedBundles, setOrderedBundles] = useState<BundlesBasic[]>(bundles);
@@ -109,13 +111,14 @@ const MyBundleList = ({
             )}
           </Droppable>
         </DragDropContext>
+        <div ref={bundlesEndRef} />
       </BundleWrapper>
       <ButtonWrapper>
         <Button
           width="100%"
           height="5rem"
           text="+ 새 질문 꾸러미 추가하기"
-          onClick={handleAddBundleClick}
+          onClick={() => handleAddBundleClick(bundlesEndRef)}
         />
       </ButtonWrapper>
     </Container>

@@ -54,21 +54,11 @@ const MyBundleDetail = ({
   const [isAll, setIsAll] = useState(true);
   const [orderedQuestions, setOrderedQuestions] = useState<Question[]>([]);
 
-  const { handleAddQuestionClick } = useMyQuestionModal(questionsEndRef);
+  const { handleAddQuestionClick } = useMyQuestionModal();
 
   const filteredQuestions = isAll
     ? orderedQuestions
     : orderedQuestions.filter((question) => question.originId === null);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (QuestionsEndRef.current) {
-  //       QuestionsEndRef.current.scrollIntoView({
-  //         behavior: 'smooth',
-  //       });
-  //     }
-  //   });
-  // }, [bundle]);
 
   useEffect(() => {
     if (bundle) {
@@ -210,7 +200,9 @@ const MyBundleDetail = ({
             <Button
               width="100%"
               text="+ 새 질문 추가하기"
-              onClick={() => handleAddQuestionClick(bundle.id)}
+              onClick={() =>
+                handleAddQuestionClick({ bundleId: bundle.id, questionsEndRef })
+              }
             />
             <CountText>{bundle.questions.length}/100</CountText>
           </Footer>

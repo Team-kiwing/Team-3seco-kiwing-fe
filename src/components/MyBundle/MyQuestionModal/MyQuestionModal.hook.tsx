@@ -51,7 +51,7 @@ export const useCreateQuestion = ({
               behavior: 'smooth',
             });
           }
-        });
+        }, 200);
       } else {
         notify({
           type: 'error',
@@ -112,12 +112,16 @@ export const useUpdateQuestion = (bundleId: number | null | undefined) => {
   });
 };
 
-export const useMyQuestionModal = (
-  questionsEndRef: MutableRefObject<HTMLDivElement | null>
-) => {
+export const useMyQuestionModal = () => {
   const { setModalOpen } = useModal();
 
-  const handleAddQuestionClick = (bundleId: number) => {
+  const handleAddQuestionClick = ({
+    bundleId,
+    questionsEndRef,
+  }: {
+    bundleId: number;
+    questionsEndRef?: MutableRefObject<HTMLDivElement | null>;
+  }) => {
     setModalOpen({
       title: MODAL.TITLE,
       content: (
