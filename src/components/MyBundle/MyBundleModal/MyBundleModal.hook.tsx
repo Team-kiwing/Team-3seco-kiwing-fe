@@ -91,7 +91,7 @@ export const useMyBundleModal = () => {
   const { setModalOpen } = useModal();
 
   const handleAddBundleClick = (
-    bundlesEndRef: MutableRefObject<HTMLDivElement | null>
+    bundlesEndRef?: MutableRefObject<HTMLDivElement | null>
   ) => {
     setModalOpen({
       title: MODAL.TITLE,
