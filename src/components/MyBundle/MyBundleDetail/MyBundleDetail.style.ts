@@ -27,6 +27,8 @@ export const InnerContainer = styled(Col)`
   width: 100%;
   height: 100%;
   padding: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   box-sizing: border-box;
   transition: width 0.2s ease;
 
@@ -63,9 +65,9 @@ export const QuestionWrapper = styled.div`
 
 export const Footer = styled(Col)`
   width: 100%;
-  height: 10rem;
+  height: 7rem;
   align-items: flex-end;
-  gap: 2rem;
+  gap: 1rem;
 `;
 export const CountText = styled.span`
   display: flex;
