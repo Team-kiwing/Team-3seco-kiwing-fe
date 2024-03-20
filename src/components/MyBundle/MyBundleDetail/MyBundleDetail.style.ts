@@ -26,9 +26,7 @@ export const Container = styled.section<{ $isBundleSelected: boolean }>`
 export const InnerContainer = styled(Col)`
   width: 100%;
   height: 100%;
-  padding: 2rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem 2rem 1.5rem 1rem;
   box-sizing: border-box;
   transition: width 0.2s ease;
 
@@ -48,9 +46,7 @@ export const Body = styled(Col)`
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
-  padding-left: 0.5rem;
   padding-right: 0.5rem;
-
   box-sizing: border-box;
 `;
 
