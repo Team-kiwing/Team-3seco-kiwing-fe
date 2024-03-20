@@ -51,11 +51,7 @@ export const BundleInnerWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const BundleItemWrapper = styled.div`
-  @media screen and (max-width: ${MOBILE}px) {
-    margin-bottom: 1.5rem;
-  }
-`;
+export const BundleItemWrapper = styled.div``;
 
 export const ButtonWrapper = styled.div`
   width: 100%;

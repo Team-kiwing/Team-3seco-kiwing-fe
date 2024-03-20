@@ -14,7 +14,6 @@ export const Container = styled.section<{ $isBundleSelected: boolean }>`
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
-    padding-top: 2.5rem;
     padding-bottom: 1.5rem;
   }
 `;
