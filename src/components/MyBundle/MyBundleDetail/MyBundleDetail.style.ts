@@ -15,6 +15,11 @@ export const Container = styled.section<{ $isBundleSelected: boolean }>`
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
     padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   }
 `;
 

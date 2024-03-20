@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Spinner from '@/components/common/Spinner';
@@ -17,19 +17,29 @@ const MyBundle = () => {
   const { nickname } = userDataStore();
   const navigator = useNavigate();
   const { userid } = useParams();
+
   if (userid && nickname && userid !== nickname) {
     navigator(`/user/${nickname}`);
     const urlString = location.href;
     window.location.replace(urlString.replace(userid, nickname));
   }
-  // const queryClient = useQueryClient();
+
   const { isMobileSize } = useResize();
 
   // 내 꾸러미 목록 전체 조회
   const { data: bundles } = useFetchMyBundles();
 
-  // 웹에서 사용
   const [selectedBundleId, setSelectedBundleId] = useState<null | number>(null);
+
+  const { bundleId } = useParams();
+
+  useEffect(() => {
+    if (bundleId) {
+      setSelectedBundleId(Number(bundleId));
+    } else {
+      setSelectedBundleId(null);
+    }
+  }, [bundleId]);
 
   if (!bundles) {
     return <Spinner />;
@@ -47,12 +57,7 @@ const MyBundle = () => {
           />
         )}
 
-        {!isMobileSize && bundles.length !== 0 && (
-          <MyBundleDetail
-            isBundleSelected={selectedBundleId != null}
-            bundleId={selectedBundleId}
-          />
-        )}
+        {!isMobileSize && bundles.length !== 0 && <MyBundleDetail />}
 
         {!isMobileSize && (
           <StyledWrapper $isSelected={selectedBundleId != null}>

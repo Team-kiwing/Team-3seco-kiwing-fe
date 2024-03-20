@@ -1,23 +1,17 @@
 import { useEffect, useState } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
 
 import IconWrapper from '@/components/common/IconWrapper';
 import ShadowBox from '@/components/common/ShadowBox';
-import useAccordion from '@/hooks/useAccordion';
 import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
-import { themeStore } from '@/stores';
+import { userDataStore } from '@/stores';
 import { Direction } from '@/types/dropdown';
 
-import MyBundleDetail from '../MyBundleDetail';
 import MyBundleDropDown from '../MyBundleDropDown';
 import { useMyBundleModal } from '../MyBundleModal/MyBundleModal.hook';
-import {
-  BodyWrapper,
-  BundleItemWrapper,
-  RightItem,
-  Title,
-} from './MyBundleItem.style';
+import { BundleItemWrapper, RightItem, Title } from './MyBundleItem.style';
 import { MyBundleItem } from './MyBundleItem.type';
 
 const MyBundleItem = ({
@@ -26,16 +20,9 @@ const MyBundleItem = ({
   bundle,
   dragHandleProps,
 }: MyBundleItem) => {
-  const { isDarkMode } = themeStore();
   const { isMobileSize } = useResize();
-
-  const {
-    parentRef,
-    childRef,
-    isActive,
-    setIsActive,
-    handleClick: handleMobileClick,
-  } = useAccordion();
+  const navigator = useNavigate();
+  const { nickname } = userDataStore();
 
   const { triggerId, isShow, setIsShow, closeDropDown, toggleDropDown } =
     useDropDown(`my-bundle-right-btn-${bundle.id}`);
@@ -50,13 +37,9 @@ const MyBundleItem = ({
 
   const { handleEditBundleClick } = useMyBundleModal();
 
-  useEffect(() => {
-    // size가 바뀌면 모바일에서의 모든 active를 초기화 한다.
-    setIsActive(false);
-  }, [setIsActive, isMobileSize]);
-
-  const handleWebClick = () => {
+  const handleBundleClick = () => {
     setSelectedBundleId(bundle.id);
+    navigator(`/user/${nickname}/${bundle.id}`);
   };
 
   const handleOpenDropdown = (e: React.MouseEvent) => {
@@ -67,33 +50,19 @@ const MyBundleItem = ({
         setDirection('bottom-left');
       }
     }
-
     toggleDropDown(e);
-  };
-
-  const isActiveItem = () => {
-    if (isMobileSize) {
-      return isActive;
-    } else {
-      if (selectedBundleId == null) return false;
-      if (selectedBundleId === bundle.id) {
-        return true;
-      } else {
-        return false;
-      }
-    }
   };
 
   return (
     <BundleItemWrapper
       key={bundle.id}
       id={String(bundle.id)}
-      $isActive={isActiveItem()}
+      $isActive={selectedBundleId === bundle.id}
     >
       <ShadowBox
         width="100%"
         height="fit-content"
-        isActive={isActiveItem()}
+        isActive={selectedBundleId === bundle.id}
         isHoverActive={!isMobileSize}
         style={{
           display: 'flex',
@@ -107,7 +76,7 @@ const MyBundleItem = ({
         }}
       >
         <Title
-          onClick={isMobileSize ? handleMobileClick : handleWebClick}
+          onClick={handleBundleClick}
           {...dragHandleProps}
         >
           {bundle.name}
@@ -139,26 +108,6 @@ const MyBundleItem = ({
           </RightItem>
         )}
       </ShadowBox>
-      {isMobileSize && (
-        <BodyWrapper
-          $isDarkMode={isDarkMode}
-          ref={parentRef}
-        >
-          <div
-            ref={childRef}
-            style={{
-              width: 'auto',
-              height: '45rem',
-              fontSize: 'inherit',
-            }}
-          >
-            <MyBundleDetail
-              isBundleSelected={true}
-              bundleId={bundle.id}
-            />
-          </div>
-        </BodyWrapper>
-      )}
     </BundleItemWrapper>
   );
 };

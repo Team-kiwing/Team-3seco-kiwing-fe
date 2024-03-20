@@ -7,6 +7,7 @@ import {
   WebNavBar,
 } from '@/components/common/Navigator';
 import Layout from '@/components/Layout';
+import MyBundleDetail from '@/components/MyBundle/MyBundleDetail';
 import { PATH } from '@/constants/router';
 import Toast from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
@@ -60,6 +61,17 @@ const Router = () => {
               path={PATH.MY} // 내 질문 리스트, 이메일 주소로 개인 페이지
               element={<AuthRoute element={<MyBundlePage />} />}
             />
+            {isMobileSize ? (
+              <Route
+                path={PATH.MY_BUNDLED_DETAIL} // 내 질문 리스트, 이메일 주소로 개인 페이지
+                element={<AuthRoute element={<MyBundleDetail />} />}
+              />
+            ) : (
+              <Route
+                path={PATH.MY_BUNDLED_DETAIL} // 내 질문 리스트, 이메일 주소로 개인 페이지
+                element={<AuthRoute element={<MyBundlePage />} />}
+              />
+            )}
             <Route
               path={PATH.REPORT} // 신고, 건의 페이지
               element={<AuthRoute element={<ReportPage />} />}

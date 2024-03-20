@@ -6,6 +6,7 @@ import {
   Droppable,
   DropResult,
 } from 'react-beautiful-dnd';
+import { useParams } from 'react-router-dom';
 
 import Button from '@/components/common/Button';
 import Selector from '@/components/common/Selector';
@@ -19,6 +20,7 @@ import MyQuestionBox from '../MyQuestionBox';
 import MyQuestionEmpty from '../MyQuestionEmpty';
 import { useMyQuestionModal } from '../MyQuestionModal/MyQuestionModal.hook';
 import { useReorderQuestion } from './MyBundleDetail.hook';
+import SelectedBundleEmpty from './MyBundleDetail.skeleton';
 import {
   Body,
   BodyInnerWrapper,
@@ -29,15 +31,13 @@ import {
   InnerContainer,
   QuestionWrapper,
 } from './MyBundleDetail.style';
-import { MyBundleDetailProps } from './MyBundleDetail.type';
 
-const MyBundleDetail = ({
-  isBundleSelected,
-  bundleId,
-}: MyBundleDetailProps) => {
+const MyBundleDetail = () => {
   const questionsEndRef = useRef<HTMLDivElement | null>(null);
-
   const { isMobileSize } = useResize();
+  const { bundleId: stringBundleId } = useParams();
+  const bundleId = Number(stringBundleId);
+
   const { data: bundle } = useQuery({
     queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
     queryFn: async () => {
@@ -106,39 +106,30 @@ const MyBundleDetail = ({
   }
   // --- requestAnimationFrame 초기화 END
 
-  if (!isBundleSelected || !bundle) {
-    return (
-      <Container $isBundleSelected={isBundleSelected}>
-        <ShadowBox
-          width="100%"
-          height="100%"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
-            justifyContent: 'center',
-            alignItems: 'center',
-            boxSizing: 'border-box',
-          }}
-        >
-          <img
-            src="/kiwing_circle_transparent.png"
-            alt="kiwing logo"
-            style={{
-              width: '30%',
-            }}
-          />
-          <span>나만의 꾸러미를 선택해보세요!</span>
-        </ShadowBox>
-      </Container>
-    );
+  if (!bundleId || !bundle) {
+    return <SelectedBundleEmpty isBundleSelected={!!bundleId} />;
   }
 
   return (
-    <Container $isBundleSelected={isBundleSelected}>
+    <Container $isBundleSelected={!!bundleId}>
+      {isMobileSize && (
+        <ShadowBox
+          width="95%"
+          height="5rem"
+          isActive
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '1.6rem',
+          }}
+        >
+          {bundle.name}
+        </ShadowBox>
+      )}
       <ShadowBox
         width={isMobileSize ? '90%' : '100%'}
-        height="100%"
+        height={isMobileSize ? '90%' : '100%'}
         style={{
           boxSizing: 'border-box',
           marginLeft: isMobileSize ? '5%' : 'inherit',
@@ -201,7 +192,10 @@ const MyBundleDetail = ({
               width="100%"
               text="+ 새 질문 추가하기"
               onClick={() =>
-                handleAddQuestionClick({ bundleId: bundle.id, questionsEndRef })
+                handleAddQuestionClick({
+                  bundleId: bundle.id,
+                  questionsEndRef,
+                })
               }
             />
             <CountText>{bundle.questions.length}/100</CountText>
