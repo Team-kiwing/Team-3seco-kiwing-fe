@@ -3,7 +3,6 @@ import { styled } from 'styled-components';
 import {
   BORDER_MOBILE,
   BORDER_WEB,
-  FONT_LIGHT,
   MOBILE,
   MOBILE_FONT_SIZE,
   WEB_FONT_SIZE,
@@ -42,7 +41,7 @@ export const Header = styled.h1`
   align-items: center;
   cursor: pointer;
   width: 100%;
-  font-weight: ${FONT_LIGHT};
+  font-weight: 300;
   font-size: ${WEB_FONT_SIZE + 0.2}rem;
 
   @media screen and (max-width: ${MOBILE}px) {
@@ -78,7 +77,7 @@ export const Body = styled.div<{ $isEmpty: boolean }>`
   font-size: calc(${WEB_FONT_SIZE}rem);
   color: ${(props) =>
     props.$isEmpty ? props.theme.gray_300 : props.theme.primary_color};
-  font-weight: ${FONT_LIGHT};
+  font-weight: 300;
   white-space: pre-line;
   @media screen and (max-width: ${MOBILE}px) {
     padding: 1rem;
