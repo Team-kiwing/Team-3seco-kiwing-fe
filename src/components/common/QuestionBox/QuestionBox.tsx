@@ -1,19 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FormEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { GoGrabber } from 'react-icons/go';
 
 import { useUpdateQuestion } from '@/components/MyBundle/MyQuestionModal/MyQuestionModal.hook';
 import useAccordion from '@/hooks/useAccordion';
 import useResize from '@/hooks/useResize';
 
+import IconWrapper from '../IconWrapper';
 import {
   Body,
   BodyWrapper,
   Container,
   EditBody,
   Header,
+  HeaderText,
   RightItem,
   TitleWrapper,
+  Wrapper,
 } from './QuestionBox.style';
 import { QuestionBoxProps } from './QuestionBox.type';
 
@@ -84,13 +88,18 @@ const QuestionBox = ({
   }, [answer, setValue]);
 
   return (
-    <>
+    <Wrapper>
+      <IconWrapper
+        $size={'s'}
+        {...dragHandleProps}
+      >
+        <GoGrabber />
+      </IconWrapper>
       <Container>
-        <TitleWrapper
-          $isActive={isActive}
-          {...dragHandleProps}
-        >
-          <Header onClick={(e) => handleClick(e)}>{question}</Header>
+        <TitleWrapper $isActive={isActive}>
+          <Header onClick={(e) => handleClick(e)}>
+            <HeaderText>{question}</HeaderText>
+          </Header>
           <RightItem>{rightItem}</RightItem>
         </TitleWrapper>
 
@@ -127,7 +136,7 @@ const QuestionBox = ({
           </Body>
         </BodyWrapper>
       </Container>
-    </>
+    </Wrapper>
   );
 };
 
