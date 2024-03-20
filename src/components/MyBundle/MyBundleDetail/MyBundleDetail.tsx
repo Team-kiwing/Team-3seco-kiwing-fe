@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   DragDropContext,
   Draggable,
@@ -35,6 +35,8 @@ const MyBundleDetail = ({
   isBundleSelected,
   bundleId,
 }: MyBundleDetailProps) => {
+  const QuestionsEndRef = useRef<HTMLDivElement | null>(null);
+
   const { isMobileSize } = useResize();
   const { data: bundle } = useQuery({
     queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
@@ -52,11 +54,21 @@ const MyBundleDetail = ({
   const [isAll, setIsAll] = useState(true);
   const [orderedQuestions, setOrderedQuestions] = useState<Question[]>([]);
 
-  const { handleAddQuestionClick } = useMyQuestionModal(bundleId ?? 0);
+  const { handleAddQuestionClick } = useMyQuestionModal();
 
   const filteredQuestions = isAll
     ? orderedQuestions
     : orderedQuestions.filter((question) => question.originId === null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (QuestionsEndRef.current) {
+        QuestionsEndRef.current.scrollIntoView({
+          behavior: 'smooth',
+        });
+      }
+    });
+  }, [bundle]);
 
   useEffect(() => {
     if (bundle) {
@@ -191,12 +203,14 @@ const MyBundleDetail = ({
                 </Droppable>
               </DragDropContext>
             )}
+            <div ref={QuestionsEndRef} />
           </Body>
+
           <Footer>
             <Button
               width="100%"
               text="+ 새 질문 추가하기"
-              onClick={() => handleAddQuestionClick()}
+              onClick={() => handleAddQuestionClick(bundle.id)}
             />
             <CountText>{bundle.questions.length}/100</CountText>
           </Footer>

@@ -97,10 +97,10 @@ export const useUpdateQuestion = (bundleId: number | null | undefined) => {
   });
 };
 
-export const useMyQuestionModal = (bundleId: number) => {
+export const useMyQuestionModal = () => {
   const { setModalOpen } = useModal();
 
-  const handleAddQuestionClick = () => {
+  const handleAddQuestionClick = (bundleId: number) => {
     setModalOpen({
       title: MODAL.TITLE,
       content: <MyQuestionModal bundleId={bundleId} />,
