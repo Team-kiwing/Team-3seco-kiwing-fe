@@ -25,7 +25,7 @@ const Content = styled.div<SelectorStyleProps>`
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   @media screen and (max-width: ${MOBILE}px) {
-    font-size: ${({ $size }) => `${$size - 0.1}rem`};
+    font-size: ${({ $size }) => `${$size - 0.2}rem`};
   }
 `;
 
