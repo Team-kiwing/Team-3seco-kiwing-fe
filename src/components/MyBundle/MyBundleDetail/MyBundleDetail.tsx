@@ -35,7 +35,7 @@ const MyBundleDetail = ({
   isBundleSelected,
   bundleId,
 }: MyBundleDetailProps) => {
-  const QuestionsEndRef = useRef<HTMLDivElement | null>(null);
+  const questionsEndRef = useRef<HTMLDivElement | null>(null);
 
   const { isMobileSize } = useResize();
   const { data: bundle } = useQuery({
@@ -54,21 +54,21 @@ const MyBundleDetail = ({
   const [isAll, setIsAll] = useState(true);
   const [orderedQuestions, setOrderedQuestions] = useState<Question[]>([]);
 
-  const { handleAddQuestionClick } = useMyQuestionModal();
+  const { handleAddQuestionClick } = useMyQuestionModal(questionsEndRef);
 
   const filteredQuestions = isAll
     ? orderedQuestions
     : orderedQuestions.filter((question) => question.originId === null);
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (QuestionsEndRef.current) {
-        QuestionsEndRef.current.scrollIntoView({
-          behavior: 'smooth',
-        });
-      }
-    });
-  }, [bundle]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (QuestionsEndRef.current) {
+  //       QuestionsEndRef.current.scrollIntoView({
+  //         behavior: 'smooth',
+  //       });
+  //     }
+  //   });
+  // }, [bundle]);
 
   useEffect(() => {
     if (bundle) {
@@ -203,7 +203,7 @@ const MyBundleDetail = ({
                 </Droppable>
               </DragDropContext>
             )}
-            <div ref={QuestionsEndRef} />
+            <div ref={questionsEndRef} />
           </Body>
 
           <Footer>

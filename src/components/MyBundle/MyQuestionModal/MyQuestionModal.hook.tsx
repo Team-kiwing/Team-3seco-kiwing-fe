@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { MutableRefObject } from 'react';
 
 import { QUERYKEY } from '@/constants/queryKeys';
 import { notify } from '@/hooks/toast';
@@ -10,7 +11,13 @@ import MyQuestionModal from '.';
 import { MODAL } from './MyQuestionModal.const';
 import { EditProps } from './MyQuestionModal.type';
 
-export const useCreateQuestion = (bundleId: number | null | undefined) => {
+export const useCreateQuestion = ({
+  bundleId,
+  questionsEndRef,
+}: {
+  bundleId: number | null | undefined;
+  questionsEndRef: MutableRefObject<HTMLDivElement | null> | undefined;
+}) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -37,6 +44,14 @@ export const useCreateQuestion = (bundleId: number | null | undefined) => {
             queryKey: [QUERYKEY.BUNDLE_DETAIL],
           });
         }
+
+        setTimeout(() => {
+          if (questionsEndRef && questionsEndRef.current) {
+            questionsEndRef.current.scrollIntoView({
+              behavior: 'smooth',
+            });
+          }
+        });
       } else {
         notify({
           type: 'error',
@@ -97,13 +112,20 @@ export const useUpdateQuestion = (bundleId: number | null | undefined) => {
   });
 };
 
-export const useMyQuestionModal = () => {
+export const useMyQuestionModal = (
+  questionsEndRef: MutableRefObject<HTMLDivElement | null>
+) => {
   const { setModalOpen } = useModal();
 
   const handleAddQuestionClick = (bundleId: number) => {
     setModalOpen({
       title: MODAL.TITLE,
-      content: <MyQuestionModal bundleId={bundleId} />,
+      content: (
+        <MyQuestionModal
+          bundleId={bundleId}
+          questionsEndRef={questionsEndRef}
+        />
+      ),
     });
   };
 

@@ -1,3 +1,5 @@
+import { MutableRefObject } from 'react';
+
 import { Tag } from '@/types';
 
 export interface MyQuestionModalProps {
@@ -8,6 +10,7 @@ export interface MyQuestionModalProps {
   isSharedField?: boolean;
   bundleId: number;
   questionId?: number;
+  questionsEndRef?: MutableRefObject<HTMLDivElement | null>;
   setIsToggleShared?: (state: boolean) => void;
 }
 
