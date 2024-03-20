@@ -95,17 +95,16 @@ export const MainBundlesBox = styled.div`
   width: 100%;
 `;
 
-export const VerticalDivider = styled.hr`
+export const VerticalDivider = styled.div`
   border: none;
   background-color: ${({ theme }) => theme.border_color};
   position: relative;
   width: 0.1rem;
-  height: 50rem;
   vertical-align: middle;
   margin-top: 6rem;
 `;
 
-export const HorizontalDivider = styled.hr`
+export const HorizontalDivider = styled.div`
   border: none;
   background-color: ${({ theme }) => theme.border_color};
   display: block;
