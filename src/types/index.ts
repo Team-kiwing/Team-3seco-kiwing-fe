@@ -169,7 +169,7 @@ export interface Bundle {
   createdAt: string;
   updatedAt: string;
   questions: Question[];
-  writerId: number;
+  writer: UserInfoResponse;
 }
 
 export interface BundlesUpdateResponse extends BundlesBasic {}
