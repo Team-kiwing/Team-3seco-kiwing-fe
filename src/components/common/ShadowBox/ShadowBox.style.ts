@@ -23,10 +23,7 @@ export const Container = styled.div<ContainerProps>`
   border-radius: ${(props) =>
     props.$isCard ? `${BORDER_CARD_WEB}rem` : `${BORDER_WEB}rem`};
   transition: all 0.2s ease;
-  color: ${(props) =>
-    props.$isActive
-      ? props.theme.primary_white_text_color
-      : props.theme.primary_color};
+  color: ${(props) => (props.$isActive ? 'white' : props.theme.primary_color)};
   font-size: ${WEB_FONT_SIZE}rem;
 
   @media (hover: hover) and (pointer: fine) {
