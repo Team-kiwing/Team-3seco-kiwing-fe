@@ -45,7 +45,7 @@ const Button = ({
       $width={width}
       $height={height}
       $backgroundColor={backgroundColor || theme.symbol_color}
-      $textColor={textColor || theme.primary_white_text_color}
+      $textColor={textColor || 'white'}
       $textSize={textSize}
       $hoverBackgroundColor={
         hoverBackgroundColor || theme.symbol_secondary_color
