@@ -5,7 +5,7 @@ import UserInfoCard from '@/components/common/UserInfoCard';
 import SharedBundleBox from '@/components/SharedBundle/SharedBundleBox';
 import SharedBundleCard from '@/components/SharedBundle/SharedBundleCard';
 
-import { useGetBundleDetail } from './SharedItem.hook';
+import { useGetBundleDetail, useLatestQuestions } from './SharedItem.hook';
 import {
   SharedItemWrapper,
   SharedWrapper,
@@ -17,9 +17,7 @@ const SharedItem = () => {
   const bundleId = Number(params.id);
   const { data: detail } = useGetBundleDetail({ bundleId: bundleId });
   const questions = detail?.questions;
-  const latestQuestions = questions?.sort(
-    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-  );
+  const latestQuestions = useLatestQuestions(questions ?? null);
 
   if (!questions || !latestQuestions) {
     return <Spinner />;
