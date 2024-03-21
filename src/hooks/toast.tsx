@@ -43,7 +43,7 @@ const Toast = () => {
       newestOnTop
       closeOnClick
       rtl={false}
-      pauseOnFocusLoss
+      pauseOnFocusLoss={false}
       pauseOnHover={false}
       theme={isDarkMode ? 'dark' : 'light'}
       toastStyle={{
