@@ -27,7 +27,7 @@ const PcRightItem = ({
 }: RightItemProps) => {
   const queryClient = useQueryClient();
   const theme = useTheme();
-  const { handleEditQuestionClick } = useMyQuestionModal(bundleId);
+  const { handleEditQuestionClick } = useMyQuestionModal();
   const { mutate: deleteQuestion } = useDeleteQuestion(bundleId);
 
   const { mutate: updateQuestion } = useUpdateQuestion(bundleId);

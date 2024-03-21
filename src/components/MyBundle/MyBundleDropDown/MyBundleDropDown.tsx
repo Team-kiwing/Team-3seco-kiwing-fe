@@ -30,7 +30,10 @@ const MyBundleDropDown = ({
   const queryClient = useQueryClient();
   const { isMobileSize } = useResize();
   const { mutate: updateBundle } = useUpdateBundle();
-  const { mutate: deleteBundle } = useDeleteBundle({ setSelectedBundleId });
+  const { mutate: deleteBundle } = useDeleteBundle({
+    setSelectedBundleId,
+    bundleId: bundle.id,
+  });
 
   const handleDeleteBundle = () => {
     if (confirm(`[${bundle.name}] 꾸러미를 삭제하시겠습니까?`)) {

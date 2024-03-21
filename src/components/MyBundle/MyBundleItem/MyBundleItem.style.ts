@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 
-import {
-  FONT_MEDIUM,
-  MOBILE,
-  MOBILE_FONT_SIZE,
-  WEB_FONT_SIZE,
-} from '@/constants';
+import { MOBILE, MOBILE_FONT_SIZE, WEB_FONT_SIZE } from '@/constants';
 
 export const BundleItemWrapper = styled.div<{ $isActive: boolean }>`
   margin-bottom: 1.5rem;
@@ -17,7 +12,6 @@ export const BundleItemWrapper = styled.div<{ $isActive: boolean }>`
 export const Title = styled.span`
   width: 100%;
   font-size: ${WEB_FONT_SIZE}rem;
-  font-weight: ${FONT_MEDIUM};
   display: flex;
   justify-content: center;
   align-items: center;

@@ -61,7 +61,7 @@ const MyBundleEmpty = () => {
         width="80%"
         height="5rem"
         text="+ 새 질문 꾸러미 추가하기"
-        onClick={handleAddBundleClick}
+        onClick={() => handleAddBundleClick()}
         style={{
           position: isMobileSize ? 'absolute' : 'inherit',
           bottom: '11rem',

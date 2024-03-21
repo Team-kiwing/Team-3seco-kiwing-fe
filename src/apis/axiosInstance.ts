@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react';
 import axios from 'axios';
 
 import { NETWORK } from '@/constants/api';
@@ -58,7 +59,12 @@ axiosInstance.interceptors.response.use(
       }
     } else if (status === 400 || status === 404 || status === 409) {
       console.error(msg);
+      notify({
+        text: '에러가 발생했어요. 새로고침하거나 관리자에게 문의해주세요.',
+        type: 'error',
+      });
     }
+    Sentry.captureException(error);
     return Promise.reject(error);
   }
 );

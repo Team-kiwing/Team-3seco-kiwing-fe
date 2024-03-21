@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -7,6 +8,18 @@ import { GlobalStyle } from './styles/globalStyles.ts';
 import { ManagedUIContext } from './styles/uiContext.tsx';
 
 const queryClient = new QueryClient();
+
+Sentry.init({
+  dsn: import.meta.env.VITE_SENTRY_DSN,
+  integrations: [Sentry.browserTracingIntegration()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+  // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
+  tracePropagationTargets: [/^https:\/\/kiwing\.kr/],
+});
 
 console.log(
   `%c

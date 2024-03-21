@@ -6,6 +6,7 @@ export const PATH = {
   SHARED: '/shared',
   SHARED_ITEM: '/shared/:id',
   MY: '/user/:userid',
+  MY_BUNDLED_DETAIL: '/user/:userid/:bundleId',
   REPORT: '/report',
   POLICY: '/policy',
   NOTFOUND: '*',

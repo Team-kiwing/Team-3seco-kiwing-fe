@@ -40,7 +40,7 @@ export const BundleWrapper = styled.div`
     padding: 0;
     padding-top: 2rem;
     min-height: calc(100vh - 23rem);
-    margin-bottom: 6.5rem;
+    margin-bottom: calc(6.5rem + env(safe-area-inset-bottom));
     gap: 1rem;
     overflow-y: visible;
   }
@@ -51,11 +51,7 @@ export const BundleInnerWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const BundleItemWrapper = styled.div`
-  @media screen and (max-width: ${MOBILE}px) {
-    margin-bottom: 1.5rem;
-  }
-`;
+export const BundleItemWrapper = styled.div``;
 
 export const ButtonWrapper = styled.div`
   width: 100%;
@@ -66,7 +62,7 @@ export const ButtonWrapper = styled.div`
   background-color: ${({ theme }) => theme.background_color};
 
   @media screen and (max-width: ${MOBILE}px) {
-    height: 8rem;
+    height: calc(8rem + env(safe-area-inset-bottom));
     position: fixed;
     padding-left: 1rem;
     padding-right: 1rem;

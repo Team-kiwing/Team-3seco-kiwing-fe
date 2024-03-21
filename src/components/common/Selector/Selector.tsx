@@ -22,7 +22,7 @@ import { SelectorProps } from './Selector.type';
 
 const Selector = ({
   content,
-  size = 1.7,
+  size = 1.6,
   setIsState,
   isState,
   ...props

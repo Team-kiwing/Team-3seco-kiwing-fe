@@ -9,7 +9,7 @@ export const SharedItemWrapper = styled(Col)`
   align-items: center;
   margin: 0 auto;
   padding: 3rem 0;
-  gap: 3rem;
+  gap: 2rem;
 
   @media screen and (max-width: ${MOBILE}px) {
     padding: 2rem 0;
@@ -25,7 +25,7 @@ export const UserInfoWrapper = styled.div`
 export const SharedWrapper = styled(Col)`
   width: 100%;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 90%;
