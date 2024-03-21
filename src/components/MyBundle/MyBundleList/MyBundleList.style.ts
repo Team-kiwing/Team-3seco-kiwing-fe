@@ -40,7 +40,7 @@ export const BundleWrapper = styled.div`
     padding: 0;
     padding-top: 2rem;
     min-height: calc(100vh - 23rem);
-    margin-bottom: 6.5rem;
+    margin-bottom: calc(6.5rem + env(safe-area-inset-bottom));
     gap: 1rem;
     overflow-y: visible;
   }
@@ -62,7 +62,7 @@ export const ButtonWrapper = styled.div`
   background-color: ${({ theme }) => theme.background_color};
 
   @media screen and (max-width: ${MOBILE}px) {
-    height: 8rem;
+    height: calc(8rem + env(safe-area-inset-bottom));
     position: fixed;
     padding-left: 1rem;
     padding-right: 1rem;
