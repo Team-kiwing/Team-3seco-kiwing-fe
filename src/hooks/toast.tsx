@@ -38,14 +38,19 @@ const Toast = () => {
     <ToastContainer
       position="top-center"
       autoClose={autoClose}
-      hideProgressBar={false}
+      hideProgressBar={isMobileSize ? true : false}
       stacked={isMobileSize ? false : true}
+      newestOnTop
       closeOnClick
       rtl={false}
       pauseOnFocusLoss
       pauseOnHover={false}
       theme={isDarkMode ? 'dark' : 'light'}
-      style={{ fontSize: isMobileSize ? '1.3rem' : '1.6rem' }}
+      toastStyle={{
+        borderRadius: '12px',
+        margin: isMobileSize ? '1rem 2rem' : '0',
+        fontSize: isMobileSize ? '1.3rem' : '1.6rem',
+      }}
     />
   );
 };
