@@ -56,7 +56,7 @@ export const EmptyContent = styled.span`
   font-size: ${WEB_FONT_SIZE}rem;
   font-weight: ${FONT_MEDIUM};
   text-align: center;
-  padding: 10rem 0;
+  padding: 12rem 0;
 
   @media screen and (max-width: ${MOBILE}px) {
     font-size: ${MOBILE_FONT_SIZE}rem;
