@@ -27,7 +27,7 @@ interface BundleParsed {
 
 export const useGetMyBundles = (sortingType: string) => {
   const query = useQuery<BundleParsed[] | null>({
-    queryKey: ['myBundles'],
+    queryKey: ['myBundlesPageHook'],
     queryFn: () => getMyBundles(sortingType),
     select: (data) => {
       return data
