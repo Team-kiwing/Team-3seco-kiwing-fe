@@ -75,6 +75,7 @@ export const MainItemWrapper = styled.section`
 export const MainListHeader = styled.h1`
   font-size: 2.5rem;
   color: ${({ theme }) => theme.primary_color};
+  font-weight: 500;
 
   @media screen and (max-width: ${MOBILE}px) {
     text-align: center;
@@ -95,17 +96,16 @@ export const MainBundlesBox = styled.div`
   width: 100%;
 `;
 
-export const VerticalDivider = styled.hr`
+export const VerticalDivider = styled.div`
   border: none;
   background-color: ${({ theme }) => theme.border_color};
   position: relative;
   width: 0.1rem;
-  height: 50rem;
   vertical-align: middle;
   margin-top: 6rem;
 `;
 
-export const HorizontalDivider = styled.hr`
+export const HorizontalDivider = styled.div`
   border: none;
   background-color: ${({ theme }) => theme.border_color};
   display: block;
