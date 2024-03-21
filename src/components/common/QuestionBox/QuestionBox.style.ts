@@ -3,16 +3,22 @@ import { styled } from 'styled-components';
 import {
   BORDER_MOBILE,
   BORDER_WEB,
-  FONT_LIGHT,
   MOBILE,
   MOBILE_FONT_SIZE,
   WEB_FONT_SIZE,
 } from '@/constants';
 import { Row } from '@/styles/globalStyles';
 
-export const Container = styled.article`
+export const Wrapper = styled.article`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Container = styled.section`
   width: 100%;
   position: relative;
+  box-sizing: border-box;
   border-radius: ${BORDER_WEB}rem;
   border: 0.1rem solid ${(props) => props.theme.border_color};
 
@@ -35,19 +41,29 @@ export const TitleWrapper = styled(Row)<{ $isActive: boolean }>`
   }
 `;
 
-export const Header = styled.h1`
+export const Header = styled.div`
+  min-height: 7.5rem;
+  height: fit-content;
   display: flex;
   padding: 1rem;
+  margin: 0;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   width: 100%;
-  font-weight: ${FONT_LIGHT};
+  font-weight: 300;
   font-size: ${WEB_FONT_SIZE + 0.2}rem;
+  white-space: pre-line;
+  word-break: break-all;
 
   @media screen and (max-width: ${MOBILE}px) {
+    min-height: 3rem;
     font-size: ${WEB_FONT_SIZE}rem;
   }
+`;
+
+export const HeaderText = styled.span`
+  cursor: text;
 `;
 
 export const RightItem = styled(Row)`
@@ -78,7 +94,7 @@ export const Body = styled.div<{ $isEmpty: boolean }>`
   font-size: calc(${WEB_FONT_SIZE}rem);
   color: ${(props) =>
     props.$isEmpty ? props.theme.gray_300 : props.theme.primary_color};
-  font-weight: ${FONT_LIGHT};
+  font-weight: 300;
   white-space: pre-line;
   @media screen and (max-width: ${MOBILE}px) {
     padding: 1rem;
