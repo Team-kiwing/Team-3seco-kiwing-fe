@@ -23,7 +23,7 @@ export const MyBundleModalValidation = {
       value.trim().length >= 2 ||
       '꾸러미 이름은 최소 2글자 이상 입력해야 합니다.',
     maxLength: (value: string) =>
-      value.trim().length <= 300 ||
+      value.trim().length <= 100 ||
       '꾸러미 이름은 최대 100자까지 입력 가능합니다.',
   },
 };
