@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react';
 import axios from 'axios';
 
 import { NETWORK } from '@/constants/api';
@@ -59,6 +60,7 @@ axiosInstance.interceptors.response.use(
     } else if (status === 400 || status === 404 || status === 409) {
       console.error(msg);
     }
+    Sentry.captureException(error);
     return Promise.reject(error);
   }
 );
