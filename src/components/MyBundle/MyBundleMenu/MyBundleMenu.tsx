@@ -38,9 +38,6 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
 
   useEffect(() => {
     if (bundle) {
-      queryClient.refetchQueries({
-        queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
-      });
       setIsShared(bundle.shareType === 'PUBLIC');
     }
   }, [bundle, queryClient, bundleId]);
