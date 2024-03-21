@@ -64,7 +64,7 @@ export const RightItem = styled(Row)`
 export const BodyWrapper = styled.div`
   height: 0;
   padding: 0 0.8rem;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.background_color};
   overflow: hidden;
   transition:
     height 0.3s ease,
