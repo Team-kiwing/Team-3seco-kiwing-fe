@@ -89,12 +89,16 @@ const QuestionBox = ({
 
   return (
     <Wrapper>
-      <IconWrapper
-        $size={'s'}
-        {...dragHandleProps}
-      >
-        <GoGrabber />
-      </IconWrapper>
+      {isEditMode && (
+        <IconWrapper
+          $size={'s'}
+          {...dragHandleProps}
+          style={{ cursor: 'move' }}
+        >
+          <GoGrabber />
+        </IconWrapper>
+      )}
+
       <Container>
         <TitleWrapper $isActive={isActive}>
           <Header onClick={(e) => handleClick(e)}>
