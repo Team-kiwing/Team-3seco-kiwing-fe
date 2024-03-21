@@ -1,10 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { MutableRefObject } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { QUERYKEY } from '@/constants/queryKeys';
 import { notify } from '@/hooks/toast';
 import { useModal } from '@/hooks/useModal';
 import { createBundle, updateBundle } from '@/services/bundles';
+import { userDataStore } from '@/stores';
 import { BundlesCreateRequest, BundlesUpdateRequest } from '@/types';
 
 import MyBundleModal from './MyBundleModal';
@@ -15,6 +17,8 @@ export const useCreateBundle = (
   bundlesEndRef: MutableRefObject<HTMLDivElement | null> | undefined
 ) => {
   const queryClient = useQueryClient();
+  const navigator = useNavigate();
+  const { nickname } = userDataStore();
 
   return useMutation({
     mutationFn: ({ name, shareType, tagIds }: BundlesCreateRequest) =>
@@ -28,6 +32,8 @@ export const useCreateBundle = (
         queryClient.refetchQueries({
           queryKey: [QUERYKEY.MY_BUNDLES],
         });
+
+        navigator(`/user/${nickname}/${res.id}`);
       } else {
         notify({
           type: 'error',
