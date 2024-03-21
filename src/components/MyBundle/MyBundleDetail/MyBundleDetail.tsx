@@ -38,7 +38,7 @@ import {
 
 const MyBundleDetail = () => {
   // 내 꾸러미 목록 전체 조회
-  const { data: bundles } = useFetchMyBundles();
+  const { data: bundles, isFetching } = useFetchMyBundles();
 
   const questionsEndRef = useRef<HTMLDivElement | null>(null);
   const { isMobileSize } = useResize();
@@ -60,13 +60,13 @@ const MyBundleDetail = () => {
   });
 
   useEffect(() => {
-    if (nickname && bundleId != null && bundles) {
+    if (nickname && bundleId != null && bundles && !isFetching) {
       if (isMobileSize && !bundles.find((bundle) => bundle.id === bundleId)) {
         notify({ type: 'warning', text: '올바르지 않은 주소 값입니다.' });
         navigator(`/user/${nickname}`);
       }
     }
-  }, [bundleId, bundles, nickname, navigator, isMobileSize]);
+  }, [bundleId, bundles, nickname, navigator, isMobileSize, isFetching]);
 
   const { mutate: reorder } = useReorderQuestion(bundleId);
 

@@ -22,7 +22,7 @@ const MyBundle = () => {
   const { nickname } = userDataStore();
 
   // 내 꾸러미 목록 전체 조회
-  const { data: bundles } = useFetchMyBundles();
+  const { data: bundles, isFetching } = useFetchMyBundles();
 
   const [selectedBundleId, setSelectedBundleId] = useState<null | number>(null);
 
@@ -34,7 +34,9 @@ const MyBundle = () => {
   useEffect(() => {
     if (userid && nickname && userid !== nickname) {
       warnAndRedirectToUser();
-    } else if (bundleId && bundles) {
+      return;
+    }
+    if (bundleId && bundles && !isFetching) {
       if (bundles.find((bundle) => bundle.id === Number(bundleId))) {
         setSelectedBundleId(Number(bundleId));
       } else {
@@ -42,7 +44,10 @@ const MyBundle = () => {
         setSelectedBundleId(null);
       }
     }
-  }, [bundleId, bundles, userid, nickname, warnAndRedirectToUser]);
+    if (!bundleId) {
+      setSelectedBundleId(null);
+    }
+  }, [bundleId, bundles, userid, nickname, warnAndRedirectToUser, isFetching]);
 
   if (!bundles) {
     return <Spinner />;
