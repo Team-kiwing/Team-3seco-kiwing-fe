@@ -25,7 +25,7 @@ export const SharedBundleBoxWrapper = styled.section`
   gap: 2rem;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 35rem;
+  height: 41rem;
   @media screen and (max-width: ${MOBILE}px) {
     gap: 1rem;
     height: 100%;
