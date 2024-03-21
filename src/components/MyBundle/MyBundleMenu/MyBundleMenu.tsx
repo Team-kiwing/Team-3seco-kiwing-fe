@@ -2,6 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { FiEdit3 } from 'react-icons/fi';
 import { RiDeleteBin5Line, RiFileCopyLine } from 'react-icons/ri';
+import { useParams } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import { useTheme } from 'styled-components';
 
@@ -9,7 +10,6 @@ import IconWrapper from '@/components/common/IconWrapper';
 import ShadowBox from '@/components/common/ShadowBox';
 import Skeleton from '@/components/common/Skeleton';
 import Toggle from '@/components/common/Toggle';
-import { QUERYKEY } from '@/constants/queryKeys';
 import { PATH } from '@/constants/router';
 import { useFetchBundleDetail } from '@/hooks/api';
 import { notify } from '@/hooks/toast';
@@ -23,9 +23,11 @@ import {
 import { Item, Options, Text, TooltipContainer } from './MyBundleMenu.style';
 import { MyBundleMenuProps } from './MyBundleMenu.type';
 
-const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
+const MyBundleMenu = ({ setSelectedBundleId }: MyBundleMenuProps) => {
   const queryClient = useQueryClient();
   const theme = useTheme();
+  const { bundleId: stringBundleId } = useParams();
+  const bundleId = Number(stringBundleId);
 
   const { data: bundle } = useFetchBundleDetail(bundleId);
 
@@ -34,7 +36,10 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
   );
   const { handleEditBundleClick } = useMyBundleModal();
   const { mutate: updateBundle } = useUpdateBundle();
-  const { mutate: deleteBundle } = useDeleteBundle({ setSelectedBundleId });
+  const { mutate: deleteBundle } = useDeleteBundle({
+    setSelectedBundleId,
+    bundleId,
+  });
 
   useEffect(() => {
     if (bundle) {
@@ -73,10 +78,6 @@ const MyBundleMenu = ({ bundleId, setSelectedBundleId }: MyBundleMenuProps) => {
   const handleDeleteBundle = () => {
     if (confirm(`[${bundle.name}] 꾸러미를 삭제하시겠습니까?`)) {
       deleteBundle(bundle.id);
-      setSelectedBundleId(null);
-      queryClient.removeQueries({
-        queryKey: [QUERYKEY.BUNDLE_DETAIL, bundleId],
-      });
     }
   };
 
