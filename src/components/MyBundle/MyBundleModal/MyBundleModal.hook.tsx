@@ -33,21 +33,20 @@ export const useCreateBundle = (
           queryKey: [QUERYKEY.MY_BUNDLES],
         });
 
-        navigator(`/user/${nickname}/${res.id}`);
+        setTimeout(() => {
+          if (bundlesEndRef && bundlesEndRef.current) {
+            bundlesEndRef.current.scrollIntoView({
+              behavior: 'smooth',
+            });
+          }
+          navigator(`/user/${nickname}/${res.id}`);
+        }, 200);
       } else {
         notify({
           type: 'error',
           text: MODAL.ERROR_NOTIFY('add'),
         });
       }
-
-      setTimeout(() => {
-        if (bundlesEndRef && bundlesEndRef.current) {
-          bundlesEndRef.current.scrollIntoView({
-            behavior: 'smooth',
-          });
-        }
-      }, 200);
     },
     onError: () => {
       notify({
