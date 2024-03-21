@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 import {
-  FONT_BOLD,
-  FONT_MEDIUM,
+  FONT_REGULAR,
   MOBILE,
   MOBILE_FONT_SIZE,
   WEB_FONT_SIZE,
@@ -26,7 +25,9 @@ export const ReportPageLayout = styled(Col)`
   }
 `;
 
-export const ReportGuideContainer = styled(Col)`
+export const ReportGuideContainer = styled.article`
+  display: flex;
+  flex-direction: column;
   width: 100%;
 `;
 
@@ -41,7 +42,7 @@ export const ReportPageTitle = styled.h2`
 
 export const ReportGuideTitle = styled.span`
   font-size: 2rem;
-  font-weight: ${FONT_BOLD};
+  font-weight: ${FONT_REGULAR};
 
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1.5rem;
@@ -50,9 +51,9 @@ export const ReportGuideTitle = styled.span`
 
 export const ReportGuideText = styled.p`
   font-size: ${WEB_FONT_SIZE}rem;
-  font-weight: ${FONT_MEDIUM};
+  font-weight: ${FONT_REGULAR};
   line-height: normal;
-  word-break: keep-all;
+  word-break: break-all;
 
   @media screen and (max-width: ${MOBILE}px) {
     word-break: break-all;

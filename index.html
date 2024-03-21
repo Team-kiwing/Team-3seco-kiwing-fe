@@ -20,7 +20,7 @@
 
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0"
+      content="width=device-width, initial-scale=1.0 viewport-fit=cover"
     />
 
     <link
@@ -129,6 +129,26 @@
       gtag('js', new Date());
 
       gtag('config', 'G-JY80LMCG5P');
+    </script>
+    <script>
+      if (
+        /Android/i.test(navigator.userAgent) &&
+        /Chrome/i.test(navigator.userAgent) &&
+        window.matchMedia('(display-mode: standalone)').matches
+      ) {
+        window.addEventListener('popstate', function () {
+          const location = window.location;
+          const isBackActive =
+            location.pathname !== '/shared' &&
+            !location.pathname.includes(`/user/`) &&
+            location.pathname !== '/hub' &&
+            location.pathname !== '/';
+
+          if (!isBackActive) {
+            window.history.pushState({ noBackExitsApp: true }, '');
+          }
+        });
+      }
     </script>
   </head>
   <body>

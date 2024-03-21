@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { FONT_MEDIUM, MOBILE } from '@/constants';
+import { FONT_REGULAR, MOBILE } from '@/constants';
 import { Col, Row } from '@/styles/globalStyles';
 
 export const QuestionCardAddButton = styled.div`
@@ -32,14 +32,16 @@ export const QuestionCardBodyWrapper = styled(Col)`
 `;
 
 export const QuestionCardText = styled.div`
-  max-width: 90%;
-  word-break: keep-all;
-
-  font-weight: ${FONT_MEDIUM};
+  max-width: 100%;
+  word-break: break-all;
+  font-size: 2rem;
+  font-weight: ${FONT_REGULAR};
   line-height: normal;
 
   @media screen and (max-width: ${MOBILE}px) {
+    max-width: 95%;
     word-break: break-all;
+    font-size: 1.6rem;
   }
 `;
 
@@ -59,7 +61,6 @@ export const QuestionCardBadgeWrapper = styled(Col)`
 `;
 
 export const QuestionCardInfoBadges = styled(Row)<{ $isLogin: boolean }>`
-  transform: scale(0.9);
   display: flex;
   gap: 1rem;
   height: fit-content;

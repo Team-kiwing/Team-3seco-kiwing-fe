@@ -6,13 +6,16 @@ import { Col } from '@/styles/globalStyles';
 export const Container = styled.section<{ $isBundleSelected: boolean }>`
   width: ${({ $isBundleSelected }) => ($isBundleSelected ? '60%' : '80%')};
   height: 100%;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
+
   box-sizing: border-box;
 
   transition: all 1s ease;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
   }
 `;
 

@@ -7,4 +7,15 @@ export interface QuestionCardProps {
   isHot: boolean;
   tags: Tag[];
   isLogin: boolean;
+  Bundle: BundleParsed[];
+}
+
+export interface BundleParsed {
+  id: number;
+  name: string;
+}
+
+export interface BundleResult {
+  id: number;
+  name: string;
 }

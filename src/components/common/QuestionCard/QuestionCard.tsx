@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
+import { userDataStore } from '@/stores';
 
 import Badge from '../Badge';
 import CircleButton from '../CircleButton';
@@ -10,7 +11,6 @@ import ShadowBox from '../ShadowBox';
 import { QuestionCardConstants } from './QuestionCard.const';
 import {
   useCreateQuestionsToBundle,
-  useGetMyBundles,
   useReportModal,
 } from './QuestionCard.hook';
 import {
@@ -23,7 +23,11 @@ import {
   QuestionCardReportBadge,
   QuestionCardText,
 } from './QuestionCard.style';
-import { QuestionCardProps } from './QuestionCard.type';
+import {
+  BundleParsed,
+  BundleResult,
+  QuestionCardProps,
+} from './QuestionCard.type';
 
 /**
  * @summary 사용법                 
@@ -44,15 +48,6 @@ import { QuestionCardProps } from './QuestionCard.type';
  * @param isLogin: boolean;
  * @returns
  */
-interface BundleParsed {
-  id: number;
-  name: string;
-}
-
-interface BundleResult {
-  id: number;
-  name: string;
-}
 
 const QuestionCard = ({
   id,
@@ -61,11 +56,13 @@ const QuestionCard = ({
   shareCount,
   isHot,
   isLogin,
+  Bundle,
 }: QuestionCardProps) => {
   const { isMobileSize } = useResize();
   const { handleReportClick } = useReportModal({ questionId: id });
   const { isShow, setIsShow, openDropDown, triggerId, closeDropDown } =
     useDropDown(String(id));
+  const { nickname } = userDataStore();
 
   const transType = (data: BundleParsed[]) => {
     return data.map((item: BundleResult) => {
@@ -76,13 +73,7 @@ const QuestionCard = ({
     });
   };
 
-  const { data: userBundles, refetch: getMyBundlesRefetch } =
-    useGetMyBundles('LATEST');
   const { mutate } = useCreateQuestionsToBundle();
-
-  useEffect(() => {
-    isLogin && getMyBundlesRefetch();
-  }, [getMyBundlesRefetch, isLogin]);
 
   const handleAdd = (checkedItems: number[]) => {
     mutate({ ids: [id], checkedBundles: checkedItems });
@@ -97,7 +88,6 @@ const QuestionCard = ({
           boxSizing: 'border-box',
           cursor: 'auto',
         }}
-        isHoverActive
         isCard={true}
         width="100%"
         height="fit-content"
@@ -110,17 +100,50 @@ const QuestionCard = ({
               id={triggerId}
               onClick={openDropDown}
             />
-            {userBundles && (
+            {Bundle && (
               <DropDown
-                width={20}
-                height={15}
-                options={transType(userBundles)}
+                width={Bundle.length === 0 ? 25 : 20}
+                height={Bundle.length === 0 ? 15 : 20}
+                options={transType(Bundle)}
                 isShow={isShow}
                 setIsShow={setIsShow}
                 mode="checkbox"
                 onAdd={handleAdd}
                 closeDropDown={closeDropDown}
                 direction="left"
+                emptyText={
+                  <>
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '2rem',
+                      }}
+                    >
+                      <p
+                        style={{
+                          margin: 0,
+                          fontSize: isMobileSize ? '1.2rem' : '1.6rem',
+                        }}
+                      >
+                        아직 꾸러미가 하나도 없어요😢
+                      </p>
+                      <Link
+                        style={{
+                          textDecoration: 'none',
+                          color: 'white',
+                          fontSize: isMobileSize ? '1.2rem' : '1.6rem',
+                        }}
+                        to={`/user/${nickname}`}
+                      >
+                        꾸러미 만들러 가기👆
+                      </Link>
+                    </div>
+                  </>
+                }
               />
             )}
           </QuestionCardAddButton>
@@ -147,14 +170,14 @@ const QuestionCard = ({
               {isHot && (
                 <Badge
                   style={{ cursor: 'default', padding: '0.5rem 1.3rem' }}
-                  $size={isMobileSize ? 1.2 : 's'}
+                  $size={isMobileSize ? 'xs' : 's'}
                   $state="hot"
                   $text="HOT"
                 />
               )}
               <Badge
                 style={{ cursor: 'default', padding: '0.5rem 1.3rem' }}
-                $size={isMobileSize ? 1.2 : 's'}
+                $size={isMobileSize ? 'xs' : 's'}
                 $state="subscribedTag"
                 $subscribedCount={shareCount}
               />

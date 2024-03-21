@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { SyncLoader } from 'react-spinners';
 import { useTheme } from 'styled-components';
 
-import Button from '@/components/common/Button';
 import NoSearchResults from '@/components/common/NoSearchResults';
 import {
   NO_SEARCH_RESULTS_ALT_IMAGE,
   NO_SEARCH_RESULTS_IMAGE,
 } from '@/components/common/NoSearchResults/NoSearchResults.const';
 import QuestionCard from '@/components/common/QuestionCard';
+import { useGetMyBundles } from '@/components/common/QuestionCard/QuestionCard.hook';
 import SearchBar from '@/components/common/SearchBar';
 import Selector from '@/components/common/Selector';
 import TagFilter from '@/components/common/TagFilter';
@@ -17,16 +17,16 @@ import { useFetchTags } from '@/hooks/useFetchTags';
 import { userDataStore } from '@/stores';
 import { Question, SortingType, Tag } from '@/types';
 
+import { useIntersectionObserver } from '../SharedPage/Shared.hook';
 import {
   SearchWrapper,
   SelectorWrapper,
+  SharedNextPageNone,
   TagFilterWrapper,
 } from '../SharedPage/Shared.style';
 import { HubHookConstants, HubTextConstants } from './Hub.const';
 import { useSearchQuestionsInfinite } from './Hub.hook';
 import {
-  HubFooterContainer,
-  HubInfiniteMessage,
   HubLayout,
   HubQuestionCardContainer,
   HubSearchError,
@@ -53,6 +53,11 @@ const Hub = () => {
     fetchNextPage,
   } = useSearchQuestionsInfinite(searchParams, isRecent, tagsId);
 
+  const { targetRef } = useIntersectionObserver({
+    hasNextPage,
+    fetchNextPage,
+  });
+
   const onSubmit = () => {
     const searchValues = methods
       .getValues(HubHookConstants.HUB_SEARCH_REGISTER)
@@ -63,6 +68,13 @@ const Hub = () => {
       setSearchParams('');
     }
   };
+
+  const { data: userBundles, refetch: getMyBundlesRefetch } =
+    useGetMyBundles('LATEST');
+
+  useEffect(() => {
+    isLogin && getMyBundlesRefetch();
+  }, [getMyBundlesRefetch, isLogin]);
 
   return (
     <>
@@ -100,7 +112,7 @@ const Hub = () => {
           </HubSpinnerContainer>
         )}
 
-        <HubQuestionCardContainer>
+        <HubQuestionCardContainer $isLogin={isLogin}>
           {infinityData &&
             infinityData.pages.map((pageList) => {
               return pageList?.questionResponses.map(
@@ -113,6 +125,7 @@ const Hub = () => {
                     shareCount={questionItem.shareCount}
                     isHot={questionItem.isHot}
                     isLogin={isLogin}
+                    Bundle={userBundles ? userBundles : []}
                   />
                 )
               );
@@ -128,9 +141,16 @@ const Hub = () => {
                 src={NO_SEARCH_RESULTS_IMAGE}
               />
             )}
+
+          <div ref={targetRef} />
         </HubQuestionCardContainer>
 
-        <HubFooterContainer>
+        {infinityData?.pages[0]?.questionResponses.length &&
+        !hasNextPage &&
+        !isFetchingNextPage ? (
+          <SharedNextPageNone>마지막 질문이에요!</SharedNextPageNone>
+        ) : null}
+        {/* <HubFooterContainer>
           {hasNextPage && !isFetchingNextPage && (
             <Button
               width="100%"
@@ -154,7 +174,7 @@ const Hub = () => {
               {HubTextConstants.HUB_INFINITY_LOADING}
             </HubInfiniteMessage>
           )}
-        </HubFooterContainer>
+        </HubFooterContainer> */}
         {isError && (
           <HubSearchError>{HubTextConstants.HUB_ERROR_MESSAGE}</HubSearchError>
         )}

@@ -19,7 +19,9 @@ export const BottomNavBarWrapper = styled.nav`
 
   max-width: ${MOBILE}px;
   min-width: ${MOBILE_MIN - 10}px;
-  height: 6rem;
+
+  padding-bottom: env(safe-area-inset-bottom);
+  height: calc(6rem + env(safe-area-inset-bottom));
   width: 100%;
   white-space: nowrap;
   user-select: none;

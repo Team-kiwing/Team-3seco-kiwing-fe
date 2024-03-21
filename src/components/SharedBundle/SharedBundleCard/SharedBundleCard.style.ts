@@ -8,13 +8,13 @@ export const SharedBundleCardWrapper = styled.div`
   min-width: 28rem;
 `;
 
-export const BundleTitle = styled.div`
+export const BundleTitle = styled.section`
   font-size: 2rem;
   padding: 2rem;
-  font-weight: ${FONT_MEDIUM};
+  font-weight: ${FONT_MEDIUM - 50};
   width: 70%;
   text-align: center;
-  color: ${({ theme }) => theme.primary_white_text_color};
+  word-break: break-all;
 
   @media screen and (max-width: ${MOBILE}px) {
     font-size: ${WEB_FONT_SIZE}rem;
