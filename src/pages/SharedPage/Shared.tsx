@@ -33,7 +33,7 @@ import {
 } from './Shared.style';
 
 const Shared = () => {
-  const [isRecent, setIsRecent] = useState<SortingType>('LATEST');
+  const [isRecent, setIsRecent] = useState<SortingType>('POPULAR');
   const { data: tags } = useFetchTags();
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [searchedBundles, setSearchedBundles] = useState<string>('');

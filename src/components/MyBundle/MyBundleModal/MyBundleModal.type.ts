@@ -1,3 +1,5 @@
+import { MutableRefObject } from 'react';
+
 import { Tag } from '@/types';
 
 export interface AddBundleModalProps {
@@ -7,6 +9,7 @@ export interface AddBundleModalProps {
   selectedTagsField?: Tag[];
   isSharedField?: boolean;
   setIsToggleShared?: (state: boolean) => void;
+  bundlesEndRef?: MutableRefObject<HTMLDivElement | null>;
 }
 
 export interface FormField {

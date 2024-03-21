@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { FONT_SEMI_BOLD } from '@/constants';
+import { FONT_REGULAR } from '@/constants';
 import { MOBILE, MOBILE_MIN } from '@/constants';
 import { Col } from '@/styles/globalStyles';
 
@@ -25,7 +25,7 @@ export const BundleCardContentItem = styled.div`
 
 export const BundleCardItemName = styled.div`
   font-size: 2rem;
-  font-weight: ${FONT_SEMI_BOLD - 50};
+  font-weight: ${FONT_REGULAR};
   margin-top: 0.2rem;
   margin-bottom: 1rem;
   word-break: break-all;

@@ -1,11 +1,15 @@
-import BorderBox from '@/components/common/BorderBox';
+import ShadowBox from '@/components/common/ShadowBox';
 
 import { Container } from './MyBundleDetail.style';
 
-const MyBundleDetailSkeleton = () => {
+const SelectedBundleEmpty = ({
+  isBundleSelected,
+}: {
+  isBundleSelected: boolean;
+}) => {
   return (
-    <Container $isBundleSelected={false}>
-      <BorderBox
+    <Container $isBundleSelected={isBundleSelected}>
+      <ShadowBox
         width="100%"
         height="100%"
         style={{
@@ -18,16 +22,16 @@ const MyBundleDetailSkeleton = () => {
         }}
       >
         <img
-          src="./kiwing_circle_transparent.png"
+          src="/kiwing_circle_transparent.png"
           alt="kiwing logo"
           style={{
             width: '30%',
           }}
         />
         <span>나만의 꾸러미를 선택해보세요!</span>
-      </BorderBox>
+      </ShadowBox>
     </Container>
   );
 };
 
-export default MyBundleDetailSkeleton;
+export default SelectedBundleEmpty;

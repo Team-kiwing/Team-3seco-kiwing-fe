@@ -36,6 +36,7 @@ const MyQuestionModal = ({
   isSharedField = false,
   bundleId,
   questionId,
+  questionsEndRef,
   setIsToggleShared,
 }: MyQuestionModalProps) => {
   const theme = useTheme();
@@ -45,7 +46,10 @@ const MyQuestionModal = ({
 
   const { isMobileSize } = useResize();
   const { setModalCompleteClose } = useModal();
-  const { mutate: createQuestion } = useCreateQuestion(bundleId);
+  const { mutate: createQuestion } = useCreateQuestion({
+    bundleId,
+    questionsEndRef,
+  });
   const { mutate: updateQuestion } = useUpdateQuestion(bundleId);
 
   const {

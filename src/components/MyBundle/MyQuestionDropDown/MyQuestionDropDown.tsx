@@ -29,7 +29,7 @@ const MyQuestionDropDown = ({
   const { isMobileSize } = useResize();
   const { mutate: updateQuestion } = useUpdateQuestion(bundleId);
   const { mutate: deleteQuestion } = useDeleteQuestion(bundleId);
-  const { handleEditQuestionClick } = useMyQuestionModal(bundleId);
+  const { handleEditQuestionClick } = useMyQuestionModal();
 
   const handleToggle = () => {
     setIsShared(!isShared);

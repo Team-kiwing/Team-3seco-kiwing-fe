@@ -1,17 +1,24 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { MutableRefObject } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { QUERYKEY } from '@/constants/queryKeys';
 import { notify } from '@/hooks/toast';
 import { useModal } from '@/hooks/useModal';
 import { createBundle, updateBundle } from '@/services/bundles';
+import { userDataStore } from '@/stores';
 import { BundlesCreateRequest, BundlesUpdateRequest } from '@/types';
 
 import MyBundleModal from './MyBundleModal';
 import { MODAL } from './MyBundleModal.const';
 import { EditProps } from './MyBundleModal.type';
 
-export const useCreateBundle = () => {
+export const useCreateBundle = (
+  bundlesEndRef: MutableRefObject<HTMLDivElement | null> | undefined
+) => {
   const queryClient = useQueryClient();
+  const navigator = useNavigate();
+  const { nickname } = userDataStore();
 
   return useMutation({
     mutationFn: ({ name, shareType, tagIds }: BundlesCreateRequest) =>
@@ -25,6 +32,15 @@ export const useCreateBundle = () => {
         queryClient.refetchQueries({
           queryKey: [QUERYKEY.MY_BUNDLES],
         });
+
+        setTimeout(() => {
+          if (bundlesEndRef && bundlesEndRef.current) {
+            bundlesEndRef.current.scrollIntoView({
+              behavior: 'smooth',
+            });
+          }
+          navigator(`/user/${nickname}/${res.id}`);
+        }, 200);
       } else {
         notify({
           type: 'error',
@@ -79,10 +95,12 @@ export const useUpdateBundle = () => {
 export const useMyBundleModal = () => {
   const { setModalOpen } = useModal();
 
-  const handleAddBundleClick = () => {
+  const handleAddBundleClick = (
+    bundlesEndRef?: MutableRefObject<HTMLDivElement | null>
+  ) => {
     setModalOpen({
       title: MODAL.TITLE,
-      content: <MyBundleModal />,
+      content: <MyBundleModal bundlesEndRef={bundlesEndRef} />,
     });
   };
 
