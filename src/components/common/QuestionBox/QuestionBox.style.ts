@@ -15,6 +15,7 @@ export const Container = styled.article`
   position: relative;
   border-radius: ${BORDER_WEB}rem;
   border: 0.1rem solid ${(props) => props.theme.border_color};
+  box-sizing: border-box;
 
   @media screen and (max-width: ${MOBILE}px) {
     border-radius: ${BORDER_MOBILE}rem;
@@ -35,15 +36,15 @@ export const TitleWrapper = styled(Row)<{ $isActive: boolean }>`
   @media screen and (max-width: ${MOBILE}px) {
     border-radius: ${(props) =>
       props.$isActive
-        ? `${BORDER_MOBILE - 0.1}rem ${BORDER_MOBILE - 0.1}rem 0 0`
-        : `${BORDER_MOBILE - 0.1}rem`};
+        ? `${BORDER_MOBILE - 0.2}rem ${BORDER_MOBILE - 0.2}rem 0 0`
+        : `${BORDER_MOBILE - 0.2}rem`};
   }
 `;
 
 export const Header = styled.h1`
   display: flex;
-  padding: 1rem;
-  justify-content: center;
+  padding: 1rem 0rem 1rem 2.8rem;
+  justify-content: start;
   align-items: center;
   cursor: pointer;
   width: 100%;
@@ -52,6 +53,7 @@ export const Header = styled.h1`
 
   @media screen and (max-width: ${MOBILE}px) {
     font-size: ${WEB_FONT_SIZE}rem;
+    padding: 1rem 0rem 1rem 1.8rem;
   }
 `;
 
