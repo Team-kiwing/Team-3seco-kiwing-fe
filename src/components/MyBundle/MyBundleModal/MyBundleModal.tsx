@@ -33,6 +33,7 @@ const MyBundleModal = ({
   selectedTagsField = [],
   isSharedField = false,
   setIsToggleShared,
+  bundlesEndRef,
 }: AddBundleModalProps) => {
   const theme = useTheme();
   const { data: tags } = useFetchTags();
@@ -41,7 +42,7 @@ const MyBundleModal = ({
 
   const { isMobileSize } = useResize();
   const { setModalCompleteClose } = useModal();
-  const { mutate: createBundle } = useCreateBundle();
+  const { mutate: createBundle } = useCreateBundle(bundlesEndRef);
   const { mutate: updateBundle } = useUpdateBundle();
 
   const {

@@ -15,13 +15,18 @@ export const Container = styled.section<{ $isBundleSelected: boolean }>`
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
     padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   }
 `;
 
 export const InnerContainer = styled(Col)`
   width: 100%;
   height: 100%;
-  padding: 2rem;
+  padding: 1rem 2rem 1.5rem 1rem;
   box-sizing: border-box;
   transition: width 0.2s ease;
 
@@ -41,9 +46,7 @@ export const Body = styled(Col)`
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
-  padding-left: 0.5rem;
   padding-right: 0.5rem;
-
   box-sizing: border-box;
 `;
 
@@ -58,9 +61,9 @@ export const QuestionWrapper = styled.div`
 
 export const Footer = styled(Col)`
   width: 100%;
-  height: 10rem;
+  height: 7rem;
   align-items: flex-end;
-  gap: 2rem;
+  gap: 1rem;
 `;
 export const CountText = styled.span`
   display: flex;

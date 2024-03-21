@@ -7,10 +7,6 @@ export const Container = styled(Col)`
   gap: 1rem;
   word-break: break-all;
   width: 100%;
-
-  div:last-child {
-    padding-bottom: 1.5rem;
-  }
 `;
 
 export const TextContainer = styled(Col)`
