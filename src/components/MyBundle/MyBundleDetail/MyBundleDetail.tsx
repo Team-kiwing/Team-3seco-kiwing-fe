@@ -6,14 +6,18 @@ import {
   Droppable,
   DropResult,
 } from 'react-beautiful-dnd';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Button from '@/components/common/Button';
 import Selector from '@/components/common/Selector';
 import ShadowBox from '@/components/common/ShadowBox';
+import Spinner from '@/components/common/Spinner';
 import { QUERYKEY } from '@/constants/queryKeys';
+import { notify } from '@/hooks/toast';
 import useResize from '@/hooks/useResize';
+import { useFetchMyBundles } from '@/pages/MyBundlePage/MyBundle.hook';
 import { getBundleDetail } from '@/services/bundles';
+import { userDataStore } from '@/stores';
 import { Question } from '@/types';
 
 import MyQuestionBox from '../MyQuestionBox';
@@ -33,9 +37,14 @@ import {
 } from './MyBundleDetail.style';
 
 const MyBundleDetail = () => {
+  // 내 꾸러미 목록 전체 조회
+  const { data: bundles } = useFetchMyBundles();
+
   const questionsEndRef = useRef<HTMLDivElement | null>(null);
   const { isMobileSize } = useResize();
   const { bundleId: stringBundleId } = useParams();
+  const { nickname } = userDataStore();
+  const navigator = useNavigate();
   const bundleId = Number(stringBundleId);
 
   const { data: bundle } = useQuery({
@@ -47,8 +56,18 @@ const MyBundleDetail = () => {
       });
       return data;
     },
-    enabled: !!bundleId,
+    enabled: !!bundles?.find((bundle) => bundle.id === bundleId),
   });
+
+  useEffect(() => {
+    if (nickname && bundleId != null && bundles) {
+      if (isMobileSize && !bundles.find((bundle) => bundle.id === bundleId)) {
+        notify({ type: 'warning', text: '올바르지 않은 주소 값입니다.' });
+        navigator(`/user/${nickname}`);
+      }
+    }
+  }, [bundleId, bundles, nickname, navigator, isMobileSize]);
+
   const { mutate: reorder } = useReorderQuestion(bundleId);
 
   const [isAll, setIsAll] = useState(true);
@@ -107,7 +126,11 @@ const MyBundleDetail = () => {
   // --- requestAnimationFrame 초기화 END
 
   if (!bundleId || !bundle) {
-    return <SelectedBundleEmpty isBundleSelected={!!bundleId} />;
+    if (isMobileSize) {
+      return <Spinner />;
+    } else {
+      return <SelectedBundleEmpty isBundleSelected={!!bundleId} />;
+    }
   }
 
   return (
