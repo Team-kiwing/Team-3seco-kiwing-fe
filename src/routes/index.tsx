@@ -1,3 +1,4 @@
+// /*
 import { Route, Routes } from 'react-router-dom';
 
 import ModalLayout from '@/components/common/ModalLayout';
@@ -90,3 +91,90 @@ const Router = () => {
 };
 
 export default Router;
+// */
+
+/*
+import { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import ModalLayout from '@/components/common/ModalLayout';
+import {
+  MobileBottomNavBar,
+  MobileTopNavBar,
+  WebNavBar,
+} from '@/components/common/Navigator';
+import Spinner from '@/components/common/Spinner';
+import Layout from '@/components/Layout';
+import { PATH } from '@/constants/router';
+import Toast from '@/hooks/toast';
+import useResize from '@/hooks/useResize';
+
+import AuthRoute from './AuthRoute';
+
+const Main = lazy(() => import('@pages/MainPage'));
+const Hub = lazy(() => import('@pages/HubPage'));
+const Auth = lazy(() => import('@pages/AuthPage'));
+const Shared = lazy(() => import('@pages/SharedPage'));
+const SharedItem = lazy(() => import('@pages/SharedItemPage'));
+const NotFound = lazy(() => import('@pages/NotFoundPage'));
+const MyBundle = lazy(() => import('@pages/MyBundlePage'));
+const Policy = lazy(() => import('@pages/PolicyPage'));
+const Report = lazy(() => import('@pages/ReportPage'));
+
+const Router = () => {
+  const { isMobileSize } = useResize();
+  return (
+    <>
+      <Suspense fallback={<Spinner />}>
+        {!isMobileSize && <WebNavBar />}
+        {isMobileSize && <MobileTopNavBar />}
+        <Layout>
+          <Routes>
+            <Route
+              path={PATH.MAIN} // 메인페이지
+              element={<Main />}
+            />
+            <Route
+              path={PATH.AUTH} // 로그인, 회원가입 페이지
+              element={<Auth />}
+            />
+            <Route
+              path={PATH.HUB} // 질문 허브 페이지(검색)
+              element={<Hub />}
+            />
+            <Route
+              path={PATH.SHARED} // 공유된 질문 페이지(검색)
+              element={<Shared />}
+            />
+            <Route
+              path={PATH.SHARED_ITEM} // 공유된 질문 페이지(별개의 페이지)
+              element={<AuthRoute element={<SharedItem />} />}
+            />
+            <Route
+              path={PATH.MY} // 내 질문 리스트, 이메일 주소로 개인 페이지
+              element={<AuthRoute element={<MyBundle />} />}
+            />
+            <Route
+              path={PATH.REPORT} // 신고, 건의 페이지
+              element={<AuthRoute element={<Report />} />}
+            />
+            <Route
+              path={PATH.POLICY} // Policy 페이지
+              element={<Policy />}
+            />
+            <Route
+              path={PATH.NOTFOUND} // 404 페이지
+              element={<NotFound />}
+            />
+          </Routes>
+        </Layout>
+        {isMobileSize && <MobileBottomNavBar />}
+        <ModalLayout />
+        <Toast />
+      </Suspense>
+    </>
+  );
+};
+
+export default Router;
+*/
