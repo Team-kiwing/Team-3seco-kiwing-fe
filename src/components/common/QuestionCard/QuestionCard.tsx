@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTheme } from 'styled-components';
 
 import useDropDown from '@/hooks/useDropDown';
 import useResize from '@/hooks/useResize';
@@ -59,6 +60,7 @@ const QuestionCard = ({
   Bundle,
 }: QuestionCardProps) => {
   const { isMobileSize } = useResize();
+  const theme = useTheme();
   const { handleReportClick } = useReportModal({ questionId: id });
   const { isShow, setIsShow, openDropDown, triggerId, closeDropDown } =
     useDropDown(String(id));
@@ -134,7 +136,7 @@ const QuestionCard = ({
                       <Link
                         style={{
                           textDecoration: 'none',
-                          color: 'white',
+                          color: theme.primary_color,
                           fontSize: isMobileSize ? '1.2rem' : '1.6rem',
                         }}
                         to={`/user/${nickname}`}
