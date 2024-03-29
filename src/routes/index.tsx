@@ -22,6 +22,9 @@ const Shared = lazy(() => import('@pages/SharedPage'));
 const SharedItem = lazy(() => import('@pages/SharedItemPage'));
 const NotFound = lazy(() => import('@pages/NotFoundPage'));
 const MyBundle = lazy(() => import('@pages/MyBundlePage'));
+const MyBundleDetail = lazy(
+  () => import('@/components/MyBundle/MyBundleDetail')
+);
 const Policy = lazy(() => import('@pages/PolicyPage'));
 const Report = lazy(() => import('@pages/ReportPage'));
 
@@ -58,6 +61,17 @@ const Router = () => {
               path={PATH.MY} // 내 질문 리스트, 이메일 주소로 개인 페이지
               element={<AuthRoute element={<MyBundle />} />}
             />
+            {isMobileSize ? (
+              <Route
+                path={PATH.MY_BUNDLED_DETAIL} // 내 질문 리스트, 이메일 주소로 개인 페이지
+                element={<AuthRoute element={<MyBundleDetail />} />}
+              />
+            ) : (
+              <Route
+                path={PATH.MY_BUNDLED_DETAIL} // 내 질문 리스트, 이메일 주소로 개인 페이지
+                element={<AuthRoute element={<MyBundle />} />}
+              />
+            )}
             <Route
               path={PATH.REPORT} // 신고, 건의 페이지
               element={<AuthRoute element={<Report />} />}
