@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from 'styled-components';
 
 import Button from '@/components/common/Button';
 import DropDown from '@/components/common/DropDown';
@@ -46,6 +47,7 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
   const [checkedQuestionId, setCheckedQuestionId] = useState<number[]>([]);
   const { data: getMyBundles } = useGetMyBundles('LATEST');
   const { mutate } = useCreateQuestionsToBundle();
+  const theme = useTheme();
 
   const handleToggleCheck = (id: number, isChecked: boolean) => {
     if (isChecked) {
@@ -177,7 +179,7 @@ const SharedBundleBox = ({ questions }: SharedBundleBoxProps) => {
                       <Link
                         style={{
                           textDecoration: 'none',
-                          color: 'white',
+                          color: theme.primary_color,
                           fontSize: isMobileSize ? '1.2rem' : '1.6rem',
                         }}
                         to={`/user/${nickname}`}
