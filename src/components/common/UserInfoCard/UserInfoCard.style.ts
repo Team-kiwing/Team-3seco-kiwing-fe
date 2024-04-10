@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 import { FONT_BOLD, FONT_REGULAR, MOBILE } from '@/constants';
-import { Col, Row } from '@/styles/globalStyles';
 
-export const UserInfoWrapper = styled(Row)`
+export const UserInfoWrapper = styled.section`
   @media screen and (max-width: ${MOBILE}px) {
     padding: 1rem;
   }
 
   background-color: ${({ theme }) => theme.background_color};
   width: 100%;
+  display: flex;
+  flex-direction: row;
   padding: 2rem;
   box-sizing: border-box;
   align-items: center;
@@ -26,26 +27,30 @@ export const UserInfoWrapper = styled(Row)`
   }
 `;
 
-export const UserInfoContentsWrapper = styled(Col)`
+export const UserInfoContentsWrapper = styled.section`
   @media screen and (max-width: ${MOBILE}px) {
     padding: 0 1rem;
   }
 
   width: 100%;
+  display: flex;
+  flex-direction: column;
   padding: 0 2rem;
 `;
 
-export const UserInfoNicknameBadgeWrapper = styled(Row)`
+export const UserInfoNicknameBadgeWrapper = styled.section`
   @media screen and (max-width: ${MOBILE}px) {
     gap: 0.8rem;
   }
 
+  display: flex;
+  flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
 `;
 
-export const UserInfoNickname = styled.div`
+export const UserInfoNickname = styled.section`
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1.6rem;
   }
@@ -55,14 +60,16 @@ export const UserInfoNickname = styled.div`
   font-weight: ${FONT_BOLD};
 `;
 
-export const UserInfoBadgeWrapper = styled.div`
+export const UserInfoBadgeWrapper = styled.section`
   & > span {
     margin: 0.1rem;
   }
 `;
 
-export const UserInfoLinkWrapper = styled(Col)`
+export const UserInfoLinkWrapper = styled.section`
   width: fit-content;
+  display: flex;
+  flex-direction: column;
   margin-top: 1rem;
   gap: 1rem;
 
@@ -71,12 +78,14 @@ export const UserInfoLinkWrapper = styled(Col)`
   }
 `;
 
-export const UserInfoLink = styled(Row)`
+export const UserInfoLink = styled.section`
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1.2rem;
   }
 
   width: fit-content;
+  display: flex;
+  flex-direction: row;
   color: ${({ theme }) => theme.primary_color};
   font-size: 1.4rem;
   gap: 0.5rem;
@@ -94,13 +103,15 @@ export const UserInfoLink = styled(Row)`
   }
 `;
 
-export const UserInfoIconWrapper = styled(Col)`
+export const UserInfoIconWrapper = styled.section`
   height: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   color: ${({ theme }) => theme.primary_color};
 `;
 
-export const NoTags = styled.div`
+export const NoTags = styled.section`
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1rem;
   }
@@ -112,7 +123,7 @@ export const NoTags = styled.div`
   user-select: none;
 `;
 
-export const NoLinks = styled.div`
+export const NoLinks = styled.section`
   @media screen and (max-width: ${MOBILE}px) {
     font-size: 1rem;
   }
