@@ -12,7 +12,7 @@ export const ReportPageLayout = styled(Col)`
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
-  height: 100%;
+  /* height: 100%; */
   align-items: center;
   padding: 3rem 0;
 

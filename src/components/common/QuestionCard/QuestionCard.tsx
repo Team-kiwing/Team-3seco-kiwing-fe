@@ -78,6 +78,8 @@ const QuestionCard = ({
   const { mutate } = useCreateQuestionsToBundle();
 
   const handleAdd = (checkedItems: number[]) => {
+    console.log(checkedItems);
+    if (checkedItems.length === 0) return;
     mutate({ ids: [id], checkedBundles: checkedItems });
   };
 
