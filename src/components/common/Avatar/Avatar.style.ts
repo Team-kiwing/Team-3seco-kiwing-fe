@@ -9,7 +9,7 @@ const AvaterSize: { [key: string]: string } = {
   nav: '4rem',
 };
 
-export const AvatarWrapper = styled.div<AvatarProps>`
+export const AvatarWrapper = styled.section<AvatarProps>`
   position: relative;
   display: inline-block;
   overflow: hidden;

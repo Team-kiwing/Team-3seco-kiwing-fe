@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 import { BORDER_MOBILE, BORDER_WEB, MOBILE } from '@/constants';
-import { Col } from '@/styles/globalStyles';
 
-export const MainPageWrapper = styled(Col)`
+export const MainPageWrapper = styled.section`
   width: 80%;
+  display: flex;
+  flex-direction: column;
   max-width: 1200px;
   margin: 3rem auto;
 
@@ -83,7 +84,7 @@ export const MainListHeader = styled.h1`
   }
 `;
 
-export const MainQuestionsBox = styled.div<{ $isLogin: boolean }>`
+export const MainQuestionsBox = styled.article<{ $isLogin: boolean }>`
   width: 100%;
 
   @media screen and (max-width: ${MOBILE}px) {
@@ -92,7 +93,7 @@ export const MainQuestionsBox = styled.div<{ $isLogin: boolean }>`
   }
 `;
 
-export const MainBundlesBox = styled.div`
+export const MainBundlesBox = styled.article`
   width: 100%;
 `;
 

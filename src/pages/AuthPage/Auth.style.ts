@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 import { FONT_BOLD, FONT_SEMI_BOLD, MOBILE } from '@/constants';
-import { Col, Row } from '@/styles/globalStyles';
 
 import { AuthPageStyleProps } from './Auth.type';
 
-export const AuthPageWrapper = styled(Row)`
+export const AuthPageWrapper = styled.section`
   width: 80%;
+  display: flex;
+  flex-direction: row;
   max-width: 1200px;
   margin: 3rem auto;
   align-items: center;
@@ -18,8 +19,10 @@ export const AuthPageWrapper = styled(Row)`
   }
 `;
 
-export const AuthLogo = styled(Row)`
+export const AuthLogo = styled.section`
   width: 40%;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   & > img {
     width: 100%;
@@ -27,8 +30,10 @@ export const AuthLogo = styled(Row)`
   }
 `;
 
-export const AuthContentWrapper = styled(Col)`
+export const AuthContentWrapper = styled.section`
   width: 60%;
+  display: flex;
+  flex-direction: column;
 
   @media screen and (max-width: ${MOBILE}px) {
     width: 100%;
@@ -47,7 +52,7 @@ export const AuthHeader = styled.h1`
   }
 `;
 
-export const AuthDescription = styled.div`
+export const AuthDescription = styled.article`
   font-size: 1.8rem;
   font-weight: ${FONT_SEMI_BOLD};
   line-height: 2.5rem;
@@ -61,7 +66,7 @@ export const AuthDescription = styled.div`
   }
 `;
 
-export const AuthSubHeader = styled.div`
+export const AuthSubHeader = styled.header`
   font-size: 2.5rem;
   font-weight: ${FONT_BOLD};
   margin-bottom: 2rem;
@@ -73,7 +78,7 @@ export const AuthSubHeader = styled.div`
   }
 `;
 
-export const AuthGoogleWrapper = styled.div<AuthPageStyleProps>`
+export const AuthGoogleWrapper = styled.section<AuthPageStyleProps>`
   width: 25rem;
   border-radius: 10rem;
   cursor: pointer;
