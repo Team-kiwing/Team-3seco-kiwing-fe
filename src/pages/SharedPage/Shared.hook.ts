@@ -14,10 +14,9 @@ export const useSearchBundlesInfinite = (
   keyword: string,
   isRecent: SortingType
 ) => {
-  const filteredTags = SharedHookConstants.SHARED_TAG_FILTERING(tagsId);
   const dynamicQueryKey = SharedHookConstants.SHARED_DYNAMIC_QUERY_KEY(
     keyword,
-    filteredTags,
+    tagsId,
     isRecent
   );
 
@@ -26,7 +25,7 @@ export const useSearchBundlesInfinite = (
     queryFn: ({ pageParam }) =>
       searchBundles({
         sortingType: isRecent,
-        tagIds: filteredTags,
+        tagIds: tagsId,
         keyword: keyword,
         page: pageParam,
         size: 10,
