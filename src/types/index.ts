@@ -181,7 +181,7 @@ export interface PageCondition {
 
 export interface BundleSearchRequest {
   sortingType: SortingType;
-  tagIds?: number[] | string;
+  tagIds?: number[];
   keyword?: string;
   page: number;
   size: number;
