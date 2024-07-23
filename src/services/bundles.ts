@@ -1,3 +1,5 @@
+import qs from 'qs';
+
 import axiosErrorHandler from '@/apis/axiosErrorHandler';
 import { axiosInstance } from '@/apis/axiosInstance';
 import { DOMAIN } from '@/constants/api';
@@ -206,6 +208,9 @@ export const searchBundles = async ({
           keyword,
           page,
           size,
+        },
+        paramsSerializer: (params) => {
+          return qs.stringify(params, { arrayFormat: 'repeat' });
         },
       }
     );
