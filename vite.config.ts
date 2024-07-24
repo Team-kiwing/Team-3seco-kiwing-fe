@@ -25,7 +25,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://api.kiwing.kr/api/v1',
+        target: 'https://api.kiwing.kr/api/v1',
         rewrite: (path) => path.replace(/^\/api/, ''),
         changeOrigin: true,
       },
