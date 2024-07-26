@@ -3,11 +3,9 @@ export const SharedHookConstants = {
   SHARED_SELECTOR_CONTENT: ['최근순', '스크랩 순'],
   SHARED_DYNAMIC_QUERY_KEY: (
     keyword: string,
-    filteredTags: object | string,
+    tagIds: number[],
     isRecent: string
-  ) => 'BundleSearch' + keyword + filteredTags + isRecent,
-  SHARED_TAG_FILTERING: (tags: number[]) =>
-    tags.length === 0 ? [] : tags.join(', '),
+  ) => 'BundleSearch' + keyword + tagIds + isRecent,
 };
 
 export const SharedTextConstants = {
