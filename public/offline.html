@@ -86,15 +86,26 @@
         });
       }
 
-      document.getElementById('network-status').innerText = `${
-        prefersKorean
-          ? navigator.onLine
-            ? ' 온라인'
-            : ' 오프라인'
-          : navigator.onLine
-            ? ' online'
-            : ' offline'
-      }`;
+      function checkOnlineStatus() {
+        return fetch('https://www.google.com', {
+          method: 'HEAD',
+          mode: 'no-cors',
+        })
+          .then(() => true)
+          .catch(() => false);
+      }
+
+      checkOnlineStatus().then((isOnline) => {
+        document.getElementById('network-status').innerText = `${
+          prefersKorean
+            ? isOnline
+              ? ' 온라인'
+              : ' 오프라인'
+            : isOnline
+              ? ' online'
+              : ' offline'
+        }`;
+      });
     </script>
   </body>
 </html>
