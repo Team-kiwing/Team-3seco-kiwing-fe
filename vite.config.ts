@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import { defineConfig } from 'vite';
+import { compression } from 'vite-plugin-compression2';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,9 +19,45 @@ export default defineConfig({
       '@utils': path.resolve(__dirname, './src/utils'),
     },
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    compression({
+      algorithm: 'gzip',
+    }),
+    compression({
+      algorithm: 'brotliCompress', // Brotli 압축 알고리즘 사용
+    }),
+    compression({
+      algorithm: 'deflate', // deflate 압축 알고리즘 사용
+      filename: '[path][base].deflate',
+    }),
+  ],
   build: {
     sourcemap: 'hidden',
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: (id: string) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('lodash')) {
+              return 'lodash-vendor';
+            }
+            if (id.includes('axios')) {
+              return 'axios-vendor';
+            }
+            if (id.includes('sentry')) {
+              return 'sentry-vendor';
+            }
+            if (id.includes('react-hook-form')) {
+              return 'react-hook-form-vendor';
+            }
+            if (id.includes('react-beautiful-dnd')) {
+              return 'react-beautiful-dnd-vendor';
+            }
+          }
+        },
+      },
+    },
   },
   server: {
     proxy: {
