@@ -1,4 +1,3 @@
-/*
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -91,97 +90,6 @@ const Router = () => {
         <ModalLayout />
         <Toast />
       </Suspense>
-    </>
-  );
-};
-
-export default Router;
-*/
-import Auth from '@pages/AuthPage';
-import Hub from '@pages/HubPage';
-import Main from '@pages/MainPage';
-import MyBundle from '@pages/MyBundlePage';
-import NotFound from '@pages/NotFoundPage';
-import Policy from '@pages/PolicyPage';
-import Report from '@pages/ReportPage';
-import SharedItem from '@pages/SharedItemPage';
-import Shared from '@pages/SharedPage';
-import { Route, Routes } from 'react-router-dom';
-
-import ModalLayout from '@/components/common/ModalLayout';
-import {
-  MobileBottomNavBar,
-  MobileTopNavBar,
-  WebNavBar,
-} from '@/components/common/Navigator';
-import Layout from '@/components/Layout';
-import MyBundleDetail from '@/components/MyBundle/MyBundleDetail';
-import { PATH } from '@/constants/router';
-import Toast from '@/hooks/toast';
-import useResize from '@/hooks/useResize';
-
-import AuthRoute from './AuthRoute';
-
-const Router = () => {
-  const { isMobileSize } = useResize();
-  return (
-    <>
-      {!isMobileSize && <WebNavBar />}
-      {isMobileSize && <MobileTopNavBar />}
-      <Layout>
-        <Routes>
-          <Route
-            path={PATH.MAIN}
-            element={<Main />}
-          />
-          <Route
-            path={PATH.AUTH}
-            element={<Auth />}
-          />
-          <Route
-            path={PATH.HUB}
-            element={<Hub />}
-          />
-          <Route
-            path={PATH.SHARED}
-            element={<Shared />}
-          />
-          <Route
-            path={PATH.SHARED_ITEM}
-            element={<AuthRoute element={<SharedItem />} />}
-          />
-          <Route
-            path={PATH.MY}
-            element={<AuthRoute element={<MyBundle />} />}
-          />
-          {isMobileSize ? (
-            <Route
-              path={PATH.MY_BUNDLED_DETAIL}
-              element={<AuthRoute element={<MyBundleDetail />} />}
-            />
-          ) : (
-            <Route
-              path={PATH.MY_BUNDLED_DETAIL}
-              element={<AuthRoute element={<MyBundle />} />}
-            />
-          )}
-          <Route
-            path={PATH.REPORT}
-            element={<AuthRoute element={<Report />} />}
-          />
-          <Route
-            path={PATH.POLICY}
-            element={<Policy />}
-          />
-          <Route
-            path={PATH.NOTFOUND}
-            element={<NotFound />}
-          />
-        </Routes>
-      </Layout>
-      {isMobileSize && <MobileBottomNavBar />}
-      <ModalLayout />
-      <Toast />
     </>
   );
 };
