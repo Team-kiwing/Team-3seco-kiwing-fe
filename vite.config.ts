@@ -25,15 +25,10 @@ export default defineConfig({
       algorithm: 'gzip',
     }),
     compression({
-      algorithm: 'brotliCompress', // Brotli 압축 알고리즘 사용
-    }),
-    compression({
-      algorithm: 'deflate', // deflate 압축 알고리즘 사용
-      filename: '[path][base].deflate',
+      algorithm: 'brotliCompress',
     }),
   ],
   build: {
-    sourcemap: 'hidden',
     minify: 'terser',
     rollupOptions: {
       output: {
