@@ -63,7 +63,9 @@
     "jsdoc": "^4.0.2",
     "lint-staged": "^15.2.0",
     "prettier": "^3.2.5",
+    "terser": "^5.31.6",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vite-plugin-compression2": "^1.2.0"
   }
 }
