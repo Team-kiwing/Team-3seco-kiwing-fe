@@ -36,7 +36,6 @@
     "react-tooltip": "^5.26.3",
     "styled-components": "^6.1.8",
     "styled-normalize": "^8.1.0",
-    "vite-bundle-visualizer": "^1.2.1",
     "zustand": "^4.5.0"
   },
   "devDependencies": {
